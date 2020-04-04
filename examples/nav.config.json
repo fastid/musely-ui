@@ -1,0 +1,15 @@
+{
+  "开发指南": [
+    {
+      "name": "giud",
+      "path": "/giud",
+      "desc": "介绍"
+    },
+    {
+      "name": "home",
+      "path": "/",
+      "type": "pages"
+    }
+  ],
+  "组件": []
+}
