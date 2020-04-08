@@ -23,6 +23,11 @@
   ],
   "组件": [
     {
+      "desc": "文档演示",
+      "name": "demo",
+      "path": "/demo"
+    },
+    {
       "desc": "基础组件",
       "path": "/component",
       "items": [

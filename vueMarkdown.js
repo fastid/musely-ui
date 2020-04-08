@@ -2,10 +2,12 @@
  * @Author: Victor wang
  * @Date: 2020-04-07 18:59:14
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-08 17:18:35
+ * @LastEditTime: 2020-04-08 22:36:37
  * @Description:
  */
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const cheerio = require('cheerio')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const MarkdownItContainer = require('markdown-it-container')
 const striptags = (str, tags) => {
   const $ = cheerio.load(str, { decodeEntities: false })
@@ -45,7 +47,8 @@ const convertHtml = (str) => {
 
 const vueMarkdown = {
   preprocess: (MarkdownIt, source) => {
-    MarkdownIt.renderer.rules.tableOpen = () => {
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    MarkdownIt.renderer.rules.table_open = () => {
       return '<table class="table">'
     }
     MarkdownIt.renderer.rules.fence = wrapCustomClass(
@@ -54,7 +57,8 @@ const vueMarkdown = {
 
     // ```code`` 给这种样式加个class code_inline
     const codeInline = MarkdownIt.renderer.rules.codeInline
-    MarkdownIt.renderer.rules.codeInline = (...args) => {
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    MarkdownIt.renderer.rules.code_inline = (...args) => {
       args[0][args[1]].attrJoin('class', 'code_inline')
       return codeInline(...args)
     }
@@ -73,6 +77,7 @@ const vueMarkdown = {
             )
             // 移除描述，防止被添加到代码块
             tokens[idx + 2].children = []
+            console.log(html)
             return `<code-view>
                         <div slot="desc">${html}</div>
                         <div slot="highlight">`
