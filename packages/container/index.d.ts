@@ -1,9 +1,14 @@
 /*
  * @Author: Victor wang
- * @Date: 2020-04-04 18:04:31
+ * @Date: 2020-04-04 00:58:00
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-04 18:08:07
- * @Description: 
+ * @LastEditTime: 2020-04-07 11:18:51
+ * @Description:
  */
-import container from '../../types/container'
-export default container
+import { MuselyUIComponent } from '../../types/common'
+
+/** Container Component */
+export declare class MuContainer extends MuselyUIComponent {
+  /** Layout direction for child elements */
+  direction: 'horizontal' | 'vertical'
+}

@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 let routes: RouteConfig[] = []
 
-Object.keys(navConf).forEach(header => {
+Object.keys(navConf).forEach((header) => {
   routes = routes.concat((navConf as any)[header])
 })
 
@@ -23,11 +23,10 @@ let addComponent = (router: RouteConfig[]) => {
           )
         return
       }
-      route.component = (r: any) =>
-        {
-          console.log(route.name)
-          require.ensure([], () => r(require(`../docs/${route.name}.md`)))
-        }
+      route.component = (r: any) => {
+        console.log(route.name)
+        require.ensure([], () => r(require(`../docs/${route.name}.md`)))
+      }
     }
   })
 }
@@ -35,13 +34,13 @@ let addComponent = (router: RouteConfig[]) => {
 addComponent(routes)
 const router = new VueRouter({
   mode: 'history', // Disabled due to Github Pages doesn't support this, enable this if you need.
-    scrollBehavior: (to, from, savedPosition) => {
-      if (savedPosition) {
-        return savedPosition
-      } else {
-        return { x: 0, y: 0 }
-      }
-    },
+  scrollBehavior: (to, from, savedPosition) => {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+    }
+  },
   routes
 })
 

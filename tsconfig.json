@@ -26,7 +26,7 @@
     "packages/**/*.tsx",
     "packages/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx", "types/common.d.ts", "types/index.ts", "types/index.d.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:22:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-05 03:23:44
+ * @LastEditTime: 2020-04-08 15:44:45
  * @Description:
  -->
 
@@ -27,7 +27,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
-  name: 'layout',
+  name: 'codeView',
   components: {
   }
 })

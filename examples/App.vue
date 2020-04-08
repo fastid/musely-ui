@@ -45,8 +45,7 @@ export default class extends Vue {
 </script>
 <style lang="scss">
 .container {
-  margin: 48px auto;
-  width: 90%;
+  margin: 12px auto;
   background-color: #fff;
   box-shadow: 0 4px 30px 0 rgba(223, 225, 230, 0.5);
   .nav {

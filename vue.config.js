@@ -1,5 +1,5 @@
 const path = require('path')
-
+const vueMarkdown = require('./vueMarkdown')
 // If your port is set to 80,
 const devServerPort = 8018 // TODO: get this variable from setting.ts
 const name = 'Musely-UI' // TODO: get this variable from setting.ts
@@ -43,11 +43,28 @@ module.exports = {
     config.resolve.alias.set('@', path.join(__dirname, 'examples'))
 
     // https://webpack.js.org/configuration/devtool/#development
-    config.when(process.env.NODE_ENV === 'development', config =>
+    config.when(process.env.NODE_ENV === 'development', (config) =>
       config.devtool('cheap-module-eval-source-map')
     )
+    config.module
+      .rule('md')
+      .test(/\.md$/)
+      .use('vue-loader')
+      .loader('vue-loader')
+      .end()
+      .use('vue-markdown-loader')
+      .loader('vue-markdown-loader/lib/markdown-compiler')
+      .options({
+        preset: 'default',
+        breaks: true,
+        raw: true,
+        typographer: true,
+        preprocess: vueMarkdown.preprocess,
+        use: vueMarkdown.use
+      })
+    // .options(vueMarkdown)
 
-    config.when(process.env.NODE_ENV !== 'development', config => {
+    config.when(process.env.NODE_ENV !== 'development', (config) => {
       config.optimization.splitChunks({
         chunks: 'all',
         cacheGroups: {

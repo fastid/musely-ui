@@ -2,12 +2,13 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:35:33
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-04 17:59:46
+ * @LastEditTime: 2020-04-07 11:22:03
  * @Description:
  */
-import { MuContainer } from './container'
-import { MuCol } from './col'
-import { MuRow } from './row'
+import Vue from 'vue'
+import { MuContainer } from '../packages/container'
+import { MuCol } from '../packages/col'
+import { MuRow } from '../packages/row'
 
 
 export interface InstallationOptions {

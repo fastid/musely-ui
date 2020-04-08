@@ -1,9 +1,25 @@
-/*
- * @Author: Victor wang
- * @Date: 2020-04-04 18:04:31
- * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-04 18:06:39
- * @Description: 
- */
-import row from '../../types/row'
-export default row
+import { MuselyUIComponent } from '../../types/common'
+
+/** Horizontal alignment of flex layout */
+export type HorizontalAlignment = 'start' | 'end' | 'center' | 'space-around' | 'space-between'
+
+/** vertical alignment of flex layout */
+export type VertialAlignment = 'top' | 'middle' | 'bottom'
+
+/** Row Layout Component */
+export declare class MuRow extends MuselyUIComponent {
+  /** Grid spacing */
+  gutter: number
+
+  /** Layout mode. You can use flex. Works in modern browsers */
+  type: string
+
+  /** Horizontal alignment of flex layout */
+  justify: HorizontalAlignment
+
+  /** Vertical alignment of flex layout */
+  align: VertialAlignment
+
+  /** Custom element tag */
+  tag: string
+}

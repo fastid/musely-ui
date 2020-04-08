@@ -2,12 +2,9 @@
   <div class="page-footer">
     <div class="footer-container">
       <mu-row type="flex" justify="space-between">
-        <mu-col :span="12" class="text-left">
-          <div>
-            <p>author: Victor Wang</p>
-          </div>
-        </mu-col>
-        <mu-col :span="12"   class="text-right">&copy;2020</mu-col>
+        <mu-col class="text"
+          ><p>&copy;2020 musely.com</p></mu-col
+        >
       </mu-row>
     </div>
   </div>
@@ -30,18 +27,11 @@ export default {
     width: 90%;
     margin: 0 auto;
   }
-  .text-left {
+  .text {
     font-size: 12px;
-    display: flex;
     align-items: center;
+
     color: #5e6d82;
-    img {
-      border-radius: 100%;
-      margin-right: 10px;
-    }
-    a {
-      color: #6190e8;
-    }
   }
 }
 </style>
