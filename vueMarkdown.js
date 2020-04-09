@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-07 18:59:14
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-08 22:36:37
+ * @LastEditTime: 2020-04-09 23:05:13
  * @Description:
  */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -28,7 +28,7 @@ const striptags = (str, tags) => {
  * 增加 hljs 的 classname
  */
 const wrapCustomClass = (render) => {
-  return function (...args) {
+  return function(...args) {
     return render(...args)
       .replace('<code class="', '<code class="hljs ')
       .replace('<code>', '<code class="hljs">')
@@ -56,7 +56,7 @@ const vueMarkdown = {
     )
 
     // ```code`` 给这种样式加个class code_inline
-    const codeInline = MarkdownIt.renderer.rules.codeInline
+    const codeInline = MarkdownIt.renderer.rules.code_inline
     // eslint-disable-next-line @typescript-eslint/camelcase
     MarkdownIt.renderer.rules.code_inline = (...args) => {
       args[0][args[1]].attrJoin('class', 'code_inline')

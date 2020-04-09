@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:22:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-08 15:44:45
+ * @LastEditTime: 2020-04-09 23:16:23
  * @Description:
  -->
 
@@ -67,6 +67,7 @@ export default class extends Vue {
   font-size: 12px;
   padding: 10px 0;
   background-color: #fafbfc;
+  cursor: pointer;
 }
 
 .docs-demo__code,

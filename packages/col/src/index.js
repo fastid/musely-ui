@@ -21,7 +21,7 @@ export default {
   },
 
   computed: {
-    gutter () {
+    gutter() {
       let parent = this.$parent
       while (parent && parent.$options.componentName !== 'MuRow') {
         parent = parent.$parent
@@ -29,7 +29,7 @@ export default {
       return parent ? parent.gutter : 0
     }
   },
-  render (h) {
+  render(h) {
     const classList = []
     const style = {}
 
@@ -38,7 +38,7 @@ export default {
       style.paddingRight = style.paddingLeft
     }
 
-    ['span', 'offset', 'pull', 'push'].forEach(prop => {
+    ;['span', 'offset', 'pull', 'push'].forEach((prop) => {
       if (this[prop] || this[prop] === 0) {
         classList.push(
           prop !== 'span'
@@ -46,14 +46,13 @@ export default {
             : `mu-col-${this[prop]}`
         )
       }
-    });
-
-    ['xs', 'sm', 'md', 'lg', 'xl'].forEach(size => {
+    })
+    ;['xs', 'sm', 'md', 'lg', 'xl'].forEach((size) => {
       if (typeof this[size] === 'number') {
-        classList.push(`el-col-${size}-${this[size]}`)
+        classList.push(`mu-col-${size}-${this[size]}`)
       } else if (typeof this[size] === 'object') {
         const props = this[size]
-        Object.keys(props).forEach(prop => {
+        Object.keys(props).forEach((prop) => {
           classList.push(
             prop !== 'span'
               ? `mu-col-${size}-${prop}-${props[prop]}`
@@ -63,9 +62,13 @@ export default {
       }
     })
 
-    return h(this.tag, {
-      class: ['mu-col', classList],
-      style
-    }, this.$slots.default)
+    return h(
+      this.tag,
+      {
+        class: ['mu-col', classList],
+        style
+      },
+      this.$slots.default
+    )
   }
 }

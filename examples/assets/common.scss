@@ -1,28 +1,54 @@
-article, aside, blockquote, body, button, code, dd, details, div, dl, dt, fieldset, figcaption, figure, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, hr, input, legend, li, menu, nav, ol, p, pre, section, td, textarea, th, ul {
+article,
+aside,
+blockquote,
+body,
+button,
+code,
+dd,
+details,
+div,
+dl,
+dt,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+hr,
+input,
+legend,
+li,
+menu,
+nav,
+ol,
+p,
+pre,
+section,
+td,
+textarea,
+th,
+ul {
   margin: 0;
   padding: 0;
 }
 a {
   text-decoration: none;
 }
-code, kbd, pre, samp {
-  font-family: Consolas,Menlo,Courier,monospace;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
-
-.bg-purple-dark {
-  background: #99a9bf;
+code,
+kbd,
+pre,
+samp {
+  font-family: Consolas, Menlo, Courier, monospace;
 }
 
-.bg-purple{
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
 .m-10 {
   margin-top: 10px;
 }
@@ -34,7 +60,7 @@ code, kbd, pre, samp {
   margin-left: 10px;
 }
 
-.row-bg{
+.row-bg {
   padding: 10px 0;
   background-color: #f9fafc;
 }
