@@ -23,3 +23,40 @@
     background-color: #f9fafc;
   }
 }
+
+.demo-container {
+  .mu-header,
+  .mu-footer {
+    background-color: #b3c0d1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+
+  .mu-aside {
+    background-color: #d3dce6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
+
+  .mu-main {
+    background-color: #e9eef3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
+
+  body > .mu-container {
+    margin-bottom: 40px;
+  }
+
+  .mu-container:nth-child(5) .mu-aside,
+  .mu-container:nth-child(6) .mu-aside {
+    line-height: 260px;
+  }
+
+  .mu-container:nth-child(7) .mu-aside {
+    line-height: 320px;
+  }
+}

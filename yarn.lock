@@ -1523,6 +1523,10 @@ array.prototype.flat@^1.2.1:
     define-properties "^1.1.3"
     es-abstract "^1.17.0-next.1"
 
+asciimath-to-latex@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.npm.taobao.org/asciimath-to-latex/download/asciimath-to-latex-0.3.2.tgz#1f6e6b36ccc11e3de0ceeffa3dce16483ec28b4e"
+
 asn1.js@^4.0.0:
   version "4.10.1"
   resolved "https://registry.npm.taobao.org/asn1.js/download/asn1.js-4.10.1.tgz#b9c2bf5805f1e64aadeed6df3a2bfafb5a73f5a0"
@@ -4862,6 +4866,18 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+katex@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.npm.taobao.org/katex/download/katex-0.6.0.tgz#12418e09121c05c92041b6b3b9fb6bab213cb6f3"
+  dependencies:
+    match-at "^0.1.0"
+
+katex@^0.9.0-alpha2:
+  version "0.9.0"
+  resolved "https://registry.npm.taobao.org/katex/download/katex-0.9.0.tgz#26a7d082c21d53725422d2d71da9b2d8455fbd4a"
+  dependencies:
+    match-at "^0.1.1"
+
 killable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npm.taobao.org/killable/download/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
@@ -4993,6 +5009,10 @@ lodash.defaultsdeep@^4.6.1:
   version "4.6.1"
   resolved "https://registry.npm.taobao.org/lodash.defaultsdeep/download/lodash.defaultsdeep-4.6.1.tgz?cache=0&sync_timestamp=1562718178896&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash.defaultsdeep%2Fdownload%2Flodash.defaultsdeep-4.6.1.tgz#512e9bd721d272d94e3d3a63653fa17516741ca6"
 
+lodash.flow@^3.5.0:
+  version "3.5.0"
+  resolved "https://registry.npm.taobao.org/lodash.flow/download/lodash.flow-3.5.0.tgz#87bf40292b8cf83e4e8ce1a3ae4209e20071675a"
+
 lodash.kebabcase@^4.1.1:
   version "4.1.1"
   resolved "https://registry.npm.taobao.org/lodash.kebabcase/download/lodash.kebabcase-4.1.1.tgz#8489b1cb0d29ff88195cceca448ff6d6cc295c36"
@@ -5097,6 +5117,26 @@ markdown-it-container@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npm.taobao.org/markdown-it-container/download/markdown-it-container-2.0.0.tgz#0019b43fd02eefece2f1960a2895fba81a404695"
 
+markdown-it-highlightjs@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-highlightjs/download/markdown-it-highlightjs-3.1.0.tgz#1f4083270637bbecde26babbc9b7f333306e3010"
+  dependencies:
+    highlight.js "^9.18.1"
+    lodash.flow "^3.5.0"
+
+markdown-it-katex@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.npm.taobao.org/markdown-it-katex/download/markdown-it-katex-2.0.3.tgz#d7b86a1aea0b9d6496fab4e7919a18fdef589c39"
+  dependencies:
+    katex "^0.6.0"
+
+markdown-it-latex@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npm.taobao.org/markdown-it-latex/download/markdown-it-latex-0.2.0.tgz#b7421ddb8ecfdb65f4428b50691c1308e18ab2f0"
+  dependencies:
+    asciimath-to-latex "^0.3.2"
+    katex "^0.9.0-alpha2"
+
 markdown-it@^8.4.0, markdown-it@^8.4.1:
   version "8.4.2"
   resolved "https://registry.npm.taobao.org/markdown-it/download/markdown-it-8.4.2.tgz#386f98998dc15a37722aa7722084f4020bdd9b54"
@@ -5106,6 +5146,10 @@ markdown-it@^8.4.0, markdown-it@^8.4.1:
     linkify-it "^2.0.0"
     mdurl "^1.0.1"
     uc.micro "^1.0.5"
+
+match-at@^0.1.0, match-at@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.npm.taobao.org/match-at/download/match-at-0.1.1.tgz#25d040d291777704d5e6556bbb79230ec2de0540"
 
 md5.js@^1.3.4:
   version "1.3.5"

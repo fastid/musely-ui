@@ -1,8 +1,6 @@
 export default {
   name: 'MuRow',
 
-  componentName: 'MuRow',
-
   props: {
     tag: {
       type: String,
@@ -21,7 +19,7 @@ export default {
   },
 
   computed: {
-    style () {
+    style() {
       const ret = {}
 
       if (this.gutter) {
@@ -33,16 +31,11 @@ export default {
     }
   },
 
-  render (h) {
+  render(h) {
     return h(
       this.tag,
       {
-        class: [
-          'mu-row',
-          this.justify !== 'start' ? `is-justify-${this.justify}` : '',
-          this.align !== 'top' ? `is-align-${this.align}` : '',
-          { 'mu-row--flex': this.type === 'flex' }
-        ],
+        class: ['mu-row', this.justify !== 'start' ? `is-justify-${this.justify}` : '', this.align !== 'top' ? `is-align-${this.align}` : '', { 'mu-row--flex': this.type === 'flex' }],
         style: this.style
       },
       this.$slots.default

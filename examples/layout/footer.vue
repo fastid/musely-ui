@@ -1,20 +1,24 @@
 <template>
   <div class="page-footer">
     <div class="footer-container">
-      <mu-row type="flex" justify="space-between">
-        <mu-col class="text"
-          ><p>&copy;2020 musely.com</p></mu-col
-        >
+      <mu-row type="flex"
+              justify="space-between">
+        <mu-col class="text">
+          <p>&copy;2020 musely.com</p>
+        </mu-col>
       </mu-row>
     </div>
   </div>
 </template>
+
 <script lang="ts">
-export default {
-  data () {
-    return {}
-  }
-}
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component({
+  name: 'LayoutFooter',
+  components: {}
+})
+export default class LayoutFooter extends Vue {}
 </script>
 <style lang="scss" scoped>
 .page-footer {

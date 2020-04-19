@@ -12,21 +12,15 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": ["webpack-env", "mocha", "chai"],
-    "resolveJsonModule":true,
+    "resolveJsonModule": true,
     "paths": {
       "@/*": ["examples/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "include": [
-    "examples/**/*.ts",
-    "examples/**/*.tsx",
-    "examples/**/*.vue",
-    "packages/**/*.ts",
-    "packages/**/*.tsx",
-    "packages/**/*.vue",
-    "tests/**/*.ts",
-    "tests/**/*.tsx", "types/common.d.ts", "types/index.ts", "types/index.d.ts"
-  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
+  },
+  "include": ["examples/**/*.ts", "examples/**/*.tsx", "examples/**/*.vue", "packages/**/*.ts", "packages/**/*.tsx", "packages/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx", "types/common.d.ts", "types/index.ts", "types/index.d.ts"],
   "exclude": ["node_modules"]
 }

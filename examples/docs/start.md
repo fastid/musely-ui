@@ -1,18 +1,19 @@
 # 快速上手
 
-----
+---
 
 ## 使用前准备
 
-> 在使用之前，推荐学习 `Vue` 和 `ES2015` ，并正确配置 `Node.js` v6.x 或以上版本
+> 在使用之前，推荐学习 `Vue` 、`TypeScript` `ES2015` ，并正确配置 `Node.js` v10.x 或以上版本
 
-`VV-UI` 基于 `Vue.js` 2.x+ 版本开发，所以有必要了解以下基础知识：
+`Musely-UI` 基于 `Vue` 2.6+ 版本开发，所以有必要了解以下基础知识：
+
 - [Vue 组件](https://cn.vuejs.org/v2/guide/components.html)
 - [单文件组件](https://cn.vuejs.org/v2/guide/single-file-components.html)
 
 ## 基于模板工程开发
 
-> `Vue.js` 提供一个官方命令行工具 `vue-cli`，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需几分钟即可创建并启动一个带热重载、保存时静态检查以及可用于生产环境的构建配置的项目。
+> `Vue` 提供一个官方命令行工具 `vue-cli`，可用于快速搭建大型单页应用。该工具提供开箱即用的构建工具配置，带来现代化的前端开发流程。只需几分钟即可创建并启动一个带热重载、保存时静态检查以及可用于生产环境的构建配置的项目。
 
 ```bash
 > npm i -g vue-cli
@@ -50,7 +51,7 @@ export default {
 }
 ```
 
-在模板中，用 `<w-button></w-button>` 自定义标签的方式使用组件
+在模板中，用 `<mu-button></mu-button>` 自定义标签的方式使用组件
 
 ```html
 <template>

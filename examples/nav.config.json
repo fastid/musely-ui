@@ -16,6 +16,16 @@
       "desc": "快速开始"
     },
     {
+      "desc": "文档编写",
+      "name": "document",
+      "path": "/document"
+    },
+    {
+      "desc": "演示",
+      "name": "demo",
+      "path": "/demo"
+    },
+    {
       "name": "home",
       "path": "/",
       "type": "pages"
@@ -23,18 +33,44 @@
   ],
   "组件": [
     {
-      "desc": "文档演示",
-      "name": "demo",
-      "path": "/demo"
+      "desc": "基础组件",
+      "path": "/basic",
+      "items": [
+        {
+          "desc": "Color 色彩",
+          "name": "color",
+          "path": "/color"
+        },
+        {
+          "desc": "Font 字体",
+          "name": "font",
+          "path": "/font"
+        },
+        {
+          "desc": "Button 按钮",
+          "name": "button",
+          "path": "/button"
+        },
+        {
+          "desc": "Icon 图标",
+          "name": "icon",
+          "path": "/icon"
+        }
+      ]
     },
     {
-      "desc": "基础组件",
-      "path": "/component",
+      "desc": "框架组件",
+      "path": "/skeleton",
       "items": [
         {
           "desc": "Layout 布局",
           "name": "layout",
           "path": "/layout"
+        },
+        {
+          "desc": "Container 容器",
+          "name": "container",
+          "path": "/container"
         }
       ]
     }

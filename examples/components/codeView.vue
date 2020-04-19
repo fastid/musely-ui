@@ -2,13 +2,13 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:22:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-09 23:16:23
+ * @LastEditTime: 2020-04-20 00:21:48
  * @Description:
  -->
-
 <template>
   <div class="docs-demo-wrapper">
-    <div :style="{ height: isExpand ? 'auto' : '0' }" class="demo-container">
+    <div :style="{ height: isExpand ? 'auto' : '0' }"
+         class="demo-container">
       <div span="14">
         <div class="docs-demo docs-demo--expand">
           <div class="highlight-wrapper">
@@ -17,7 +17,8 @@
         </div>
       </div>
     </div>
-    <span class="docs-trans docs-demo__triangle" @click="toggle">{{
+    <span class="docs-trans docs-demo__triangle"
+          @click="toggle">{{
       isExpand ? '隐藏代码' : '显示代码'
     }}</span>
   </div>
@@ -28,13 +29,12 @@ import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
   name: 'codeView',
-  components: {
-  }
+  components: {}
 })
 export default class extends Vue {
   private isExpand = false
 
-  private toggle () {
+  private toggle() {
     this.isExpand = !this.isExpand
   }
 }

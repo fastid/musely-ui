@@ -4,30 +4,31 @@
 $--font-path: 'fonts' !default;
 
 // Base color
-$pageBgColor:#f5f5f5;
+$pageBgColor: #f5f5f5;
 
-$blue:#324157;
-$light-blue:#3A71A8;
+$blue: #324157;
+$light-blue: #3a71a8;
 $grey: #404040;
 $lightgrey: #9a9a9a;
 $pink: #fc94ae;
-$red: #C03639;
+$red: #c03639;
 $teal: #3dc48a;
-$tiffany: #4AB7BD;
+$tiffany: #4ab7bd;
 
 // Font size
 $fs_xs: 12px;
-$fs_s:  14px;
-$fs_b:  16px;
-$fs_m:  18px;
-$fs_l:  20px;
+$fs_s: 14px;
+$fs_b: 16px;
+$fs_m: 18px;
+$fs_l: 20px;
 $fs_xl: 22px;
 
-$GB  :GilroyBold,sans-serif;
-$GR  :GilroyRegular,sans-serif;
-$PNB :ProximaNovaBold,sans-serif;
-$PNR :ProximaNovaRegular,sans-serif;
-$PNSB:ProximaNovaSemibold,sans-serif;
+// font family
+$GB: GilroyBold, sans-serif;
+$GR: GilroyRegular, sans-serif;
+$PNB: ProximaNovaBold, sans-serif;
+$PNR: ProximaNovaRegular, sans-serif;
+$PNSB: ProximaNovaSemibold, sans-serif;
 
 /* Break-point
 --------------------------*/
@@ -37,23 +38,61 @@ $--lg: 1200px !default;
 $--xl: 1920px !default;
 
 $--breakpoints: (
-  'xs' : (max-width: $--sm - 1),
-  'sm' : (min-width: $--sm),
-  'md' : (min-width: $--md),
-  'lg' : (min-width: $--lg),
-  'xl' : (min-width: $--xl)
+  'xs': (
+    max-width: $--sm - 1
+  ),
+  'sm': (
+    min-width: $--sm
+  ),
+  'md': (
+    min-width: $--md
+  ),
+  'lg': (
+    min-width: $--lg
+  ),
+  'xl': (
+    min-width: $--xl
+  )
 );
 
 $--breakpoints-spec: (
-  'xs-only' : (max-width: $--sm - 1),
-  'sm-and-up' : (min-width: $--sm),
-  'sm-only': "(min-width: #{$--sm}) and (max-width: #{$--md - 1})",
-  'sm-and-down': (max-width: $--md - 1),
-  'md-and-up' : (min-width: $--md),
-  'md-only': "(min-width: #{$--md}) and (max-width: #{$--lg - 1})",
-  'md-and-down': (max-width: $--lg - 1),
-  'lg-and-up' : (min-width: $--lg),
-  'lg-only': "(min-width: #{$--lg}) and (max-width: #{$--xl - 1})",
-  'lg-and-down': (max-width: $--xl - 1),
-  'xl-only' : (min-width: $--xl),
+  'xs-only': (
+    max-width: $--sm - 1
+  ),
+  'sm-and-up': (
+    min-width: $--sm
+  ),
+  'sm-only': '(min-width: #{$--sm}) and (max-width: #{$--md - 1})',
+  'sm-and-down': (
+    max-width: $--md - 1
+  ),
+  'md-and-up': (
+    min-width: $--md
+  ),
+  'md-only': '(min-width: #{$--md}) and (max-width: #{$--lg - 1})',
+  'md-and-down': (
+    max-width: $--lg - 1
+  ),
+  'lg-and-up': (
+    min-width: $--lg
+  ),
+  'lg-only': '(min-width: #{$--lg}) and (max-width: #{$--xl - 1})',
+  'lg-and-down': (
+    max-width: $--xl - 1
+  ),
+  'xl-only': (
+    min-width: $--xl
+  )
 );
+
+/* Header
+  --------------------------*/
+$--header-padding: 0 20px !default;
+
+/* Footer
+  --------------------------*/
+$--footer-padding: 0 20px !default;
+
+/* Main
+  --------------------------*/
+$--main-padding: 20px !default;

@@ -2,33 +2,22 @@
  * @Author: Victor wang
  * @Date: 2020-04-03 16:14:35
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-05 03:16:43
+ * @LastEditTime: 2020-04-20 00:28:47
  * @Description:
  -->
 <template>
   <div class="main-skeleton">
     <mu-container height="80px"></mu-container>
-    <div>
-      <div class="skeleton-container">
-        <div class="skeleton">
-          <mu-container height="300px"></mu-container>
-        </div>
-        <mu-container height="45px"></mu-container>
-      </div>
-      <div class="skeleton-bottom">
-        <mu-container height="45px"></mu-container>
-      </div>
-    </div>
   </div>
 </template>
-<script lang='ts'>
-export default {
-  data () {
-    return {
-      msg: 'hello vue'
-    }
-  }
-}
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component({
+  name: 'LayoutMain',
+  components: {}
+})
+export default class LayoutMain extends Vue {}
 </script>
 <style lang="scss">
 .skeleton-container {

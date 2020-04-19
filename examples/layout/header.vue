@@ -1,26 +1,27 @@
 <template>
-  <header
-    class="page-header"
-    :style="
+  <header class="page-header"
+          :style="
       $route.name === 'index'
         ? 'box-shadow:none'
         : 'box-shadow:0 10px 60px 0 rgba(29,29,31,0.07)'
-    "
-  >
+    ">
     <div class="header-container">
-      <router-link :to="{ name: 'home' }"
-        ><svgicon name="musely_logo" class="logo"
-      /></router-link>
+      <router-link :to="{ name: 'home' }">
+        <svgicon name="musely_logo"
+                 class="logo" />
+      </router-link>
     </div>
   </header>
 </template>
 
 <script lang="ts">
-export default {
-  data () {
-    return {}
-  }
-}
+import { Component, Vue } from 'vue-property-decorator'
+
+@Component({
+  name: 'LayoutHeader',
+  components: {}
+})
+export default class LayoutHeader extends Vue {}
 </script>
 
 <style lang="scss">

@@ -17,14 +17,10 @@ let addComponent = (router: RouteConfig[]) => {
       routes = routes.concat(route.items)
     } else {
       if (route.type === 'pages') {
-        route.component = (r: any) =>
-          require.ensure([], () =>
-            r(require(`../views/${route.name}/index.vue`))
-          )
+        route.component = (r: any) => require.ensure([], () => r(require(`../views/${route.name}/index.vue`)))
         return
       }
       route.component = (r: any) => {
-        console.log(route.name)
         require.ensure([], () => r(require(`../docs/${route.name}.md`)))
       }
     }

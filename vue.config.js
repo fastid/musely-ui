@@ -32,10 +32,7 @@ module.exports = {
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
-      patterns: [
-        path.resolve(__dirname, 'examples/styles/_variables.scss'),
-        path.resolve(__dirname, 'examples/styles/_mixins.scss')
-      ]
+      patterns: [path.resolve(__dirname, 'examples/styles/_variables.scss'), path.resolve(__dirname, 'examples/styles/_mixins.scss')]
     }
   },
   chainWebpack(config) {
@@ -45,9 +42,7 @@ module.exports = {
     config.resolve.alias.set('@', path.join(__dirname, 'examples'))
 
     // https://webpack.js.org/configuration/devtool/#development
-    config.when(process.env.NODE_ENV === 'development', (config) =>
-      config.devtool('cheap-module-eval-source-map')
-    )
+    config.when(process.env.NODE_ENV === 'development', (config) => config.devtool('cheap-module-eval-source-map'))
     config.module
       .rule('md')
       .test(/\.md$/)

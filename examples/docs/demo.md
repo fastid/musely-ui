@@ -1,54 +1,57 @@
-@这是我们展示的说明文档
-**三维测量 measure**
+<!--
+ * @Author: Victor wang
+ * @Date: 2020-04-20 00:38:22
+ * @LastEditors: Victor.wang
+ * @LastEditTime: 2020-04-20 02:14:31
+ * @Description:
+ -->
+
+## 标题
+
+文档内容
 
 ### 基本用法
 
-- @param type 测量类型
-- line 直线测量
-- area 面积测量
-- vertical 垂直测量
-- horizontal 水平测量
+基本用法的说明。
 
----
+<div class="demo-block demo-layout">
+ <mu-row>
+   <mu-col :span="24"><div class="grid-content bg-purple-dark"></div></mu-col>
+ </mu-row>
+ <mu-row>
+   <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
+   <mu-col :span="8"><div class="grid-content bg-purple-light"></div></mu-col>
+   <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
+ </mu-row>
+ <mu-row>
+   <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
+   <mu-col :span="4"><div class="grid-content bg-purple-light"></div></mu-col>
+   <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
+   <mu-col :span="4"><div class="grid-content bg-purple-light"></div></mu-col>
+   <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
+   <mu-col :span="4"><div class="grid-content bg-purple-light"></div></mu-col>
+ </mu-row>
+</div>
 
-@这部分是页面上可以交互的代码
-
-<div class="measure-ct">
-            <button @click="measure('line')">直线测量</button>
-            <button @click="measure('area')">面积测量</button>
-            <button @click="measure('vertical')">垂直测量</button>
-            <button @click="measure('horizontal')">水平测量</button>
-            <button @click="measureCancel">清除测量结果</button>
-        </div>
-        <br>
-
-::: demo
-
-@这部分是我们展示的示例代码
-
-```shell
-import {cw5} from 'cw3d/index.js';
-cw5.measure.measureMent(type)
-```
+:::demo
 
 ```html
-<template>
-  <div>
-    <div class="measure-ct">
-      <button @click="measure('line')">直线测量</button>
-      <button @click="measure('area')">面积测量</button>
-      <button @click="measure('vertical')">垂直测量</button>
-      <button @click="measure('horizontal')">水平测量</button>
-      <button @click="measureCancel">取消测量模式</button>
-    </div>
-  </div>
-</template>
-<script>
-  export default {
-    name: 'measure',
-    methods: {}
-  }
-</script>
+<mu-row>
+  <mu-col :span="24"><div class="grid-content bg-purple-dark"></div></mu-col>
+</mu-row>
+<mu-row>
+  <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
+  <mu-col :span="8"><div class="grid-content bg-purple-light"></div></mu-col>
+  <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
+</mu-row>
+<mu-row>
+  <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
+  <mu-col :span="4"><div class="grid-content bg-purple-light"></div></mu-col>
+  <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
+  <mu-col :span="4"><div class="grid-content bg-purple-light"></div></mu-col>
+  <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
+  <mu-col :span="4"><div class="grid-content bg-purple-light"></div></mu-col>
+</mu-row>
 ```
 
 :::
