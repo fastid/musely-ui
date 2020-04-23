@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-07 18:59:14
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-23 14:37:15
+ * @LastEditTime: 2020-04-24 03:02:32
  * @Description:
  */
 // 服务器版的jQuery
@@ -75,6 +75,7 @@ const vueMarkdown = {
   use: [
     [require('markdown-it-anchor')],
     [require('markdown-it-highlightjs')],
+    // [require('markdown-it-latex').default],
     [
       MarkdownItContainer,
       'demo',

@@ -84,10 +84,11 @@ $--breakpoints-spec: (
     min-width: $--xl
   )
 );
-
+@import './font.scss';
 @import './color.scss';
 @import './border.scss';
 @import './box.scss';
+@import './link.scss';
 
 /* Header
   --------------------------*/

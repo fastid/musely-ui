@@ -7,7 +7,6 @@ import { HorizontalAlignment, VertialAlignment, MuRow as Row } from '../index'
 export default class MuRow extends Vue implements Row {
   @Prop({ default: 24, type: Number }) span!: number
   @Prop({ default: 'div', type: String }) tag!: string
-
   @Prop({ type: Number }) gutter!: number
   @Prop({ type: String, default: 'start' }) justify!: HorizontalAlignment
   @Prop({ type: String, default: 'top' }) align!: VertialAlignment
@@ -20,10 +19,10 @@ export default class MuRow extends Vue implements Row {
       ret.marginLeft = `-${this.gutter / 2}px`
       ret.marginRight = ret.marginLeft
     }
-
     return ret
   }
-  render(h: CreateElement) {
+
+  private render(h: CreateElement) {
     return h(
       this.tag,
       {

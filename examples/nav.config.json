@@ -55,6 +55,11 @@
           "desc": "Icon 图标",
           "name": "icon",
           "path": "/icon"
+        },
+        {
+          "desc": "Link 链接",
+          "name": "link",
+          "path": "/link"
         }
       ]
     },

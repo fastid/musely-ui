@@ -10,19 +10,17 @@ Object.keys(navConf).forEach((header) => {
   routes = routes.concat((navConf as any)[header])
 })
 
-let addComponent = (router: RouteConfig[]) => {
+const addComponent = (router: RouteConfig[]) => {
   router.forEach((route: any) => {
     if (route.items) {
       addComponent(route.items)
       routes = routes.concat(route.items)
     } else {
       if (route.type === 'pages') {
-        route.component = (r: any) => require.ensure([], () => r(require(`../views/${route.name}/index.vue`)))
+        route.component = () => import(`@/views/${route.name}/index.vue`)
         return
       }
-      route.component = (r: any) => {
-        require.ensure([], () => r(require(`../docs/${route.name}.md`)))
-      }
+      route.component = () => import(`@/docs/${route.name}.md`)
     }
   })
 }

@@ -52,10 +52,7 @@ module.exports = {
       .use('vue-markdown-loader')
       .loader('vue-markdown-loader/lib/markdown-compiler')
       .options({
-        preset: 'default',
-        breaks: true,
         raw: true,
-        typographer: true,
         preprocess: vueMarkdown.preprocess,
         use: vueMarkdown.use
       })

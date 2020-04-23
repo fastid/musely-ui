@@ -151,23 +151,6 @@ export default {
 
 ## 十一、支持标签
 
-::: demo
-
-```javascript
-import config from './config.json'
-export default {
-  data() {
-    return {
-      data: config
-    }
-  }
-}
-```
-
-:::
-
----
-
 ::: success
 完成.
 :::
@@ -186,21 +169,7 @@ export default {
 
 ## 十二、Ascii 公式
 
-Inline AsciiMath: `$E = mc^2$`
-
-```AsciiMath
-oint_Cx^3 dx+4y^2 dy
-
-2=(((3-x)xx2)/(3-x))
-
-sum_(m=1)^oosum_(n=1)^oo(m^2 n)/(3^m(m3^n+n3^m)
-```
-
-```
-phi_n(kappa) = 1/(4pi^2 kappa^2)
- int_0^oo (sin(kappa R))/(kappa R)
- del/(del R)
-[R^2 (del D_n (R))/(del R)] del R
-```
+TODO
 
 [AsciiMath Documentation](http://asciimath.org/)
+[markdown-it](http://markdown-it.docschina.org/)

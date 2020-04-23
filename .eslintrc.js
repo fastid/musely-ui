@@ -22,6 +22,9 @@ module.exports = {
       env: {
         mocha: true
       }
+    },
+    {
+      files: ['**/**/*.md']
     }
   ]
 }
