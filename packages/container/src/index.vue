@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-03 01:46:38
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-15 01:53:18
+ * @LastEditTime: 2020-04-23 17:10:52
  * @Description: 1
  -->
 <template>
@@ -13,13 +13,17 @@
 </template>
 
 <script lang="ts">
+import { MuContainer as Container } from '../index'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({
   name: 'MuContainer'
 })
-export default class MuContainer extends Vue {
-  @Prop({ type: String }) private direction!: string
+export default class MuContainer extends Vue implements Container {
+  @Prop({
+    type: String
+  })
+  direction!: 'horizontal' | 'vertical'
 
   get isVertical() {
     if (this.direction === 'vertical') {

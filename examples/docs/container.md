@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-13 10:00:08
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-20 02:56:07
+ * @LastEditTime: 2020-04-23 17:13:47
  * @Description:
  -->
 
@@ -21,25 +21,6 @@
 
 ### 常用布局
 
-<mu-container class='demo-container'>
-  <mu-header>Header</mu-header>
-  <mu-main>Main</mu-main>
-</mu-container>
-
-<mu-container class='demo-container'>
-  <mu-header>Header</mu-header>
-  <mu-main>Main</mu-main>
-  <mu-footer>Footer</mu-footer>
-</mu-container>
-
-<mu-container class='demo-container'>
-  <mu-header>Header</mu-header>
-  <mu-container>
-    <mu-aside width="200px">Aside</mu-aside>
-    <mu-main>Main</mu-main>
-  </mu-container>
-</mu-container>
-
 :::demo
 
 ```html
@@ -47,9 +28,48 @@
   <mu-header>Header</mu-header>
   <mu-main>Main</mu-main>
 </mu-container>
+
+<mu-container>
+  <mu-header>Header</mu-header>
+  <mu-main>Main</mu-main>
+  <mu-footer>Footer</mu-footer>
+</mu-container>
+
+<mu-container>
+  <mu-header>Header</mu-header>
+  <mu-container>
+    <mu-aside width="200px">Aside</mu-aside>
+    <mu-main>Main</mu-main>
+  </mu-container>
+</mu-container>
 ```
 
 :::
+
+### direction 使用
+
+:::demo
+
+```html
+<mu-container :direction="vertical">
+  <mu-main>Main1</mu-main>
+  <mu-main>Main2</mu-main>
+</mu-container>
+<mu-container>
+  <mu-main>Main3</mu-main>
+  <mu-main>Main4</mu-main>
+</mu-container>
+```
+
+```js
+export default {
+  data() {
+    return {
+      vertical: 'vertical'
+    }
+  }
+}
+```
 
 :::
 
@@ -57,7 +77,7 @@
 
 | 参数      | 说明             | 类型   | 可选值                | 默认值                                                                 |
 | --------- | ---------------- | ------ | --------------------- | ---------------------------------------------------------------------- |
-| direction | 子元素的排列方向 | string | horizontal / vertical | 子元素中有 `el-header` 或 `el-footer` 时为 vertical，否则为 horizontal |
+| direction | 子元素的排列方向 | string | horizontal / vertical | 子元素中有 `mu-header` 或 `mu-footer` 时为 vertical，否则为 horizontal |
 
 ### Header Attributes
 
@@ -76,3 +96,13 @@
 | 参数   | 说明     | 类型   | 可选值 | 默认值 |
 | ------ | -------- | ------ | ------ | ------ |
 | height | 底栏高度 | string | —      | 60px   |
+
+<script>
+export default {
+  data() {
+    return {
+      vertical: 'vertical'
+    }
+  }
+}
+</script>

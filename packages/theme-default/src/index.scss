@@ -1,8 +1,14 @@
 @import './base.scss';
+// layout
 @import './col.scss';
 @import './row.scss';
+
+// skeleton
 @import './container.scss';
 @import './header.scss';
-@import './aside.scss';
 @import './main.scss';
+@import './aside.scss';
 @import './footer.scss';
+
+// notice
+@import './alert.scss';

@@ -18,9 +18,7 @@
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "rules": {
-    "@typescript-eslint/no-explicit-any": "off"
-  },
-  "include": ["examples/**/*.ts", "examples/**/*.tsx", "examples/**/*.vue", "packages/**/*.ts", "packages/**/*.tsx", "packages/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx", "types/common.d.ts", "types/index.ts", "types/index.d.ts"],
+  "rules": {},
+  "include": ["examples/**/*.ts", "examples/**/*.tsx", "examples/**/*.vue", "packages/**/*.ts", "packages/**/*.tsx", "packages/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx", "types/**/*.ts"],
   "exclude": ["node_modules"]
 }

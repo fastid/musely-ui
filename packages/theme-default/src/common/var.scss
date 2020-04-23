@@ -85,6 +85,10 @@ $--breakpoints-spec: (
   )
 );
 
+@import './color.scss';
+@import './border.scss';
+@import './box.scss';
+
 /* Header
   --------------------------*/
 $--header-padding: 0 20px !default;

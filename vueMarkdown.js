@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-07 18:59:14
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-20 02:10:59
+ * @LastEditTime: 2020-04-23 14:37:15
  * @Description:
  */
 // 服务器版的jQuery
@@ -98,7 +98,7 @@ const vueMarkdown = {
             // 获得内容
             const content = tokens[idx + 1].content
             // 解析过滤解码生成html字符串
-            const html = convertHtml(striptags(content, 'script'))
+            const html = convertHtml(striptags(content, ['script', 'style']))
             // 获取script中的内容
             const script = stripfetch(content, 'script')
             // 获取style中的内容
@@ -108,11 +108,12 @@ const vueMarkdown = {
             // 是否有描述需要渲染
             const descriptionHTML = description ? md.render(description) : ''
             // 将jsfiddle对象转换为字符串,并将特殊字符转为转义序列
+            // TODO into jsfiddle
             jsfiddle = md.utils.escapeHtml(JSON.stringify(jsfiddle))
             // 起始标签,写入demo-block模板开头,并传入参数
             return `<code-view :jsfiddle="${jsfiddle}">
-                            <div slot="desc">${html}</div>
-                            ${descriptionHTML}
+                            <div slot="demo">${html}</div>
+                            <div slot="description" ${description ? " class='description'" : ''}>${descriptionHTML}</div>
                             <div slot="highlight">`
           }
           // 否则闭合标签

@@ -2,15 +2,20 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:22:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-20 00:21:48
+ * @LastEditTime: 2020-04-23 14:24:10
  * @Description:
  -->
 <template>
   <div class="docs-demo-wrapper">
+    <div class="demo-block"
+         :class="[blockClass]">
+      <slot name="demo"></slot>
+    </div>
     <div :style="{ height: isExpand ? 'auto' : '0' }"
          class="demo-container">
       <div span="14">
         <div class="docs-demo docs-demo--expand">
+          <slot name="description"></slot>
           <div class="highlight-wrapper">
             <slot name="highlight"></slot>
           </div>
@@ -37,6 +42,10 @@ export default class extends Vue {
   private toggle() {
     this.isExpand = !this.isExpand
   }
+
+  get blockClass() {
+    return `demo-${this.$router.currentRoute.path.split('/').pop()}`
+  }
 }
 </script>
 
@@ -53,6 +62,7 @@ export default class extends Vue {
   background-color: #f7f7f7;
   border: 1px solid #e2ecf4;
   border-top: none;
+  padding-top: 10px;
   pre code {
     font-family: Consolas, Menlo, Courier, monospace;
     line-height: 22px;

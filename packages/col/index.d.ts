@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-04 00:57:49
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-07 11:19:08
+ * @LastEditTime: 2020-04-23 15:30:57
  * @Description:
  */
 import { MuselyUIComponent } from '../../types/common'
@@ -21,6 +21,7 @@ export type ResponsiveColumn = number | ResponsiveColumnProperties
 
 /** Colunm Layout Component */
 export declare class MuCol extends MuselyUIComponent {
+  [any: string]: any
   /** Number of column the grid spans */
   span: number
 

@@ -2,10 +2,17 @@
 
 /* Mixins */
 @mixin clearfix {
-  &:after {
-    content: '';
-    display: table;
-    clear: both;
+  $selector: &;
+
+  @at-root {
+    #{$selector}::before,
+    #{$selector}::after {
+      display: table;
+      content: '';
+    }
+    #{$selector}::after {
+      clear: both;
+    }
   }
 }
 

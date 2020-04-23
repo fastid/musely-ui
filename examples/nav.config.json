@@ -73,6 +73,17 @@
           "path": "/container"
         }
       ]
+    },
+    {
+      "desc": "消息组件",
+      "path": "/notice",
+      "items": [
+        {
+          "desc": "Alert 警告",
+          "name": "alert",
+          "path": "/alert"
+        }
+      ]
     }
   ]
 }

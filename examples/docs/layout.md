@@ -8,25 +8,6 @@
 
 ### 基础布局
 
-<div class="demo-block demo-layout">
- <mu-row>
-   <mu-col :span="24"><div class="grid-content bg-purple-dark"></div></mu-col>
- </mu-row>
- <mu-row>
-   <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
-   <mu-col :span="8"><div class="grid-content bg-purple-light"></div></mu-col>
-   <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
- </mu-row>
- <mu-row>
-   <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
-   <mu-col :span="4"><div class="grid-content bg-purple-light"></div></mu-col>
-   <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
-   <mu-col :span="4"><div class="grid-content bg-purple-light"></div></mu-col>
-   <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
-   <mu-col :span="4"><div class="grid-content bg-purple-light"></div></mu-col>
- </mu-row>
-</div>
-  
 ::: demo
 
 ```html
@@ -79,15 +60,6 @@
 分栏之间存在间隔
 Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间隔为 0。
 
-<div class="demo-block demo-layout">
-  <mu-row :gutter="20">
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-</div>
-
 ::: demo
 
 ```html
@@ -129,24 +101,6 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
 
 通过基础的 1/24 分栏任意扩展组合形成较为复杂的混合布局。
 
-<div class="demo-block demo-layout">
-  <mu-row :gutter="20">
-    <mu-col :span="16"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-  <mu-row :gutter="20" class="m-10">
-    <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-  <mu-row :gutter="20" class="m-10">
-    <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="16"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-</div>
-
 ::: demo
 
 ```html
@@ -154,13 +108,13 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
   <mu-col :span="16"><div class="grid-content bg-purple"></div></mu-col>
   <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
 </mu-row>
-<mu-row :gutter="20" class="m-10">
+<mu-row :gutter="20">
   <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
   <mu-col :span="8"><div class="grid-content bg-purple"></div></mu-col>
   <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
   <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
 </mu-row>
-<mu-row :gutter="20" class="m-10">
+<mu-row :gutter="20">
   <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
   <mu-col :span="16"><div class="grid-content bg-purple"></div></mu-col>
   <mu-col :span="4"><div class="grid-content bg-purple"></div></mu-col>
@@ -196,20 +150,6 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
 ### 分栏偏移
 
 支持偏移指定的栏数。通过制定 col 组件的 `offset` 属性可以指定分栏偏移的栏数。
-
-<div class="demo-block demo-layout">
-  <mu-row :gutter="20">
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="6" :offset="6"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-  <mu-row :gutter="20">
-    <mu-col :span="6" :offset="6"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="6" :offset="6"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-  <mu-row :gutter="20">
-    <mu-col :span="12" :offset="6"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-</div>
 
 ::: demo
 
@@ -257,34 +197,6 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
 
 通过 flex 布局来对分栏进行灵活的对齐。
 将 `type` 属性赋值为 'flex'，可以启用 flex 布局，并可通过 `justify` 属性来指定 start, center, end, space-between, space-around 其中的值来定义子元素的排版方式。
-
-<div class="demo-block demo-layout">
-  <mu-row type="flex" class="row-bg">
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple-light"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-  <mu-row type="flex" class="row-bg m-10" justify="center">
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple-light"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-  <mu-row type="flex" class="row-bg m-10" justify="end">
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple-light"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-  <mu-row type="flex" class="row-bg m-10" justify="space-between">
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple-light"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-  <mu-row type="flex" class="row-bg m-10" justify="space-around">
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple-light"></div></mu-col>
-    <mu-col :span="6"><div class="grid-content bg-purple"></div></mu-col>
-  </mu-row>
-</div>
 
 ::: demo
 
@@ -350,15 +262,6 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
 
 参照了 Bootstrap 的 响应式设计，预设了五个响应尺寸：`xs`、`sm`、`md`、`lg` 和 `xl`。
 
-<div class="demo-block demo-layout">
-  <mu-row :gutter="10">
-    <mu-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div class="grid-content bg-purple-light"></div></mu-col>
-    <mu-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11"><div class="grid-content bg-purple"></div></mu-col>
-    <mu-col :xs="8" :sm="6" :md="4" :lg="3" :xl="1"><div class="grid-content bg-purple-light"></div></mu-col>
-  </mu-row>
-</div>
-
 ::: demo
 
 ```html
@@ -395,6 +298,10 @@ Row 组件 提供 `gutter` 属性来指定每一栏之间的间隔，默认间�
 ```
 
 :::
+
+### 基于断点的隐藏类
+
+TODO
 
 ### Row Attributes
 
