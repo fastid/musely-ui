@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-23 18:55:39
+ * @LastEditTime: 2020-04-25 13:50:52
  * @Description:
  -->
 <template>
@@ -12,7 +12,7 @@
 </template>
 
 <script lang='ts'>
-import { MuMain as Main } from '../index'
+import { MuMain as Main } from '^/main'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({

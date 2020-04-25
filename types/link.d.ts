@@ -2,10 +2,10 @@
  * @Author: Victor wang
  * @Date: 2020-04-23 19:16:26
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-24 03:24:39
+ * @LastEditTime: 2020-04-25 13:51:12
  * @Description:
  */
-import { MuselyUIComponent } from '../../types/common'
+import { MuselyUIComponent } from './common'
 
 /** Button type */
 export type LinkType = 'primary' | 'success' | 'warning' | 'danger' | 'info'

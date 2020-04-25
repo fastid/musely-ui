@@ -1,4 +1,4 @@
-import { MuselyUIComponent } from '../../types/common'
+import { MuselyUIComponent } from './common'
 
 /** Horizontal alignment of flex layout */
 export type HorizontalAlignment = 'start' | 'end' | 'center' | 'space-around' | 'space-between'

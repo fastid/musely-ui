@@ -5,7 +5,7 @@
  * @LastEditTime: 2020-04-13 13:27:26
  * @Description:
  */
-import { MuselyUIComponent } from '../../types/common'
+import { MuselyUIComponent } from './common'
 
 /** Aside Component */
 export declare class MuAside extends MuselyUIComponent {

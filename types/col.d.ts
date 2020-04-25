@@ -2,10 +2,10 @@
  * @Author: Victor wang
  * @Date: 2020-04-04 00:57:49
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-23 15:30:57
+ * @LastEditTime: 2020-04-25 13:42:52
  * @Description:
  */
-import { MuselyUIComponent } from '../../types/common'
+import { MuselyUIComponent } from './common'
 
 /** Responsive column props */
 export interface ResponsiveColumnProperties {

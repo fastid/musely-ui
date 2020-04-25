@@ -37,6 +37,7 @@
 
 <script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator'
+import { AlertType, AlertEffect, MuAlert as Alert } from '../../../types/alert'
 interface ITypeClassesMap {
   success: string
   warning: string
@@ -51,14 +52,14 @@ const TYPE_CLASSES_MAP: ITypeClassesMap = {
 @Component({
   name: 'MuAlert'
 })
-export default class MuAlert extends Vue {
-  @Prop({ default: '', type: String }) private title!: string
-  @Prop({ default: '', type: String }) private description!: string
-  @Prop({ default: 'info', type: String }) private type!: string
-  @Prop({ default: true, type: Boolean }) private closable!: boolean
-  @Prop({ default: '', type: String }) private closeText!: string
-  @Prop({ default: true, type: Boolean }) private showIcon!: boolean
-  @Prop({ type: Boolean }) private center!: boolean
+export default class MuAlert extends Vue implements Alert {
+  @Prop({ default: '', type: String }) title!: string
+  @Prop({ default: '', type: String }) description!: string
+  @Prop({ default: 'info', type: String }) type!: AlertType
+  @Prop({ default: true, type: Boolean }) closable!: boolean
+  @Prop({ default: '', type: String }) closeText!: string
+  @Prop({ default: true, type: Boolean }) showIcon!: boolean
+  @Prop({ type: Boolean }) center!: boolean
 
   @Prop({
     default: 'light',
@@ -67,7 +68,7 @@ export default class MuAlert extends Vue {
       return ['light', 'dark'].indexOf(value) !== -1
     }
   })
-  private effect!: boolean
+  effect!: AlertEffect
 
   private visible = true
 

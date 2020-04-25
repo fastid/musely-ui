@@ -5,9 +5,11 @@ const vueMarkdown = require('./vueMarkdown')
 // If your port is set to 80,
 const devServerPort = 8018 // TODO: get this variable from setting.ts
 const name = 'Musely-UI' // TODO: get this variable from setting.ts
+const prod = process.env.NODE_ENV === 'production'
+const dev = process.env.NODE_ENV === 'development'
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
+  publicPath: prod ? '/' : '/',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
@@ -39,10 +41,28 @@ module.exports = {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     config.set('name', name)
-    config.resolve.alias.set('@', path.join(__dirname, 'examples'))
+    config.resolve.alias
+      .set('@', path.join(__dirname, 'examples'))
+      .set('~', path.join(__dirname, 'packages'))
+      .set('^', path.join(__dirname, 'types'))
 
     // https://webpack.js.org/configuration/devtool/#development
-    config.when(process.env.NODE_ENV === 'development', (config) => config.devtool('cheap-module-eval-source-map'))
+    config.when(dev, (config) => config.devtool('cheap-module-eval-source-map'))
+
+    // 把 packages 和 examples 加入编译，因为新增的文件默认是不被 webpack 处理的
+    config.module
+      .rule('js')
+      .include.add(/packages/)
+      .end()
+      .include.add(/examples/)
+      .end()
+      .use('babel')
+      .loader('babel-loader')
+      .tap((options) => {
+        // 修改它的选项...
+        return options
+      })
+    // 识别markdown
     config.module
       .rule('md')
       .test(/\.md$/)
@@ -53,8 +73,7 @@ module.exports = {
       .loader('vue-markdown-loader/lib/markdown-compiler')
       .options({
         raw: true,
-        preprocess: vueMarkdown.preprocess,
-        use: vueMarkdown.use
+        ...vueMarkdown
       })
     // .options(vueMarkdown)
 

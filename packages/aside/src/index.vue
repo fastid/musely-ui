@@ -6,8 +6,8 @@
 </template>
 
 <script lang='ts'>
-import { MuAside as Aside } from '../index'
 import { Component, Vue, Prop } from 'vue-property-decorator'
+import { MuAside as Aside } from '^/aside'
 
 @Component({
   name: 'MuAside'

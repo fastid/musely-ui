@@ -6,7 +6,7 @@
 </template>
 
 <script lang='ts'>
-import { MuFooter as Footer } from '../index'
+import { MuFooter as Footer } from '^/container'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({

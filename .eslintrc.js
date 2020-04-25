@@ -8,6 +8,7 @@ module.exports = {
     ecmaVersion: 2020
   },
   rules: {
+    '@typescript-eslint/no-var-requires': 'off',
     'space-before-function-paren': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
@@ -22,9 +23,6 @@ module.exports = {
       env: {
         mocha: true
       }
-    },
-    {
-      files: ['**/**/*.md']
     }
   ]
 }

@@ -31,7 +31,7 @@
 <script lang='ts'>
 import { EventEmitter } from 'events'
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { LinkType, MuLink as Link } from '../index'
+import { LinkType, MuLink as Link } from '^/link'
 
 @Component({
   name: 'MuLink'

@@ -2,10 +2,10 @@
  * @Author: Victor wang
  * @Date: 2020-04-22 17:33:20
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-22 19:00:08
+ * @LastEditTime: 2020-04-25 13:33:10
  * @Description:
  */
-import { MuselyUIComponent } from '../../types/common'
+import { MuselyUIComponent } from './common'
 
 export type AlertType = 'success' | 'warning' | 'info' | 'error'
 export type AlertEffect = 'dark' | 'light'

@@ -2,26 +2,32 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:35:33
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-23 19:11:04
+ * @LastEditTime: 2020-04-25 13:51:21
  * @Description:
  */
 import Vue from 'vue'
+import { MuselyUIComponent } from './common'
 
-import { MuAlert } from '../packages/alert'
-import { MuAside } from '../packages/aside'
-import { MuCol } from '../packages/col'
-import { MuContainer } from '../packages/container'
-import { MuFooter } from '../packages/footer'
-import { MuHeader } from '../packages/header'
-import { MuMain } from '../packages/main'
-import { MuRow } from '../packages/row'
+import { MuAlert } from './alert'
+import { MuAside } from './aside'
+import { MuCol } from './col'
+import { MuContainer } from './container'
+import { MuFooter } from './footer'
+import { MuHeader } from './header'
+import { MuMain } from './main'
+import { MuRow } from './row'
 
 /**
  * Install all musely-ui components into Vue.
  * Please do not invoke this method directly.
  * Call `Vue.use(MuselyUI)` to install.
  */
-export interface InstallationOptions {}
+export interface InstallationOptions {
+  zIndex?: number
+}
+/** MuselyUI component common definition */
+export type Component = MuselyUIComponent
+
 /** The version of musely-ui */
 export const version: string
 

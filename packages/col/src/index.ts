@@ -1,6 +1,6 @@
 import { CreateElement } from 'vue'
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { MuCol as Col } from '../index'
+import { MuCol as Col } from '^/col'
 @Component({
   name: 'MuCol'
 })

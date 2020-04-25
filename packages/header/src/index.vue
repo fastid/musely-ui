@@ -6,7 +6,7 @@
 </template>
 
 <script lang='ts'>
-import { MuHeader as Header } from '../index'
+import { MuHeader as Header } from '^/header'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({
