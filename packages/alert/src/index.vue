@@ -37,7 +37,7 @@
 
 <script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { AlertType, AlertEffect, MuAlert as Alert } from '../../../types/alert'
+import { AlertType, AlertEffect, MuAlert as Alert } from 'types/alert'
 interface ITypeClassesMap {
   success: string
   warning: string

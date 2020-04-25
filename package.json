@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:lib": "vue-cli-service build --no-clean x--target lib --dest lib packages/index.ts",
+    "build:lib": "vue-cli-service build --target lib --dest lib packages/index.ts",
     "build:theme": "gulp build --gulpfile packages/theme-default/gulpfile.js && cp-cli packages/theme-default/lib lib/theme-default",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "svg": "vsvg -s ./examples/icons/svg -t ./examples/icons/components --ext ts --es6",
-    "lib": "vue-cli-service build --target lib --name Mu components.js"
+    "lib": "vue-cli-service build --target lib --dest lib --name test-ui ./packages/tmp.js"
   },
   "main": "lib/musely-ui.common.js",
   "typings": "types/index.d.ts",

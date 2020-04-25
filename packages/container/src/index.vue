@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-import { MuContainer as Container } from '^/container'
+import { MuContainer as Container } from 'types/container'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({

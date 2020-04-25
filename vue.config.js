@@ -29,7 +29,13 @@ module.exports = {
     }
   },
   configureWebpack: {
-    plugins: []
+    plugins: [],
+    resolve: {
+      alias: {
+        '@': path.join(__dirname, 'examples'),
+        '~': path.join(__dirname, 'packages')
+      }
+    }
   },
   pluginOptions: {
     'style-resources-loader': {
@@ -37,14 +43,14 @@ module.exports = {
       patterns: [path.resolve(__dirname, 'examples/styles/_variables.scss'), path.resolve(__dirname, 'examples/styles/_mixins.scss')]
     }
   },
-  chainWebpack(config) {
+  chainWebpack: (config) => {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     config.set('name', name)
     config.resolve.alias
       .set('@', path.join(__dirname, 'examples'))
       .set('~', path.join(__dirname, 'packages'))
-      .set('^', path.join(__dirname, 'types'))
+      .set('types', path.join(__dirname, 'types'))
 
     // https://webpack.js.org/configuration/devtool/#development
     config.when(dev, (config) => config.devtool('cheap-module-eval-source-map'))
@@ -62,6 +68,13 @@ module.exports = {
         // 修改它的选项...
         return options
       })
+    // lib目录是组件库最终打包好存放的地方，不需要eslint检查,examples/docs是存放md文档的地方，也不需要eslint检查
+    config.module
+      .rule('eslint')
+      .exclude.add(path.resolve('lib'))
+      .end()
+      .exclude.add(path.resolve('examples/docs'))
+      .end()
     // 识别markdown
     config.module
       .rule('md')
@@ -77,26 +90,26 @@ module.exports = {
       })
     // .options(vueMarkdown)
 
-    config.when(process.env.NODE_ENV !== 'development', (config) => {
-      config.optimization.splitChunks({
-        chunks: 'all',
-        cacheGroups: {
-          libs: {
-            name: 'chunk-libs',
-            test: /[\\/]node_modules[\\/]/,
-            priority: 10,
-            chunks: 'initial' // only package third parties that are initially dependent
-          },
-          commons: {
-            name: 'chunk-commons',
-            test: path.resolve(__dirname, 'examples/components'),
-            minChunks: 3, //  minimum common number
-            priority: 5,
-            reuseExistingChunk: true
-          }
-        }
-      })
-      config.optimization.runtimeChunk('single')
-    })
+    // config.when(process.env.NODE_ENV !== 'development', (config) => {
+    //   config.optimization.splitChunks({
+    //     chunks: 'all',
+    //     cacheGroups: {
+    //       libs: {
+    //         name: 'chunk-libs',
+    //         test: /[\\/]node_modules[\\/]/,
+    //         priority: 10,
+    //         chunks: 'initial' // only package third parties that are initially dependent
+    //       },
+    //       commons: {
+    //         name: 'chunk-commons',
+    //         test: path.resolve(__dirname, 'examples/components'),
+    //         minChunks: 3, //  minimum common number
+    //         priority: 5,
+    //         reuseExistingChunk: true
+    //       }
+    //     }
+    //   })
+    //   config.optimization.runtimeChunk('single')
+    // })
   }
 }

@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:35:33
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-25 13:51:21
+ * @LastEditTime: 2020-04-26 03:17:15
  * @Description:
  */
 import Vue from 'vue'
@@ -16,6 +16,7 @@ import { MuFooter } from './footer'
 import { MuHeader } from './header'
 import { MuMain } from './main'
 import { MuRow } from './row'
+import { MuLink } from './link'
 
 /**
  * Install all musely-ui components into Vue.
@@ -49,3 +50,5 @@ export class Header extends MuHeader {}
 export class Main extends MuMain {}
 /** Row Layout Component */
 export class Row extends MuRow {}
+/** Link Layout Component */
+export class Link extends MuLink {}

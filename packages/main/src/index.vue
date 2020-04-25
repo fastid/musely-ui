@@ -12,7 +12,7 @@
 </template>
 
 <script lang='ts'>
-import { MuMain as Main } from '^/main'
+import { MuMain as Main } from 'types/main'
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({

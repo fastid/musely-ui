@@ -7,7 +7,7 @@
 
 <script lang='ts'>
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { MuAside as Aside } from '^/aside'
+import { MuAside as Aside } from 'types/aside'
 
 @Component({
   name: 'MuAside'

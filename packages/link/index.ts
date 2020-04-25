@@ -2,13 +2,13 @@
  * @Author: Victor wang
  * @Date: 2020-04-23 19:14:46
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-23 19:14:55
+ * @LastEditTime: 2020-04-26 02:24:13
  * @Description:
  */
-import Link from './src'
+import { VueConstructor } from 'vue'
+import Link from './src/index.vue'
 
-/* istanbul ignore next */
-Link.install = function(Vue) {
+Link.install = (Vue: VueConstructor) => {
   Vue.component(Link.name, Link)
 }
 

@@ -1,6 +1,6 @@
 import { CreateElement } from 'vue'
 import { Component, Vue, Prop } from 'vue-property-decorator'
-import { HorizontalAlignment, VertialAlignment, MuRow as Row } from '^/row'
+import { HorizontalAlignment, VertialAlignment, MuRow as Row } from 'types/row'
 @Component({
   name: 'MuRow'
 })
