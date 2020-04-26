@@ -2,13 +2,14 @@
  * @Author: Victor wang
  * @Date: 2020-04-26 22:54:07
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 03:17:52
+ * @LastEditTime: 2020-04-27 03:22:47
  * @Description:
  */
 
 import { MuselyUIComponent } from './common'
-/** Button type */
-export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
+/** Button type  */
+// TODO --Need it?--
+export type ButtonType = 'text'
 
 /** Same as native button's type */
 export type ButtonNativeType = 'button' | 'submit' | 'reset' | 'menu'
