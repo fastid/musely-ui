@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-20 01:33:16
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 01:54:41
+ * @LastEditTime: 2020-04-27 03:20:41
  * @Description:
  -->
 
@@ -99,11 +99,12 @@
 
 | 参数        | 说明           | 类型    | 可选值                  | 默认值 |
 | ----------- | -------------- | ------- | ----------------------- | ------ |
+| type        | 类型           | string  | text                    | —      |
 | plain       | 是否简洁按钮   | boolean | —                       | false  |
 | round       | 是否圆角按钮   | boolean | —                       | false  |
 | circle      | 是否圆形按钮   | boolean | —                       | false  |
 | loading     | 是否加载中状态 | boolean | —                       | false  |
 | disabled    | 是否禁用状态   | boolean | —                       | false  |
 | icon        | 图标类名       | string  | —                       | —      |
-| autofocus   | 是否默认焦点   | boolean | —                       | false  |
+| autofocus   | 是否默认聚焦   | boolean | —                       | false  |
 | native-type | 原生属性       | string  | button / submit / reset | button |

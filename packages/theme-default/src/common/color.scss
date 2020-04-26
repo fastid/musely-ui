@@ -1,7 +1,7 @@
 /* Color
 -------------------------- */
 /// color|1|Brand Color|0
-$--color-primary: #409eff !default;
+$--color-primary: #ef99af !default;
 /// color|1|Background Color|4
 $--color-white: #ffffff !default;
 /// color|1|Background Color|4
@@ -35,6 +35,8 @@ $--color-danger-lighter: mix($--color-white, $--color-danger, 90%) !default;
 $--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
 
 /// color|1|Font Color|2
+$--color-text-white: #ffffff !default;
+/// color|1|Font Color|2
 $--color-text-primary: #303133 !default;
 /// color|1|Font Color|2
 $--color-text-regular: #606266 !default;
@@ -43,7 +45,7 @@ $--color-text-secondary: #909399 !default;
 /// color|1|Font Color|2
 $--color-text-placeholder: #c0c4cc !default;
 /// color|1|Border Color|3
-$--border-color-base: #dcdfe6 !default;
+$--border-color-base: #f0f0f0 !default;
 /// color|1|Border Color|3
 $--border-color-light: #e4e7ed !default;
 /// color|1|Border Color|3
@@ -54,9 +56,9 @@ $--border-color-extra-light: #f2f6fc !default;
 /* Button
 -------------------------- */
 /// color||Color|0
-$--button-default-font-color: $--color-text-regular !default;
+$--button-default-font-color: $--color-text-white !default;
 /// color||Color|0
-$--button-default-background-color: $--color-white !default;
+$--button-default-background-color: $--color-primary !default;
 /// color||Color|0
 $--button-default-border-color: $--border-color-base !default;
 

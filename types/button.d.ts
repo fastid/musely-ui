@@ -2,17 +2,22 @@
  * @Author: Victor wang
  * @Date: 2020-04-26 22:54:07
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 01:55:44
+ * @LastEditTime: 2020-04-27 03:17:52
  * @Description:
  */
 
 import { MuselyUIComponent } from './common'
+/** Button type */
+export type ButtonType = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'text'
 
 /** Same as native button's type */
 export type ButtonNativeType = 'button' | 'submit' | 'reset' | 'menu'
 
 /** Button Component */
 export declare class MuButton extends MuselyUIComponent {
+  /** Button type */
+  type: ButtonType
+
   /** Determine whether it's a plain button */
   plain: boolean
 

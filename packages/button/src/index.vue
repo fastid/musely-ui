@@ -5,6 +5,7 @@
           :autofocus="autofocus"
           :type="nativeType"
           :class="[
+          type ? 'mu-button--' + type : '',
       {
         'is-disabled': buttonDisabled,
         'is-loading': loading,
@@ -27,12 +28,13 @@
 <script lang='ts'>
 import { EventEmitter } from 'events'
 import { Component, Vue, Prop, Inject } from 'vue-property-decorator'
-import { ButtonNativeType, MuButton as Button } from 'types/button'
+import { ButtonType, ButtonNativeType, MuButton as Button } from 'types/button'
 
 @Component({
   name: 'MuButton'
 })
 export default class MuButton extends Vue implements Button {
+  @Prop({ type: String, default: 'default' }) type!: ButtonType
   @Prop({ type: Boolean }) plain!: boolean
   @Prop({ type: Boolean }) round!: boolean
   @Prop({ type: Boolean }) loading!: boolean
