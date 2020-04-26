@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:27:01
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-26 17:21:39
+ * @LastEditTime: 2020-04-27 00:41:11
  * @Description:
  */
 
@@ -10,6 +10,9 @@ import { VueConstructor } from 'vue'
 import { InstallationOptions } from 'types/musely-ui'
 // basic
 import Link from './link'
+import Icon from './icon'
+import Button from './button'
+import ButtonGroup from './button-group'
 // layout
 import Row from './row'
 import Col from './col'
@@ -23,7 +26,7 @@ import Main from './main'
 // notice
 import Alert from './alert'
 
-export const components = [Container, Row, Col, Aside, Header, Footer, Main, Alert, Link]
+export const components = [Container, Row, Col, Aside, Header, Footer, Main, Alert, Link, Icon, Button, ButtonGroup]
 
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   components.forEach((component: any) => {
@@ -37,6 +40,6 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
-export { Container, Row, Col, Aside, Header, Footer, Main, Alert, Link }
+export { Container, Row, Col, Aside, Header, Footer, Main, Alert, Link, Icon, Button, ButtonGroup }
 
-export default { version: '0.0.1', install, Container, Row, Col, Aside, Header, Footer, Main, Alert, Link }
+export default { version: '0.0.1', install, Container, Row, Col, Aside, Header, Footer, Main, Alert, Link, Icon, Button, ButtonGroup }

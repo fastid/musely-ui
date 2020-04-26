@@ -1,0 +1,36 @@
+.demo-border {
+  .text {
+    width: 15%;
+  }
+  .line {
+    width: 70%;
+  }
+  .line div {
+    width: 100%;
+    height: 0;
+    border-top: 1px solid #eee;
+  }
+  .line .dashed {
+    border-top: 2px dashed #eee;
+  }
+  .title {
+    color: #666;
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  .value {
+    color: #333;
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  .radius {
+    height: 60px;
+    width: 70%;
+    border: 1px solid #d7dae2;
+    border-radius: 0;
+    margin-top: 20px;
+  }
+  .radius-30 {
+    border-radius: 30px;
+  }
+}

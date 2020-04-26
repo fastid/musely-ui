@@ -1,0 +1,21 @@
+.demo-button {
+  .mu-row {
+    margin-bottom: 20px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .mu-button + .mu-button {
+    margin-left: 10px;
+  }
+  .mu-button-group {
+    .mu-button + .mu-button {
+      margin-left: 0;
+    }
+
+    & + .mu-button-group {
+      margin-left: 10px;
+    }
+  }
+}

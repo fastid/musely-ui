@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-24 00:57:48
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-24 01:44:57
+ * @LastEditTime: 2020-04-27 02:45:32
  * @Description:
  -->
 
@@ -18,11 +18,6 @@
 ```html
 <div>
   <mu-link href="https://m.musely.com" target="_blank">默认链接</mu-link>
-  <mu-link type="primary">主要链接</mu-link>
-  <mu-link type="success">成功链接</mu-link>
-  <mu-link type="warning">警告链接</mu-link>
-  <mu-link type="danger">危险链接</mu-link>
-  <mu-link type="info">信息链接</mu-link>
 </div>
 ```
 
@@ -36,11 +31,6 @@
 ```html
 <div>
   <mu-link disabled>默认链接</mu-link>
-  <mu-link type="primary" disabled>主要链接</mu-link>
-  <mu-link type="success" disabled>成功链接</mu-link>
-  <mu-link type="warning" disabled>警告链接</mu-link>
-  <mu-link type="danger" disabled>危险链接</mu-link>
-  <mu-link type="info" disabled>信息链接</mu-link>
 </div>
 ```
 
@@ -67,8 +57,8 @@
 
 ```html
 <div>
-  <mu-link icon="mu-icon-edit">编辑</mu-link>
-  <mu-link>查看<i class="mu-icon-view mu-icon--right"></i> </mu-link>
+  <mu-link icon="mu-icon-search">搜索</mu-link>
+  <mu-link>详细<i class="mu-icon-view mu-icon-arrow-right"></i> </mu-link>
 </div>
 ```
 
@@ -76,10 +66,9 @@
 
 ### Attributes
 
-| 参数      | 说明           | 类型    | 可选值                                      | 默认值  |
-| --------- | -------------- | ------- | ------------------------------------------- | ------- |
-| type      | 类型           | string  | primary / success / warning / danger / info | default |
-| underline | 是否下划线     | boolean | —                                           | true    |
-| disabled  | 是否禁用状态   | boolean | —                                           | false   |
-| href      | 原生 href 属性 | string  | —                                           | -       |
-| icon      | 图标类名       | string  | —                                           | -       |
+| 参数      | 说明           | 类型    | 可选值 | 默认值 |
+| --------- | -------------- | ------- | ------ | ------ |
+| underline | 是否下划线     | boolean | —      | true   |
+| disabled  | 是否禁用状态   | boolean | —      | false  |
+| href      | 原生 href 属性 | string  | —      | -      |
+| icon      | 图标类名       | string  | —      | -      |

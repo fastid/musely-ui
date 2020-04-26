@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
-import navConf from '../nav.config.json'
+import navConf from '../settings/nav.json'
 
 Vue.use(VueRouter)
 

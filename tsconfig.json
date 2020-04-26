@@ -19,6 +19,18 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "rules": {},
-  "include": ["examples/**/*.ts", "examples/**/*.tsx", "examples/**/*.vue", "packages/**/*.ts", "packages/**/*.tsx", "packages/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx", "types/**/*.ts"],
+  "include": [
+    "examples/**/*.ts",
+    "examples/**/*.tsx",
+    "examples/**/*.vue",
+    "packages/**/*.ts",
+    "packages/**/*.tsx",
+    "packages/**/*.vue",
+    "tests/**/*.ts",
+    "tests/**/*.tsx",
+    "types/**/*.ts",
+    "typings.ts",
+    "shims-vue.d.ts"
+  ],
   "exclude": ["node_modules"]
 }

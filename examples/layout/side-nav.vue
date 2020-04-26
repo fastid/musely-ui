@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import navConf from '../nav.config.json'
+import navConf from '../settings/nav.json'
 @Component({
   name: 'LayoutSideNav',
   components: {}
