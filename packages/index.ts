@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:27:01
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-26 02:51:22
+ * @LastEditTime: 2020-04-26 17:21:39
  * @Description:
  */
 
@@ -12,16 +12,16 @@ import { InstallationOptions } from 'types/musely-ui'
 import Link from './link'
 // layout
 import Row from './row'
-import Col from './col/src/index'
+import Col from './col'
 
 // skeleton
-import Container from './container/src/index.vue'
-import Aside from './aside/src/index.vue'
-import Header from './header/src/index.vue'
-import Footer from './footer/src/index.vue'
-import Main from './main/src/index.vue'
+import Container from './container'
+import Aside from './aside'
+import Header from './header'
+import Footer from './footer'
+import Main from './main'
 // notice
-import Alert from './alert/src/index.vue'
+import Alert from './alert'
 
 export const components = [Container, Row, Col, Aside, Header, Footer, Main, Alert, Link]
 
@@ -37,4 +37,6 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
+export { Container, Row, Col, Aside, Header, Footer, Main, Alert, Link }
+
 export default { version: '0.0.1', install, Container, Row, Col, Aside, Header, Footer, Main, Alert, Link }
