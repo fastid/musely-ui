@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-24 00:57:48
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 02:45:32
+ * @LastEditTime: 2020-04-27 16:52:41
  * @Description:
  -->
 
@@ -30,7 +30,7 @@
 
 ```html
 <div>
-  <mu-link disabled>默认链接</mu-link>
+  <mu-link disabled>禁用链接</mu-link>
 </div>
 ```
 
@@ -58,7 +58,7 @@
 ```html
 <div>
   <mu-link icon="mu-icon-search">搜索</mu-link>
-  <mu-link>详细<i class="mu-icon-view mu-icon-arrow-right"></i> </mu-link>
+  <mu-link>详细<i class="mu-icon-arrow-right mu-icon--right"></i></mu-link>
 </div>
 ```
 

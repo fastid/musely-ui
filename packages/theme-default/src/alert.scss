@@ -15,10 +15,10 @@ $--alert-close-font-size: 12px !default;
 /// fontSize||Font|1
 $--alert-close-customed-font-size: 13px !default;
 
-$--alert-success-color: $--color-success-lighter !default;
-$--alert-info-color: $--color-info-lighter !default;
-$--alert-warning-color: $--color-warning-lighter !default;
-$--alert-danger-color: $--color-danger-lighter !default;
+$--alert-success-color: $--color-primary !default;
+$--alert-info-color: $--color-primary !default;
+$--alert-warning-color: $--color-primary !default;
+$--alert-danger-color: $--color-primary !default;
 
 /// height||Other|4
 $--alert-icon-size: 16px !default;

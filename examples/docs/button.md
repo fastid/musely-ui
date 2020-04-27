@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-20 01:33:16
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 03:20:41
+ * @LastEditTime: 2020-04-27 18:01:04
  * @Description:
  -->
 
@@ -18,9 +18,9 @@
 
 ```html
 <mu-row>
-  <mu-button>默认按钮</mu-button>
-  <mu-button plain>简单按钮</mu-button>
-  <mu-button round>圆角按钮</mu-button>
+  <mu-button>Defalut</mu-button>
+  <mu-button plain>Get Started Now</mu-button>
+  <mu-button round>Next</mu-button>
   <mu-button icon="mu-icon-search" circle></mu-button>
 </mu-row>
 ```
@@ -62,7 +62,7 @@
 ```html
 <mu-row>
   <mu-button type="primary" icon="mu-icon-search">搜索</mu-button>
-  <mu-button type="primary">上传<i class="mu-icon-upload mu-icon--right"></i></mu-button>
+  <mu-button>上传<i class="mu-icon-upload mu-icon--right"></i></mu-button>
 </mu-row>
 ```
 

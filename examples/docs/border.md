@@ -2,24 +2,18 @@
  * @Author: Victor wang
  * @Date: 2020-04-26 18:43:28
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-26 19:24:32
+ * @LastEditTime: 2020-04-27 16:33:36
  * @Description:
  -->
 
 <script lang='ts'>
-  const varMap = {
-    '$--border-radius-base': 'borderRadiusBase',
-    '$--border-radius-small': 'borderRadiusSmall'
-  };
-  const original = {
-    borderRadiusBase: '4px',
-    borderRadiusSmall: '2px'
-  }
   export default {
     data() {
       return {
-        borderRadiusBase: '',
-        borderRadiusSmall: ''
+        borderRadiusBase: '4px',
+        borderRadiusSmall: '2px',
+        boxShadowLight: '0 2px 12px 0 rgba(0, 0, 0, 0.1)',
+        boxShadowBase: '0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)',
       }
     },
   }
@@ -30,8 +24,6 @@
 对边框进行统一规范，可用于按钮、卡片、弹窗等组件里。
 
 ### 边框
-
-以下几种边框样式，以供选择。
 
 <div class="demo-border">
 <table class="table">
@@ -61,8 +53,6 @@
 
 ### 圆角
 
-以下几种圆角样式，以供选择。
-
 <mu-row :gutter="12" class="demo-border">
   <mu-col :span="6" :xs="{span: 12}">
     <div class="title">无圆角</div>
@@ -91,3 +81,20 @@
     <div class="radius radius-30"></div>
   </mu-col>
 </mu-row>
+
+### 投影
+
+<div class="demo-border">
+  <div 
+    class="demo-shadow"
+    :style="{ boxShadow: boxShadowBase }"
+  >
+    <span class="demo-shadow-text">基础投影 box-shadow: {{boxShadowBase}}</span>
+  </div>
+  <div 
+    class="demo-shadow"
+    :style="{ boxShadow: boxShadowLight }"
+  >
+    <span class="demo-shadow-text">浅色投影 box-shadow: {{boxShadowLight}}</span>
+  </div>
+</div>

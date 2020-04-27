@@ -1,14 +1,6 @@
 @import 'mixins/mixins';
 @import 'common/var';
 
-$typeMap: (
-  primary: $--link-primary-font-color,
-  danger: $--link-danger-font-color,
-  success: $--link-success-font-color,
-  warning: $--link-warning-font-color,
-  info: $--link-info-font-color
-);
-
 @include b(link) {
   display: inline-flex;
   flex-direction: row;
@@ -45,7 +37,7 @@ $typeMap: (
     }
   }
 
-  &.mu-link--default {
+  &.mu-link {
     color: $--link-default-font-color;
     &:hover {
       color: $--link-default-active-color;
@@ -55,26 +47,6 @@ $typeMap: (
     }
     @include when(disabled) {
       color: $--link-disabled-font-color;
-    }
-  }
-
-  @each $type, $primaryColor in $typeMap {
-    &.mu-link--#{$type} {
-      color: $primaryColor;
-      &:hover {
-        color: mix($primaryColor, $--color-white, 80%);
-      }
-      &:after {
-        border-color: $primaryColor;
-      }
-      @include when(disabled) {
-        color: mix($primaryColor, $--color-white, 50%);
-      }
-      @include when(underline) {
-        &:hover:after {
-          border-color: $primaryColor;
-        }
-      }
     }
   }
 }

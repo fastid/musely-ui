@@ -1,2 +1,27 @@
-@import "./common/var.scss";
-@import "./icon.scss";
+@import './common/var.scss';
+@import './icon.scss';
+
+@font-face {
+  font-family: 'GilroyRegular';
+  src: url('#{$--font-path}/gilroy/Regular.otf');
+}
+@font-face {
+  font-family: 'GilroySemiBold';
+  src: url('#{$--font-path}/gilroy/SemiBold.otf');
+}
+@font-face {
+  font-family: 'GilroyBold';
+  src: url('#{$--font-path}/gilroy/Bold.otf');
+}
+@font-face {
+  font-family: 'ProximaNovaRegular';
+  src: url('#{$--font-path}/proximanova/Regular.ttf');
+}
+@font-face {
+  font-family: 'ProximaNovaSemibold';
+  src: url('#{$--font-path}/proximanova/Semibold.ttf');
+}
+@font-face {
+  font-family: 'ProximaNovaBold';
+  src: url('#{$--font-path}/proximanova/Bold.ttf');
+}

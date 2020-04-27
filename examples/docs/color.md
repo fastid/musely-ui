@@ -2,87 +2,46 @@
  * @Author: Victor wang
  * @Date: 2020-04-20 01:33:16
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 02:15:35
+ * @LastEditTime: 2020-04-27 16:03:17
  * @Description:
  -->
 
 # Color 色彩
 
 <script>
-  // import bus from '../../bus';
-  // import { tintColor } from '../../color.js';
-  // import { ACTION_USER_CONFIG_UPDATE } from '../../components/theme/constant.js';
-  const varMap = {
-    'white': '$--color-white',
-    'black': '$--color-black',
-    'textPrimary': '$--color-text-primary',
-    'textRegular': '$--color-text-regular',
-    'textSecondary': '$--color-text-secondary',
-    'textPlaceholder': '$--color-text-placeholder',
-    'borderBase': '$--border-color-base',
-    'borderLight': '$--border-color-light',
-    'borderLighter': '$--border-color-lighter',
-    'borderExtraLight': '$--border-color-extra-light'
-  };
-  const original = {
-    primary: '#EF99AF',
-    black: '#000000',
-    textPrimary: '#303133',
-    textRegular: '#606266',
-    textSecondary: '#909399',
-    textPlaceholder: '#C0C4CC',
-    borderBase: '#DCDFE6',
-    borderLight: '#E4E7ED',
-    borderLighter: '#EBEEF5',
-    borderExtraLight: '#F2F6FC'
-  }
   export default {
-    created() {
-      // bus.$on(ACTION_USER_CONFIG_UPDATE, this.setGlobal);
-    },
-    mounted() {
-      // this.setGlobal();
-    },
-    methods: {
-      // tintColor(color, tint) {
-      //   return tintColor(color, tint);
-      // },
-      // setGlobal() {
-      //   if (window.userThemeConfig) {
-      //     this.global = window.userThemeConfig.global;
-      //   }
-      // }
-    },
     data() {
       return {
         global: {},
-        primary: '',
-        white: '',
-        black: '',
-        textPrimary: '',
-        textRegular: '',
-        textSecondary: '',
-        textPlaceholder: '',
-        borderBase: '',
-        borderLight: '',
-        borderLighter: '',
-        borderExtraLight: ''
+        primary: '#EF99AF',
+        auxiliary:'#FFF9F9',
+        black: '#000000',
+        white:'#FFFFFF',
+        textPrimary: '#222222',
+        textRegular: '#4D4D4D',
+        textSecondary: '#7D7D7D',
+        textPlaceholder: '#CCCCCC',
+        borderBase: '#DDDDDD',
+        borderLight: '#EEEEEE',
+        borderLighter: '#F9F9F9',
       }
     },
-     watch: {
-      global: {
-        immediate: true,
-        handler(value) {
-          Object.keys(original).forEach((o) => {
-            if (value[varMap[o]]) {
-              this[o] = value[varMap[o]]
-            } else {
-              this[o] = original[o]
-            }
-          });
-        }
+    methods:{
+      tintColor(c, tint) {
+        const color = c.replace('#', '');
+        let red = parseInt(color.slice(0, 2), 16);
+        let green = parseInt(color.slice(2, 4), 16);
+        let blue = parseInt(color.slice(4, 6), 16);
+
+        red += Math.round(tint * (255 - red));
+        green += Math.round(tint * (255 - green));
+        blue += Math.round(tint * (255 - blue));
+        red = red.toString(16);
+        green = green.toString(16);
+        blue = blue.toString(16);
+        return `#${ red }${ green }${ blue }`;
       }
-    },
+    }
   }
 </script>
 
@@ -90,27 +49,24 @@
 
 ### 主色
 
-主要颜色。
+网站主色调。
 
 <mu-row :gutter="12">
   <mu-col :span="10" :xs="{span: 12}">
-    <div class="demo-color-box" :style="{ background: primary }">Brand Color
+    <div class="demo-color-box" :style="{ background: primary }">Primary Color
       <div class="value">{{primary}}</div>
-      
+      <div class="bg-color-sub" :style="{ background: tintColor(primary, 0.9) }">
+        <div
+          class="bg-blue-sub-item"
+          v-for="(item, key) in Array(8)"
+          :key="key"
+          :style="{ background: tintColor(primary, (key + 1) / 10) }"
+        ></div>
+      </div>
   </mu-col>
 </mu-row>
 
-### 辅助色
-
-除了主色外的场景色，需要在不同的场景中使用（例如危险色表示危险的操作）。
-
-<mu-row :gutter="12">
-  
-</mu-row>
-
-### 中性色
-
-中性色用于文本、背景和边框颜色。通过运用不同的中性色，来表现层次结构。
+### 文本、背景和边框
 
 <mu-row :gutter="12">
   <mu-col :span="6" :xs="{span: 12}">
@@ -141,9 +97,6 @@
       <div class="demo-color-box demo-color-box-other demo-color-box-lite"
       :style="{ background: borderLighter }"
       >三级边框<div class="value">{{borderLighter}}</div></div>
-      <div class="demo-color-box demo-color-box-other demo-color-box-lite"
-      :style="{ background: borderExtraLight }"
-      >四级边框<div class="value">{{borderExtraLight}}</div></div>
     </div>
   </mu-col>
   <mu-col :span="6" :xs="{span: 12}">

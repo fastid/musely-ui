@@ -129,7 +129,9 @@ $--button-padding-horizontal: 20px !default;
     border-radius: 50%;
     padding: $--button-padding-vertical;
   }
-
+  @include m(primary) {
+    @include button-variant($--button-primary-font-color, $--button-primary-background-color, $--button-primary-border-color);
+  }
   @include m(text) {
     border-color: transparent;
     color: $--color-black;
