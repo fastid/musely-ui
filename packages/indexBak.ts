@@ -1,35 +1,48 @@
-/* eslint-disable */
-// ********** index.ts file don't edit it!!! *********
-// This file is auto gererated by build/build-entry.js
+/*
+ * @Author: Victor wang
+ * @Date: 2020-03-31 16:27:01
+ * @LastEditors: Victor.wang
+ * @LastEditTime: 2020-04-28 01:11:05
+ * @Description:
+ */
+
 import { VueConstructor } from 'vue'
 import { InstallationOptions } from 'types/musely-ui'
-import MuAlert from './alert'
-import MuAside from './aside'
+// basic
+import MuLink from './link'
+import MuIcon from './icon'
 import MuButton from './button'
 import MuButtonGroup from './button-group'
-import MuCol from './col'
-import MuContainer from './container'
-import MuFooter from './footer'
-import MuHeader from './header'
-import MuIcon from './icon'
-import MuLink from './link'
-import MuMain from './main'
+// layout
 import MuRow from './row'
-const version = '0.1.0'
+import MuCol from './col'
+
+// skeleton
+import MuContainer from './container'
+import MuAside from './aside'
+import MuHeader from './header'
+import MuFooter from './footer'
+import MuMain from './main'
+// notice
+import MuAlert from './alert'
+
+const version = '0.0.1'
+
 const components = [
-  MuAlert,
-  MuAside,
-  MuButton,
-  MuButtonGroup,
-  MuCol,
   MuContainer,
-  MuFooter,
+  MuRow,
+  MuCol,
+  MuAside,
   MuHeader,
-  MuIcon,
-  MuLink,
+  MuFooter,
   MuMain,
-  MuRow
+  MuAlert,
+  MuLink,
+  MuIcon,
+  MuButton,
+  MuButtonGroup
 ]
+
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   components.forEach((component: any) => {
     Vue.use(component)
@@ -38,26 +51,25 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
     zIndex: opts.zIndex || 2000
   }
 }
-/* istanbul ignore if */
+
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 export {
   version,
-  MuAlert,
-  MuAside,
-  MuButton,
-  MuButtonGroup,
-  MuCol,
-  MuContainer,
-  MuFooter,
-  MuHeader,
-  MuIcon,
-  MuLink,
-  MuMain,
-  MuRow
-}
-export default {
   install,
-  version
+  MuContainer,
+  MuRow,
+  MuCol,
+  MuAside,
+  MuHeader,
+  MuFooter,
+  MuMain,
+  MuAlert,
+  MuLink,
+  MuIcon,
+  MuButton,
+  MuButtonGroup
 }
+
+export default { version, install }

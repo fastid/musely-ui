@@ -1,8 +1,16 @@
-# 这是复制 .gitignore 里面的
+# 忽略目录
+examples/
+packages/
+public/
+build/
+# 忽略指定文件
+vue.config.js
+babel.config.js
+*.map
+demo.html
+dist/
 .DS_Store
 node_modules
-/dist
-
 # local env files
 .env.local
 .env.*.local
@@ -26,7 +34,13 @@ yarn-error.log*
 examples/
 packages/
 public/
+dist/
 vue.config.js
 babel.config.js
 *.map
 *.html
+.browserslistrc
+.editorconfig
+.eslintrc.js
+CHANGELOG.md
+postcss.config.js
