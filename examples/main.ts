@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import SvgIcon from 'vue-svgicon'
-import MuselyUI from '../packages'
+import MuselyUI from '../packages/index'
 // import MuselyUI from '../../musely-ui'
 import codeView from './components/codeView.vue'
 // icons
