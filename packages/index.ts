@@ -15,7 +15,7 @@ import MuIcon from './icon'
 import MuLink from './link'
 import MuMain from './main'
 import MuRow from './row'
-const version = '0.1.0'
+const version = '0.1.5'
 const components = [
   MuAlert,
   MuAside,
