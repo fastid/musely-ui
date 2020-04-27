@@ -1,19 +1,26 @@
 {
   "name": "musely-ui",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.1",
+  "private": false,
+  "license": "MIT",
+  "author": "VictorWang <fastid@gmail.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build:liba": "vue-cli-service build --target lib --dest lib packages/index.ts",
-    "build:theme": "gulp build --gulpfile packages/theme-default/gulpfile.js && cp-cli packages/theme-default/lib lib/theme-default",
+    "lib": "node build/build-lib.js ",
     "build:entry": "node build/build-entry.js ",
-    "build:lib": "node build/build-lib.js ",
+    "build:theme": "gulp build --gulpfile packages/theme-default/gulpfile.js && cp-cli packages/theme-default/lib lib/theme-default",
+    "build:lib": "vue-cli-service build --target lib --dest lib packages/index.ts",
+    "clean": "rimraf lib && rimraf packages/*/lib",
+    "dev": "yarn build:entry && vue-cli-service serve",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "svg": "vsvg -s ./examples/icons/svg -t ./examples/icons/components --ext ts --es6",
+    "release": "sh build/release.sh",
+    "publish:docs": "node build/publish-docs.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "main": "lib/musely-ui.common.js",
+  "style": "lib/theme-default/index.css",
   "typings": "types/index.d.ts",
   "files": [
     "lib",
@@ -22,10 +29,10 @@
   "description": "vue + ts MuselyUI",
   "keyword": "vue ts typescript UI",
   "dependencies": {
-    "commitizen": "^4.0.4",
     "deepmerge": "^1.2.0"
   },
   "devDependencies": {
+    "commitizen": "^4.0.4",
     "@types/chai": "^4.2.8",
     "@types/deepmerge": "^2.2.0",
     "@types/markdown-it": "^0.0.9",

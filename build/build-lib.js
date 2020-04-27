@@ -5,7 +5,7 @@ const shell = require('shelljs')
 const signale = require('signale')
 
 const { Signale } = signale
-const tasks = ['bootstrap', 'clean', 'build:entry', 'lib', 'build:style']
+const tasks = ['clean', 'build:entry', 'build:lib', 'build:theme']
 
 tasks.forEach((task) => {
   signale.start(task)
