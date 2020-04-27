@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-03 17:40:40
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-08 14:02:58
+ * @LastEditTime: 2020-04-28 00:38:18
  * @Description:
  -->
 <template>
@@ -10,7 +10,6 @@
     <div class="index-container">
       <p>一款轻量级、模块化的前端 UI 组件库</p>
     </div>
-
   </div>
 </template>
 

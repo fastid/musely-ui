@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
-/dist
+/lib
+packages/index.js
+packages/theme-default/lib
 
 # local env files
 .env.local

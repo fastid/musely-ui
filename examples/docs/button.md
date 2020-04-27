@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-20 01:33:16
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 18:01:04
+ * @LastEditTime: 2020-04-27 19:12:34
  * @Description:
  -->
 
@@ -35,7 +35,7 @@
 
 ```html
 <mu-row>
-  <mu-button disabled>默认按钮</mu-button>
+  <mu-button disabled>Button</mu-button>
 </mu-row>
 ```
 
@@ -48,7 +48,7 @@
 :::demo
 
 ```html
-<mu-button type="text">文字按钮</mu-button> <mu-button type="text" disabled>文字按钮</mu-button>
+<mu-button type="text">textButton</mu-button> <mu-button type="text" disabled>textDisabled</mu-button>
 ```
 
 :::
@@ -61,8 +61,8 @@
 
 ```html
 <mu-row>
-  <mu-button type="primary" icon="mu-icon-search">搜索</mu-button>
-  <mu-button>上传<i class="mu-icon-upload mu-icon--right"></i></mu-button>
+  <mu-button type="primary" icon="mu-icon-search">Search</mu-button>
+  <mu-button>upload<i class="mu-icon-upload mu-icon--right"></i></mu-button>
 </mu-row>
 ```
 
@@ -76,8 +76,8 @@
 
 ```html
 <mu-button-group>
-  <mu-button type="primary" icon="mu-icon-arrow-left">上一页</mu-button>
-  <mu-button type="primary">下一页<i class="mu-icon-arrow-right mu-icon--right"></i></mu-button>
+  <mu-button type="primary" icon="mu-icon-arrow-left">Prev</mu-button>
+  <mu-button type="primary">Next<i class="mu-icon-arrow-right mu-icon--right"></i></mu-button>
 </mu-button-group>
 ```
 
@@ -90,7 +90,7 @@
 :::demo 要设置为 loading 状态，只要设置`loading`属性为`true`即可。
 
 ```html
-<mu-button type="primary" :loading="true">加载中</mu-button>
+<mu-button type="primary" :loading="true">Loading</mu-button>
 ```
 
 :::

@@ -31,10 +31,19 @@
 可以在项目的入口文件中引入所有组件或所需组件
 
 ```js
-import MUSELYUI from 'musely-ui' // 引入组件库
-import '../node_modules/MUSELYUI/packages/theme-default/lib/index.css' // 引入样式库
+import MuselyUI from 'musely-ui' // 引入组件库
+import '../node_modules/musely-ui/packages/theme-default/lib/index.css' // 引入样式库
 
-Vue.use(MUSELYUI)
+Vue.use(MuselyUI)
+```
+
+或
+
+```js
+import { MuButton } from 'musely-ui' // 引入组件库中button组件
+import '../node_modules/musely-ui/packages/theme-default/lib/button.css' // 引入样式库
+
+Vue.use(MuButton)
 ```
 
 ### 单个组件按需使用
@@ -42,7 +51,7 @@ Vue.use(MUSELYUI)
 可以局部注册所需的组件，适用于与其他框架组合使用的场景
 
 ```js
-import { MuButton } from 'musely-ui'
+import { MuButton } from '../musely-ui'
 
 export default {
   components: {

@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-20 01:33:16
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 16:05:37
+ * @LastEditTime: 2020-04-27 18:58:41
  * @Description:
  -->
 <script>
@@ -30,7 +30,8 @@
 <div class="demo-font">
 <img src="../assets/img/proximanove-Regular.png" width="50%" alt="">
 <img src="../assets/img/proximanove-Semibold.png" alt="">
-<img src="../assets/img/proximanove-Bold.png" alt="">
+</div>
+<div class="demo-font">
 <img src="../assets/img/gilroy-Regular.png" alt="">
 <img src="../assets/img/gilroy-Regular.png" alt="">
 <img src="../assets/img/gilroy-Regular.png" alt="">

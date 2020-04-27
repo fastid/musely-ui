@@ -2,35 +2,50 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:27:01
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 00:41:11
+ * @LastEditTime: 2020-04-28 00:34:11
  * @Description:
  */
 
 import { VueConstructor } from 'vue'
 import { InstallationOptions } from 'types/musely-ui'
 // basic
-import Link from './link'
-import Icon from './icon'
-import Button from './button'
-import ButtonGroup from './button-group'
+import MuLink from './link'
+import MuIcon from './icon'
+import MuButton from './button'
+import MuButtonGroup from './button-group'
 // layout
-import Row from './row'
-import Col from './col'
+import MuRow from './row'
+import MuCol from './col'
 
 // skeleton
-import Container from './container'
-import Aside from './aside'
-import Header from './header'
-import Footer from './footer'
-import Main from './main'
+import MuContainer from './container'
+import MuAside from './aside'
+import MuHeader from './header'
+import MuFooter from './footer'
+import MuMain from './main'
 // notice
-import Alert from './alert'
+import MuAlert from './alert'
 
-export const components = [Container, Row, Col, Aside, Header, Footer, Main, Alert, Link, Icon, Button, ButtonGroup]
+const version = '0.0.1'
+
+export const components = [
+  MuContainer,
+  MuRow,
+  MuCol,
+  MuAside,
+  MuHeader,
+  MuFooter,
+  MuMain,
+  MuAlert,
+  MuLink,
+  MuIcon,
+  MuButton,
+  MuButtonGroup
+]
 
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   components.forEach((component: any) => {
-    Vue.component(component.name, component)
+    Vue.use(component)
   })
   Vue.prototype.$MUSELY = {
     zIndex: opts.zIndex || 2000
@@ -40,6 +55,21 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
-export { Container, Row, Col, Aside, Header, Footer, Main, Alert, Link, Icon, Button, ButtonGroup }
+export {
+  version,
+  install,
+  MuContainer,
+  MuRow,
+  MuCol,
+  MuAside,
+  MuHeader,
+  MuFooter,
+  MuMain,
+  MuAlert,
+  MuLink,
+  MuIcon,
+  MuButton,
+  MuButtonGroup
+}
 
-export default { version: '0.0.1', install, Container, Row, Col, Aside, Header, Footer, Main, Alert, Link, Icon, Button, ButtonGroup }
+export default { version, install }

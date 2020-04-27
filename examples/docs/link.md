@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-24 00:57:48
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 16:52:41
+ * @LastEditTime: 2020-04-27 19:17:36
  * @Description:
  -->
 
@@ -17,7 +17,7 @@
 
 ```html
 <div>
-  <mu-link href="https://m.musely.com" target="_blank">默认链接</mu-link>
+  <mu-link href="https://m.musely.com" target="_blank">Default link</mu-link>
 </div>
 ```
 
@@ -30,7 +30,7 @@
 
 ```html
 <div>
-  <mu-link disabled>禁用链接</mu-link>
+  <mu-link disabled>Disabled-link</mu-link>
 </div>
 ```
 
@@ -43,8 +43,8 @@
 
 ```html
 <div>
-  <mu-link :underline="false">无下划线</mu-link>
-  <mu-link>有下划线</mu-link>
+  <mu-link :underline="false">not underline</mu-link>
+  <mu-link>underline Link</mu-link>
 </div>
 ```
 
@@ -57,8 +57,8 @@
 
 ```html
 <div>
-  <mu-link icon="mu-icon-search">搜索</mu-link>
-  <mu-link>详细<i class="mu-icon-arrow-right mu-icon--right"></i></mu-link>
+  <mu-link icon="mu-icon-search">Search</mu-link>
+  <mu-link>Detail<i class="mu-icon-arrow-right mu-icon--right"></i></mu-link>
 </div>
 ```
 
