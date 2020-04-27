@@ -19,6 +19,8 @@
     "lib",
     "types"
   ],
+  "description": "vue + ts MuselyUI",
+  "keyword": "vue ts typescript UI",
   "dependencies": {
     "commitizen": "^4.0.4",
     "deepmerge": "^1.2.0"
