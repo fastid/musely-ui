@@ -9,7 +9,7 @@ import codeView from './components/codeView.vue'
 import '@/assets/icons/components'
 import icon from './settings/icon.json'
 
-import '../packages/theme-default'
+import '../packages/theme-default/src/index.scss'
 import '@/assets/index.scss'
 
 Vue.component('code-view', codeView)
