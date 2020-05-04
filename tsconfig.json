@@ -30,7 +30,8 @@
     "tests/**/*.tsx",
     "types/**/*.ts",
     "typings.ts",
-    "shims-vue.d.ts"
+    "shims-vue.d.ts",
+    "examples/router/index.js"
   ],
   "exclude": ["node_modules"]
 }

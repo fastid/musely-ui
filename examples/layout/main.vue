@@ -2,12 +2,14 @@
  * @Author: Victor wang
  * @Date: 2020-04-03 16:14:35
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-20 00:28:47
+ * @LastEditTime: 2020-05-04 01:45:16
  * @Description:
  -->
 <template>
   <div class="main-skeleton">
-    <mu-container height="80px"></mu-container>
+    <mu-container height="80px">
+      <router-view></router-view>
+    </mu-container>
   </div>
 </template>
 <script lang="ts">

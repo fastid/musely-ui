@@ -9,6 +9,7 @@ import MuButton from './button'
 import MuButtonGroup from './button-group'
 import MuCol from './col'
 import MuContainer from './container'
+import MuDialog from './dialog'
 import MuFooter from './footer'
 import MuHeader from './header'
 import MuIcon from './icon'
@@ -23,6 +24,7 @@ const components = [
   MuButtonGroup,
   MuCol,
   MuContainer,
+  MuDialog,
   MuFooter,
   MuHeader,
   MuIcon,
@@ -50,6 +52,7 @@ export {
   MuButtonGroup,
   MuCol,
   MuContainer,
+  MuDialog,
   MuFooter,
   MuHeader,
   MuIcon,

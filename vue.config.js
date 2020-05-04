@@ -1,13 +1,19 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+const fs = require('fs')
 const path = require('path')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const vueMarkdown = require('./vueMarkdown')
+const vueMarkdown = require('./build/vueMarkdown')
 // If your port is set to 80,
 const devServerPort = 8018 // TODO: get this variable from setting.ts
 const name = 'Musely-UI' // TODO: get this variable from setting.ts
 const prod = process.env.NODE_ENV === 'production'
 const dev = process.env.NODE_ENV === 'development'
 
+const utilsList = fs.readdirSync(path.resolve(__dirname, './src/utils'))
+const externals = {}
+utilsList.forEach((file) => {
+  file = path.basename(file, '.js')
+  externals[`musely-ui/src/utils/${file}`] = `musely-ui/lib/utils/${file}`
+})
 module.exports = {
   publicPath: prod ? '/' : '/',
   lintOnSave: process.env.NODE_ENV === 'development',
@@ -33,14 +39,19 @@ module.exports = {
     resolve: {
       alias: {
         '@': path.join(__dirname, 'examples'),
-        '~': path.join(__dirname, 'packages')
+        '~': path.join(__dirname, 'packages'),
+        'musely-ui': path.resolve(__dirname, '../')
       }
-    }
+    },
+    externals: process.env.NODE_ENV === 'production' ? externals : {}
   },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
-      patterns: [path.resolve(__dirname, 'examples/styles/_variables.scss'), path.resolve(__dirname, 'examples/styles/_mixins.scss')]
+      patterns: [
+        path.resolve(__dirname, 'examples/styles/_variables.scss'),
+        path.resolve(__dirname, 'examples/styles/_mixins.scss')
+      ]
     }
   },
   chainWebpack: (config) => {
@@ -82,13 +93,15 @@ module.exports = {
       .use('vue-loader')
       .loader('vue-loader')
       .end()
-      .use('vue-markdown-loader')
-      .loader('vue-markdown-loader/lib/markdown-compiler')
-      .options({
-        raw: true,
-        ...vueMarkdown
-      })
-    // .options(vueMarkdown)
+      .use('markdown-it')
+      .loader(path.resolve(__dirname, './build/vueMarkdown.js'))
+    // .end()
+    // .use('vue-markdown-loader')
+    // .loader('vue-markdown-loader/lib/markdown-compiler')
+    // .options({
+    //   raw: true,
+    //   ...vueMarkdown
+    // })
 
     // config.when(process.env.NODE_ENV !== 'development', (config) => {
     //   config.optimization.splitChunks({

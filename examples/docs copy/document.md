@@ -151,6 +151,10 @@ export default {
 
 ## 十一、支持标签
 
+::: tip
+完成.
+:::
+
 ::: success
 完成.
 :::

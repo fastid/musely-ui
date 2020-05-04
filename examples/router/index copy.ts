@@ -6,8 +6,8 @@ Vue.use(VueRouter)
 
 let routes: RouteConfig[] = []
 
-Object.keys(navConf).forEach((p) => {
-  routes = routes.concat((navConf as any)[p])
+Object.keys(navConf).forEach((header) => {
+  routes = routes.concat((navConf as any)[header])
 })
 
 const addComponent = (router: RouteConfig[]) => {
