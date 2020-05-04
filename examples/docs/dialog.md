@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-29 22:11:52
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-03 16:07:41
+ * @LastEditTime: 2020-05-04 22:26:06
  * @Description:
  -->
 
@@ -17,15 +17,15 @@ Dialog 弹出一个对话框，适合需要定制性更大的场景。
 :::demo 需要设置`visible`属性，它接收`Boolean`，当为`true`时显示 Dialog。Dialog 分为两个部分：`body`和`footer`，`footer`需要具名为`footer`的`slot`。`title`属性用于定义标题，它是可选的，默认值为空。最后，本例还展示了`before-close`的用法。
 
 ```html
-<el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
+<mu-button type="text" @click="dialogVisible = true">点击打开 Dialog</mu-button>
 
-<el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+<mu-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
   <span>这是一段信息</span>
   <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    <mu-button @click="dialogVisible = false">取 消</mu-button>
+    <mu-button type="primary" @click="dialogVisible = false">确 定</mu-button>
   </span>
-</el-dialog>
+</mu-dialog>
 
 <script>
   export default {
@@ -61,36 +61,36 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
 
 ```html
 <!-- Table -->
-<el-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</el-button>
+<mu-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</mu-button>
 
-<el-dialog title="收货地址" :visible.sync="dialogTableVisible">
-  <el-table :data="gridData">
-    <el-table-column property="date" label="日期" width="150"></el-table-column>
-    <el-table-column property="name" label="姓名" width="200"></el-table-column>
-    <el-table-column property="address" label="地址"></el-table-column>
-  </el-table>
-</el-dialog>
+<mu-dialog title="收货地址" :visible.sync="dialogTableVisible">
+  <mu-table :data="gridData">
+    <mu-table-column property="date" label="日期" width="150"></mu-table-column>
+    <mu-table-column property="name" label="姓名" width="200"></mu-table-column>
+    <mu-table-column property="address" label="地址"></mu-table-column>
+  </mu-table>
+</mu-dialog>
 
 <!-- Form -->
-<el-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</el-button>
+<mu-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</mu-button>
 
-<el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-  <el-form :model="form">
-    <el-form-item label="活动名称" :label-width="formLabelWidth">
-      <el-input v-model="form.name" autocomplete="off"></el-input>
-    </el-form-item>
-    <el-form-item label="活动区域" :label-width="formLabelWidth">
-      <el-select v-model="form.region" placeholder="请选择活动区域">
-        <el-option label="区域一" value="shanghai"></el-option>
-        <el-option label="区域二" value="beijing"></el-option>
-      </el-select>
-    </el-form-item>
-  </el-form>
+<mu-dialog title="收货地址" :visible.sync="dialogFormVisible">
+  <mu-form :model="form">
+    <mu-form-item label="活动名称" :labmu-width="formLabelWidth">
+      <mu-input v-model="form.name" autocomplete="off"></mu-input>
+    </mu-form-item>
+    <mu-form-item label="活动区域" :labmu-width="formLabelWidth">
+      <mu-select v-model="form.region" placeholder="请选择活动区域">
+        <mu-option label="区域一" value="shanghai"></mu-option>
+        <mu-option label="区域二" value="beijing"></mu-option>
+      </mu-select>
+    </mu-form-item>
+  </mu-form>
   <div slot="footer" class="dialog-footer">
-    <el-button @click="dialogFormVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+    <mu-button @click="dialogFormVisible = false">取 消</mu-button>
+    <mu-button type="primary" @click="dialogFormVisible = false">确 定</mu-button>
   </div>
-</el-dialog>
+</mu-dialog>
 
 <script>
   export default {
@@ -146,15 +146,15 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
 
 ```html
 <template>
-  <el-button type="text" @click="outerVisible = true">点击打开外层 Dialog</el-button>
+  <mu-button type="text" @click="outerVisible = true">点击打开外层 Dialog</mu-button>
 
-  <el-dialog title="外层 Dialog" :visible.sync="outerVisible">
-    <el-dialog width="30%" title="内层 Dialog" :visible.sync="innerVisible" append-to-body> </el-dialog>
+  <mu-dialog title="外层 Dialog" :visible.sync="outerVisible">
+    <mu-dialog width="30%" title="内层 Dialog" :visible.sync="innerVisible" append-to-body> </mu-dialog>
     <div slot="footer" class="dialog-footer">
-      <el-button @click="outerVisible = false">取 消</el-button>
-      <el-button type="primary" @click="innerVisible = true">打开内层 Dialog</el-button>
+      <mu-button @click="outerVisible = false">取 消</mu-button>
+      <mu-button type="primary" @click="innerVisible = true">打开内层 Dialog</mu-button>
     </div>
-  </el-dialog>
+  </mu-dialog>
 </template>
 
 <script>
@@ -178,15 +178,15 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
 :::demo 将`center`设置为`true`即可使标题和底部居中。`center`仅影响标题和底部区域。Dialog 的内容是任意的，在一些情况下，内容并不适合居中布局。如果需要内容也水平居中，请自行为其添加 CSS。
 
 ```html
-<el-button type="text" @click="centerDialogVisible = true">点击打开 Dialog</el-button>
+<mu-button type="text" @click="centerDialogVisible = true">点击打开 Dialog</mu-button>
 
-<el-dialog title="提示" :visible.sync="centerDialogVisible" width="30%" center>
+<mu-dialog title="提示" :visible.sync="centerDialogVisible" width="30%" center>
   <span>需要注意的是内容是默认不居中的</span>
   <span slot="footer" class="dialog-footer">
-    <el-button @click="centerDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="centerDialogVisible = false">确 定</el-button>
+    <mu-button @click="centerDialogVisible = false">取 消</mu-button>
+    <mu-button type="primary" @click="centerDialogVisible = false">确 定</mu-button>
   </span>
-</el-dialog>
+</mu-dialog>
 
 <script>
   export default {

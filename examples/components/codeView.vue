@@ -2,14 +2,14 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:22:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-03 15:10:22
+ * @LastEditTime: 2020-05-04 20:44:36
  * @Description:
  -->
 <template>
   <div class="docs-demo-wrapper">
     <div class="demo-block"
          :class="[blockClass]">
-      <slot name="demo"></slot>
+      <slot name="source"></slot>
     </div>
     <div :style="{ height: isExpand ? 'auto' : '0' }"
          class="demo-container">

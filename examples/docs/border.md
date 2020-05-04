@@ -1,12 +1,4 @@
-<!--
- * @Author: Victor wang
- * @Date: 2020-04-26 18:43:28
- * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 16:33:36
- * @Description:
- -->
-
-<script lang='ts'>
+<script>
   export default {
     data() {
       return {

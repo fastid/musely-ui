@@ -1,10 +1,3 @@
-<!--
- * @Author: Victor wang
- * @Date: 2020-04-20 01:33:16
- * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 18:58:41
- * @Description:
- -->
 <script>
   export default {
     data() {

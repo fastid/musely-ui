@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-13 10:00:08
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-23 17:13:47
+ * @LastEditTime: 2020-05-04 20:45:22
  * @Description:
  -->
 
@@ -62,6 +62,7 @@
 ```
 
 ```js
+<script>
 export default {
   data() {
     return {
@@ -69,6 +70,7 @@ export default {
     }
   }
 }
+</script>
 ```
 
 :::
@@ -96,13 +98,3 @@ export default {
 | 参数   | 说明     | 类型   | 可选值 | 默认值 |
 | ------ | -------- | ------ | ------ | ------ |
 | height | 底栏高度 | string | —      | 60px   |
-
-<script>
-export default {
-  data() {
-    return {
-      vertical: 'vertical'
-    }
-  }
-}
-</script>

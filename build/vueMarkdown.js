@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-07 18:59:14
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-04 17:50:04
+ * @LastEditTime: 2020-05-05 00:49:37
  * @Description:
  */
 // 服务器版的jQuery
@@ -75,7 +75,7 @@ const vueMarkdown = {
       args[0][args[1]].attrJoin('class', 'code_inline')
       return codeInline(...args)
     }
-    return source
+    return MarkdownIt
   },
   use: [
     [require('markdown-it-anchor')],
@@ -87,15 +87,6 @@ const vueMarkdown = {
       {
         validate: (params) => params.trim().match(/^demo\s*(.*)$/),
         render: (tokens, idx) => {
-          // if (tokens[idx].nesting === 1) {
-          //   const html = convertHtml(striptags(tokens[idx + 1].content, 'script'))
-          //   // 移除描述，防止被添加到代码块
-          //   tokens[idx + 2].children = []
-          //   return `<code-view>
-          //               <div slot="desc">${html}</div>
-          //               <div slot="highlight">`
-          // }
-          // return '</div></code-view>\n'
           const markdown = md()
           const m = tokens[idx].info.trim().match(/^demo\s*(.*)$/)
           // nesting === 1表示标签开始
@@ -119,7 +110,7 @@ const vueMarkdown = {
             jsfiddle = markdown.utils.escapeHtml(JSON.stringify(jsfiddle))
             // 起始标签,写入code-view模板开头,并传入参数
             return `<code-view :jsfiddle="${jsfiddle}">
-                    <!---demo:${html}:demo--->
+                      <!---demo:${html}:demo--->
                             <div slot="description" ${
                               description ? " class='description'" : ''
                             }>${descriptionHTML}</div>
@@ -218,11 +209,14 @@ const containers = (md) => {
     md.use(...element)
   })
 }
-const markdown = md({
+
+let markdown = md({
   html: true
 })
   // 定义自定义的块容器
   .use(containers)
+
+markdown = vueMarkdown.preprocess(markdown, '')
 
 module.exports = function(source) {
   const content = markdown.render(source)
@@ -245,8 +239,8 @@ module.exports = function(source) {
     const html = stripTemplate(commentContent)
     const script = stripScript(commentContent)
     const demoComponentContent = genInlineComponentText(html, script)
-    const demoComponentName = `element-demo${id}`
-    output.push(`<template slot="demo"><${demoComponentName} /></template>`)
+    const demoComponentName = `compontent-doc${id}`
+    output.push(`<template slot="source"><${demoComponentName} /></template>`)
     componenetsString += `${JSON.stringify(demoComponentName)}: ${demoComponentContent},`
 
     // 重新计算下一次的位置
@@ -276,7 +270,7 @@ module.exports = function(source) {
   output.push(content.slice(start))
   return `
     <template>
-      <section class="content element-doc">
+      <section>
         ${output.join('')}
       </section>
     </template>

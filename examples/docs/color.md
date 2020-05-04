@@ -1,13 +1,3 @@
-<!--
- * @Author: Victor wang
- * @Date: 2020-04-20 01:33:16
- * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 16:03:17
- * @Description:
- -->
-
-# Color 色彩
-
 <script>
   export default {
     data() {
@@ -42,8 +32,11 @@
         return `#${ red }${ green }${ blue }`;
       }
     }
-  }
+
+}
 </script>
+
+# Color 色彩
 
 使用一套特定的调色板来规定颜色，为你所搭建的产品提供一致的外观视觉感受。
 
@@ -63,6 +56,7 @@
           :style="{ background: tintColor(primary, (key + 1) / 10) }"
         ></div>
       </div>
+    </div>
   </mu-col>
 </mu-row>
 

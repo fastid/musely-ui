@@ -10,3 +10,5 @@ declare module 'vue/types/vue' {
     install: any
   }
 }
+
+declare module 'musely-ui'

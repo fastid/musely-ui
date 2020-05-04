@@ -5,22 +5,21 @@
 
 ```html
 <template>
-  <mu-button type="text" @click="outerVisible = true">点击打开外层 Dialog</mu-button>
+  <el-button type="text" @click="outerVisible = true">点击打开外层 Dialog</el-button>
 
-  <mu-dialog title="外层 Dialog" :visible.sync="outerVisible">
-    <mu-dialog width="30%" title="内层 Dialog" :visible.sync="innerVisible" append-to-body> </mu-dialog>
+  <el-dialog title="外层 Dialog" :visible.sync="outerVisible">
+    <el-dialog width="30%" title="内层 Dialog" :visible.sync="innerVisible" append-to-body> </el-dialog>
     <div slot="footer" class="dialog-footer">
-      <mu-button @click="outerVisible = false">取 消</mu-button>
-      <mu-button type="primary" @click="innerVisible = true">打开内层 Dialog</mu-button>
+      <el-button @click="outerVisible = false">取 消</el-button>
+      <el-button type="primary" @click="innerVisible = true">打开内层 Dialog</el-button>
     </div>
-  </mu-dialog>
+  </el-dialog>
 </template>
 
 <script>
   export default {
     data() {
       return {
-        test: false,
         outerVisible: false,
         innerVisible: false
       }

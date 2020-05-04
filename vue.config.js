@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const vueMarkdown = require('./build/vueMarkdown')
 // If your port is set to 80,
 const devServerPort = 8018 // TODO: get this variable from setting.ts
 const name = 'Musely-UI' // TODO: get this variable from setting.ts
@@ -9,10 +8,15 @@ const prod = process.env.NODE_ENV === 'production'
 const dev = process.env.NODE_ENV === 'development'
 
 const utilsList = fs.readdirSync(path.resolve(__dirname, './src/utils'))
+const mixinsList = fs.readdirSync(path.resolve(__dirname, './src/mixins'))
 const externals = {}
 utilsList.forEach((file) => {
   file = path.basename(file, '.js')
   externals[`musely-ui/src/utils/${file}`] = `musely-ui/lib/utils/${file}`
+})
+mixinsList.forEach(function(file) {
+  file = path.basename(file, '.js')
+  externals[`musely-ui/src/mixins/${file}`] = `musely-ui/lib/mixins/${file}`
 })
 module.exports = {
   publicPath: prod ? '/' : '/',
@@ -40,7 +44,8 @@ module.exports = {
       alias: {
         '@': path.join(__dirname, 'examples'),
         '~': path.join(__dirname, 'packages'),
-        'musely-ui': path.resolve(__dirname, '../')
+        types: path.join(__dirname, 'types'),
+        'musely-ui': path.resolve(__dirname, './')
       }
     },
     externals: process.env.NODE_ENV === 'production' ? externals : {}
@@ -58,10 +63,10 @@ module.exports = {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     config.set('name', name)
-    config.resolve.alias
-      .set('@', path.join(__dirname, 'examples'))
-      .set('~', path.join(__dirname, 'packages'))
-      .set('types', path.join(__dirname, 'types'))
+    // config.resolve.alias
+    //   .set('@', path.join(__dirname, 'examples'))
+    //   .set('~', path.join(__dirname, 'packages'))
+    //   .set('types', path.join(__dirname, 'types'))
 
     // https://webpack.js.org/configuration/devtool/#development
     config.when(dev, (config) => config.devtool('cheap-module-eval-source-map'))

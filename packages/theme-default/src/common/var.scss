@@ -89,7 +89,8 @@ $--breakpoints-spec: (
 @import './border.scss';
 @import './box.scss';
 @import './link.scss';
-
+@import './pop.scss';
+@import './dialog.scss';
 /* Header
   --------------------------*/
 $--header-padding: 0 20px !default;
