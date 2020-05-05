@@ -43,13 +43,12 @@
 import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import Popup from 'musely-ui/src/utils/popup'
-import Migrating from 'musely-ui/src/mixins/migrating'
 import emitter from 'musely-ui/src/mixins/emitter'
 
 @Component({
   name: 'MuDialog'
 })
-export default class MuDialog extends mixins(Popup, Migrating, emitter) {
+export default class MuDialog extends mixins(Popup, emitter) {
   @Prop({ default: '', type: String }) title!: string
   @Prop({ type: Boolean }) modal!: boolean
   @Prop({ type: Boolean }) modalAppendToBody!: boolean

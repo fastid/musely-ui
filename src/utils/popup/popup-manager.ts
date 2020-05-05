@@ -1,9 +1,15 @@
 import Vue from 'vue'
 import { addClass, removeClass } from 'musely-ui/src/utils/dom'
 
+interface ImodalStack {
+  id: number
+  zIndex: number
+  modalClass: string
+}
+
 let hasModal = false
 let hasInitZIndex = false
-let zIndex
+let zIndex = 0
 
 const getModal = function() {
   if (Vue.prototype.$isServer) return
@@ -15,12 +21,12 @@ const getModal = function() {
     modalDom = document.createElement('div')
     PopupManager.modalDom = modalDom
 
-    modalDom.addEventListener('touchmove', function(event) {
+    modalDom.addEventListener('touchmove', (event: any) => {
       event.preventDefault()
       event.stopPropagation()
     })
 
-    modalDom.addEventListener('click', function() {
+    modalDom.addEventListener('click', () => {
       PopupManager.doOnModalClick && PopupManager.doOnModalClick()
     })
   }
@@ -28,35 +34,35 @@ const getModal = function() {
   return modalDom
 }
 
-const instances = {}
+const instances: any = {}
 
-const PopupManager = {
+const PopupManager: any = {
   modalFade: true,
 
-  getInstance: function(id) {
+  getInstance(id: any) {
     return instances[id]
   },
 
-  register: function(id, instance) {
+  register(id: any, instance: any) {
     if (id && instance) {
       instances[id] = instance
     }
   },
 
-  deregister: function(id) {
+  deregister(id: any) {
     if (id) {
       instances[id] = null
       delete instances[id]
     }
   },
 
-  nextZIndex: function() {
+  nextZIndex() {
     return PopupManager.zIndex++
   },
 
-  modalStack: [],
+  modalStack: <ImodalStack[]>[],
 
-  doOnModalClick: function() {
+  doOnModalClick() {
     const topItem = PopupManager.modalStack[PopupManager.modalStack.length - 1]
     if (!topItem) return
 
@@ -66,7 +72,7 @@ const PopupManager = {
     }
   },
 
-  openModal: function(id, zIndex, dom, modalClass, modalFade) {
+  openModal(id: any, zIndex: any, dom: any, modalClass: any, modalFade: any) {
     if (Vue.prototype.$isServer) return
     if (!id || zIndex === undefined) return
     this.modalFade = modalFade
@@ -87,8 +93,8 @@ const PopupManager = {
       addClass(modalDom, 'v-modal-enter')
     }
     if (modalClass) {
-      const classArr = modalClass.trim().split(/\s+/)
-      classArr.forEach((item) => addClass(modalDom, item))
+      let classArr = modalClass.trim().split(/\s+/)
+      classArr.forEach((item: any) => addClass(modalDom, item))
     }
     setTimeout(() => {
       removeClass(modalDom, 'v-modal-enter')
@@ -109,7 +115,7 @@ const PopupManager = {
     this.modalStack.push({ id: id, zIndex: zIndex, modalClass: modalClass })
   },
 
-  closeModal: function(id) {
+  closeModal(id: any) {
     const modalStack = this.modalStack
     const modalDom = getModal()
 
@@ -117,8 +123,8 @@ const PopupManager = {
       const topItem = modalStack[modalStack.length - 1]
       if (topItem.id === id) {
         if (topItem.modalClass) {
-          const classArr = topItem.modalClass.trim().split(/\s+/)
-          classArr.forEach((item) => removeClass(modalDom, item))
+          let classArr = topItem.modalClass.trim().split(/\s+/)
+          classArr.forEach((item: any) => removeClass(modalDom, item))
         }
 
         modalStack.pop()

@@ -14,7 +14,10 @@
     "types": ["webpack-env", "mocha", "chai"],
     "resolveJsonModule": true,
     "paths": {
-      "@/*": ["examples/*"]
+      "@/*": ["./examples/*"],
+      "types/*": ["./types/*"],
+      "~*": ["./packages/*"],
+      "musely-ui/*": ["./*"]
     },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
@@ -26,12 +29,12 @@
     "packages/**/*.ts",
     "packages/**/*.tsx",
     "packages/**/*.vue",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx",
-    "types/**/*.ts",
-    "typings.ts",
-    "shims-vue.d.ts",
-    "examples/router/index.js"
+    "types/**/*.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "tmp"]
 }

@@ -1,22 +1,45 @@
 import Vue from 'vue'
-import { isString, isObject } from 'musely-ui/src/utils/types'
+export function isString(obj: any) {
+  return Object.prototype.toString.call(obj) === '[object String]'
+}
+
+export function isObject(obj: any) {
+  return Object.prototype.toString.call(obj) === '[object Object]'
+}
+
+export function isHtmlElement(node: any) {
+  return node && node.nodeType === Node.ELEMENT_NODE
+}
+
+export const isFunction = (functionToCheck: any) => {
+  const getType = {}
+  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]'
+}
+
+export const isUndefined = (val: any) => {
+  return val === void 0
+}
+
+export const isDefined = (val: any) => {
+  return val !== undefined && val !== null
+}
 
 const hasOwnProperty = Object.prototype.hasOwnProperty
 
 export function noop() {}
 
-export function hasOwn(obj, key) {
+export function hasOwn(obj: any, key: string) {
   return hasOwnProperty.call(obj, key)
 }
 
-function extend(to, _from) {
+function extend(to: any, _from: any) {
   for (const key in _from) {
     to[key] = _from[key]
   }
   return to
 }
 
-export function toObject(arr) {
+export function toObject(arr: any) {
   const res = {}
   for (let i = 0; i < arr.length; i++) {
     if (arr[i]) {
@@ -26,7 +49,7 @@ export function toObject(arr) {
   return res
 }
 
-export const getValueByPath = function(object, prop) {
+export const getValueByPath = function(object: any, prop: any) {
   prop = prop || ''
   const paths = prop.split('.')
   let current = object
@@ -44,7 +67,7 @@ export const getValueByPath = function(object, prop) {
   return result
 }
 
-export function getPropByPath(obj, path, strict) {
+export function getPropByPath(obj: any, path: any, strict: any) {
   let tempObj = obj
   path = path.replace(/\[(\w+)\]/g, '.$1')
   path = path.replace(/^\./, '')
@@ -74,7 +97,7 @@ export const generateId = function() {
   return Math.floor(Math.random() * 10000)
 }
 
-export const valueEquals = (a, b) => {
+export const valueEquals = (a: any, b: any) => {
   // see: https://stackoverflow.com/questions/3115982/how-to-check-if-two-arrays-are-equal-with-javascript
   if (a === b) return true
   if (!(a instanceof Array)) return false
@@ -89,7 +112,7 @@ export const valueEquals = (a, b) => {
 export const escapeRegexpString = (value = '') => String(value).replace(/[|\\{}()[\]^$+*?.]/g, '\\$&')
 
 // TODO: use native Array.find, Array.findIndex when IE support is dropped
-export const arrayFindIndex = function(arr, pred) {
+export const arrayFindIndex = function(arr: any, pred: any) {
   for (let i = 0; i !== arr.length; ++i) {
     if (pred(arr[i])) {
       return i
@@ -98,13 +121,13 @@ export const arrayFindIndex = function(arr, pred) {
   return -1
 }
 
-export const arrayFind = function(arr, pred) {
+export const arrayFind = function(arr: any, pred: any) {
   const idx = arrayFindIndex(arr, pred)
   return idx !== -1 ? arr[idx] : undefined
 }
 
 // coerce truthy value to array
-export const coerceTruthyValueToArray = function(val) {
+export const coerceTruthyValueToArray = function(val: any) {
   if (Array.isArray(val)) {
     return val
   } else if (val) {
@@ -126,7 +149,7 @@ export const isFirefox = function() {
   return !Vue.prototype.$isServer && !!window.navigator.userAgent.match(/firefox/i)
 }
 
-export const autoprefixer = function(style) {
+export const autoprefixer = function(style: any) {
   if (typeof style !== 'object') return style
   const rules = ['transform', 'transition', 'animation']
   const prefixes = ['ms-', 'webkit-']
@@ -141,7 +164,7 @@ export const autoprefixer = function(style) {
   return style
 }
 
-export const kebabCase = function(str) {
+export const kebabCase = function(str: any) {
   const hyphenateRE = /([^-])([A-Z])/g
   return str
     .replace(hyphenateRE, '$1-$2')
@@ -149,12 +172,12 @@ export const kebabCase = function(str) {
     .toLowerCase()
 }
 
-export const capitalize = function(str) {
+export const capitalize = function(str: any) {
   if (!isString(str)) return str
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
-export const looseEqual = function(a, b) {
+export const looseEqual = function(a: any, b: any) {
   const isObjectA = isObject(a)
   const isObjectB = isObject(b)
   if (isObjectA && isObjectB) {
@@ -166,7 +189,7 @@ export const looseEqual = function(a, b) {
   }
 }
 
-export const arrayEquals = function(arrayA, arrayB) {
+export const arrayEquals = function(arrayA: any, arrayB: any) {
   arrayA = arrayA || []
   arrayB = arrayB || []
 
@@ -183,14 +206,14 @@ export const arrayEquals = function(arrayA, arrayB) {
   return true
 }
 
-export const isEqual = function(value1, value2) {
+export const isEqual = function(value1: any, value2: any) {
   if (Array.isArray(value1) && Array.isArray(value2)) {
     return arrayEquals(value1, value2)
   }
   return looseEqual(value1, value2)
 }
 
-export const isEmpty = function(val) {
+export const isEmpty = function(val: any) {
   // null or undefined
   if (val == null) return true
 
@@ -221,19 +244,19 @@ export const isEmpty = function(val) {
   return false
 }
 
-export function rafThrottle(fn) {
+export function rafThrottle(fn: any) {
   let locked = false
-  return function(...args) {
+  return function(...args: any) {
     if (locked) return
     locked = true
     window.requestAnimationFrame((_) => {
-      fn.apply(this, args)
+      fn.apply(fn, args)
       locked = false
     })
   }
 }
 
-export function objToArray(obj) {
+export function objToArray(obj: any) {
   if (Array.isArray(obj)) {
     return obj
   }
