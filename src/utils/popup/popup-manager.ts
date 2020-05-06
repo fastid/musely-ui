@@ -14,6 +14,7 @@ let zIndex = 0
 const getModal = function() {
   if (Vue.prototype.$isServer) return
   let modalDom = PopupManager.modalDom
+
   if (modalDom) {
     hasModal = true
   } else {
@@ -85,7 +86,6 @@ const PopupManager: any = {
         return
       }
     }
-
     const modalDom = getModal()
 
     addClass(modalDom, 'v-modal')
@@ -99,7 +99,7 @@ const PopupManager: any = {
     setTimeout(() => {
       removeClass(modalDom, 'v-modal-enter')
     }, 200)
-
+    console.log(modalDom)
     if (dom && dom.parentNode && dom.parentNode.nodeType !== 11) {
       dom.parentNode.appendChild(modalDom)
     } else {
@@ -161,7 +161,7 @@ Object.defineProperty(PopupManager, 'zIndex', {
   configurable: true,
   get() {
     if (!hasInitZIndex) {
-      zIndex = zIndex || (Vue.prototype.$ELEMENT || {}).zIndex || 2000
+      zIndex = zIndex || (Vue.prototype.$MUSELY || {}).zIndex || 2000
       hasInitZIndex = true
     }
     return zIndex

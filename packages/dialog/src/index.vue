@@ -38,8 +38,7 @@
 </template>
 
 <script lang='ts'>
-// import { MuDialog as Dialog } from 'types/dialog'
-// implements Dialog
+import { DialogSlots, MuDialog as Dialog } from 'types/dialog'
 import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import Popup from 'musely-ui/src/utils/popup'
@@ -48,15 +47,15 @@ import emitter from 'musely-ui/src/mixins/emitter'
 @Component({
   name: 'MuDialog'
 })
-export default class MuDialog extends mixins(Popup, emitter) {
+export default class MuDialog extends mixins(Popup, emitter) implements Dialog {
   @Prop({ default: '', type: String }) title!: string
-  @Prop({ type: Boolean }) modal!: boolean
-  @Prop({ type: Boolean }) modalAppendToBody!: boolean
-  @Prop({ type: Boolean }) appendToBody!: boolean
-  @Prop({ type: Boolean }) lockScroll!: boolean
-  @Prop({ type: Boolean }) closeOnClickModal!: boolean
-  @Prop({ type: Boolean }) closeOnPressEscape!: boolean
-  @Prop({ type: Boolean }) showClose!: boolean
+  @Prop({ type: Boolean, default: true }) modal!: boolean
+  @Prop({ type: Boolean, default: true }) modalAppendToBody!: boolean
+  @Prop({ type: Boolean, default: false }) appendToBody!: boolean
+  @Prop({ type: Boolean, default: true }) lockScroll!: boolean
+  @Prop({ type: Boolean, default: true }) closeOnClickModal!: boolean
+  @Prop({ type: Boolean, default: true }) closeOnPressEscape!: boolean
+  @Prop({ type: Boolean, default: true }) showClose!: boolean
   @Prop({ type: Boolean }) fullscreen!: boolean
   @Prop({ type: Function }) beforeClose!: any
   @Prop({ default: '', type: String }) customClass!: string
@@ -64,6 +63,7 @@ export default class MuDialog extends mixins(Popup, emitter) {
   @Prop({ default: '15vh', type: String }) top!: string
   @Prop({ default: false, type: Boolean }) center!: boolean
   @Prop({ type: Boolean }) destroyOnClose!: boolean
+
   private closed = false
   private key = 0
 
@@ -108,8 +108,8 @@ export default class MuDialog extends mixins(Popup, emitter) {
   }
 
   private updatePopper() {
-    this.broadcast('ElSelectDropdown', 'updatePopper')
-    this.broadcast('ElDropdownMenu', 'updatePopper')
+    // this.broadcast('MuSelectDropdown', 'updatePopper')
+    // this.broadcast('MuDropdownMenu', 'updatePopper')
   }
 
   private afterEnter() {

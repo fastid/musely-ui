@@ -15,7 +15,7 @@ export interface DialogSlots {
 }
 
 /** Informs users while preserving the current page state */
-export declare class ElDialog extends MuselyUIComponent {
+export declare class MuDialog extends MuselyUIComponent {
   /** Title of Dialog */
   title: string
 
@@ -58,5 +58,5 @@ export declare class ElDialog extends MuselyUIComponent {
   /** Whether to destroy elements in Dialog when closed */
   destroyOnClose: boolean
 
-  $slots: DialogSlots
+  // $slots: DialogSlots
 }

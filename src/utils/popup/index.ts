@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-05 11:01:51
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-06 00:35:35
+ * @LastEditTime: 2020-05-06 21:12:30
  * @Description:
  */
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
@@ -12,6 +12,22 @@ import getScrollBarWidth from '../scrollbar-width'
 import { getStyle, addClass, removeClass, hasClass } from '../dom'
 
 let idSeed = 1
+
+const merge2 = function(target: any) {
+  for (let i = 1, j = arguments.length; i < j; i++) {
+    let source = arguments[i] || {}
+    for (let prop in source) {
+      if (source.hasOwnProperty(prop)) {
+        let value = source[prop]
+        if (value !== undefined) {
+          target[prop] = value
+        }
+      }
+    }
+  }
+
+  return target
+}
 
 let scrollBarWidth
 @Component({
@@ -58,12 +74,12 @@ export default class extends Vue {
     this.restoreBodyStyle()
   }
 
-  private open(options: any = {}) {
+  open(options: any = {}) {
     if (!this.rendered) {
       this.rendered = true
     }
     const props = merge({}, this.$props || this, options)
-
+    console.log(props, this.$props, options)
     if (this._closeTimer) {
       clearTimeout(this._closeTimer)
       this._closeTimer = null
@@ -81,7 +97,7 @@ export default class extends Vue {
     }
   }
 
-  private doOpen(props: any) {
+  doOpen(props: any) {
     if (this.$isServer) return
     if (this.willOpen && !this.willOpen()) return
     if (this.opened) return
@@ -131,11 +147,11 @@ export default class extends Vue {
     this.doAfterOpen()
   }
 
-  private doAfterOpen() {
+  doAfterOpen() {
     this._opening = false
   }
 
-  private close() {
+  close() {
     if (this.willClose && !this.willClose()) return
 
     if (this._openTimer !== null) {
@@ -156,7 +172,7 @@ export default class extends Vue {
     }
   }
 
-  private doClose() {
+  doClose() {
     this._closing = true
 
     this.onClose && this.onClose()
@@ -169,12 +185,12 @@ export default class extends Vue {
 
     this.doAfterClose()
   }
-  private doAfterClose() {
+  doAfterClose() {
     PopupManager.closeModal(this._popupId)
     this._closing = false
   }
 
-  private restoreBodyStyle() {
+  restoreBodyStyle() {
     if (this.modal && this.withoutHiddenClass) {
       document.body.style.paddingRight = this.bodyPaddingRight
       removeClass(document.body, 'mu-popup-parent--hidden')
