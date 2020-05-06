@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-05 11:01:51
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-06 21:12:30
+ * @LastEditTime: 2020-05-06 23:28:20
  * @Description:
  */
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
@@ -12,7 +12,7 @@ import getScrollBarWidth from '../scrollbar-width'
 import { getStyle, addClass, removeClass, hasClass } from '../dom'
 
 let idSeed = 1
-
+// Element meage.js
 const merge2 = function(target: any) {
   for (let i = 1, j = arguments.length; i < j; i++) {
     let source = arguments[i] || {}

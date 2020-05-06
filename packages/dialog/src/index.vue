@@ -38,7 +38,7 @@
 </template>
 
 <script lang='ts'>
-import { DialogSlots, MuDialog as Dialog } from 'types/dialog'
+import { MuDialog as Dialog } from 'types/dialog'
 import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import Popup from 'musely-ui/src/utils/popup'

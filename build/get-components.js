@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const excludes = ['index.ts', 'indexBak.ts', 'typings.d.ts', 'theme-default', '.DS_Store']
+const excludes = ['index.ts', 'index.d.ts', 'indexBak.ts', 'typings.d.ts', 'theme-default', '.DS_Store']
 
 module.exports = function() {
   const dirs = fs.readdirSync(path.resolve(__dirname, '../packages'))

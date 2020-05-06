@@ -46,6 +46,7 @@ export default class extends Vue {
 }
 </script>
 <style lang="scss">
+@import './layout/base';
 .container {
   margin: 12px auto;
   background-color: #fff;
@@ -59,6 +60,15 @@ export default class extends Vue {
     width: calc(100% - 215px);
     padding: 32px 48px 48px;
     box-sizing: border-box;
+  }
+  @include screen(small) {
+    .nav {
+      display: none;
+    }
+    .view {
+      width: 100%;
+      padding: 8px 10px 10px;
+    }
   }
 }
 

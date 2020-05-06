@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-30 16:11:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-06 00:47:07
+ * @LastEditTime: 2020-05-06 23:49:56
  * @Description:
  */
 // eslint-disable-next-line no-useless-escape
@@ -60,8 +60,8 @@ const css = function(element: any, styleName: any) {
 
 export const getStyle = ieVersion < 9 ? style : css
 
-/* istanbul ignore next */
-export function hasClass(el: any, cls: any) {
+// Check if an element has a class
+export function hasClass(el: HTMLElement, cls: string) {
   if (!el || !cls) return false
   if (cls.indexOf(' ') !== -1) throw new Error('className should not contain space.')
   if (el.classList) {
@@ -71,8 +71,8 @@ export function hasClass(el: any, cls: any) {
   }
 }
 
-/* istanbul ignore next */
-export function addClass(el: any, cls: any) {
+// Add class to element
+export function addClass(el: HTMLElement, cls: string) {
   if (!el) return
   let curClass = el.className
   const classes = (cls || '').split(' ')
@@ -92,8 +92,8 @@ export function addClass(el: any, cls: any) {
   }
 }
 
-/* istanbul ignore next */
-export function removeClass(el: any, cls: any) {
+// Remove class from element
+export function removeClass(el: HTMLElement, cls: string) {
   if (!el || !cls) return
   const classes = cls.split(' ')
   let curClass = ' ' + el.className + ' '
@@ -111,6 +111,21 @@ export function removeClass(el: any, cls: any) {
   if (!el.classList) {
     el.className = trim(curClass)
   }
+}
+
+// Toggle class for the selected element
+export const toggleClass = (ele: HTMLElement, className: string) => {
+  if (!ele || !className) {
+    return
+  }
+  let classString = ele.className
+  const nameIndex = classString.indexOf(className)
+  if (nameIndex === -1) {
+    classString += '' + className
+  } else {
+    classString = classString.substr(0, nameIndex) + classString.substr(nameIndex + className.length)
+  }
+  ele.className = classString
 }
 
 // =======================================================
