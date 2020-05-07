@@ -303,3 +303,26 @@ export const moneyFormat = (num: any, type?: string) => {
     return '' + p1 + '.' + p2
   })
 }
+
+/**
+ *
+ * @param target
+ */
+export const merge = (target: any, ...args: any[]) => {
+  if (target === undefined || target === null) {
+    throw new TypeError('Cannot convert first argument to object')
+  }
+
+  var to = Object(target)
+  for (var i = 1; i < args.length; i++) {
+    var nextSource = args[i]
+    if (nextSource === undefined || nextSource === null) continue
+    var keysArray = Object.keys(Object(nextSource))
+    for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+      var nextKey = keysArray[nextIndex]
+      var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey)
+      if (desc !== undefined && desc.enumerable) to[nextKey] = nextSource[nextKey]
+    }
+  }
+  return to
+}

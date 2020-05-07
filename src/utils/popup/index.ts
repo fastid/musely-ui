@@ -2,39 +2,24 @@
  * @Author: Victor wang
  * @Date: 2020-05-05 11:01:51
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-06 23:28:20
+ * @LastEditTime: 2020-05-08 01:20:38
  * @Description:
  */
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import merge from 'deepmerge'
+// import merge from 'deepmerge'
+import { merge } from 'musely-ui/src/utils'
 import PopupManager from 'musely-ui/src/utils/popup/popup-manager'
 import getScrollBarWidth from '../scrollbar-width'
 import { getStyle, addClass, removeClass, hasClass } from '../dom'
 
 let idSeed = 1
-// Element meage.js
-const merge2 = function(target: any) {
-  for (let i = 1, j = arguments.length; i < j; i++) {
-    let source = arguments[i] || {}
-    for (let prop in source) {
-      if (source.hasOwnProperty(prop)) {
-        let value = source[prop]
-        if (value !== undefined) {
-          target[prop] = value
-        }
-      }
-    }
-  }
-
-  return target
-}
-
 let scrollBarWidth
+
 @Component({
   name: 'MuPopup'
 })
 export default class extends Vue {
-  @Prop({ default: false, type: Boolean }) visible!: string
+  @Prop({ default: false, type: Boolean }) visible!: boolean
   @Prop({ type: Object }) openDelay!: object
   @Prop({ type: Object }) closeDelay!: object
   @Prop({ type: Object }) zIndex!: object
@@ -51,17 +36,17 @@ export default class extends Vue {
   @Prop({ type: Function }) onOpen!: any
   @Prop({ type: Function }) onClose!: any
 
-  private opened = false
-  private bodyPaddingRight: any = null
-  private computedBodyPaddingRight = 0
-  private withoutHiddenClass = true
+  opened = false
+  bodyPaddingRight: any = null
+  computedBodyPaddingRight = 0
+  withoutHiddenClass = true
   public rendered = false
 
-  private _popupId = ''
-  private _opening = false
-  private _closing = false
-  private _openTimer: any = null
-  private _closeTimer: any = null
+  _popupId = ''
+  _opening = false
+  _closing = false
+  _openTimer: any = null
+  _closeTimer: any = null
 
   beforeMount() {
     this._popupId = 'popup-' + idSeed++
@@ -80,6 +65,7 @@ export default class extends Vue {
     }
     const props = merge({}, this.$props || this, options)
     console.log(props, this.$props, options)
+
     if (this._closeTimer) {
       clearTimeout(this._closeTimer)
       this._closeTimer = null

@@ -103,6 +103,16 @@
           "desc": "Alert 警告",
           "name": "alert",
           "path": "/alert"
+        },
+        {
+          "desc": "Message 消息",
+          "name": "message",
+          "path": "/message"
+        },
+        {
+          "desc": "Message 消息弹窗",
+          "name": "message-box",
+          "path": "/message-box"
         }
       ]
     },

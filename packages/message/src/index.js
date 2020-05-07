@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import Main from './main.vue'
+import Main from './index.vue'
 import { PopupManager } from 'musely-ui/src/utils/popup'
-import { isVNode } from 'musely-ui/src/utils/util'
+import { isVNode } from 'musely-ui/src/utils/'
 const MessageConstructor = Vue.extend(Main)
 
 let instance

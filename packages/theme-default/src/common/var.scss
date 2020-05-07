@@ -1,32 +1,4 @@
 /* Musely Variables */
-$--font-path: 'fonts' !default;
-
-// Base color
-$pageBgColor: #f5f5f5;
-
-$blue: #324157;
-$light-blue: #3a71a8;
-$grey: #404040;
-$lightgrey: #9a9a9a;
-$pink: #fc94ae;
-$red: #c03639;
-$teal: #3dc48a;
-$tiffany: #4ab7bd;
-
-// Font size
-$fs_xs: 12px;
-$fs_s: 14px;
-$fs_b: 16px;
-$fs_m: 18px;
-$fs_l: 20px;
-$fs_xl: 22px;
-
-// font family
-$GB: GilroyBold, sans-serif;
-$GR: GilroyRegular, sans-serif;
-$PNB: ProximaNovaBold, sans-serif;
-$PNR: ProximaNovaRegular, sans-serif;
-$PNSB: ProximaNovaSemibold, sans-serif;
 
 /* Break-point
 --------------------------*/
@@ -82,13 +54,38 @@ $--breakpoints-spec: (
     min-width: $--xl
   )
 );
+
+/* Size
+-------------------------- */
+$--size-base: 14px !default;
+
+/* z-index
+-------------------------- */
+$--index-normal: 1 !default;
+$--index-top: 1000 !default;
+$--index-popper: 2000 !default;
+
 @import './font.scss';
 @import './color.scss';
 @import './border.scss';
+@import './transition.scss';
+
+// Background
+$--background-color-base: #f5f7fa !default;
+/* Disable base
+-------------------------- */
+$--disabled-fill-base: $--background-color-base !default;
+$--disabled-color-base: $--color-text-placeholder !default;
+$--disabled-border-base: $--border-color-light !default;
+
 @import './box.scss';
 @import './link.scss';
 @import './pop.scss';
 @import './dialog.scss';
+@import './message.scss';
+@import './message-box.scss';
+@import './input.scss';
+
 /* Header
   --------------------------*/
 $--header-padding: 0 20px !default;

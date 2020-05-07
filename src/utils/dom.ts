@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-30 16:11:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-06 23:49:56
+ * @LastEditTime: 2020-05-07 15:13:30
  * @Description:
  */
 // eslint-disable-next-line no-useless-escape
@@ -23,7 +23,7 @@ const camelCase = (name: string) => {
 }
 
 /* istanbul ignore next */
-const style = function(element: any, styleName: any) {
+const style = (element: any, styleName: any) => {
   if (!element || !styleName) return null
   styleName = camelCase(styleName)
   if (styleName === 'float') {
@@ -44,7 +44,7 @@ const style = function(element: any, styleName: any) {
     return element.style[styleName]
   }
 }
-const css = function(element: any, styleName: any) {
+const css = (element: HTMLElement, styleName: any) => {
   if (!element || !styleName) return null
   styleName = camelCase(styleName)
   if (styleName === 'float') {

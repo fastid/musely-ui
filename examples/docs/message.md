@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-06 23:33:01
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-06 23:33:20
+ * @LastEditTime: 2020-05-07 13:25:02
  * @Description:
  -->
 
@@ -207,7 +207,7 @@ Element 为 Vue.prototype 添加了全局方法 \$message。因此在 vue instan
 单独引入 `Message`：
 
 ```javascript
-import { Message } from 'element-ui'
+import { MuMessage } from 'musely-ui'
 ```
 
 此时调用方法为 `Message(options)`。我们也为每个 type 定义了各自的方法，如 `Message.success(options)`。并且可以调用 `Message.closeAll()` 手动关闭所有实例。

@@ -7,12 +7,19 @@ const packageJson = require('../package.json')
 const prefix = 'Mu'
 const version = process.env.VERSION || packageJson.version
 const tips = `/* eslint-disable */
+// ***************************************************
+// **********                                *********
+// **********                                *********
 // ********** index.ts file don't edit it!!! *********
+// **********                                *********
+// **********                                *********
+// ***************************************************
 // This file is auto gererated by build/build-entry.js`
 
+const excludeComponents = ['MuMessage', 'MuMessageBox']
 // const root = path.join(__dirname, '../')
 // const join = dir => path.join(root, dir)
-console.log(Components)
+
 function buildPackagesEntry() {
   const uninstallComponents = []
 
@@ -25,8 +32,9 @@ import { InstallationOptions } from 'types/musely-ui'
 ${importList.join('\n')}
 const version = '${version}'
 const components = [
-  ${intallList.join(',\n  ')}
+  ${intallList.filter((p) => excludeComponents.indexOf(p) === -1).join(',\n  ')}
 ]
+
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   components.forEach((component: any) => {
     Vue.use(component)
@@ -34,6 +42,12 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   Vue.prototype.$MUSELY = {
     zIndex: opts.zIndex || 2000
   }
+  Vue.prototype.$message = MuMessage
+  Vue.prototype.$msgbox = MuMessageBox
+  Vue.prototype.$alert = MuMessageBox.alert
+  Vue.prototype.$confirm = MuMessageBox.confirm
+  Vue.prototype.$prompt = MuMessageBox.prompt
+  // Vue.prototype.$notify = Notification
 }
 /* istanbul ignore if */
 if (typeof window !== 'undefined' && window.Vue) {
