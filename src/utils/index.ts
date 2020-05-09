@@ -308,21 +308,37 @@ export const moneyFormat = (num: any, type?: string) => {
  *
  * @param target
  */
-export const merge = (target: any, ...args: any[]) => {
-  if (target === undefined || target === null) {
-    throw new TypeError('Cannot convert first argument to object')
-  }
-
-  var to = Object(target)
-  for (var i = 1; i < args.length; i++) {
-    var nextSource = args[i]
-    if (nextSource === undefined || nextSource === null) continue
-    var keysArray = Object.keys(Object(nextSource))
-    for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-      var nextKey = keysArray[nextIndex]
-      var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey)
-      if (desc !== undefined && desc.enumerable) to[nextKey] = nextSource[nextKey]
+export const merge = function(target: any) {
+  for (let i = 1, j = arguments.length; i < j; i++) {
+    let source = arguments[i] || {}
+    for (let prop in source) {
+      if (source.hasOwnProperty(prop)) {
+        let value = source[prop]
+        if (value !== undefined) {
+          target[prop] = value
+        }
+      }
     }
   }
-  return to
+
+  return target
+}
+
+function _deepClone(...source: any) {
+  let target: any
+  if (typeof source === 'object') {
+    target = Array.isArray(source) ? [] : {}
+    for (let key in source) {
+      if (source.hasOwnProperty(key)) {
+        if (typeof source[key] !== 'object') {
+          target[key] = source[key]
+        } else {
+          target[key] = _deepClone(source[key])
+        }
+      }
+    }
+  } else {
+    target = source
+  }
+  return target
 }

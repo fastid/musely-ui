@@ -38,7 +38,7 @@
 </template>
 
 <script lang='ts'>
-import { MuDialog as Dialog } from 'types/dialog'
+import { DialogSlots, MuDialog as Dialog } from 'types/dialog'
 import { Component, Prop } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import Popup from 'musely-ui/src/utils/popup'
@@ -63,6 +63,8 @@ export default class MuDialog extends mixins(Popup, emitter) implements Dialog {
   @Prop({ default: '15vh', type: String }) top!: string
   @Prop({ default: false, type: Boolean }) center!: boolean
   @Prop({ type: Boolean }) destroyOnClose!: boolean
+
+  $slots!: DialogSlots
 
   private closed = false
   private key = 0
@@ -107,6 +109,7 @@ export default class MuDialog extends mixins(Popup, emitter) implements Dialog {
     }
   }
 
+  // TODO updatePopper
   private updatePopper() {
     // this.broadcast('MuSelectDropdown', 'updatePopper')
     // this.broadcast('MuDropdownMenu', 'updatePopper')

@@ -58,5 +58,5 @@ export declare class MuDialog extends MuselyUIComponent {
   /** Whether to destroy elements in Dialog when closed */
   destroyOnClose: boolean
 
-  // $slots: DialogSlots
+  $slots: DialogSlots
 }

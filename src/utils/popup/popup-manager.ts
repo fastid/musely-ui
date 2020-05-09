@@ -87,7 +87,7 @@ const PopupManager: any = {
       }
     }
     const modalDom = getModal()
-
+    console.log(modalDom)
     addClass(modalDom, 'v-modal')
     if (this.modalFade && !hasModal) {
       addClass(modalDom, 'v-modal-enter')
@@ -99,7 +99,7 @@ const PopupManager: any = {
     setTimeout(() => {
       removeClass(modalDom, 'v-modal-enter')
     }, 200)
-    console.log(modalDom)
+
     if (dom && dom.parentNode && dom.parentNode.nodeType !== 11) {
       dom.parentNode.appendChild(modalDom)
     } else {

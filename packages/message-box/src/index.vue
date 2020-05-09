@@ -108,14 +108,12 @@ const typeMap = {
   }
 })
 export default class MuMessageBox extends mixins(Popup) {
-  @Prop({ default: '', type: String }) title!: string
   @Prop({ type: Boolean, default: true }) modal!: boolean
-  @Prop({ type: Boolean, default: true }) modalAppendToBody!: boolean
-  @Prop({ type: Boolean, default: false }) appendToBody!: boolean
-  @Prop({ type: Boolean, default: true }) lockScroll!: boolean
+  @Prop({ type: Boolean, default: false }) lockScroll!: boolean
+  @Prop({ type: Boolean, default: true }) showClose!: boolean
   @Prop({ type: Boolean, default: true }) closeOnClickModal!: boolean
   @Prop({ type: Boolean, default: true }) closeOnPressEscape!: boolean
-  @Prop({ type: Boolean, default: true }) showClose!: boolean
+  @Prop({ type: Boolean, default: true }) closeOnHashChange!: boolean
   @Prop({ default: false, type: Boolean }) center!: boolean
   @Prop({ type: Boolean }) roundButton!: boolean
   @Prop({ type: Boolean }) type!: MessageType
@@ -136,6 +134,7 @@ export default class MuMessageBox extends mixins(Popup) {
   }
 
   private uid = 1
+  private title = ''
   private message = ''
   private iconClass = ''
   private customClass = ''
@@ -168,7 +167,9 @@ export default class MuMessageBox extends mixins(Popup) {
     const currentId = this.uid
     return () => {
       this.$nextTick(() => {
-        if (currentId === this.uid) this.doClose()
+        if (currentId === this.uid) {
+          this.doClose()
+        }
       })
     }
   }
@@ -292,6 +293,7 @@ export default class MuMessageBox extends mixins(Popup) {
 
   @Watch('visible', { immediate: true })
   onVisibleHandler(val: any) {
+    console.log(val)
     if (val) {
       this.uid++
       if (this.$type === 'alert' || this.$type === 'confirm') {
@@ -300,6 +302,7 @@ export default class MuMessageBox extends mixins(Popup) {
         })
       }
       this.focusAfterClosed = document.activeElement
+      console.log(this.uid, messageBox)
       messageBox = new Dialog(
         this.$el,
         this.focusAfterClosed,

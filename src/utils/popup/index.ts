@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-05 11:01:51
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-08 01:20:38
+ * @LastEditTime: 2020-05-08 19:28:34
  * @Description:
  */
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
@@ -64,8 +64,6 @@ export default class extends Vue {
       this.rendered = true
     }
     const props = merge({}, this.$props || this, options)
-    console.log(props, this.$props, options)
-
     if (this._closeTimer) {
       clearTimeout(this._closeTimer)
       this._closeTimer = null

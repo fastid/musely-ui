@@ -84,6 +84,7 @@ const showNextMsg = () => {
       currentMsg = msgQueue.shift()
 
       const options = currentMsg.options
+      console.log(options)
       for (const prop in options) {
         if (hasOwn(options, prop)) {
           instance[prop] = options[prop]
@@ -130,24 +131,24 @@ const MessageBox = function(options, callback) {
   } else if (options.callback && !callback) {
     callback = options.callback
   }
+  options = merge({}, defaults, MessageBox.defaults, options)
 
   if (typeof Promise !== 'undefined') {
     return new Promise((resolve, reject) => {
       // eslint-disable-line
-      const opts = merge({}, defaults, MessageBox.defaults, options)
       msgQueue.push({
-        options: opts,
-        callback: callback,
-        resolve: resolve,
-        reject: reject
+        options,
+        callback,
+        resolve,
+        reject
       })
 
       showNextMsg()
     })
   } else {
     msgQueue.push({
-      options: merge({}, defaults, MessageBox.defaults, options),
-      callback: callback
+      options,
+      callback
     })
 
     showNextMsg()
@@ -167,8 +168,8 @@ MessageBox.alert = (message, title, options) => {
   }
   const opts = merge(
     {
-      title: title,
-      message: message,
+      title,
+      message,
       $type: 'alert',
       closeOnPressEscape: false,
       closeOnClickModal: false
