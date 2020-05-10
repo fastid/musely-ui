@@ -16,7 +16,7 @@ class MessageConstructor extends MessageComponent {
   $warning!: MuMessageComponent
   $info!: MuMessageComponent
   $error!: MuMessageComponent
-  message!: VNode | string | null
+  message!: any
   verticalOffset!: number
   visible!: boolean
   $el!: HTMLElement

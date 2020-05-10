@@ -9,42 +9,42 @@
 // This file is auto gererated by build/build-entry.js
 import { VueConstructor } from 'vue'
 import { InstallationOptions } from 'types/musely-ui'
-import MuAlert from './alert'
-import MuAside from './aside'
-import MuButton from './button'
-import MuButtonGroup from './button-group'
-import MuCol from './col'
-import MuContainer from './container'
-import MuDialog from './dialog'
-import MuFooter from './footer'
-import MuHeader from './header'
-import MuIcon from './icon'
-import MuInput from './input'
-import MuLink from './link'
-import MuMain from './main'
-import MuMessage from './message'
-import MuMessageBox from './message-box'
-import MuPageHeader from './page-header'
-import MuPopup from './popup'
-import MuRow from './row'
+import Alert from './alert'
+import Aside from './aside'
+import Button from './button'
+import ButtonGroup from './button-group'
+import Col from './col'
+import Container from './container'
+import Dialog from './dialog'
+import Footer from './footer'
+import Header from './header'
+import Icon from './icon'
+import Input from './input'
+import Link from './link'
+import Main from './main'
+import Message from './message'
+import MessageBox from './message-box'
+import PageHeader from './page-header'
+import Popup from './popup'
+import Row from './row'
 const version = '0.1.6'
 const components = [
-  MuAlert,
-  MuAside,
-  MuButton,
-  MuButtonGroup,
-  MuCol,
-  MuContainer,
-  MuDialog,
-  MuFooter,
-  MuHeader,
-  MuIcon,
-  MuInput,
-  MuLink,
-  MuMain,
-  MuPageHeader,
-  MuPopup,
-  MuRow
+  Alert,
+  Aside,
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Dialog,
+  Footer,
+  Header,
+  Icon,
+  Input,
+  Link,
+  Main,
+  PageHeader,
+  Popup,
+  Row
 ]
 
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
@@ -61,30 +61,30 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   Vue.prototype.$prompt = MuMessageBox.prompt
   // Vue.prototype.$notify = Notification
 }
-/* istanbul ignore if */
+/* istanbul ignore if **/
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
 export {
   version,
-  MuAlert,
-  MuAside,
-  MuButton,
-  MuButtonGroup,
-  MuCol,
-  MuContainer,
-  MuDialog,
-  MuFooter,
-  MuHeader,
-  MuIcon,
-  MuInput,
-  MuLink,
-  MuMain,
-  MuMessage,
-  MuMessageBox,
-  MuPageHeader,
-  MuPopup,
-  MuRow
+  Alert,
+  Aside,
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Dialog,
+  Footer,
+  Header,
+  Icon,
+  Input,
+  Link,
+  Main,
+  Message,
+  MessageBox,
+  PageHeader,
+  Popup,
+  Row
 }
 export default {
   install,

@@ -16,23 +16,32 @@ const tips = `/* eslint-disable */
 // ***************************************************
 // This file is auto gererated by build/build-entry.js`
 
-const excludeComponents = ['MuMessage', 'MuMessageBox']
-// const root = path.join(__dirname, '../')
-// const join = dir => path.join(root, dir)
+const tipsTypes = `/* eslint-disable */
+// ***************************************************
+// **********                                *********
+// **********                                *********
+// ****** musely-ui.d.ts file don't edit it !!! ******
+// **********                                *********
+// **********                                *********
+// ***************************************************
+// This file is auto gererated by build/build-entry.js`
 
-function buildPackagesEntry() {
-  const uninstallComponents = []
+const excludeComponents = ['Message', 'MessageBox']
 
-  const importList = Components.map((name) => `import ${prefix + uppercamelize(name)} from './${name}'`)
-  const exportList = Components.map((name) => `${prefix + uppercamelize(name)}`)
-  const intallList = exportList.filter((name) => !~uninstallComponents.indexOf(uppercamelize(name)))
+/**
+ * build Entry
+ */
+function buildPackagesTypes() {
+  const importList = Components.map((name) => `import ${uppercamelize(name)} from './${name}'`)
+  const exportList = Components.map((name) => `${uppercamelize(name)}`)
+  const intallList = exportList.filter((name) => !~excludeComponents.indexOf(uppercamelize(name)))
   const content = `${tips}
 import { VueConstructor } from 'vue'
 import { InstallationOptions } from 'types/musely-ui'
 ${importList.join('\n')}
 const version = '${version}'
 const components = [
-  ${intallList.filter((p) => excludeComponents.indexOf(p) === -1).join(',\n  ')}
+  ${intallList.join(',\n  ')}
 ]
 
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
@@ -49,7 +58,7 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   Vue.prototype.$prompt = MuMessageBox.prompt
   // Vue.prototype.$notify = Notification
 }
-/* istanbul ignore if */
+/* istanbul ignore if **/
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
@@ -66,4 +75,51 @@ export default {
   fs.writeFileSync(path.join(__dirname, '../packages/index.ts'), content)
 }
 
+/**
+ * build Types
+ */
+function buildPackagesEntry() {
+  const importList = Components.map((name) => `import {${prefix + uppercamelize(name)}} from './${name}'`)
+  const classList = Components.map((name) => `${uppercamelize(name)}`).filter((name) => !~excludeComponents.indexOf(name))
+  let content = `${tipsTypes}
+import Vue from 'vue'
+import { MuselyUIComponent } from './common'
+${importList.join('\n')}
+
+/**
+ * musely-ui components into Vue types.
+ * Please do not invoke this method directly.
+ * Call \`Vue.use(MuselyUI)\` to install.
+ */
+export interface InstallationOptions {
+  zIndex?: number
+}
+/** MuselyUI component common definition **/
+export type Component = MuselyUIComponent
+
+/** The version of musely-ui **/
+export const version: string
+
+export function install(vue: typeof Vue, options: InstallationOptions): void
+
+/** defined Components. **/
+
+/** defined Message Component. **/
+export const Message: MuMessage
+
+/** defined MessageBox Component. **/
+export const MessageBox: MuMessageBox
+
+`
+  for (const name of classList) {
+    content += `
+/** ${name} Component **/
+export class ${name} extends Mu${name} {}
+`
+  }
+
+  fs.writeFileSync(path.join(__dirname, '../types/musely-ui.d.ts'), content)
+}
+
+buildPackagesTypes()
 buildPackagesEntry()

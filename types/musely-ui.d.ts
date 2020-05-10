@@ -1,54 +1,101 @@
-/*
- * @Author: Victor wang
- * @Date: 2020-03-31 16:35:33
- * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-26 03:17:15
- * @Description:
- */
+/* eslint-disable */
+// ***************************************************
+// **********                                *********
+// **********                                *********
+// ******* musely-ui.d.ts file don't edit it!!! *********
+// **********                                *********
+// **********                                *********
+// ***************************************************
+// This file is auto gererated by build/build-entry.js
 import Vue from 'vue'
 import { MuselyUIComponent } from './common'
-
 import { MuAlert } from './alert'
 import { MuAside } from './aside'
+import { MuButton } from './button'
+import { MuButtonGroup } from './button-group'
 import { MuCol } from './col'
 import { MuContainer } from './container'
+import { MuDialog } from './dialog'
 import { MuFooter } from './footer'
 import { MuHeader } from './header'
-import { MuMain } from './main'
-import { MuRow } from './row'
+import { MuIcon } from './icon'
+import { MuInput } from './input'
 import { MuLink } from './link'
+import { MuMain } from './main'
+import { MuMessage } from './message'
+import { MuMessageBox } from './message-box'
+import { MuPageHeader } from './page-header'
+import { MuPopup } from './popup'
+import { MuRow } from './row'
 
 /**
- * Install all musely-ui components into Vue.
+ * musely-ui components into Vue types.
  * Please do not invoke this method directly.
  * Call `Vue.use(MuselyUI)` to install.
  */
 export interface InstallationOptions {
   zIndex?: number
 }
-/** MuselyUI component common definition */
+/** MuselyUI component common definition **/
 export type Component = MuselyUIComponent
 
-/** The version of musely-ui */
+/** The version of musely-ui **/
 export const version: string
 
 export function install(vue: typeof Vue, options: InstallationOptions): void
 
-/** Alert Component */
+/** defined Components. **/
+
+/** defined Message Component. **/
+export const Message: MuMessage
+
+/** defined MessageBox Component. **/
+export const MessageBox: MuMessageBox
+
+/** Alert Component **/
 export class Alert extends MuAlert {}
-/** Aside Component */
+
+/** Aside Component **/
 export class Aside extends MuAside {}
-/** Colunm Layout Component */
+
+/** Button Component **/
+export class Button extends MuButton {}
+
+/** ButtonGroup Component **/
+export class ButtonGroup extends MuButtonGroup {}
+
+/** Col Component **/
 export class Col extends MuCol {}
-/** Container Component */
+
+/** Container Component **/
 export class Container extends MuContainer {}
-/** Footer Component */
+
+/** Dialog Component **/
+export class Dialog extends MuDialog {}
+
+/** Footer Component **/
 export class Footer extends MuFooter {}
-/** Header Component */
+
+/** Header Component **/
 export class Header extends MuHeader {}
-/** Main Component */
-export class Main extends MuMain {}
-/** Row Layout Component */
-export class Row extends MuRow {}
-/** Link Layout Component */
+
+/** Icon Component **/
+export class Icon extends MuIcon {}
+
+/** Input Component **/
+export class Input extends MuInput {}
+
+/** Link Component **/
 export class Link extends MuLink {}
+
+/** Main Component **/
+export class Main extends MuMain {}
+
+/** PageHeader Component **/
+export class PageHeader extends MuPageHeader {}
+
+/** Popup Component **/
+export class Popup extends MuPopup {}
+
+/** Row Component **/
+export class Row extends MuRow {}

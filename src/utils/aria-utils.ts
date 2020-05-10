@@ -2,10 +2,10 @@
  * @Author: Victor wang
  * @Date: 2020-05-07 14:03:33
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-07 14:03:34
+ * @LastEditTime: 2020-05-10 16:58:05
  * @Description:
  */
-var aria = aria || {}
+const aria: any = (<any>window).aria || {}
 
 aria.Utils = aria.Utils || {}
 
@@ -17,7 +17,7 @@ aria.Utils = aria.Utils || {}
  * @returns
  *  true if a focusable element is found and focus is set.
  */
-aria.Utils.focusFirstDescendant = function(element) {
+aria.Utils.focusFirstDescendant = (element: HTMLElement) => {
   for (var i = 0; i < element.childNodes.length; i++) {
     var child = element.childNodes[i]
     if (aria.Utils.attemptFocus(child) || aria.Utils.focusFirstDescendant(child)) {
@@ -35,7 +35,7 @@ aria.Utils.focusFirstDescendant = function(element) {
  *  true if a focusable element is found and focus is set.
  */
 
-aria.Utils.focusLastDescendant = function(element) {
+aria.Utils.focusLastDescendant = (element: HTMLElement) => {
   for (var i = element.childNodes.length - 1; i >= 0; i--) {
     var child = element.childNodes[i]
     if (aria.Utils.attemptFocus(child) || aria.Utils.focusLastDescendant(child)) {
@@ -52,7 +52,7 @@ aria.Utils.focusLastDescendant = function(element) {
  * @returns
  *  true if element is focused.
  */
-aria.Utils.attemptFocus = function(element) {
+aria.Utils.attemptFocus = (element: HTMLElement) => {
   if (!aria.Utils.isFocusable(element)) {
     return false
   }
@@ -64,7 +64,7 @@ aria.Utils.attemptFocus = function(element) {
   return document.activeElement === element
 }
 
-aria.Utils.isFocusable = function(element) {
+aria.Utils.isFocusable = (element: any) => {
   if (element.tabIndex > 0 || (element.tabIndex === 0 && element.getAttribute('tabIndex') !== null)) {
     return true
   }
@@ -94,7 +94,7 @@ aria.Utils.isFocusable = function(element) {
  * @param  {String} name
  * @param  {*} opts
  */
-aria.Utils.triggerEvent = function(elm, name, ...opts) {
+aria.Utils.triggerEvent = (elm: HTMLElement, name: string, ...opts: any) => {
   let eventName
 
   if (/^mouse|click/.test(name)) {
@@ -107,7 +107,8 @@ aria.Utils.triggerEvent = function(elm, name, ...opts) {
   const evt = document.createEvent(eventName)
 
   evt.initEvent(name, ...opts)
-  elm.dispatchEvent ? elm.dispatchEvent(evt) : elm.fireEvent('on' + name, evt)
+  // TODO fireEvent https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent
+  elm.dispatchEvent ? elm.dispatchEvent(evt) : (elm as any).fireEvent('on' + name, evt)
 
   return elm
 }

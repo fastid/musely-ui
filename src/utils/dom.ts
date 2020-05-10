@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-30 16:11:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-07 15:13:30
+ * @LastEditTime: 2020-05-10 22:25:35
  * @Description:
  */
 // eslint-disable-next-line no-useless-escape
@@ -13,7 +13,7 @@ const ieVersion = Number(document.documentMode)
 const trim = (string: string) => {
   return (string || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '')
 }
-/* istanbul ignore next */
+
 const camelCase = (name: string) => {
   return name
     .replace(SPECIAL_CHARS_REGEXP, function(_, separator, letter, offset) {
@@ -22,7 +22,6 @@ const camelCase = (name: string) => {
     .replace(MOZ_HACK_REGEXP, 'Moz$1')
 }
 
-/* istanbul ignore next */
 const style = (element: any, styleName: any) => {
   if (!element || !styleName) return null
   styleName = camelCase(styleName)
@@ -44,6 +43,7 @@ const style = (element: any, styleName: any) => {
     return element.style[styleName]
   }
 }
+
 const css = (element: HTMLElement, styleName: any) => {
   if (!element || !styleName) return null
   styleName = camelCase(styleName)

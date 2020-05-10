@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-07 14:02:56
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-07 14:02:57
+ * @LastEditTime: 2020-05-10 17:03:13
  * @Description:
  */
 import Utils from './aria-utils'
@@ -24,10 +24,11 @@ import Utils from './aria-utils'
  *          DOM node to focus when the dialog opens. If not specified, the
  *          first focusable element in the dialog will receive focus.
  */
-var aria = aria || {}
-var tabEvent
+const aria: any = (<any>window).aria || {}
 
-aria.Dialog = function(dialog, focusAfterClosed, focusFirst) {
+let tabEvent: any = null
+
+aria.Dialog = function(dialog: any, focusAfterClosed: string | object, focusFirst: string | object) {
   this.dialogNode = dialog
   if (this.dialogNode === null || this.dialogNode.getAttribute('role') !== 'dialog') {
     throw new Error('Dialog() requires a DOM element with ARIA role of dialog.')
@@ -56,7 +57,7 @@ aria.Dialog = function(dialog, focusAfterClosed, focusFirst) {
   }
 
   this.lastFocus = document.activeElement
-  tabEvent = (e) => {
+  tabEvent = (e: Event) => {
     this.trapFocus(e)
   }
   this.addListeners()
@@ -79,7 +80,7 @@ aria.Dialog.prototype.closeDialog = function() {
   }
 }
 
-aria.Dialog.prototype.trapFocus = function(event) {
+aria.Dialog.prototype.trapFocus = function(event: Event) {
   if (Utils.IgnoreUtilFocusChanges) {
     return
   }
