@@ -77,7 +77,7 @@ $--background-color-base: #f5f7fa !default;
 $--disabled-fill-base: $--background-color-base !default;
 $--disabled-color-base: $--color-text-placeholder !default;
 $--disabled-border-base: $--border-color-light !default;
-
+@import './alert.scss';
 @import './box.scss';
 @import './link.scss';
 @import './pop.scss';

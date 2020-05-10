@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-04 00:58:00
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-07 13:20:16
+ * @LastEditTime: 2020-05-09 21:35:15
  * @Description:
  */
 import Vue, { VNode } from 'vue'
@@ -56,7 +56,7 @@ export interface MuMessageOptions {
   /** Set the distance to the top of viewport. Default is 20 px. */
   offset?: number
 }
-
+// TODO add typs
 export interface MuMessage {
   /** Show an info message */
   (text: string): MuMessageComponent

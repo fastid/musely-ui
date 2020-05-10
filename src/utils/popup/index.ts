@@ -2,11 +2,10 @@
  * @Author: Victor wang
  * @Date: 2020-05-05 11:01:51
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-08 19:28:34
+ * @LastEditTime: 2020-05-09 22:50:21
  * @Description:
  */
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-// import merge from 'deepmerge'
 import { merge } from 'musely-ui/src/utils'
 import PopupManager from 'musely-ui/src/utils/popup/popup-manager'
 import getScrollBarWidth from '../scrollbar-width'
@@ -40,7 +39,7 @@ export default class extends Vue {
   bodyPaddingRight: any = null
   computedBodyPaddingRight = 0
   withoutHiddenClass = true
-  public rendered = false
+  rendered = false
 
   _popupId = ''
   _opening = false

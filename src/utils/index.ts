@@ -308,9 +308,9 @@ export const moneyFormat = (num: any, type?: string) => {
  *
  * @param target
  */
-export const merge = function(target: any) {
-  for (let i = 1, j = arguments.length; i < j; i++) {
-    let source = arguments[i] || {}
+export const merge = (target: any, ...args: any) => {
+  for (let i = 0, j = args.length; i < j; i++) {
+    let source = args[i] || {}
     for (let prop in source) {
       if (source.hasOwnProperty(prop)) {
         let value = source[prop]
@@ -341,4 +341,19 @@ function _deepClone(...source: any) {
     target = source
   }
   return target
+}
+/**
+ * isDef
+ * @param val
+ */
+export const isDef = (val: string) => {
+  return val !== undefined && val !== null
+}
+/**
+ * isKorean
+ * @param text
+ */
+export const isKorean = (text: string) => {
+  const reg = /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi
+  return reg.test(text)
 }

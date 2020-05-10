@@ -124,6 +124,11 @@
           "desc": "Dialog 弹窗",
           "name": "dialog",
           "path": "/dialog"
+        },
+        {
+          "desc": "Popup 弹窗(mobile)",
+          "name": "popup",
+          "path": "/popup"
         }
       ]
     }

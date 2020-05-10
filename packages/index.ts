@@ -19,11 +19,13 @@ import MuDialog from './dialog'
 import MuFooter from './footer'
 import MuHeader from './header'
 import MuIcon from './icon'
+import MuInput from './input'
 import MuLink from './link'
 import MuMain from './main'
 import MuMessage from './message'
 import MuMessageBox from './message-box'
 import MuPageHeader from './page-header'
+import MuPopup from './popup'
 import MuRow from './row'
 const version = '0.1.6'
 const components = [
@@ -37,9 +39,11 @@ const components = [
   MuFooter,
   MuHeader,
   MuIcon,
+  MuInput,
   MuLink,
   MuMain,
   MuPageHeader,
+  MuPopup,
   MuRow
 ]
 
@@ -73,11 +77,13 @@ export {
   MuFooter,
   MuHeader,
   MuIcon,
+  MuInput,
   MuLink,
   MuMain,
   MuMessage,
   MuMessageBox,
   MuPageHeader,
+  MuPopup,
   MuRow
 }
 export default {
