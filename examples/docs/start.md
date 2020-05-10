@@ -40,10 +40,10 @@ Vue.use(MuselyUI)
 或
 
 ```js
-import { MuButton } from 'musely-ui' // 引入组件库中button组件
+import { Button } from 'musely-ui' // 引入组件库中button组件
 import '../node_modules/musely-ui/packages/theme-default/lib/button.css' // 引入样式库
 
-Vue.use(MuButton)
+Vue.use(Button)
 ```
 
 ### 单个组件按需使用
@@ -51,11 +51,11 @@ Vue.use(MuButton)
 可以局部注册所需的组件，适用于与其他框架组合使用的场景
 
 ```js
-import { MuButton } from '../musely-ui'
+import { Button } from '../musely-ui'
 
 export default {
   components: {
-    MuButton
+    Button
   }
 }
 ```
