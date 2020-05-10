@@ -80,8 +80,8 @@
 
 <script lang='ts'>
 import {
-  MuMessageBox as MessageBox,
-  MuMessageBoxOptions
+  MuMessageBoxComponent as MessageBox,
+  MessageBoxCloseAction
 } from 'types/message-box'
 import { MessageType } from 'types/message'
 import { Component, Prop, Watch } from 'vue-property-decorator'
@@ -107,7 +107,8 @@ const typeMap = {
     MuButton
   }
 })
-export default class MuMessageBox extends mixins(Popup) {
+export default class MuMessageBox extends mixins(Popup) implements MessageBox {
+  @Prop({ type: String, default: '' }) title!: string
   @Prop({ type: Boolean, default: true }) modal!: boolean
   @Prop({ type: Boolean, default: false }) lockScroll!: boolean
   @Prop({ type: Boolean, default: true }) showClose!: boolean
@@ -134,34 +135,37 @@ export default class MuMessageBox extends mixins(Popup) {
   }
 
   private uid = 1
-  private title = ''
-  private message = ''
-  private iconClass = ''
-  private customClass = ''
-  private showInput = false
-  private inputValue = null
-  private inputPlaceholder = ''
-  private inputType = 'text'
-  private inputPattern = null
-  private inputValidator = null
-  private inputErrorMessage = ''
-  private showConfirmButton = true
-  private showCancelButton = false
-  private action = ''
+  message = ''
+  iconClass = ''
+  customClass = ''
+  showInput = false
+  inputValue = ''
+  inputPlaceholder = ''
+  inputType = 'text'
+  inputPattern: any = null
+  inputValidator: any = null
+  inputErrorMessage = 'Illegal input'
+  showConfirmButton = true
+  showCancelButton = false
+  action: MessageBoxCloseAction = 'close'
   // TODO appento Props
-  private confirmButtonText = 'confirm'
-  private cancelButtonText = 'cancel'
-  private confirmButtonLoading = false
-  private cancelButtonLoading = false
-  private confirmButtonClass = ''
-  private confirmButtonDisabled = false
-  private cancelButtonClass = ''
-  private editorErrorMessage = null
-  private callback = null
-  private dangerouslyUseHTMLString = false
-  private focusAfterClosed = null
-  private isOnComposition = false
-  private distinguishCancelAndClose = false
+  confirmButtonText = 'confirm'
+  cancelButtonText = 'cancel'
+  confirmButtonLoading = false
+  cancelButtonLoading = false
+  confirmButtonClass = ''
+  confirmButtonDisabled = false
+  cancelButtonClass = ''
+  editorErrorMessage = ''
+  callback: any = null
+  dangerouslyUseHTMLString = false
+  focusAfterClosed: any = null
+  isOnComposition = false
+  distinguishCancelAndClose = false
+
+  beforeClose: any = null
+
+  $type!: any
 
   getSafeClose() {
     const currentId = this.uid
@@ -188,7 +192,7 @@ export default class MuMessageBox extends mixins(Popup) {
     this.doAfterClose()
     setTimeout(() => {
       if (this.action) {
-        this.callback ? this.callback(this.action, this) : null
+        this.callback(this.action, this)
       }
     })
   }
@@ -222,8 +226,7 @@ export default class MuMessageBox extends mixins(Popup) {
     if (this.$type === 'prompt') {
       const inputPattern = this.inputPattern
       if (inputPattern && !inputPattern.test(this.inputValue || '')) {
-        this.editorErrorMessage =
-          this.inputErrorMessage || t('el.messagebox.error')
+        this.editorErrorMessage = this.inputErrorMessage
         addClass(this.getInputElement(), 'invalid')
         return false
       }
@@ -231,8 +234,7 @@ export default class MuMessageBox extends mixins(Popup) {
       if (typeof inputValidator === 'function') {
         const validateResult = inputValidator(this.inputValue)
         if (validateResult === false) {
-          this.editorErrorMessage =
-            this.inputErrorMessage || t('el.messagebox.error')
+          this.editorErrorMessage = this.inputErrorMessage
           addClass(this.getInputElement(), 'invalid')
           return false
         }
@@ -257,7 +259,7 @@ export default class MuMessageBox extends mixins(Popup) {
   }
 
   getInputElement() {
-    const inputRefs = this.$refs.input.$refs
+    const inputRefs = (this.$refs.input as any).$refs
     return inputRefs.input || inputRefs.textarea
   }
 
@@ -293,16 +295,15 @@ export default class MuMessageBox extends mixins(Popup) {
 
   @Watch('visible', { immediate: true })
   onVisibleHandler(val: any) {
-    console.log(val)
     if (val) {
       this.uid++
       if (this.$type === 'alert' || this.$type === 'confirm') {
         this.$nextTick(() => {
-          this.$refs.confirm.$el.focus()
+          ;(this.$refs.confirm as any).$el.focus()
         })
       }
       this.focusAfterClosed = document.activeElement
-      console.log(this.uid, messageBox)
+
       messageBox = new Dialog(
         this.$el,
         this.focusAfterClosed,
@@ -314,7 +315,7 @@ export default class MuMessageBox extends mixins(Popup) {
     if (this.$type !== 'prompt') return
     if (val) {
       setTimeout(() => {
-        if (this.$refs.input && this.$refs.input.$el) {
+        if (this.$refs.input && (this.$refs.input as any).$el) {
           this.getInputElement().focus()
         }
       }, 500)

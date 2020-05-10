@@ -9,6 +9,7 @@
 // This file is auto gererated by build/build-entry.js
 import { VueConstructor } from 'vue'
 import { InstallationOptions } from 'types/musely-ui'
+import { MuMessageBoxShortcutMethod } from 'types/message-box'
 import Alert from './alert'
 import Aside from './aside'
 import Button from './button'
@@ -54,11 +55,11 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   Vue.prototype.$MUSELY = {
     zIndex: opts.zIndex || 2000
   }
-  Vue.prototype.$message = MuMessage
-  Vue.prototype.$msgbox = MuMessageBox
-  Vue.prototype.$alert = MuMessageBox.alert
-  Vue.prototype.$confirm = MuMessageBox.confirm
-  Vue.prototype.$prompt = MuMessageBox.prompt
+  Vue.prototype.$message = Message
+  Vue.prototype.$msgbox = MessageBox
+  Vue.prototype.$alert = MessageBox.alert
+  Vue.prototype.$confirm = MessageBox.confirm
+  Vue.prototype.$prompt = MessageBox.prompt
   // Vue.prototype.$notify = Notification
 }
 /* istanbul ignore if **/

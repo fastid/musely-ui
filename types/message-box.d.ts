@@ -4,6 +4,15 @@ import { MessageType } from './message'
 export type MessageBoxCloseAction = 'confirm' | 'cancel' | 'close'
 export type MessageBoxData = MessageBoxInputData | MessageBoxCloseAction
 
+export interface MessageCurrent {
+  any?: any
+  [any: string]: any
+  options?: MuMessageBoxOptions
+  callback?: any
+  resolve?: any
+  reject?: any
+}
+
 export interface MessageBoxInputData {
   value: string
   action: MessageBoxCloseAction
@@ -47,6 +56,7 @@ export interface MuMessageBoxOptions {
   title?: string
 
   /** Content of the MessageBox */
+  // TODO message types?
   message?: string | VNode
 
   /** Message type, used for icon display */

@@ -38,6 +38,7 @@ function buildPackagesTypes() {
   const content = `${tips}
 import { VueConstructor } from 'vue'
 import { InstallationOptions } from 'types/musely-ui'
+import { MuMessageBoxShortcutMethod } from 'types/message-box'
 ${importList.join('\n')}
 const version = '${version}'
 const components = [
@@ -51,11 +52,11 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   Vue.prototype.$MUSELY = {
     zIndex: opts.zIndex || 2000
   }
-  Vue.prototype.$message = MuMessage
-  Vue.prototype.$msgbox = MuMessageBox
-  Vue.prototype.$alert = MuMessageBox.alert
-  Vue.prototype.$confirm = MuMessageBox.confirm
-  Vue.prototype.$prompt = MuMessageBox.prompt
+  Vue.prototype.$message = Message
+  Vue.prototype.$msgbox = MessageBox
+  Vue.prototype.$alert = MessageBox.alert
+  Vue.prototype.$confirm = MessageBox.confirm
+  Vue.prototype.$prompt = MessageBox.prompt
   // Vue.prototype.$notify = Notification
 }
 /* istanbul ignore if **/

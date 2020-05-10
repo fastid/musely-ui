@@ -2,31 +2,31 @@
 // ***************************************************
 // **********                                *********
 // **********                                *********
-// ******* musely-ui.d.ts file don't edit it!!! *********
+// ****** musely-ui.d.ts file don't edit it !!! ******
 // **********                                *********
 // **********                                *********
 // ***************************************************
 // This file is auto gererated by build/build-entry.js
 import Vue from 'vue'
 import { MuselyUIComponent } from './common'
-import { MuAlert } from './alert'
-import { MuAside } from './aside'
-import { MuButton } from './button'
-import { MuButtonGroup } from './button-group'
-import { MuCol } from './col'
-import { MuContainer } from './container'
-import { MuDialog } from './dialog'
-import { MuFooter } from './footer'
-import { MuHeader } from './header'
-import { MuIcon } from './icon'
-import { MuInput } from './input'
-import { MuLink } from './link'
-import { MuMain } from './main'
-import { MuMessage } from './message'
-import { MuMessageBox } from './message-box'
-import { MuPageHeader } from './page-header'
-import { MuPopup } from './popup'
-import { MuRow } from './row'
+import {MuAlert} from './alert'
+import {MuAside} from './aside'
+import {MuButton} from './button'
+import {MuButtonGroup} from './button-group'
+import {MuCol} from './col'
+import {MuContainer} from './container'
+import {MuDialog} from './dialog'
+import {MuFooter} from './footer'
+import {MuHeader} from './header'
+import {MuIcon} from './icon'
+import {MuInput} from './input'
+import {MuLink} from './link'
+import {MuMain} from './main'
+import {MuMessage} from './message'
+import {MuMessageBox} from './message-box'
+import {MuPageHeader} from './page-header'
+import {MuPopup} from './popup'
+import {MuRow} from './row'
 
 /**
  * musely-ui components into Vue types.
@@ -51,6 +51,7 @@ export const Message: MuMessage
 
 /** defined MessageBox Component. **/
 export const MessageBox: MuMessageBox
+
 
 /** Alert Component **/
 export class Alert extends MuAlert {}

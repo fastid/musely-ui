@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-06 23:36:33
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-09 21:09:04
+ * @LastEditTime: 2020-05-10 22:37:26
  * @Description:
  -->
 <template>
@@ -83,7 +83,6 @@ export default class MessageComponent extends Vue
   }
 
   mounted() {
-    console.log(this.$data)
     this.startTimer()
     document.addEventListener('keydown', this.keydown)
   }
