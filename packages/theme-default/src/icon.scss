@@ -2,8 +2,7 @@
 
 @font-face {
   font-family: 'iconfont';
-  src: url('#{$--font-path}/iconfont.woff') format('woff'),
-    /* chrome, firefox */ url('#{$--font-path}/iconfont.ttf') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  src: url('#{$--font-path}/iconfont.woff') format('woff'), /* chrome, firefox */ url('#{$--font-path}/iconfont.ttf') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
   font-weight: normal;
   font-style: normal;
 }
@@ -43,6 +42,14 @@
   margin-right: 5px;
 }
 // before
+
+.mu-icon-round-close:before {
+  content: '\e62a';
+}
+
+.mu-icon-close:before {
+  content: '\e62b';
+}
 
 .mu-icon-circle-minus-bold:before {
   content: '\e626';
