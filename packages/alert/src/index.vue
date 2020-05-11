@@ -58,7 +58,7 @@ export default class MuAlert extends Vue implements Alert {
   @Prop({ default: 'info', type: String }) type!: AlertType
   @Prop({ default: true, type: Boolean }) closable!: boolean
   @Prop({ default: '', type: String }) closeText!: string
-  @Prop({ default: true, type: Boolean }) showIcon!: boolean
+  @Prop({ default: false, type: Boolean }) showIcon!: boolean
   @Prop({ type: Boolean }) center!: boolean
 
   @Prop({

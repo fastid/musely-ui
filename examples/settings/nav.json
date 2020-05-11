@@ -121,6 +121,11 @@
       "path": "/common",
       "items": [
         {
+          "desc": "Badge 标记",
+          "name": "badge",
+          "path": "/badge"
+        },
+        {
           "desc": "Dialog 弹窗",
           "name": "dialog",
           "path": "/dialog"

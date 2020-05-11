@@ -11,6 +11,7 @@ import Vue from 'vue'
 import { MuselyUIComponent } from './common'
 import {MuAlert} from './alert'
 import {MuAside} from './aside'
+import {MuBadge} from './badge'
 import {MuButton} from './button'
 import {MuButtonGroup} from './button-group'
 import {MuCol} from './col'
@@ -58,6 +59,9 @@ export class Alert extends MuAlert {}
 
 /** Aside Component **/
 export class Aside extends MuAside {}
+
+/** Badge Component **/
+export class Badge extends MuBadge {}
 
 /** Button Component **/
 export class Button extends MuButton {}

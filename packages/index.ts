@@ -12,6 +12,7 @@ import { InstallationOptions } from 'types/musely-ui'
 import { MuMessageBoxShortcutMethod } from 'types/message-box'
 import Alert from './alert'
 import Aside from './aside'
+import Badge from './badge'
 import Button from './button'
 import ButtonGroup from './button-group'
 import Col from './col'
@@ -32,6 +33,7 @@ const version = '0.1.6'
 const components = [
   Alert,
   Aside,
+  Badge,
   Button,
   ButtonGroup,
   Col,
@@ -70,6 +72,7 @@ export {
   version,
   Alert,
   Aside,
+  Badge,
   Button,
   ButtonGroup,
   Col,
