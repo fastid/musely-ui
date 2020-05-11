@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-11 11:45:37
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-11 11:47:53
+ * @LastEditTime: 2020-05-11 11:57:02
  * @Description:
  -->
 
@@ -111,7 +111,7 @@
 ```html
 <mu-badge is-dot class="item">query</mu-badge>
 <mu-badge is-dot class="item">
-  <mu-button class="share-button" icon="mu-icon-share" type="primary"></mu-button>
+  <mu-button class="share-button" icon="mu-icon-platform-facebook" type="primary"></mu-button>
 </mu-badge>
 
 <style>

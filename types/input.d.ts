@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-10 22:20:49
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-10 22:21:44
+ * @LastEditTime: 2020-05-12 02:02:33
  * @Description:
  */
 import { MuselyUIComponent } from './common'
@@ -29,10 +29,10 @@ export declare class MuInput extends MuselyUIComponent {
   value: string | number
 
   /** Maximum Input text length */
-  maxlength: number
+  maxlength: string | number
 
   /** Minimum Input text length */
-  minlength: number
+  minlength: string | number
 
   /** Placeholder of Input */
   placeholder: string
@@ -51,9 +51,6 @@ export declare class MuInput extends MuselyUIComponent {
 
   /** Whether textarea has an adaptive height, only works when type is 'textarea' */
   autosize: boolean | AutoSize
-
-  /** @Deprecated in next major version */
-  autoComplete: string
 
   /** Same as autocomplete in native input */
   autocomplete: string

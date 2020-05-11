@@ -1,0 +1,29 @@
+.demo-input {
+  .mu-select .mu-input {
+    width: 130px;
+  }
+  .mu-input {
+    width: 180px;
+  }
+  .mu-textarea {
+    width: 414px;
+  }
+  .mu-input-group {
+    width: 100%;
+  }
+  .demo-input-size {
+    .mu-input {
+      vertical-align: top;
+      margin: 0 10px 10px 0;
+    }
+  }
+  .input-with-select .mu-input-group__prepend {
+    background-color: #fff;
+  }
+}
+.demo-input-suffix {
+  margin-bottom: 15px;
+  .mu-input {
+    margin-right: 15px;
+  }
+}

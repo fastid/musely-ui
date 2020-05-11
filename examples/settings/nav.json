@@ -96,6 +96,18 @@
       ]
     },
     {
+      "desc": "表单组件",
+      "path": "/form",
+      "items": [
+        {
+          "desc": "Input 输入框",
+          "name": "input",
+          "path": "/input"
+        }
+      ]
+    },
+
+    {
       "desc": "消息组件",
       "path": "/notice",
       "items": [

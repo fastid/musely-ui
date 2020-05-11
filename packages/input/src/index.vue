@@ -27,7 +27,7 @@
              :type="showPassword ? (passwordVisible ? 'text': 'password') : type"
              :disabled="inputDisabled"
              :readonly="readonly"
-             :autocomplete="autoComplete || autocomplete"
+             :autocomplete="autocomplete"
              ref="input"
              @compositionstart="handleCompositionStart"
              @compositionupdate="handleCompositionUpdate"
@@ -93,7 +93,7 @@
               v-bind="$attrs"
               :disabled="inputDisabled"
               :readonly="readonly"
-              :autocomplete="autoComplete || autocomplete"
+              :autocomplete="autocomplete"
               :style="textareaStyle"
               @focus="handleFocus"
               @blur="handleBlur"
@@ -104,327 +104,351 @@
           class="mu-input__count">{{ textLength }}/{{ upperLimit }}</span>
   </div>
 </template>
-<script>
+
+<script lang='ts'>
+import {
+  Resizability,
+  InputType,
+  AutoSize,
+  MuInput as Input
+} from 'types/input'
+import { Component, Prop, Inject, Mixins, Watch } from 'vue-property-decorator'
 import emitter from 'musely-ui/src/mixins/emitter'
-import calcTextareaHeight from './calcTextareaHeight'
+// import calcTextareaHeight from './calcTextareaHeight'
 import { merge, isKorean } from 'musely-ui/src/utils'
 
-export default {
-  name: 'MuInput',
+@Component({
+  name: 'MuInput'
+})
+export default class MuInput extends Mixins(emitter) implements Input {
+  @Prop({ type: [String, Number] }) value: any
+  @Prop({ type: [String, Number] }) size!: string | number
+  @Prop({ type: String }) resize!: Resizability
+  @Prop({ type: String }) form!: string
+  @Prop({ type: Boolean }) disabled!: boolean
+  @Prop({ type: Boolean }) readonly!: boolean
+  @Prop({ type: String, default: 'text' }) type!: InputType
+  @Prop({ type: [Boolean, Object], default: false }) autosize!: AutoSize
 
-  componentName: 'MuInput',
+  @Prop({ type: Boolean, default: true }) validateEvent!: boolean
+  @Prop({ type: String }) suffixIcon!: string
+  @Prop({ type: String }) prefixIcon!: string
+  @Prop({ type: String }) label!: string
+  @Prop({ type: Boolean, default: false }) clearable!: boolean
+  @Prop({ type: String }) tabindex!: string
+  @Prop({ type: [Boolean, Object], default: false }) showPassword!: false
+  @Prop({ type: [Boolean, Object], default: false }) showWordLimit!: false
+  @Prop({
+    type: String,
+    default: 'off'
+  })
+  autocomplete!: string
 
-  mixins: [emitter],
+  // prop
+  @Prop({ type: [String, Number] }) maxlength!: number | string
+  @Prop({ type: [String, Number] }) minlength!: number | string
+  @Prop({ type: String }) placeholder!: string
+  @Prop({ type: Number }) rows!: number
 
-  inheritAttrs: false,
+  @Prop({ type: Number }) max!: number
+  @Prop({ type: Number }) min!: number
+  @Prop({ type: String }) name!: string
+  @Prop({}) step!: any
+  @Prop({ type: Boolean }) autofocus!: boolean
 
-  inject: {
-    elForm: {
-      default: ''
-    },
-    elFormItem: {
-      default: ''
+  // @inheritAttrs: false,
+  @Inject({
+    default: ''
+  })
+  elForm!: any
+
+  @Inject({
+    default: ''
+  })
+  elFormItem!: any
+
+  $MUSELY!: any
+
+  // data
+  textareaCalcStyle = {}
+  hovering = false
+  focused = false
+  isComposing = false
+  passwordVisible = false
+
+  get _elFormItemSize() {
+    return (this.elFormItem || {}).elFormItemSize
+  }
+
+  get validateState() {
+    return this.elFormItem ? this.elFormItem.validateState : ''
+  }
+
+  get needStatusIcon() {
+    return this.elForm ? this.elForm.statusIcon : false
+  }
+
+  // get validateIcon() {
+  //   return {
+  //     validating: 'mu-icon-loading',
+  //     success: 'mu-icon-circle-check',
+  //     error: 'mu-icon-circle-close'
+  //   }[this.validateState]
+  // }
+
+  get textareaStyle() {
+    return merge({}, this.textareaCalcStyle, { resize: this.resize })
+  }
+
+  get inputSize() {
+    return this.size || this._elFormItemSize || (this.$MUSELY || {}).size
+  }
+
+  get inputDisabled() {
+    return this.disabled || (this.elForm || {}).disabled
+  }
+
+  get nativeInputValue() {
+    return this.value === null || this.value === undefined
+      ? ''
+      : String(this.value)
+  }
+
+  get showClear() {
+    return (
+      this.clearable &&
+      !this.inputDisabled &&
+      !this.readonly &&
+      this.nativeInputValue &&
+      (this.focused || this.hovering)
+    )
+  }
+
+  get showPwdVisible() {
+    return (
+      this.showPassword &&
+      !this.inputDisabled &&
+      !this.readonly &&
+      (!!this.nativeInputValue || this.focused)
+    )
+  }
+
+  get isWordLimitVisible() {
+    return (
+      this.showWordLimit &&
+      this.$attrs.maxlength &&
+      (this.type === 'text' || this.type === 'textarea') &&
+      !this.inputDisabled &&
+      !this.readonly &&
+      !this.showPassword
+    )
+  }
+
+  get upperLimit() {
+    return this.$attrs.maxlength
+  }
+
+  get textLength() {
+    if (typeof this.value === 'number') {
+      return String(this.value).length
     }
-  },
 
-  data () {
-    return {
-      textareaCalcStyle: {},
-      hovering: false,
-      focused: false,
-      isComposing: false,
-      passwordVisible: false
+    return (this.value || '').length
+  }
+
+  get inputExceed() {
+    // show exceed style if length of initial value greater then maxlength
+    return this.isWordLimitVisible && this.textLength > this.upperLimit
+  }
+
+  focus() {
+    ;(this.getInput() as HTMLInputElement).focus()
+  }
+
+  blur() {
+    ;(this.getInput() as HTMLInputElement).blur()
+  }
+
+  private handleBlur(event: Event) {
+    this.focused = false
+    this.$emit('blur', event)
+    if (this.validateEvent) {
+      this.dispatch('MuFormItem', 'el.form.blur', [this.value])
     }
-  },
+  }
 
-  props: {
-    value: [String, Number],
-    size: String,
-    resize: String,
-    form: String,
-    disabled: Boolean,
-    readonly: Boolean,
-    type: {
-      type: String,
-      default: 'text'
-    },
-    autosize: {
-      type: [Boolean, Object],
-      default: false
-    },
-    autocomplete: {
-      type: String,
-      default: 'off'
-    },
-    /** @Deprecated in next major version */
-    autoComplete: {
-      type: String,
-      validator (val) {
-        process.env.NODE_ENV !== 'production' &&
-          console.warn('[Muement Warn][Input]\'auto-complete\' property will be deprecated in next major version. please use \'autocomplete\' instead.')
-        return true
-      }
-    },
-    validateEvent: {
-      type: Boolean,
-      default: true
-    },
-    suffixIcon: String,
-    prefixIcon: String,
-    label: String,
-    clearable: {
-      type: Boolean,
-      default: false
-    },
-    showPassword: {
-      type: Boolean,
-      default: false
-    },
-    showWordLimit: {
-      type: Boolean,
-      default: false
-    },
-    tabindex: String
-  },
+  select() {
+    ;(this.getInput() as HTMLInputElement).select()
+  }
 
-  computed: {
-    _elFormItemSize () {
-      return (this.elFormItem || {}).elFormItemSize
-    },
-    validateState () {
-      return this.elFormItem ? this.elFormItem.validateState : ''
-    },
-    needStatusIcon () {
-      return this.elForm ? this.elForm.statusIcon : false
-    },
-    validateIcon () {
-      return {
-        validating: 'mu-icon-loading',
-        success: 'mu-icon-circle-check',
-        error: 'mu-icon-circle-close'
-      }[this.validateState]
-    },
-    textareaStyle () {
-      return merge({}, this.textareaCalcStyle, { resize: this.resize })
-    },
-    inputSize () {
-      return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size
-    },
-    inputDisabled () {
-      return this.disabled || (this.elForm || {}).disabled
-    },
-    nativeInputValue () {
-      return this.value === null || this.value === undefined ? '' : String(this.value)
-    },
-    showClear () {
-      return this.clearable &&
-        !this.inputDisabled &&
-        !this.readonly &&
-        this.nativeInputValue &&
-        (this.focused || this.hovering)
-    },
-    showPwdVisible () {
-      return this.showPassword &&
-        !this.inputDisabled &&
-        !this.readonly &&
-        (!!this.nativeInputValue || this.focused)
-    },
-    isWordLimitVisible () {
-      return this.showWordLimit &&
-        this.$attrs.maxlength &&
-        (this.type === 'text' || this.type === 'textarea') &&
-        !this.inputDisabled &&
-        !this.readonly &&
-        !this.showPassword
-    },
-    upperLimit () {
-      return this.$attrs.maxlength
-    },
-    textLength () {
-      if (typeof this.value === 'number') {
-        return String(this.value).length
-      }
+  resizeTextarea() {
+    // if (this.$isServer) return
+    // const { autosize, type } = this
+    // if (type !== 'textarea') return
+    // if (!autosize) {
+    //   this.textareaCalcStyle = {
+    //     minHeight: calcTextareaHeight(this.$refs.textarea).minHeight
+    //   }
+    //   return
+    // }
+    // const { minRows, maxRows } = autosize
+    // this.textareaCalcStyle = calcTextareaHeight(
+    //   this.$refs.textarea,
+    //   minRows,
+    //   maxRows
+    // )
+  }
 
-      return (this.value || '').length
-    },
-    inputExceed () {
-      // show exceed style if length of initial value greater then maxlength
-      return this.isWordLimitVisible &&
-        (this.textLength > this.upperLimit)
+  setNativeInputValue() {
+    const input = this.getInput() as HTMLInputElement
+    if (!input) return
+    if (input.value === this.nativeInputValue) return
+    input.value = this.nativeInputValue
+  }
+
+  handleFocus(event: Event) {
+    this.focused = true
+    this.$emit('focus', event)
+  }
+
+  handleCompositionStart() {
+    this.isComposing = true
+  }
+
+  handleCompositionUpdate(event: Event) {
+    const text = (event.target as HTMLInputElement).value
+    const lastCharacter = text[text.length - 1] || ''
+    this.isComposing = !isKorean(lastCharacter)
+  }
+
+  handleCompositionEnd(event: Event) {
+    if (this.isComposing) {
+      this.isComposing = false
+      this.handleInput(event)
     }
-  },
+  }
 
-  watch: {
-    value (val) {
-      this.$nextTick(this.resizeTextarea)
-      if (this.validateEvent) {
-        this.dispatch('MuFormItem', 'el.form.change', [val])
-      }
-    },
-    // native input value is set explicitly
-    // do not use v-model / :value in template
-    // see: https://github.com/MuemeFE/element/issues/14521
-    nativeInputValue () {
-      this.setNativeInputValue()
-    },
-    // when change between <input> and <textarea>,
-    // update DOM dependent value and styles
-    // https://github.com/MuemeFE/element/issues/14857
-    type () {
-      this.$nextTick(() => {
-        this.setNativeInputValue()
-        this.resizeTextarea()
-        this.updateIconOffset()
-      })
+  handleInput(event: Event) {
+    // should not emit input during composition
+    // see: https://github.com/MuemeFE/element/issues/10516
+    if (this.isComposing) return
+
+    // hack for https://github.com/MuemeFE/element/issues/8548
+    // should remove the following line when we don't support IE
+    if ((event.target as HTMLInputElement).value === this.nativeInputValue) {
+      return
     }
-  },
 
-  methods: {
-    focus () {
-      this.getInput().focus()
-    },
-    blur () {
-      this.getInput().blur()
-    },
-    getMigratingConfig () {
-      return {
-        props: {
-          icon: 'icon is removed, use suffix-icon / prefix-icon instead.',
-          'on-icon-click': 'on-icon-click is removed.'
-        },
-        events: {
-          click: 'click is removed.'
-        }
-      }
-    },
-    handleBlur (event) {
-      this.focused = false
-      this.$emit('blur', event)
-      if (this.validateEvent) {
-        this.dispatch('MuFormItem', 'el.form.blur', [this.value])
-      }
-    },
-    select () {
-      this.getInput().select()
-    },
-    resizeTextarea () {
-      if (this.$isServer) return
-      const { autosize, type } = this
-      if (type !== 'textarea') return
-      if (!autosize) {
-        this.textareaCalcStyle = {
-          minHeight: calcTextareaHeight(this.$refs.textarea).minHeight
-        }
-        return
-      }
-      const minRows = autosize.minRows
-      const maxRows = autosize.maxRows
+    this.$emit('input', (event.target as HTMLInputElement).value)
 
-      this.textareaCalcStyle = calcTextareaHeight(this.$refs.textarea, minRows, maxRows)
-    },
-    setNativeInputValue () {
-      const input = this.getInput()
-      if (!input) return
-      if (input.value === this.nativeInputValue) return
-      input.value = this.nativeInputValue
-    },
-    handleFocus (event) {
-      this.focused = true
-      this.$emit('focus', event)
-    },
-    handleCompositionStart () {
-      this.isComposing = true
-    },
-    handleCompositionUpdate (event) {
-      const text = event.target.value
-      const lastCharacter = text[text.length - 1] || ''
-      this.isComposing = !isKorean(lastCharacter)
-    },
-    handleCompositionEnd (event) {
-      if (this.isComposing) {
-        this.isComposing = false
-        this.handleInput(event)
-      }
-    },
-    handleInput (event) {
-      // should not emit input during composition
-      // see: https://github.com/MuemeFE/element/issues/10516
-      if (this.isComposing) return
+    // ensure native input value is controlled
+    // see: https://github.com/MuemeFE/element/issues/12850
+    this.$nextTick(this.setNativeInputValue)
+  }
 
-      // hack for https://github.com/MuemeFE/element/issues/8548
-      // should remove the following line when we don't support IE
-      if (event.target.value === this.nativeInputValue) return
+  handleChange(event: Event) {
+    this.$emit('change', (event.target as HTMLInputElement).value)
+  }
 
-      this.$emit('input', event.target.value)
-
-      // ensure native input value is controlled
-      // see: https://github.com/MuemeFE/element/issues/12850
-      this.$nextTick(this.setNativeInputValue)
-    },
-    handleChange (event) {
-      this.$emit('change', event.target.value)
-    },
-    calcIconOffset (place) {
-      const elList = [].slice.call(this.$el.querySelectorAll(`.mu-input__${place}`) || [])
-      if (!elList.length) return
-      let el = null
-      for (let i = 0; i < elList.length; i++) {
-        if (elList[i].parentNode === this.$el) {
-          el = elList[i]
-          break
-        }
+  calcIconOffset(place: string) {
+    const elList = [].slice.call(
+      this.$el.querySelectorAll(`.mu-input__${place}`) || []
+    )
+    if (!elList.length) return
+    let el = null
+    for (let i = 0; i < elList.length; i++) {
+      if ((elList[i] as HTMLElement).parentNode === this.$el) {
+        el = elList[i]
+        break
       }
-      if (!el) return
-      const pendantMap = {
-        suffix: 'append',
-        prefix: 'prepend'
-      }
-
-      const pendant = pendantMap[place]
-      if (this.$slots[pendant]) {
-        el.style.transform = `translateX(${place === 'suffix' ? '-' : ''}${this.$el.querySelector(`.mu-input-group__${pendant}`).offsetWidth}px)`
-      } else {
-        el.removeAttribute('style')
-      }
-    },
-    updateIconOffset () {
-      this.calcIconOffset('prefix')
-      this.calcIconOffset('suffix')
-    },
-    clear () {
-      this.$emit('input', '')
-      this.$emit('change', '')
-      this.$emit('clear')
-    },
-    handlePasswordVisible () {
-      this.passwordVisible = !this.passwordVisible
-      this.focus()
-    },
-    getInput () {
-      return this.$refs.input || this.$refs.textarea
-    },
-    getSuffixVisible () {
-      return this.$slots.suffix ||
-        this.suffixIcon ||
-        this.showClear ||
-        this.showPassword ||
-        this.isWordLimitVisible ||
-        (this.validateState && this.needStatusIcon)
     }
-  },
+    if (!el) return
+    const pendantMap: any = {
+      suffix: 'append',
+      prefix: 'prepend'
+    }
 
-  created () {
+    const pendant = pendantMap[place]
+    if (this.$slots[pendant]) {
+      ;(el as HTMLElement).style.transform = `translateX(${
+        place === 'suffix' ? '-' : ''
+      }${
+        (this.$el as any).querySelector(`.mu-input-group__${pendant}`)
+          .offsetWidth
+      }px)`
+    } else {
+      ;(el as HTMLElement).removeAttribute('style')
+    }
+  }
+
+  updateIconOffset() {
+    this.calcIconOffset('prefix')
+    this.calcIconOffset('suffix')
+  }
+
+  clear() {
+    this.$emit('input', '')
+    this.$emit('change', '')
+    this.$emit('clear')
+  }
+
+  handlePasswordVisible() {
+    this.passwordVisible = !this.passwordVisible
+    this.focus()
+  }
+
+  getInput() {
+    return this.$refs.input || this.$refs.textarea
+  }
+
+  getSuffixVisible() {
+    return (
+      this.$slots.suffix ||
+      this.suffixIcon ||
+      this.showClear ||
+      this.showPassword ||
+      this.isWordLimitVisible ||
+      (this.validateState && this.needStatusIcon)
+    )
+  }
+
+  created() {
     this.$on('inputSelect', this.select)
-  },
+  }
 
-  mounted () {
+  mounted() {
     this.setNativeInputValue()
     this.resizeTextarea()
     this.updateIconOffset()
-  },
+  }
 
-  updated () {
+  updated() {
     this.$nextTick(this.updateIconOffset)
+  }
+
+  @Watch('value')
+  watchValue(val: string) {
+    this.$nextTick(this.resizeTextarea)
+    if (this.validateEvent) {
+      this.dispatch('MuFormItem', 'el.form.change', [val])
+    }
+  }
+
+  @Watch('nativeInputValue')
+  watchNativeInputValue() {
+    this.setNativeInputValue()
+  }
+
+  @Watch('type')
+  // when change between <input> and <textarea>,
+  // update DOM dependent value and styles
+  // https://github.com/MuemeFE/element/issues/14857
+  watchType() {
+    this.$nextTick(() => {
+      this.setNativeInputValue()
+      this.resizeTextarea()
+      this.updateIconOffset()
+    })
   }
 }
 </script>
