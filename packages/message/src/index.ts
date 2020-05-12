@@ -3,9 +3,6 @@ import MessageComponent from './main.vue'
 import { MuMessageComponent, MuMessageOptions, CloseEventHandler, MessageType } from 'types/message'
 import { PopupManager } from 'musely-ui/src/utils/popup'
 import { isVNode } from 'musely-ui/src/utils/'
-import { VNode } from 'vue/types/umd'
-
-// const MessageConstructor = Vue.extend(Main)
 
 class MessageConstructor extends MessageComponent {
   constructor(options: any) {

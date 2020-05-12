@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-11 20:58:45
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-11 21:08:48
+ * @LastEditTime: 2020-05-12 23:08:55
  * @Description:
  -->
 
@@ -158,31 +158,6 @@ Input 为受控组件，它**总会显示 Vue 绑定值**。
 
 :::
 
-### 可自适应文本高度的文本域
-
-通过设置 `autosize` 属性可以使得文本域的高度能够根据文本内容自动进行调整，并且 `autosize` 还可以设定为一个对象，指定最小行数和最大行数。
-
-:::demo
-
-```html
-<mu-input type="textarea" autosize placeholder="请输入内容" v-model="textarea1"> </mu-input>
-<div style="margin: 20px 0;"></div>
-<mu-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" placeholder="请输入内容" v-model="textarea2"> </mu-input>
-
-<script>
-  export default {
-    data() {
-      return {
-        textarea1: '',
-        textarea2: ''
-      }
-    }
-  }
-</script>
-```
-
-:::
-
 ### 复合型输入框
 
 可前置或后置元素，一般为标签或按钮
@@ -229,34 +204,6 @@ Input 为受控组件，它**总会显示 Vue 绑定值**。
 
 :::
 
-### 尺寸
-
-:::demo 可通过 `size` 属性指定输入框的尺寸，除了默认的大小外，还提供了 large、small 和 mini 三种尺寸。
-
-```html
-<div class="demo-input-size">
-  <mu-input placeholder="请输入内容" suffix-icon="mu-icon-date" v-model="input1"> </mu-input>
-  <mu-input size="medium" placeholder="请输入内容" suffix-icon="mu-icon-date" v-model="input2"> </mu-input>
-  <mu-input size="small" placeholder="请输入内容" suffix-icon="mu-icon-date" v-model="input3"> </mu-input>
-  <mu-input size="mini" placeholder="请输入内容" suffix-icon="mu-icon-date" v-model="input4"> </mu-input>
-</div>
-
-<script>
-  export default {
-    data() {
-      return {
-        input1: '',
-        input2: '',
-        input3: '',
-        input4: ''
-      }
-    }
-  }
-</script>
-```
-
-:::
-
 ### 输入长度限制
 
 :::demo `maxlength` 和 `minlength` 是原生属性，用来限制输入框的字符长度，其中字符长度是用 Javascript 的字符串长度统计的。对于类型为 `text` 或 `textarea` 的输入框，在使用 `maxlength` 属性限制最大输入长度的同时，可通过设置 `show-word-limit` 属性来展示字数统计。
@@ -282,35 +229,34 @@ Input 为受控组件，它**总会显示 Vue 绑定值**。
 
 ### Input Attributes
 
-| 参数            | 说明                                                                                    | 类型             | 可选值                                                                                                                                | 默认值 |
-| --------------- | --------------------------------------------------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| type            | 类型                                                                                    | string           | text，textarea 和其他 [原生 input 的 type 值](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types) | text   |
-| value / v-model | 绑定值                                                                                  | string / number  | —                                                                                                                                     | —      |
-| maxlength       | 原生属性，最大输入长度                                                                  | number           | —                                                                                                                                     | —      |
-| minlength       | 原生属性，最小输入长度                                                                  | number           | —                                                                                                                                     | —      |
-| show-word-limit | 是否显示输入字数统计，只在 `type = "text"` 或 `type = "textarea"` 时有效                | boolean          | —                                                                                                                                     | false  |
-| placeholder     | 输入框占位文本                                                                          | string           | —                                                                                                                                     | —      |
-| clearable       | 是否可清空                                                                              | boolean          | —                                                                                                                                     | false  |
-| show-password   | 是否显示切换密码图标                                                                    | boolean          | —                                                                                                                                     | false  |
-| disabled        | 禁用                                                                                    | boolean          | —                                                                                                                                     | false  |
-| size            | 输入框尺寸，只在 `type!="textarea"` 时有效                                              | string           | medium / small / mini                                                                                                                 | —      |
-| prefix-icon     | 输入框头部图标                                                                          | string           | —                                                                                                                                     | —      |
-| suffix-icon     | 输入框尾部图标                                                                          | string           | —                                                                                                                                     | —      |
-| rows            | 输入框行数，只对 `type="textarea"` 有效                                                 | number           | —                                                                                                                                     | 2      |
-| autosize        | 自适应内容高度，只对 `type="textarea"` 有效，可传入对象，如，{ minRows: 2, maxRows: 6 } | boolean / object | —                                                                                                                                     | false  |
-| autocomplete    | 原生属性，自动补全                                                                      | string           | on, off                                                                                                                               | off    |
-| auto-complete   | 下个主版本弃用                                                                          | string           | on, off                                                                                                                               | off    |
-| name            | 原生属性                                                                                | string           | —                                                                                                                                     | —      |
-| readonly        | 原生属性，是否只读                                                                      | boolean          | —                                                                                                                                     | false  |
-| max             | 原生属性，设置最大值                                                                    | —                | —                                                                                                                                     | —      |
-| min             | 原生属性，设置最小值                                                                    | —                | —                                                                                                                                     | —      |
-| step            | 原生属性，设置输入字段的合法数字间隔                                                    | —                | —                                                                                                                                     | —      |
-| resize          | 控制是否能被用户缩放                                                                    | string           | none, both, horizontal, vertical                                                                                                      | —      |
-| autofocus       | 原生属性，自动获取焦点                                                                  | boolean          | true, false                                                                                                                           | false  |
-| form            | 原生属性                                                                                | string           | —                                                                                                                                     | —      |
-| label           | 输入框关联的 label 文字                                                                 | string           | —                                                                                                                                     | —      |
-| tabindex        | 输入框的 tabindex                                                                       | string           | -                                                                                                                                     | -      |
-| validate-event  | 输入时是否触发表单的校验                                                                | boolean          | -                                                                                                                                     | true   |
+| 参数            | 说明                                                                     | 类型            | 可选值                                                                                                                                | 默认值 |
+| --------------- | ------------------------------------------------------------------------ | --------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| type            | 类型                                                                     | string          | text，textarea 和其他 [原生 input 的 type 值](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types) | text   |
+| value / v-model | 绑定值                                                                   | string / number | —                                                                                                                                     | —      |
+| maxlength       | 原生属性，最大输入长度                                                   | number          | —                                                                                                                                     | —      |
+| minlength       | 原生属性，最小输入长度                                                   | number          | —                                                                                                                                     | —      |
+| show-word-limit | 是否显示输入字数统计，只在 `type = "text"` 或 `type = "textarea"` 时有效 | boolean         | —                                                                                                                                     | false  |
+| placeholder     | 输入框占位文本                                                           | string          | —                                                                                                                                     | —      |
+| clearable       | 是否可清空                                                               | boolean         | —                                                                                                                                     | false  |
+| show-password   | 是否显示切换密码图标                                                     | boolean         | —                                                                                                                                     | false  |
+| disabled        | 禁用                                                                     | boolean         | —                                                                                                                                     | false  |
+| size            | 输入框尺寸，只在 `type!="textarea"` 时有效                               | string          | medium / small / mini                                                                                                                 | —      |
+| prefix-icon     | 输入框头部图标                                                           | string          | —                                                                                                                                     | —      |
+| suffix-icon     | 输入框尾部图标                                                           | string          | —                                                                                                                                     | —      |
+| rows            | 输入框行数，只对 `type="textarea"` 有效                                  | number          | —                                                                                                                                     | 2      |
+| autocomplete    | 原生属性，自动补全                                                       | string          | on, off                                                                                                                               | off    |
+| auto-complete   | 下个主版本弃用                                                           | string          | on, off                                                                                                                               | off    |
+| name            | 原生属性                                                                 | string          | —                                                                                                                                     | —      |
+| readonly        | 原生属性，是否只读                                                       | boolean         | —                                                                                                                                     | false  |
+| max             | 原生属性，设置最大值                                                     | —               | —                                                                                                                                     | —      |
+| min             | 原生属性，设置最小值                                                     | —               | —                                                                                                                                     | —      |
+| step            | 原生属性，设置输入字段的合法数字间隔                                     | —               | —                                                                                                                                     | —      |
+| resize          | 控制是否能被用户缩放                                                     | string          | none, both, horizontal, vertical                                                                                                      | —      |
+| autofocus       | 原生属性，自动获取焦点                                                   | boolean         | true, false                                                                                                                           | false  |
+| form            | 原生属性                                                                 | string          | —                                                                                                                                     | —      |
+| label           | 输入框关联的 label 文字                                                  | string          | —                                                                                                                                     | —      |
+| tabindex        | 输入框的 tabindex                                                        | string          | -                                                                                                                                     | -      |
+| validate-event  | 输入时是否触发表单的校验                                                 | boolean         | -                                                                                                                                     | true   |
 
 ### Input Slots
 

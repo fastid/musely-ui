@@ -44,9 +44,9 @@ interface ITypeClassesMap {
   error: string
 }
 const TYPE_CLASSES_MAP: ITypeClassesMap = {
-  success: 'mu-icon-success',
-  warning: 'mu-icon-warning',
-  error: 'mu-icon-error'
+  success: 'mu-icon-circle-success',
+  warning: 'mu-icon-circle-warning',
+  error: 'mu-icon-circle-error'
 }
 
 @Component({
@@ -82,7 +82,7 @@ export default class MuAlert extends Vue implements Alert {
   }
 
   get iconClass() {
-    return (TYPE_CLASSES_MAP as any)[this.type] || 'mu-icon-info'
+    return (TYPE_CLASSES_MAP as any)[this.type] || 'mu-icon-circle-info'
   }
 
   get isBigIcon() {

@@ -41,7 +41,7 @@
             </div>
           </div>
           <!-- TODO input -->
-          <!-- <div class="mu-message-box__input"
+          <div class="mu-message-box__input"
                v-show="showInput">
             <mu-input v-model="inputValue"
                       :type="inputType"
@@ -50,7 +50,7 @@
                       ref="input"></mu-input>
             <div class="mu-message-box__errormsg"
                  :style="{ visibility: !!editorErrorMessage ? 'visible' : 'hidden' }">{{ editorErrorMessage }}</div>
-          </div> -->
+          </div>
         </div>
         <div class="mu-message-box__btns">
           <mu-button :loading="cancelButtonLoading"
@@ -86,7 +86,7 @@ import {
 import { MessageType } from 'types/message'
 import { Component, Prop, Watch } from 'vue-property-decorator'
 import Popup from 'musely-ui/src/utils/popup'
-// import ElInput from 'musely-ui/packages/input'
+import MuInput from 'musely-ui/packages/input'
 import MuButton from 'musely-ui/packages/button'
 import { addClass, removeClass } from 'musely-ui/src/utils/dom'
 import Dialog from 'musely-ui/src/utils/aria-dialog'
@@ -118,21 +118,6 @@ export default class MuMessageBox extends mixins(Popup) implements MessageBox {
   @Prop({ default: false, type: Boolean }) center!: boolean
   @Prop({ type: Boolean }) roundButton!: boolean
   @Prop({ type: Boolean }) type!: MessageType
-
-  get icon() {
-    const { type, iconClass } = this
-    return (
-      iconClass || (type && typeMap[type] ? `mu-icon-${typeMap[type]}` : '')
-    )
-  }
-
-  get confirmButtonClasses() {
-    return `mu-button--primary ${this.confirmButtonClass}`
-  }
-
-  get cancelButtonClasses() {
-    return `${this.cancelButtonClass}`
-  }
 
   private uid = 1
   message = ''
@@ -166,6 +151,21 @@ export default class MuMessageBox extends mixins(Popup) implements MessageBox {
   beforeClose: any = null
 
   $type!: any
+
+  get icon() {
+    const { type, iconClass } = this
+    return (
+      iconClass || (type && typeMap[type] ? `mu-icon-${typeMap[type]}` : '')
+    )
+  }
+
+  get confirmButtonClasses() {
+    return `mu-button--primary ${this.confirmButtonClass}`
+  }
+
+  get cancelButtonClasses() {
+    return `${this.cancelButtonClass}`
+  }
 
   getSafeClose() {
     const currentId = this.uid

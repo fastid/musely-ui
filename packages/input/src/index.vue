@@ -58,7 +58,7 @@
             </i>
           </template>
           <i v-if="showClear"
-             class="mu-input__icon mu-icon-circle-close mu-input__clear"
+             class="mu-input__icon mu-icon-round-close mu-input__clear"
              @mousedown.prevent
              @click="clear"></i>
           <i v-if="showPwdVisible"
@@ -94,7 +94,6 @@
               :disabled="inputDisabled"
               :readonly="readonly"
               :autocomplete="autocomplete"
-              :style="textareaStyle"
               @focus="handleFocus"
               @blur="handleBlur"
               @change="handleChange"
@@ -114,8 +113,7 @@ import {
 } from 'types/input'
 import { Component, Prop, Inject, Mixins, Watch } from 'vue-property-decorator'
 import emitter from 'musely-ui/src/mixins/emitter'
-// import calcTextareaHeight from './calcTextareaHeight'
-import { merge, isKorean } from 'musely-ui/src/utils'
+import { isKorean } from 'musely-ui/src/utils'
 
 @Component({
   name: 'MuInput'
@@ -160,12 +158,12 @@ export default class MuInput extends Mixins(emitter) implements Input {
   @Inject({
     default: ''
   })
-  elForm!: any
+  muForm!: any
 
   @Inject({
     default: ''
   })
-  elFormItem!: any
+  muFormItem!: any
 
   $MUSELY!: any
 
@@ -176,36 +174,24 @@ export default class MuInput extends Mixins(emitter) implements Input {
   isComposing = false
   passwordVisible = false
 
-  get _elFormItemSize() {
-    return (this.elFormItem || {}).elFormItemSize
+  get _muFormItemSize() {
+    return (this.muFormItem || {}).muFormItemSize
   }
 
   get validateState() {
-    return this.elFormItem ? this.elFormItem.validateState : ''
+    return this.muFormItem ? this.muFormItem.validateState : ''
   }
 
   get needStatusIcon() {
-    return this.elForm ? this.elForm.statusIcon : false
-  }
-
-  // get validateIcon() {
-  //   return {
-  //     validating: 'mu-icon-loading',
-  //     success: 'mu-icon-circle-check',
-  //     error: 'mu-icon-circle-close'
-  //   }[this.validateState]
-  // }
-
-  get textareaStyle() {
-    return merge({}, this.textareaCalcStyle, { resize: this.resize })
+    return this.muForm ? this.muForm.statusIcon : false
   }
 
   get inputSize() {
-    return this.size || this._elFormItemSize || (this.$MUSELY || {}).size
+    return this.size || this._muFormItemSize || (this.$MUSELY || {}).size
   }
 
   get inputDisabled() {
-    return this.disabled || (this.elForm || {}).disabled
+    return this.disabled || (this.muForm || {}).disabled
   }
 
   get nativeInputValue() {
@@ -236,7 +222,7 @@ export default class MuInput extends Mixins(emitter) implements Input {
   get isWordLimitVisible() {
     return (
       this.showWordLimit &&
-      this.$attrs.maxlength &&
+      this.maxlength &&
       (this.type === 'text' || this.type === 'textarea') &&
       !this.inputDisabled &&
       !this.readonly &&
@@ -245,7 +231,7 @@ export default class MuInput extends Mixins(emitter) implements Input {
   }
 
   get upperLimit() {
-    return this.$attrs.maxlength
+    return this.maxlength
   }
 
   get textLength() {
@@ -279,24 +265,6 @@ export default class MuInput extends Mixins(emitter) implements Input {
 
   select() {
     ;(this.getInput() as HTMLInputElement).select()
-  }
-
-  resizeTextarea() {
-    // if (this.$isServer) return
-    // const { autosize, type } = this
-    // if (type !== 'textarea') return
-    // if (!autosize) {
-    //   this.textareaCalcStyle = {
-    //     minHeight: calcTextareaHeight(this.$refs.textarea).minHeight
-    //   }
-    //   return
-    // }
-    // const { minRows, maxRows } = autosize
-    // this.textareaCalcStyle = calcTextareaHeight(
-    //   this.$refs.textarea,
-    //   minRows,
-    //   maxRows
-    // )
   }
 
   setNativeInputValue() {
@@ -418,7 +386,6 @@ export default class MuInput extends Mixins(emitter) implements Input {
 
   mounted() {
     this.setNativeInputValue()
-    this.resizeTextarea()
     this.updateIconOffset()
   }
 
@@ -428,9 +395,8 @@ export default class MuInput extends Mixins(emitter) implements Input {
 
   @Watch('value')
   watchValue(val: string) {
-    this.$nextTick(this.resizeTextarea)
     if (this.validateEvent) {
-      this.dispatch('MuFormItem', 'el.form.change', [val])
+      this.dispatch('MuFormItem', 'mu.form.change', [val])
     }
   }
 
@@ -446,7 +412,6 @@ export default class MuInput extends Mixins(emitter) implements Input {
   watchType() {
     this.$nextTick(() => {
       this.setNativeInputValue()
-      this.resizeTextarea()
       this.updateIconOffset()
     })
   }

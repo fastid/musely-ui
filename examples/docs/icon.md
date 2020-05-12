@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-20 01:33:16
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 19:14:59
+ * @LastEditTime: 2020-05-12 23:04:50
  * @Description:
  -->
 
@@ -18,8 +18,8 @@
 
 ```html
 <i class="mu-icon-search"></i>
-<i class="mu-icon-platform-facebook"></i>
-<i class="mu-icon-delete"></i>
+<i class="mu-icon-round-facebook"></i>
+<i class="mu-icon-bag"></i>
 <mu-button type="primary" icon="mu-icon-search">Search</mu-button>
 ```
 

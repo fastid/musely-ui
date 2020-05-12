@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { MessageCurrent, MuMessageBoxOptions, MuMessageBoxComponent, MuMessageBoxShortcutMethod, MessageBoxCloseAction } from 'types/message-box'
-import MessageBoxComponent from './index.vue'
+import MessageBoxComponent from './main.vue'
 import { hasOwn, isVNode, merge } from 'musely-ui/src/utils'
 
 const defaults = {
@@ -119,9 +119,9 @@ const showNextMsg = () => {
         instance.callback = defaultCallback
       }
 
-      const oldCb = instance.callback
+      const beforeCallBack = instance.callback
       instance.callback = (action: MuMessageBoxOptions, instance: MessageBoxConstructor) => {
-        oldCb(action, instance)
+        beforeCallBack(action, instance)
         showNextMsg()
       }
       if (isVNode(instance.message)) {

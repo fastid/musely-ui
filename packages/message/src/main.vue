@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-06 23:36:33
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-10 22:37:26
+ * @LastEditTime: 2020-05-12 23:05:28
  * @Description:
  -->
 <template>
@@ -72,7 +72,7 @@ export default class MessageComponent extends Vue
 
   get typeClass() {
     return this.type && !this.iconClass
-      ? `mu-message__icon mu-icon-${typeMap[this.type]}`
+      ? `mu-message__icon mu-icon-circle-${typeMap[this.type]}`
       : ''
   }
 
