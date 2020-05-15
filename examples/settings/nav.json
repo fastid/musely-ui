@@ -1,6 +1,12 @@
 {
   "开发指南": [
     {
+      "desc": "首页",
+      "name": "home",
+      "path": "/",
+      "type": "pages"
+    },
+    {
       "name": "giud",
       "path": "/giud",
       "desc": "介绍"
@@ -26,8 +32,9 @@
       "path": "/demo"
     },
     {
-      "name": "home",
-      "path": "/",
+      "desc": "测试",
+      "name": "test",
+      "path": "/test",
       "type": "pages"
     }
   ],

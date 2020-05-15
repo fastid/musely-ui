@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-04 01:54:13
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-13 23:11:29
+ * @LastEditTime: 2020-05-15 23:30:18
  * @Description:
  */
 const { compileTemplate } = require('@vue/component-compiler-utils')
@@ -74,7 +74,6 @@ function genInlineComponentText(template, script) {
     }
   })()`
 
-  console.log(demoComponentContent)
   return demoComponentContent
 }
 

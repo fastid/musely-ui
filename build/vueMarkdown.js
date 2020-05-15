@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-07 18:59:14
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-05 00:49:37
+ * @LastEditTime: 2020-05-16 03:03:15
  * @Description:
  */
 // 服务器版的jQuery
@@ -47,26 +47,41 @@ const stripfetch = (str, tag) => {
 /**
  * 增加 hljs 的 classname
  */
-const wrapCustomClass = (render) => {
-  return function(...args) {
+const wrapCustomClass = (render, md) => {
+  // const token = tokens[idx]
+  // // 判断该 fence 是否在 :::demo 内
+  // const prevToken = tokens[idx - 1]
+  // const isInDemoContainer = prevToken && prevToken.nesting === 1 && prevToken.info.trim().match(/^demo\s*(.*)$/)
+  // if (token.info === 'html' && isInDemoContainer) {
+  //   return `<code class="hljs">${md.utils.escapeHtml(token.content)}</code><`
+  // }
+  // return render(tokens, idx, options, env, self)
+
+  return (...args) => {
+    const idx = args[1]
+    const token = args[0][idx]
+    const prevToken = args[0][idx - 1]
+    // 判断该 fence 是否在 :::demo 内
+    const isInDemoContainer = prevToken && prevToken.nesting === 1 && prevToken.info.trim().match(/^demo\s*(.*)$/)
+    if (token.info === 'html' && isInDemoContainer) {
+      // return `<pre v-pre><code class="hljs">${md.utils.escapeHtml(token.content)}</code></pre>`
+      token.content = md.utils.escapeHtml(token.content)
+    }
     return render(...args)
-      .replace('<code class="', '<code class="hljs ')
-      .replace('<code>', '<code class="hljs">')
   }
 }
 const convertHtml = (str) => {
-  return str.replace(/(&#x)(\w{4});/gi, ($0) =>
-    String.fromCharCode(parseInt(encodeURIComponent($0).replace(/(%26%23x)(\w{4})(%3B)/g, '$2'), 16))
-  )
+  return str.replace(/(&#x)(\w{4});/gi, ($0) => String.fromCharCode(parseInt(encodeURIComponent($0).replace(/(%26%23x)(\w{4})(%3B)/g, '$2'), 16)))
 }
 const vueMarkdown = {
-  preprocess: (MarkdownIt, source) => {
+  preprocess: (MarkdownIt) => {
     // eslint-disable-next-line @typescript-eslint/camelcase
     MarkdownIt.renderer.rules.table_open = () => {
       return '<table class="table">'
     }
+
     // 对于代码块去除v-pre,添加高亮样式
-    MarkdownIt.renderer.rules.fence = wrapCustomClass(MarkdownIt.renderer.rules.fence)
+    MarkdownIt.renderer.rules.fence = wrapCustomClass(MarkdownIt.renderer.rules.fence, MarkdownIt)
 
     // ```code`` 给这种样式加个class code_inline
     const codeInline = MarkdownIt.renderer.rules.code_inline
@@ -111,9 +126,7 @@ const vueMarkdown = {
             // 起始标签,写入code-view模板开头,并传入参数
             return `<code-view :jsfiddle="${jsfiddle}">
                       <!---demo:${html}:demo--->
-                            <div slot="description" ${
-                              description ? " class='description'" : ''
-                            }>${descriptionHTML}</div>
+                            <div slot="description" ${description ? " class='description'" : ''}>${descriptionHTML}</div>
                             <div slot="highlight">`
           }
           // 否则闭合标签
@@ -274,6 +287,7 @@ module.exports = function(source) {
         ${output.join('')}
       </section>
     </template>
+    <!-----component script----->
     ${pageScript}
   `
 }
