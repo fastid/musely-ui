@@ -342,6 +342,80 @@ function _deepClone(...source: any) {
   }
   return target
 }
+
+/**
+ * TODO --marge--
+ * @param obj
+ * @param fn
+ */
+function forEach(obj: any, fn: any) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return
+  }
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object') {
+    /*eslint no-param-reassign:0*/
+    obj = [obj]
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (var i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj)
+    }
+  } else {
+    // Iterate over object keys
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        fn.call(null, obj[key], key, obj)
+      }
+    }
+  }
+}
+
+export const merge2 = (...args: any) => {
+  const result: any = {}
+  const assignValue = (val: any, key: any) => {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = merge2(result[key], val)
+    } else {
+      result[key] = val
+    }
+  }
+
+  for (var i = 0, l = args.length; i < l; i++) {
+    forEach(args[i], assignValue)
+  }
+  return result
+}
+/**
+ * Function equal to merge with the difference being that no reference
+ * to original objects is kept.
+ *
+ * @see merge
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+export const deepMerge = (...args: any) => {
+  const result: any = {}
+  const assignValue = (val: any, key: any) => {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = deepMerge(result[key], val)
+    } else if (typeof val === 'object') {
+      result[key] = deepMerge({}, val)
+    } else {
+      result[key] = val
+    }
+  }
+
+  for (var i = 0, l = args.length; i < l; i++) {
+    forEach(args[i], assignValue)
+  }
+  return result
+}
+
 /**
  * isDef
  * @param val

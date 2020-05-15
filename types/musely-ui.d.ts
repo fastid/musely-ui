@@ -11,6 +11,7 @@ import Vue from 'vue'
 import { MuselyUIComponent } from './common'
 import {MuAlert} from './alert'
 import {MuAside} from './aside'
+import {MuAvatar} from './avatar'
 import {MuBadge} from './badge'
 import {MuButton} from './button'
 import {MuButtonGroup} from './button-group'
@@ -27,6 +28,7 @@ import {MuMessage} from './message'
 import {MuMessageBox} from './message-box'
 import {MuPageHeader} from './page-header'
 import {MuPopup} from './popup'
+import {MuRate} from './rate'
 import {MuRow} from './row'
 
 /**
@@ -59,6 +61,9 @@ export class Alert extends MuAlert {}
 
 /** Aside Component **/
 export class Aside extends MuAside {}
+
+/** Avatar Component **/
+export class Avatar extends MuAvatar {}
 
 /** Badge Component **/
 export class Badge extends MuBadge {}
@@ -101,6 +106,9 @@ export class PageHeader extends MuPageHeader {}
 
 /** Popup Component **/
 export class Popup extends MuPopup {}
+
+/** Rate Component **/
+export class Rate extends MuRate {}
 
 /** Row Component **/
 export class Row extends MuRow {}

@@ -12,6 +12,7 @@ import { InstallationOptions } from 'types/musely-ui'
 import { MuMessageBoxShortcutMethod } from 'types/message-box'
 import Alert from './alert'
 import Aside from './aside'
+import Avatar from './avatar'
 import Badge from './badge'
 import Button from './button'
 import ButtonGroup from './button-group'
@@ -28,11 +29,13 @@ import Message from './message'
 import MessageBox from './message-box'
 import PageHeader from './page-header'
 import Popup from './popup'
+import Rate from './rate'
 import Row from './row'
 const version = '0.1.6'
 const components = [
   Alert,
   Aside,
+  Avatar,
   Badge,
   Button,
   ButtonGroup,
@@ -47,6 +50,7 @@ const components = [
   Main,
   PageHeader,
   Popup,
+  Rate,
   Row
 ]
 
@@ -72,6 +76,7 @@ export {
   version,
   Alert,
   Aside,
+  Avatar,
   Badge,
   Button,
   ButtonGroup,
@@ -88,6 +93,7 @@ export {
   MessageBox,
   PageHeader,
   Popup,
+  Rate,
   Row
 }
 export default {

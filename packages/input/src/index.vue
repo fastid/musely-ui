@@ -258,8 +258,9 @@ export default class MuInput extends Mixins(emitter) implements Input {
   private handleBlur(event: Event) {
     this.focused = false
     this.$emit('blur', event)
+    // 触发form-层校验
     if (this.validateEvent) {
-      this.dispatch('MuFormItem', 'el.form.blur', [this.value])
+      this.dispatch('MuFormItem', 'mu.form.blur', [this.value])
     }
   }
 

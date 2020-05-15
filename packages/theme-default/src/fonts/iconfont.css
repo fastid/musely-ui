@@ -1,3 +1,59 @@
+.mu-icon-data:before {
+  content: '\e63e';
+}
+
+.mu-icon-female:before {
+  content: '\e640';
+}
+
+.mu-icon-male:before {
+  content: '\e641';
+}
+
+.mu-icon-menu:before {
+  content: '\e642';
+}
+
+.mu-icon-date:before {
+  content: '\e643';
+}
+
+.mu-icon-star-on:before {
+  content: '\e635';
+}
+
+.mu-icon-heart:before {
+  content: '\e636';
+}
+
+.mu-icon-edit:before {
+  content: '\e637';
+}
+
+.mu-icon-star-off:before {
+  content: '\e638';
+}
+
+.mu-icon-share-to:before {
+  content: '\e639';
+}
+
+.mu-icon-solid-down:before {
+  content: '\e63a';
+}
+
+.mu-icon-solid-left:before {
+  content: '\e63b';
+}
+
+.mu-icon-solid-right:before {
+  content: '\e63c';
+}
+
+.mu-icon-solid-up:before {
+  content: '\e63d';
+}
+
 .mu-icon-circle-error:before {
   content: '\e632';
 }

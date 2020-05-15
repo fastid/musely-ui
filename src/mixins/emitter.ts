@@ -1,27 +1,15 @@
 import { Component, Vue } from 'vue-property-decorator'
 
-const broadcast = function(this: any, componentName: string, ...args: any): void {
-  this.$children.forEach((child: any) => {
-    const name = child.$options.componentName
-    if (name === componentName) {
-      child.$emit.apply(child, args)
-    } else {
-      broadcast.apply(child, [componentName, args])
-    }
-  })
-}
-
 @Component({
   name: 'MuEmitter'
 })
 export default class MuEmitter extends Vue {
   constructor(options: any) {
-    console.log(options)
     super(options)
   }
-
+  // TODO Rewrite~
   dispatch(componentName: string, ...args: any) {
-    console.log('====dispatch=====', componentName, args)
+    console.log('====dispatch=====', this.$parent, componentName, args)
     let parent = this.$parent || this.$root
     let name = (parent.$options as any).componentName
 
@@ -32,12 +20,21 @@ export default class MuEmitter extends Vue {
         name = (parent.$options as any).componentName
       }
     }
+
     if (parent) {
       parent.$emit.apply(parent, args)
     }
   }
+  // TODO Rewrite~
   broadcast(componentName: string, ...args: any) {
-    console.log('=====broadcast====')
-    broadcast.call(this, componentName, args)
+    console.log('====broadcast=====', componentName, args)
+    this.$children.forEach((child: any) => {
+      const name = child.$options.componentName
+      if (name === componentName) {
+        child.$emit.apply(child, args)
+      } else {
+        this.broadcast(child, [componentName, args])
+      }
+    })
   }
 }

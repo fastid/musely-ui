@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-04 01:54:13
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-04 01:54:13
+ * @LastEditTime: 2020-05-13 23:11:29
  * @Description:
  */
 const { compileTemplate } = require('@vue/component-compiler-utils')
@@ -37,8 +37,9 @@ function pad(source) {
 function genInlineComponentText(template, script) {
   // https://github.com/vuejs/vue-loader/blob/423b8341ab368c2117931e909e2da9af74503635/lib/loaders/templateLoader.js#L46
   const finalOptions = {
-    source: `<div>${template}</div>`,
-    filename: 'inline-component', // TODO：这里有待调整
+    source: `<div class="template2source">${template}</div>`,
+    filename: 'inline-component',
+    // TODO：这里有待调整
     compiler
   }
   const compiled = compileTemplate(finalOptions)
@@ -50,11 +51,7 @@ function genInlineComponentText(template, script) {
   }
   // errors
   if (compiled.errors && compiled.errors.length) {
-    console.error(
-      `\n  Error compiling template:\n${pad(compiled.source)}\n` +
-        compiled.errors.map((e) => `  - ${e}`).join('\n') +
-        '\n'
-    )
+    console.error(`\n  Error compiling template:\n${pad(compiled.source)}\n` + compiled.errors.map((e) => `  - ${e}`).join('\n') + '\n')
   }
   let demoComponentContent = `
     ${compiled.code}
@@ -66,6 +63,7 @@ function genInlineComponentText(template, script) {
   } else {
     script = 'const democomponentExport = {}'
   }
+
   demoComponentContent = `(function() {
     ${demoComponentContent}
     ${script}
@@ -75,6 +73,8 @@ function genInlineComponentText(template, script) {
       ...democomponentExport
     }
   })()`
+
+  console.log(demoComponentContent)
   return demoComponentContent
 }
 

@@ -13,6 +13,16 @@
   "settings",
   "tips",
   "union",
+  "star-on",
+  "star-off",
+  "heart",
+  "edit",
+  "date",
+  "data",
+  "female",
+  "male",
+  "menu",
+  "share-to",
   "circle-left",
   "circle-right",
   "circle-plus",
@@ -36,5 +46,9 @@
   "arrow-left",
   "arrow-right",
   "arrow-up",
-  "arrow-down"
+  "arrow-down",
+  "solid-left",
+  "solid-right",
+  "solid-up",
+  "solid-down"
 ]
