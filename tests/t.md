@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-15 23:04:01
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-15 23:04:01
+ * @LastEditTime: 2020-05-17 00:45:45
  * @Description:
 -->
 
@@ -14,10 +14,8 @@
 
 ```html
 <template>
-  <div class="demo-fit">
-    <div class="block" v-for="item in items" :key="item">
+  <div class="demo-fit-1">
       <span class="title">{{ item }}</span>
-      <mu-avatar shape="square" :size="100" :fit="item" :src="url"></mu-avatar>
     </div>
   </div>
 </template>
@@ -26,8 +24,7 @@
     data() {
       return {
         // TODO item
-        items: ['fill', 'contain', 'cover', 'none', 'scale-down'],
-        url: '/img/facerx.png'
+        item: 'ITEM-INFO'
       }
     }
   }

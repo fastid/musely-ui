@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-07 18:59:14
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-16 03:03:15
+ * @LastEditTime: 2020-05-17 00:48:09
  * @Description:
  */
 // 服务器版的jQuery
@@ -47,16 +47,7 @@ const stripfetch = (str, tag) => {
 /**
  * 增加 hljs 的 classname
  */
-const wrapCustomClass = (render, md) => {
-  // const token = tokens[idx]
-  // // 判断该 fence 是否在 :::demo 内
-  // const prevToken = tokens[idx - 1]
-  // const isInDemoContainer = prevToken && prevToken.nesting === 1 && prevToken.info.trim().match(/^demo\s*(.*)$/)
-  // if (token.info === 'html' && isInDemoContainer) {
-  //   return `<code class="hljs">${md.utils.escapeHtml(token.content)}</code><`
-  // }
-  // return render(tokens, idx, options, env, self)
-
+const wrapCustomClass = (render) => {
   return (...args) => {
     const idx = args[1]
     const token = args[0][idx]
@@ -64,8 +55,8 @@ const wrapCustomClass = (render, md) => {
     // 判断该 fence 是否在 :::demo 内
     const isInDemoContainer = prevToken && prevToken.nesting === 1 && prevToken.info.trim().match(/^demo\s*(.*)$/)
     if (token.info === 'html' && isInDemoContainer) {
-      // return `<pre v-pre><code class="hljs">${md.utils.escapeHtml(token.content)}</code></pre>`
-      token.content = md.utils.escapeHtml(token.content)
+      // 替换Mustache语法 https://github.com/highlightjs/highlight.js/issues/725
+      token.content = token.content.replace(/{{(.*)}}/g, '{{ "\\{\\{$1\\}\\}" }}')
     }
     return render(...args)
   }
@@ -80,7 +71,7 @@ const vueMarkdown = {
       return '<table class="table">'
     }
 
-    // 对于代码块去除v-pre,添加高亮样式
+    // 对于代码块,添加高亮样式,并替换Mustache 语法
     MarkdownIt.renderer.rules.fence = wrapCustomClass(MarkdownIt.renderer.rules.fence, MarkdownIt)
 
     // ```code`` 给这种样式加个class code_inline
@@ -94,7 +85,6 @@ const vueMarkdown = {
   },
   use: [
     [require('markdown-it-anchor')],
-    [require('markdown-it-highlightjs')],
     // [require('markdown-it-latex').default],
     [
       MarkdownItContainer,
@@ -126,14 +116,15 @@ const vueMarkdown = {
             // 起始标签,写入code-view模板开头,并传入参数
             return `<code-view :jsfiddle="${jsfiddle}">
                       <!---demo:${html}:demo--->
-                            <div slot="description" ${description ? " class='description'" : ''}>${descriptionHTML}</div>
-                            <div slot="highlight">`
+                      <div slot="description" ${description ? " class='description'" : ''}>${descriptionHTML}</div>
+                      <div slot="highlight">`
           }
           // 否则闭合标签
           return '</div></code-view>'
         }
       }
     ],
+    [require('markdown-it-highlightjs')],
     [
       MarkdownItContainer,
       'tip',
@@ -229,7 +220,7 @@ let markdown = md({
   // 定义自定义的块容器
   .use(containers)
 
-markdown = vueMarkdown.preprocess(markdown, '')
+markdown = vueMarkdown.preprocess(markdown)
 
 module.exports = function(source) {
   const content = markdown.render(source)

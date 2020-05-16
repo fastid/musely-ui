@@ -9,6 +9,7 @@ import codeView from './components/codeView.vue'
 import '@/assets/icons/components'
 import icon from './settings/icon.json'
 
+import 'highlight.js/styles/default.css'
 import '../packages/theme-default/src/index.scss'
 import '@/assets/index.scss'
 
@@ -21,10 +22,11 @@ Vue.use(SvgIcon, {
 })
 
 // Icon 列表页用
-
 Vue.prototype.$icon = icon
 
 Vue.config.productionTip = false
+
+// router.afterEach((route) => {})
 
 new Vue({
   router,
