@@ -84,3 +84,27 @@
     }
   }
 }
+
+/* 实现不同方向的三角 s*/
+@mixin triangle($x, $y: 10px, $z: white) {
+  @if $x == 'top' {
+    border-width: $y;
+    border-color: transparent transparent $z transparent;
+    border-style: dashed dashed solid dashed;
+  } @else if $x == 'bottom' {
+    border-width: $y;
+    border-color: $z transparent transparent transparent;
+    border-style: solid dashed dashed dashed;
+  } @else if $x == 'left' {
+    border-width: $y;
+    border-color: transparent $z transparent transparent;
+    border-style: dashed solid dashed dashed;
+  } @else if $x == 'right' {
+    border-width: $y;
+    border-color: transparent transparent transparent $z;
+    border-style: dashed dashed dashed solid;
+  }
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}

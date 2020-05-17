@@ -103,7 +103,7 @@ const typeMap = {
 @Component({
   name: 'MuMain',
   components: {
-    // MuInput,
+    MuInput,
     MuButton
   }
 })

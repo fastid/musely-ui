@@ -87,7 +87,7 @@ const PopupManager: any = {
       }
     }
     const modalDom = getModal()
-    console.log(modalDom)
+
     addClass(modalDom, 'v-modal')
     if (this.modalFade && !hasModal) {
       addClass(modalDom, 'v-modal-enter')

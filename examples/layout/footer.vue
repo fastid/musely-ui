@@ -22,6 +22,9 @@ export default class LayoutFooter extends Vue {}
 </script>
 <style lang="scss" scoped>
 .page-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
   padding: 30px 0 30px;
   color: #6190e8;
   text-align: center;

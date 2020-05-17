@@ -1,15 +1,30 @@
 <template>
-  <mainContainer v-if="!init"></mainContainer>
-  <div v-else>
-    <mainHeader></mainHeader>
-    <div class="container"
-         v-if="!isIndex">
-      <sideNav class="nav"></sideNav>
-      <router-view class="view"></router-view>
-    </div>
-    <router-view class="page"
-                 v-else></router-view>
-    <mainFooter v-if="!isIndex"></mainFooter>
+  <div class="container">
+    <mu-container>
+      <mu-header class="header"
+                 height='80px'
+                 :style="
+      $route.name === 'home'
+        ? 'box-shadow:none'
+        : 'box-shadow:0 10px 60px 0 rgba(29,29,31,0.07)'
+    ">
+        <mainHeader></mainHeader>
+      </mu-header>
+      <mu-container v-if="!isIndex">
+        <mu-aside class="nav">
+          <sideNav></sideNav>
+        </mu-aside>
+        <mu-main class="main">
+          <router-view class="view"></router-view>
+        </mu-main>
+      </mu-container>
+      <router-view v-else
+                   class="page"></router-view>
+      <mu-footer v-if="isIndex"
+                 class="footer">
+        <mainFooter></mainFooter>
+      </mu-footer>
+    </mu-container>
   </div>
 </template>
 <script lang="ts">
@@ -17,64 +32,52 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 import mainHeader from './layout/header.vue'
 import mainFooter from './layout/footer.vue'
 import sideNav from './layout/side-nav.vue'
-import mainContainer from './layout/main.vue'
 
 @Component({
   name: 'App',
   components: {
     mainHeader,
     mainFooter,
-    sideNav,
-    mainContainer
+    sideNav
   }
 })
 export default class extends Vue {
-  private init = false
   private isIndex = true
 
   @Watch('$route')
   private onRouteChange() {
-    this.isIndex = this.$route.name === 'index'
-  }
-
-  mounted() {
-    //  这里模拟数据请求
-    setTimeout(() => {
-      this.init = true
-    }, 250)
+    this.isIndex = this.$route.name === 'home'
   }
 }
 </script>
 <style lang="scss">
 @import './layout/base';
 .container {
-  margin: 12px auto;
-  background-color: #fff;
-  box-shadow: 0 4px 30px 0 rgba(223, 225, 230, 0.5);
+  position: relative;
+  height: 100vh;
+  .header {
+    background-color: #fff;
+    box-shadow: 0 10px 60px 0 rgba(29, 29, 31, 0.07);
+    opacity: 0.98;
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all 0.3s;
+    z-index: 100;
+  }
+  .main {
+    margin-top: 80px;
+    margin-left: 210px;
+  }
   .nav {
-    float: left;
-    width: 210px;
+    height: calc(100% - 80px);
+    position: fixed;
+    top: 80px;
+    overflow: auto;
   }
-  .view {
-    float: left;
-    width: calc(100% - 215px);
-    padding: 32px 48px 48px;
-    box-sizing: border-box;
+  .footer {
+    padding: 0 !important;
   }
-  @include screen(small) {
-    .nav {
-      display: none;
-    }
-    .view {
-      width: 100%;
-      padding: 8px 10px 10px;
-    }
-  }
-}
-
-.container:after {
-  content: '';
-  clear: both;
-  display: block;
 }
 </style>

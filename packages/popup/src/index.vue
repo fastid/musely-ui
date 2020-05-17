@@ -2,14 +2,14 @@
  * @Author: Victor wang
  * @Date: 2020-05-09 21:09:55
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-09 21:44:35
+ * @LastEditTime: 2020-05-18 02:25:15
  * @Description:
  -->
 <template>
   <transition :name="currentTransition">
     <div v-show="currentValue"
          class="mu-popup"
-         :class="[position ? 'mu-popup-' + position : '']">
+         :class="[position ? 'mu-popup--' + position : '']">
       <slot></slot>
     </div>
   </transition>
@@ -17,14 +17,20 @@
 
 <script lang='ts'>
 // import { MuMain as Main } from 'types/main'
+import { mixins } from 'vue-class-component'
 import { Component, Prop, Watch } from 'vue-property-decorator'
 import Popup from 'musely-ui/src/utils/popup'
-import { mixins } from 'vue-class-component'
 
 @Component({
   name: 'MuPopup'
 })
 export default class MuPopup extends mixins(Popup) {
+  @Prop({
+    default: false,
+    type: Boolean
+  })
+  visible!: boolean
+
   @Prop({
     default: true,
     type: Boolean
@@ -36,12 +42,6 @@ export default class MuPopup extends mixins(Popup) {
     type: Boolean
   })
   modalFade!: boolean
-
-  @Prop({
-    default: false,
-    type: Boolean
-  })
-  lockScroll!: boolean
 
   @Prop({
     default: true,
@@ -62,15 +62,8 @@ export default class MuPopup extends mixins(Popup) {
   position!: boolean
 
   private currentValue = false
-  private value = null
 
-  get currentTransition() {
-    return this.popupTransition
-  }
-
-  set currentTransition(val: any) {
-    this.$emit('popupTransition', val)
-  }
+  private currentTransition = this.popupTransition
 
   beforeMount() {
     if (this.popupTransition !== 'popup-fade') {
@@ -91,9 +84,17 @@ export default class MuPopup extends mixins(Popup) {
     this.$emit('input', val)
   }
 
-  @Watch('val')
-  watchVal(val: any) {
+  @Watch('opened')
+  watchModalOpened(val: any) {
     this.currentValue = val
+  }
+
+  @Watch('value')
+  watchVisible(val: any) {
+    this.currentValue = val
+    if (val && this.modal) {
+      this.open()
+    }
   }
 }
 </script>

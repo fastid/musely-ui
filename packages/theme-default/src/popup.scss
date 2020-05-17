@@ -3,46 +3,47 @@
 @include b(popup) {
   position: fixed;
   background: #fff;
-  top: 50%;
-  left: 50%;
   transform: translate3d(-50%, -50%, 0);
   backface-visibility: hidden;
   transition: 0.2s ease-out;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 5px;
+  top: 50%;
+  left: 50%;
 
-  @include e(descendent) {
-    padding: $--dialog-padding-primary;
-    padding-bottom: 10px;
+  @include m(top) {
+    top: 0;
+    right: auto;
+    bottom: auto;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    border-radius: 0;
+  }
+  @include m(bottom) {
+    top: auto;
+    right: auto;
+    bottom: 0;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    border-radius: 0;
+  }
 
-    @include when(top) {
-      top: 0;
-      right: auto;
-      bottom: auto;
-      left: 50%;
-      transform: translate3d(-50%, 0, 0);
-    }
-
-    @include when(top) {
-      top: 50%;
-      right: 0;
-      bottom: auto;
-      left: auto;
-      transform: translate3d(0, -50%, 0);
-    }
-    @include when(bottom) {
-      top: auto;
-      right: auto;
-      bottom: 0;
-      left: 50%;
-      transform: translate3d(-50%, 0, 0);
-    }
-
-    @include when(left) {
-      top: 50%;
-      right: auto;
-      bottom: auto;
-      left: 0;
-      transform: translate3d(0, -50%, 0);
-    }
+  @include m(left) {
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    transform: translate3d(0, -50%, 0);
+    border-radius: 0;
+  }
+  @include m(right) {
+    top: 50%;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    transform: translate3d(0, -50%, 0);
+    border-radius: 0;
   }
 }
 

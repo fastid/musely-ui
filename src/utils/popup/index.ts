@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-05 11:01:51
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-09 22:50:21
+ * @LastEditTime: 2020-05-18 01:50:31
  * @Description:
  */
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
@@ -18,6 +18,11 @@ let scrollBarWidth
   name: 'MuPopup'
 })
 export default class extends Vue {
+  @Prop({
+    default: '',
+    type: [String, Boolean]
+  })
+  value!: string
   @Prop({ default: false, type: Boolean }) visible!: boolean
   @Prop({ type: Object }) openDelay!: object
   @Prop({ type: Object }) closeDelay!: object
@@ -63,6 +68,7 @@ export default class extends Vue {
       this.rendered = true
     }
     const props = merge({}, this.$props || this, options)
+
     if (this._closeTimer) {
       clearTimeout(this._closeTimer)
       this._closeTimer = null
@@ -86,7 +92,6 @@ export default class extends Vue {
     if (this.opened) return
 
     this._opening = true
-
     const dom = this.$el
 
     const modal = props.modal
