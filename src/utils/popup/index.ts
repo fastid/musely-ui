@@ -2,12 +2,12 @@
  * @Author: Victor wang
  * @Date: 2020-05-05 11:01:51
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-18 01:50:31
+ * @LastEditTime: 2020-05-23 15:38:39
  * @Description:
  */
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
-import { merge } from 'musely-ui/src/utils'
-import PopupManager from 'musely-ui/src/utils/popup/popup-manager'
+import { merge } from '../'
+import PopupManager from './popup-manager'
 import getScrollBarWidth from '../scrollbar-width'
 import { getStyle, addClass, removeClass, hasClass } from '../dom'
 

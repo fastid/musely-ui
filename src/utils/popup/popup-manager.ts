@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { addClass, removeClass } from 'musely-ui/src/utils/dom'
+import { addClass, removeClass } from '../dom'
 
 interface ImodalStack {
   id: number

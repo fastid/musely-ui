@@ -30,7 +30,7 @@ export const isDefined = (val: any) => {
   return val !== undefined && val !== null
 }
 export const isIE = () => {
-  return !Vue.prototype.$isServer && !isNaN(Number(document.documentMode))
+  return !Vue.prototype.$isServer && !isNaN(Number(document['documentMode']))
 }
 
 export const isEdge = () => {

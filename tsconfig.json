@@ -13,6 +13,8 @@
     "baseUrl": ".",
     "types": ["webpack-env", "mocha", "chai"],
     "resolveJsonModule": true,
+    // 当源文件中存在隐式any的时候报错
+    "noImplicitAny": false,
     "paths": {
       "@/*": ["./examples/*"],
       "types/*": ["./types/*"],
