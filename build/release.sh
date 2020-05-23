@@ -25,6 +25,7 @@ then
   git checkout develop
   git rebase master
   git push origin develop
-
-  npm publish
+  
 fi
+
+echo "Enter npm publish!"
