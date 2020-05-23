@@ -1,6 +1,6 @@
 {
   "name": "musely-ui",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "private": false,
   "license": "MIT",
   "author": "vencwang <fastid@gmail.com>",
@@ -10,7 +10,7 @@
     "build:entry": "node build/build-entry.js ",
     "build:theme": "gulp build --gulpfile packages/theme-default/gulpfile.js && cp-cli packages/theme-default/lib lib/theme-default",
     "build:lib": "vue-cli-service build --target lib --dest lib packages/index.ts",
-    "build:utils": "tsc -p ./build/utils.json ",
+    "build:utils": "tsc -p ./build/build-utils.json ",
     "clean": "rimraf lib && rimraf packages/*/lib",
     "dev": "yarn build:entry && vue-cli-service serve",
     "lint": "vue-cli-service lint",

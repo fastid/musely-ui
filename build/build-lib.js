@@ -12,6 +12,11 @@ tasks.forEach((task) => {
 
   const interactive = new Signale({ interactive: true })
   interactive.pending(task)
-  shell.exec(`yarn ${task} --silent`)
+  if (task === 'build:utils') {
+    shell.exec(`yarn ${task}`)
+  } else {
+    shell.exec(`yarn ${task} --silent`)
+  }
+
   interactive.success(task)
 })
