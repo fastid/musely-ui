@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-03 17:40:40
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-17 16:22:34
+ * @LastEditTime: 2020-05-23 09:25:54
  * @Description:
  -->
 <template>
@@ -14,15 +14,15 @@
   </div>
 </template>
 
-<script lang='ts'>
+<script>
 export default {
-  data() {
+  data () {
     return {
       url: ''
     }
   },
   methods: {
-    go() {
+    go () {
       this.$router.push('/start')
     }
   }
