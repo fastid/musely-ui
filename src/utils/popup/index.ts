@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-05 11:01:51
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-23 15:38:39
+ * @LastEditTime: 2020-05-24 02:29:33
  * @Description:
  */
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'

@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-13 16:20:10
+ * @LastEditTime: 2020-05-23 22:37:30
  * @Description:
  -->
 <template>
@@ -237,16 +237,15 @@ export default class MuRate extends Vue implements Rate {
   }
 
   get classes() {
-    const result = []
-    let i = 0
+    const result: any[] = []
     let threshold = this.currentValue
     if (this.allowHalf && this.currentValue !== Math.floor(this.currentValue)) {
       threshold--
     }
-    for (; i < threshold; i++) {
+    for (let i = 0; i < threshold; i++) {
       result.push(this.activeClass)
     }
-    for (; i < this.max; i++) {
+    for (let i = 0; i < this.max; i++) {
       result.push(this.voidClass)
     }
     return result

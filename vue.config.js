@@ -47,16 +47,13 @@ module.exports = {
         types: path.join(__dirname, 'types'),
         'musely-ui': path.resolve(__dirname, './')
       }
-    },
-    externals: process.env.NODE_ENV === 'production' ? externals : {}
+    }
+    // externals: process.env.NODE_ENV === 'production' ? externals : {}
   },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
-      patterns: [
-        path.resolve(__dirname, 'examples/styles/_variables.scss'),
-        path.resolve(__dirname, 'examples/styles/_mixins.scss')
-      ]
+      patterns: [path.resolve(__dirname, 'examples/styles/_variables.scss'), path.resolve(__dirname, 'examples/styles/_mixins.scss')]
     }
   },
   chainWebpack: (config) => {
@@ -70,6 +67,9 @@ module.exports = {
 
     // https://webpack.js.org/configuration/devtool/#development
     config.when(dev, (config) => config.devtool('cheap-module-eval-source-map'))
+
+    // config.module.rule('ts').uses.delete('ts-loader')
+    // config.module.rule('tsx').uses.delete('ts-loader')
 
     // 把 packages 和 examples 加入编译，因为新增的文件默认是不被 webpack 处理的
     config.module

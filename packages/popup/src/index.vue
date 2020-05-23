@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-09 21:09:55
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-18 02:25:15
+ * @LastEditTime: 2020-05-24 00:17:00
  * @Description:
  -->
 <template>
@@ -16,7 +16,7 @@
 </template>
 
 <script lang='ts'>
-// import { MuMain as Main } from 'types/main'
+import { MuPopup as PopupClass } from 'types/popup'
 import { mixins } from 'vue-class-component'
 import { Component, Prop, Watch } from 'vue-property-decorator'
 import Popup from 'musely-ui/src/utils/popup'
@@ -24,7 +24,7 @@ import Popup from 'musely-ui/src/utils/popup'
 @Component({
   name: 'MuPopup'
 })
-export default class MuPopup extends mixins(Popup) {
+export default class MuPopup extends mixins(Popup) implements PopupClass {
   @Prop({
     default: false,
     type: Boolean

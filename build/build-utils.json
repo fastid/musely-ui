@@ -1,25 +1,31 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "diagnostics": true,
+    "target": "ES5",
+    "module": "umd",
     "strict": true,
-    "importHelpers": true,
-    "moduleResolution": "node",
+    "moduleResolution": "classic",
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": false,
     "baseUrl": "./musely-ui/lib",
     "outDir": "../lib",
     "types": ["webpack-env", "mocha", "chai"],
-    "resolveJsonModule": true,
     "noImplicitAny": false,
+    "importHelpers": false,
+    "allowJs": true,
+    "allowUmdGlobalAccess": true,
+    "isolatedModules": true,
+    "alwaysStrict": false,
     "paths": {
       "musely-ui/lib": ["musely-ui/src"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "lib": []
   },
   "rules": {},
-  "include": ["../src/mixins/**/*.ts", "../src/utils/**/*.ts"],
+  "include": ["../src/mixins/**/*.ts", "../src/utils/**/*"],
   "exclude": []
 }

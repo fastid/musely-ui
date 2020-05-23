@@ -10,6 +10,7 @@
     "build:entry": "node build/build-entry.js ",
     "build:theme": "gulp build --gulpfile packages/theme-default/gulpfile.js && cp-cli packages/theme-default/lib lib/theme-default",
     "build:lib": "vue-cli-service build --target lib --dest lib packages/index.ts",
+    "build:pop": "babel --presets @babel/preset-typescript src -d lib",
     "build:utils": "tsc -p ./build/build-utils.json ",
     "clean": "rimraf lib && rimraf packages/*/lib",
     "dev": "yarn build:entry && vue-cli-service serve",
@@ -29,10 +30,13 @@
   ],
   "description": "vue + ts MuselyUI",
   "keyword": "vue ts typescript UI",
-  "dependencies": {
-    "deepmerge": "^1.2.0"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
+    "@babel/plugin-transform-typescript": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-typescript": "^7.9.0",
     "@types/chai": "^4.2.8",
     "@types/deepmerge": "^2.2.0",
     "@types/markdown-it": "^0.0.9",
@@ -56,6 +60,7 @@
     "cp-cli": "^1.0.2",
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.1.0",
+    "deepmerge": "^1.2.0",
     "eslint": "^6.7.2",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-node": "^11.0.0",
