@@ -1,6 +1,6 @@
 {
   "name": "musely-ui",
-  "version": "0.1.12",
+  "version": "0.1.15",
   "private": false,
   "license": "MIT",
   "author": "vencwang <fastid@gmail.com>",
@@ -25,9 +25,9 @@
   "style": "lib/theme-default/index.css",
   "typings": "types/index.d.ts",
   "files": [
-    "/lib/theme-default",
-    "/lib/musely-ui.common.js",
-    "/types"
+    "/lib/theme-default/fonts",
+    "/lib/theme-default/index.css",
+    "/lib/musely-ui.common.js"
   ],
   "description": "vue + ts MuselyUI",
   "keyword": "vue ts typescript UI",
