@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-09 21:09:55
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-25 02:14:51
+ * @LastEditTime: 2020-05-25 02:17:01
  * @Description:
  -->
 <template>
@@ -97,8 +97,8 @@ export default class MuPopup extends mixins(Popup) implements PopupClass {
 
   @Watch('value')
   watchVisible(val: any) {
-    console.log(val)
     this.currentValue = val
+    // show-hide modal
     if (val && this.modal) {
       this.open()
     } else if (!val && this.modal) {
