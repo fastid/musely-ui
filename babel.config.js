@@ -9,5 +9,20 @@ module.exports = {
       }
     ]
   ],
-  plugins: ['@babel/plugin-transform-typescript']
+  plugins: ['@babel/plugin-transform-typescript'],
+  env: {
+    utils: {
+      plugins: [
+        [
+          'module-resolver',
+          {
+            root: ['musely-ui'],
+            alias: {
+              'musely-ui/src': 'musely-ui/lib'
+            }
+          }
+        ]
+      ]
+    }
+  }
 }
