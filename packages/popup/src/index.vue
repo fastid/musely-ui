@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-09 21:09:55
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-24 00:17:00
+ * @LastEditTime: 2020-05-25 02:14:51
  * @Description:
  -->
 <template>
@@ -71,6 +71,12 @@ export default class MuPopup extends mixins(Popup) implements PopupClass {
     }
   }
 
+  beforeDestroy() {
+    if (this.modal) {
+      this.close()
+    }
+  }
+
   mounted() {
     if (this.value) {
       this.rendered = true
@@ -91,9 +97,12 @@ export default class MuPopup extends mixins(Popup) implements PopupClass {
 
   @Watch('value')
   watchVisible(val: any) {
+    console.log(val)
     this.currentValue = val
     if (val && this.modal) {
       this.open()
+    } else if (!val && this.modal) {
+      this.close()
     }
   }
 }

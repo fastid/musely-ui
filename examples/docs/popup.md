@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-09 22:45:06
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-18 03:00:47
+ * @LastEditTime: 2020-05-25 02:05:09
  * @Description:
  -->
 
@@ -34,7 +34,7 @@
   <p>We would create a Border and a Popup element to display the Preview.</p>
 </mu-popup>
 
-<mu-popup v-model="popupVisible3" position="right" class="popupRight" :modal="false">
+<mu-popup v-model="popupVisible3" position="right" class="popupRight">
   <p>At the right upper corner of this window there is a popup list and two navigation buttons.</p>
   <span><mu-button @click="popupVisible3 = false" type="primary">close popup</mu-button></span>
 </mu-popup>
