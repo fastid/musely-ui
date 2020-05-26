@@ -12,6 +12,7 @@
     "build:lib": "vue-cli-service build --target lib --dest lib packages/index.ts",
     "build:pop": "babel --presets @babel/preset-typescript src -d lib",
     "build:utils": "tsc -p ./build/build-utils.json ",
+    "build:docs": "vue-cli-service build",
     "clean": "rimraf lib && rimraf packages/*/lib",
     "dev": "yarn build:entry && vue-cli-service serve",
     "lint": "vue-cli-service lint",
@@ -31,7 +32,9 @@
   ],
   "description": "vue + ts MuselyUI",
   "keyword": "vue ts typescript UI",
-  "dependencies": {},
+  "dependencies": {
+    
+  },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
@@ -74,6 +77,7 @@
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
+    "gh-pages": "^2.2.0",
     "highlight.js": "^9.18.1",
     "markdown-it": "^8.4.1",
     "markdown-it-anchor": "^5.0.2",
