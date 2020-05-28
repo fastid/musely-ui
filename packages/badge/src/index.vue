@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-11 11:52:13
+ * @LastEditTime: 2020-05-29 01:00:39
  * @Description:
  -->
 <template>
@@ -29,7 +29,7 @@ import { MuBadge as Badge } from 'types/badge'
 import { Component, Vue, Prop } from 'vue-property-decorator'
 
 @Component({
-  name: 'MuMain'
+  name: 'MuBadge'
 })
 export default class MuBadge extends Vue implements Badge {
   @Prop({ type: [String, Number] }) value!: string | number

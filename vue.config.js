@@ -19,7 +19,7 @@ mixinsList.forEach(function(file) {
   externals[`musely-ui/src/mixins/${file}`] = `musely-ui/lib/mixins/${file}`
 })
 module.exports = {
-  publicPath: prod ? '/' : '/',
+  publicPath: prod ? '' : '',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
@@ -32,24 +32,34 @@ module.exports = {
       errors: true
     }
   },
-  pages: {
-    index: {
-      entry: 'examples/main.ts',
-      template: 'public/index.html'
+  css: {
+    extract: false
+  },
+  // pages: {
+  //   index: {
+  //     entry: 'examples/main.ts',
+  //     template: 'public/index.html'
+  //   }
+  // },
+  configureWebpack: (config) => {
+    const plugins = []
+    config.plugins = [...config.plugins, ...plugins]
+    config.entry = {
+      index: ['./examples/main.ts']
     }
   },
-  configureWebpack: {
-    plugins: [],
-    resolve: {
-      alias: {
-        '@': path.join(__dirname, 'examples'),
-        '~': path.join(__dirname, 'packages'),
-        types: path.join(__dirname, 'types'),
-        'musely-ui': path.resolve(__dirname, './')
-      }
-    }
-    // externals: process.env.NODE_ENV === 'production' ? externals : {}
-  },
+  // configureWebpack: {
+  //   plugins: []
+  //   // resolve: {
+  //   //   alias: {
+  //   //     '@': path.join(__dirname, 'examples'),
+  //   //     '~': path.join(__dirname, 'packages'),
+  //   //     types: path.join(__dirname, 'types'),
+  //   //     'musely-ui': path.resolve(__dirname, './')
+  //   //   }
+  //   // }
+  //   // externals: process.env.NODE_ENV === 'production' ? externals : {}
+  // },
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
@@ -60,10 +70,11 @@ module.exports = {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
     config.set('name', name)
-    // config.resolve.alias
-    //   .set('@', path.join(__dirname, 'examples'))
-    //   .set('~', path.join(__dirname, 'packages'))
-    //   .set('types', path.join(__dirname, 'types'))
+    config.resolve.alias
+      .set('@', path.join(__dirname, 'examples'))
+      .set('~', path.join(__dirname, 'packages'))
+      .set('types', path.join(__dirname, 'types'))
+      .set('musely-ui', path.join(__dirname, './'))
 
     // https://webpack.js.org/configuration/devtool/#development
     config.when(dev, (config) => config.devtool('cheap-module-eval-source-map'))

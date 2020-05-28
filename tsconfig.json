@@ -13,6 +13,7 @@
     "baseUrl": ".",
     "types": ["webpack-env", "mocha", "chai"],
     "resolveJsonModule": true,
+    "noImplicitAny": true,
     "paths": {
       "@/*": ["./examples/*"],
       "types/*": ["./types/*"],

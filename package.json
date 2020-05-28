@@ -19,7 +19,7 @@
     "test:unit": "vue-cli-service test:unit",
     "svg": "vsvg -s ./examples/icons/svg -t ./examples/icons/components --ext ts --es6",
     "release": "sh build/release.sh",
-    "publish:docs": "node build/publish-docs.js",
+    "publish:docs": "NODE_DEBUG=gh-pages node build/publish-docs.js",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "main": "lib/musely-ui.common.js",
@@ -32,9 +32,7 @@
   ],
   "description": "vue + ts MuselyUI",
   "keyword": "vue ts typescript UI",
-  "dependencies": {
-    
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
@@ -72,12 +70,12 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.1.2",
+    "gh-pages": "^2.2.0",
     "gulp": "^4.0.0",
     "gulp-cssmin": "^0.2.0",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gh-pages": "^2.2.0",
     "highlight.js": "^9.18.1",
     "markdown-it": "^8.4.1",
     "markdown-it-anchor": "^5.0.2",

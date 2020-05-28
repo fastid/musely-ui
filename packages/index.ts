@@ -32,27 +32,7 @@ import Popup from './popup'
 import Rate from './rate'
 import Row from './row'
 const version = '0.1.16'
-const components = [
-  Alert,
-  Aside,
-  Avatar,
-  Badge,
-  Button,
-  ButtonGroup,
-  Col,
-  Container,
-  Dialog,
-  Footer,
-  Header,
-  Icon,
-  Input,
-  Link,
-  Main,
-  PageHeader,
-  Popup,
-  Rate,
-  Row
-]
+const components = [Alert, Aside, Avatar, Badge, Button, ButtonGroup, Col, Container, Dialog, Footer, Header, Icon, Input, Link, Main, PageHeader, Popup, Rate, Row]
 
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   components.forEach((component: any) => {
@@ -72,30 +52,7 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
-export {
-  version,
-  Alert,
-  Aside,
-  Avatar,
-  Badge,
-  Button,
-  ButtonGroup,
-  Col,
-  Container,
-  Dialog,
-  Footer,
-  Header,
-  Icon,
-  Input,
-  Link,
-  Main,
-  Message,
-  MessageBox,
-  PageHeader,
-  Popup,
-  Rate,
-  Row
-}
+export { version, Alert, Aside, Avatar, Badge, Button, ButtonGroup, Col, Container, Dialog, Footer, Header, Icon, Input, Link, Main, Message, MessageBox, PageHeader, Popup, Rate, Row }
 export default {
   install,
   version

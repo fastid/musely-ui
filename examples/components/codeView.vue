@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:22:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-17 00:22:11
+ * @LastEditTime: 2020-05-29 01:04:50
  * @Description:
  -->
 <template>
@@ -33,10 +33,9 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
-  name: 'codeView',
   components: {}
 })
-export default class extends Vue {
+export default class CodeView extends Vue {
   private isExpand = false
 
   private toggle() {
