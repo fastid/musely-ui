@@ -25,7 +25,9 @@ then
   git checkout develop
   git rebase master
   git push origin develop
-  
+
+  echo "Create dist to Musely-doc!"
+  yarn publish:docs
 fi
 
 echo "Enter npm publish!"

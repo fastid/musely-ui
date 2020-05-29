@@ -6,7 +6,7 @@ const GIT_COMMIT = execSync('git rev-parse --short HEAD')
   .replace(/\n/, '')
 
 const ghpages = require('gh-pages')
-// execSync('yarn build:docs')
+execSync('yarn build:docs')
 ghpages.publish('dist', {
   user: {
     name: 'VictorWang',
