@@ -10,7 +10,7 @@ import { VueConstructor } from 'vue'
 import Button from './src/index.vue'
 
 Button.install = (Vue: VueConstructor) => {
-  Vue.component(Button.name, Button)
+  Vue.component(Button.options.name, Button)
 }
 
 export default Button

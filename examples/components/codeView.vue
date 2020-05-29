@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-03-31 16:22:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-29 01:04:50
+ * @LastEditTime: 2020-05-29 16:30:46
  * @Description:
  -->
 <template>
@@ -33,6 +33,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 
 @Component({
+  name: 'CodeView',
   components: {}
 })
 export default class CodeView extends Vue {

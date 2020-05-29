@@ -9,7 +9,7 @@ import { VueConstructor } from 'vue'
 import Link from './src/index.vue'
 
 Link.install = (Vue: VueConstructor) => {
-  Vue.component(Link.name, Link)
+  Vue.component(Link.options.name, Link)
 }
 
 export default Link

@@ -46,8 +46,10 @@ const components = [
 ]
 
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
+  // https://github.com/vuejs/vue-cli/issues/4065#issuecomment-496267589
+  // 注意:因为vue class name webpack 压缩后会消失,导致全局注册失败.故组件全局注册使用 vue.component(Comp.options.name,Comp)
   components.forEach((component: any) => {
-    Vue.use(component)
+    Vue.component(component.options.name,component)
   })
   Vue.prototype.$MUSELY = {
     zIndex: opts.zIndex || 2000

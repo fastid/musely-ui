@@ -7,7 +7,8 @@ declare module 'vue/types/vue' {
   // 3. 声明为 Vue 补充的东西
   interface VueConstructor {
     install: any
-    $myName: string
+    options: any
+    ComponentName: string
   }
   interface Vue {
     install: any
@@ -19,6 +20,7 @@ declare module 'vue/types/vue' {
 // ComponentOptions 声明于 types/options.d.ts 之中
 declare module 'vue/types/options' {
   interface ComponentOptions<V extends Vue> {
-    myOption?: string
+    name?: string
+    componentName?: string
   }
 }

@@ -9,7 +9,7 @@ import { VueConstructor } from 'vue'
 import Container from './src/index.vue'
 
 Container.install = (Vue: VueConstructor) => {
-  Vue.component(Container.name, Container)
+  Vue.component(Container.options.name, Container)
 }
 
 export default Container

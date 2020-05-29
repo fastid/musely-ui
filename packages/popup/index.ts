@@ -9,7 +9,7 @@ import { VueConstructor } from 'vue'
 import Popup from './src/index.vue'
 
 Popup.install = (Vue: VueConstructor) => {
-  Vue.component(Popup.name, Popup)
+  Vue.component(Popup.options.name, Popup)
 }
 
 export default Popup

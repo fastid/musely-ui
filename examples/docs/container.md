@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-13 10:00:08
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-04 20:45:22
+ * @LastEditTime: 2020-05-29 01:34:33
  * @Description:
  -->
 
@@ -59,17 +59,15 @@
   <mu-main>Main3</mu-main>
   <mu-main>Main4</mu-main>
 </mu-container>
-```
 
-```js
 <script>
-export default {
-  data() {
-    return {
-      vertical: 'vertical'
+  export default {
+    data() {
+      return {
+        vertical: 'vertical'
+      }
     }
   }
-}
 </script>
 ```
 

@@ -32,11 +32,32 @@ import Popup from './popup'
 import Rate from './rate'
 import Row from './row'
 const version = '0.1.16'
-const components = [Alert, Aside, Avatar, Badge, Button, ButtonGroup, Col, Container, Dialog, Footer, Header, Icon, Input, Link, Main, PageHeader, Popup, Rate, Row]
+const components = [
+  Alert,
+  Aside,
+  Avatar,
+  Badge,
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Dialog,
+  Footer,
+  Header,
+  Icon,
+  Input,
+  Link,
+  Main,
+  PageHeader,
+  Popup,
+  Rate,
+  Row
+]
 
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
+  // https://github.com/vuejs/vue-cli/issues/4065#issuecomment-496267589
   components.forEach((component: any) => {
-    Vue.use(component)
+    Vue.component(component.options.name,component)
   })
   Vue.prototype.$MUSELY = {
     zIndex: opts.zIndex || 2000
@@ -52,7 +73,30 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue)
 }
-export { version, Alert, Aside, Avatar, Badge, Button, ButtonGroup, Col, Container, Dialog, Footer, Header, Icon, Input, Link, Main, Message, MessageBox, PageHeader, Popup, Rate, Row }
+export {
+  version,
+  Alert,
+  Aside,
+  Avatar,
+  Badge,
+  Button,
+  ButtonGroup,
+  Col,
+  Container,
+  Dialog,
+  Footer,
+  Header,
+  Icon,
+  Input,
+  Link,
+  Main,
+  Message,
+  MessageBox,
+  PageHeader,
+  Popup,
+  Rate,
+  Row
+}
 export default {
   install,
   version

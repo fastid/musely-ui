@@ -2,14 +2,14 @@
  * @Author: Victor wang
  * @Date: 2020-04-03 01:45:15
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-26 17:20:39
+ * @LastEditTime: 2020-05-29 16:42:33
  * @Description:
  */
 import { VueConstructor } from 'vue'
-import Main from './src/index.vue'
+import Icon from './src/index.vue'
 
-Main.install = (Vue: VueConstructor) => {
-  Vue.component(Main.name, Main)
+Icon.install = (Vue: VueConstructor) => {
+  Vue.component(Icon.options.name, Icon)
 }
 
-export default Main
+export default Icon

@@ -10,7 +10,7 @@ import { VueConstructor } from 'vue'
 import Footer from './src/index.vue'
 
 Footer.install = (Vue: VueConstructor) => {
-  Vue.component(Footer.name, Footer)
+  Vue.component(Footer.options.name, Footer)
 }
 
 export default Footer
