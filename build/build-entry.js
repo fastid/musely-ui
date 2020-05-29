@@ -52,6 +52,7 @@ const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
     Vue.component(component.options.name,component)
   })
   Vue.prototype.$MUSELY = {
+    version,
     zIndex: opts.zIndex || 2000
   }
   Vue.prototype.$message = Message
