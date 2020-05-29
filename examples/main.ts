@@ -13,11 +13,8 @@ import '~/theme-default/src/index.scss'
 import '@/assets/index.scss'
 Vue.component('codeView', codeView)
 
-// Vue.use(MuselyUI)
-console.log(Main.options.name, Main.name)
+Vue.use(MuselyUI)
 
-Vue.use(Main)
-Vue.use(Button)
 Vue.use(SvgIcon, {
   tagName: 'svgicon'
 })
