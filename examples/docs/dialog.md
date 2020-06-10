@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-29 22:11:52
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-04 22:26:06
+ * @LastEditTime: 2020-06-11 01:49:46
  * @Description:
  -->
 
@@ -61,17 +61,6 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
 
 ```html
 <!-- Table -->
-<mu-button type="text" @click="dialogTableVisible = true">打开嵌套表格的 Dialog</mu-button>
-
-<mu-dialog title="收货地址" :visible.sync="dialogTableVisible">
-  <mu-table :data="gridData">
-    <mu-table-column property="date" label="日期" width="150"></mu-table-column>
-    <mu-table-column property="name" label="姓名" width="200"></mu-table-column>
-    <mu-table-column property="address" label="地址"></mu-table-column>
-  </mu-table>
-</mu-dialog>
-
-<!-- Form -->
 <mu-button type="text" @click="dialogFormVisible = true">打开嵌套表单的 Dialog</mu-button>
 
 <mu-dialog title="收货地址" :visible.sync="dialogFormVisible">
@@ -217,7 +206,6 @@ Dialog 的内容是懒渲染的，即在第一次被打开之前，传入的默�
 | title                 | Dialog 的标题，也可通过具名 slot （见下表）传入                              | string                               | —      | —      |
 | width                 | Dialog 的宽度                                                                | string                               | —      | 50%    |
 | fullscreen            | 是否为全屏 Dialog                                                            | boolean                              | —      | false  |
-| top                   | Dialog CSS 中的 margin-top 值                                                | string                               | —      | 15vh   |
 | modal                 | 是否需要遮罩层                                                               | boolean                              | —      | true   |
 | modal-append-to-body  | 遮罩层是否插入至 body 元素上，若为 false，则遮罩层会插入至 Dialog 的父元素上 | boolean                              | —      | true   |
 | append-to-body        | Dialog 自身是否插入至 body 元素上。嵌套的 Dialog 必须指定该属性并赋值为 true | boolean                              | —      | false  |

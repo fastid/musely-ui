@@ -26,7 +26,7 @@ export declare class MuDialog extends MuselyUIComponent {
   fullscreen: boolean
 
   /** Value for margin-top of Dialog CSS */
-  top: string
+  // top: string
 
   /** Whether a mask is displayed */
   modal: boolean

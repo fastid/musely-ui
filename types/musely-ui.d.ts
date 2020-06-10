@@ -19,6 +19,7 @@ import {MuCol} from './col'
 import {MuContainer} from './container'
 import {MuDialog} from './dialog'
 import {MuFooter} from './footer'
+import {MuForm} from './form'
 import {MuHeader} from './header'
 import {MuIcon} from './icon'
 import {MuInput} from './input'
@@ -85,6 +86,9 @@ export class Dialog extends MuDialog {}
 
 /** Footer Component **/
 export class Footer extends MuFooter {}
+
+/** Form Component **/
+export class Form extends MuForm {}
 
 /** Header Component **/
 export class Header extends MuHeader {}

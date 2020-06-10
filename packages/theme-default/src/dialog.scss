@@ -4,12 +4,17 @@
 
 @include b(dialog) {
   position: relative;
-  margin: 0 auto 50px;
+  // margin: 0 auto 50px;
   background: $--dialog-background-color;
   border-radius: $--border-radius-small;
   box-shadow: $--dialog-box-shadow;
   box-sizing: border-box;
   width: 50%;
+  margin: 0 !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
   @include when(fullscreen) {
     width: 100%;

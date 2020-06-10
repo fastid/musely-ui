@@ -39,7 +39,7 @@
 
 <script lang='ts'>
 import { DialogSlots, MuDialog as Dialog } from 'types/dialog'
-import { Component, Prop } from 'vue-property-decorator'
+import { Component, Prop, Watch } from 'vue-property-decorator'
 import { mixins } from 'vue-class-component'
 import Popup from 'musely-ui/src/utils/popup'
 import emitter from 'musely-ui/src/mixins/emitter'
@@ -60,7 +60,7 @@ export default class MuDialog extends mixins(Popup, emitter) implements Dialog {
   @Prop({ type: Function }) beforeClose!: any
   @Prop({ default: '', type: String }) customClass!: string
   @Prop({ default: '', type: String }) width!: string
-  @Prop({ default: '15vh', type: String }) top!: string
+  // @Prop({ default: '15vh', type: String }) top!: string
   @Prop({ default: false, type: Boolean }) center!: boolean
   @Prop({ type: Boolean }) destroyOnClose!: boolean
 
@@ -72,7 +72,7 @@ export default class MuDialog extends mixins(Popup, emitter) implements Dialog {
   get style() {
     const style: any = {}
     if (!this.fullscreen) {
-      style.marginTop = this.top
+      // style.marginTop = this.top
       if (this.width) {
         style.width = this.width
       }
@@ -137,6 +137,30 @@ export default class MuDialog extends mixins(Popup, emitter) implements Dialog {
     // if appendToBody is true, remove DOM node after destroy
     if (this.appendToBody && this.$el && this.$el.parentNode) {
       this.$el.parentNode.removeChild(this.$el)
+    }
+  }
+
+  @Watch('visible')
+  onvisible(val: boolean) {
+    if (val) {
+      this.closed = false
+      this.$emit('open')
+      this.$el.addEventListener('scroll', this.updatePopper)
+      this.$nextTick(() => {
+        // TODO ?
+        ;(this.$refs.dialog as HTMLElement).scrollTop = 0
+      })
+      if (this.appendToBody) {
+        document.body.appendChild(this.$el)
+      }
+    } else {
+      this.$el.removeEventListener('scroll', this.updatePopper)
+      if (!this.closed) this.$emit('close')
+      if (this.destroyOnClose) {
+        this.$nextTick(() => {
+          this.key++
+        })
+      }
     }
   }
 }

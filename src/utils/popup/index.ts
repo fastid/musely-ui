@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-05 11:01:51
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-24 02:29:33
+ * @LastEditTime: 2020-06-11 01:46:12
  * @Description:
  */
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
@@ -92,6 +92,7 @@ export default class extends Vue {
     if (this.opened) return
 
     this._opening = true
+    console.log(this.$el)
     const dom = this.$el
 
     const modal = props.modal
