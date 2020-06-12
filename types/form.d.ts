@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-06 15:40:00
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-06 17:09:26
+ * @LastEditTime: 2020-06-11 16:43:48
  * @Description:
  */
 import { MuselyUIComponent } from './common'
@@ -26,6 +26,11 @@ export interface ValidateFieldCallback {
    * @param errorMessage The error message. It will be empty if there is no error
    */
   (errorMessage: string): void
+}
+
+export interface Validate {
+  (callback: ValidateCallback): void
+  (): Promise<boolean>
 }
 
 /** Form Component */
@@ -67,9 +72,9 @@ export declare class MuForm extends MuselyUIComponent {
    * Validate the whole form
    *
    * @param callback A callback to tell the validation result
+   * TODO
    */
-  validate(callback: ValidateCallback): void
-  validate(): Promise<boolean>
+  // validate: Validate
   /**
    * Validate certain form items
    *

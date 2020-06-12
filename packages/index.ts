@@ -21,6 +21,7 @@ import Container from './container'
 import Dialog from './dialog'
 import Footer from './footer'
 import Form from './form'
+import FormItem from './form-item'
 import Header from './header'
 import Icon from './icon'
 import Input from './input'
@@ -45,6 +46,7 @@ const components = [
   Dialog,
   Footer,
   Form,
+  FormItem,
   Header,
   Icon,
   Input,
@@ -90,6 +92,7 @@ export {
   Dialog,
   Footer,
   Form,
+  FormItem,
   Header,
   Icon,
   Input,

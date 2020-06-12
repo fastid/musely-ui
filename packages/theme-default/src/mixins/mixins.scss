@@ -108,3 +108,9 @@
   height: 0;
   overflow: hidden;
 }
+
+@mixin pseudo($pseudo) {
+  @at-root #{&}#{':#{$pseudo}'} {
+    @content;
+  }
+}

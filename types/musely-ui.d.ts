@@ -20,6 +20,7 @@ import {MuContainer} from './container'
 import {MuDialog} from './dialog'
 import {MuFooter} from './footer'
 import {MuForm} from './form'
+import {MuFormItem} from './form-item'
 import {MuHeader} from './header'
 import {MuIcon} from './icon'
 import {MuInput} from './input'
@@ -89,6 +90,9 @@ export class Footer extends MuFooter {}
 
 /** Form Component **/
 export class Form extends MuForm {}
+
+/** FormItem Component **/
+export class FormItem extends MuFormItem {}
 
 /** Header Component **/
 export class Header extends MuHeader {}

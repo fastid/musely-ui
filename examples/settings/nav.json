@@ -112,6 +112,11 @@
       "path": "/form",
       "items": [
         {
+          "desc": "Form 表单",
+          "name": "form",
+          "path": "/form"
+        },
+        {
           "desc": "Input 输入框",
           "name": "input",
           "path": "/input"

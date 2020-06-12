@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-06 15:36:54
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-10 10:55:37
+ * @LastEditTime: 2020-06-12 10:54:27
  * @Description:
 -->
 <template>
@@ -130,11 +130,10 @@ export default class MuForm extends Vue implements Form {
     })
   }
 
-  clearValidate(props = []) {
+  clearValidate(props: any[] = []) {
     const p1 = this.fields.filter((field: any) => props === field.prop)
     const p2 = this.fields.filter((field: any) => {
-      const p: string = field.prop || ''
-      return props.indexOf(p) > -1
+      return props.indexOf(field.prop) > -1
     })
     const fields = props.length
       ? typeof props === 'string'
@@ -189,7 +188,7 @@ export default class MuForm extends Vue implements Form {
     }
   }
 
-  validateField(props: string | string[], cb?: ValidateFieldCallback) {
+  validateField(props: any, cb?: ValidateFieldCallback) {
     // TODO array
     props = [].concat(props)
 
@@ -207,7 +206,7 @@ export default class MuForm extends Vue implements Form {
   getLabelWidthIndex(width: any) {
     const index = this.potentialLabelWidthArr.indexOf(width)
     if (index === -1) {
-      throw new Error('[ElementForm]unpected width ', width)
+      throw new Error(`[ElementForm]unpected width ${width}`)
     }
     return index
   }

@@ -95,7 +95,7 @@ export const isVNode = (node: any) => {
 /** -------------------- **/
 const hasOwnProperty = Object.prototype.hasOwnProperty
 
-export const noop = () => {}
+export function noop() {}
 
 export const hasOwn = (obj: any, key: string) => {
   return hasOwnProperty.call(obj, key)
@@ -136,7 +136,7 @@ export const getValueByPath = function(object: any, prop: any) {
   return result
 }
 
-export function getPropByPath(obj: any, path: any, strict: any) {
+export const getPropByPath = (obj: any, path: string, strict?: boolean) => {
   let tempObj = obj
   path = path.replace(/\[(\w+)\]/g, '.$1')
   path = path.replace(/^\./, '')
@@ -310,10 +310,10 @@ export const moneyFormat = (num: any, type?: string) => {
  */
 export const merge = (target: any, ...args: any) => {
   for (let i = 0, j = args.length; i < j; i++) {
-    let source = args[i] || {}
-    for (let prop in source) {
+    const source = args[i] || {}
+    for (const prop in source) {
       if (source.hasOwnProperty(prop)) {
-        let value = source[prop]
+        const value = source[prop]
         if (value !== undefined) {
           target[prop] = value
         }
@@ -324,27 +324,7 @@ export const merge = (target: any, ...args: any) => {
   return target
 }
 
-function _deepClone(...source: any) {
-  let target: any
-  if (typeof source === 'object') {
-    target = Array.isArray(source) ? [] : {}
-    for (let key in source) {
-      if (source.hasOwnProperty(key)) {
-        if (typeof source[key] !== 'object') {
-          target[key] = source[key]
-        } else {
-          target[key] = _deepClone(source[key])
-        }
-      }
-    }
-  } else {
-    target = source
-  }
-  return target
-}
-
 /**
- * TODO --marge--
  * @param obj
  * @param fn
  */
@@ -356,25 +336,24 @@ function forEach(obj: any, fn: any) {
 
   // Force an array if not already something iterable
   if (typeof obj !== 'object') {
-    /*eslint no-param-reassign:0*/
     obj = [obj]
   }
 
   if (isArray(obj)) {
     // Iterate over array values
-    for (var i = 0, l = obj.length; i < l; i++) {
+    for (let i = 0, l = obj.length; i < l; i++) {
       fn.call(null, obj[i], i, obj)
     }
   } else {
     // Iterate over object keys
-    for (var key in obj) {
+    for (const key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
         fn.call(null, obj[key], key, obj)
       }
     }
   }
 }
-
+//  TODO --marge--
 export const merge2 = (...args: any) => {
   const result: any = {}
   const assignValue = (val: any, key: any) => {
@@ -385,7 +364,7 @@ export const merge2 = (...args: any) => {
     }
   }
 
-  for (var i = 0, l = args.length; i < l; i++) {
+  for (let i = 0, l = args.length; i < l; i++) {
     forEach(args[i], assignValue)
   }
   return result
@@ -410,7 +389,7 @@ export const deepMerge = (...args: any) => {
     }
   }
 
-  for (var i = 0, l = args.length; i < l; i++) {
+  for (let i = 0, l = args.length; i < l; i++) {
     forEach(args[i], assignValue)
   }
   return result
