@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-12 10:26:02
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-12 10:26:03
+ * @LastEditTime: 2020-06-14 11:44:04
  * @Description:
 -->
 <script>
@@ -13,13 +13,13 @@ export default {
     updateAll: Boolean
   },
 
-  inject: ['elForm', 'elFormItem'],
+  inject: ['muForm', 'muFormItem'],
 
   render () {
     const slots = this.$slots.default
     if (!slots) return null
     if (this.isAutoWidth) {
-      const autoLabelWidth = this.elForm.autoLabelWidth
+      const autoLabelWidth = this.muForm.autoLabelWidth
       const style = {}
       if (autoLabelWidth && autoLabelWidth !== 'auto') {
         const marginLeft = parseInt(autoLabelWidth, 10) - this.computedWidth
@@ -49,7 +49,7 @@ export default {
         if (action === 'update') {
           this.computedWidth = this.getLabelWidth()
         } else if (action === 'remove') {
-          this.elForm.deregisterLabelWidth(this.computedWidth)
+          this.muForm.deregisterLabelWidth(this.computedWidth)
         }
       }
     }
@@ -58,8 +58,8 @@ export default {
   watch: {
     computedWidth (val, oldVal) {
       if (this.updateAll) {
-        this.elForm.registerLabelWidth(val, oldVal)
-        this.elFormItem.updateComputedLabelWidth(val)
+        this.muForm.registerLabelWidth(val, oldVal)
+        this.muFormItem.updateComputedLabelWidth(val)
       }
     }
   },

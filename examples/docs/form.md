@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-11 17:49:34
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-11 17:53:20
+ * @LastEditTime: 2020-06-14 12:59:56
  * @Description:
 -->
 
@@ -17,19 +17,19 @@
 :::demo 在 Form 组件中，每一个表单域由一个 Form-Item 组件构成，表单域中可以放置各种类型的表单控件，包括 Input、Select、Checkbox、Radio、Switch、DatePicker、TimePicker
 
 ```html
-<mu-form ref="form" :model="form" label-width="120px">
+<mu-form ref="form" :model="form" labmu-width="120px">
   <mu-form-item label="Activity name">
-    <mu-input v-model="form.name"></el-input>
-  </el-form-item>
+    <mu-input v-model="form.name"></mu-input>
+  </mu-form-item>
 
   <mu-form-item label="Activity form">
-    <mu-input type="textarea" v-model="form.desc"></el-input>
-  </el-form-item>
+    <mu-input type="textarea" v-model="form.desc"></mu-input>
+  </mu-form-item>
   <mu-form-item>
-    <mu-button type="primary" @click="onSubmit">Create</el-button>
-    <mu-button>Cancel</el-button>
-  </el-form-item>
-</el-form>
+    <mu-button type="primary" @click="onSubmit">Create</mu-button>
+    <mu-button>Cancel</mu-button>
+  </mu-form-item>
+</mu-form>
 <script>
   export default {
     data() {
@@ -74,18 +74,12 @@ When the vertical space is limited and the form is relatively simple, you can pu
 ```html
 <mu-form :inline="true" :model="formInline" class="demo-form-inline">
   <mu-form-item label="Approved by">
-    <mu-input v-model="formInline.user" placeholder="Approved by"></el-input>
-  </el-form-item>
-  <mu-form-item label="Activity zone">
-    <mu-select v-model="formInline.region" placeholder="Activity zone">
-      <mu-option label="Zone one" value="shanghai"></el-option>
-      <mu-option label="Zone two" value="beijing"></el-option>
-    </el-select>
-  </el-form-item>
+    <mu-input v-model="formInline.user" placeholder="Approved by"></mu-input>
+  </mu-form-item>
   <mu-form-item>
-    <mu-button type="primary" @click="onSubmit">Query</el-button>
-  </el-form-item>
-</el-form>
+    <mu-button type="primary" @click="onSubmit">Query</mu-button>
+  </mu-form-item>
+</mu-form>
 <script>
   export default {
     data() {
@@ -111,26 +105,21 @@ When the vertical space is limited and the form is relatively simple, you can pu
 
 Depending on your design, there are several different ways to align your label element.
 
-:::demo The `label-position` attribute decides how labels align, it can be `top` or `left`. When set to `top`, labels will be placed at the top of the form field.
+:::demo The `labmu-position` attribute decides how labels align, it can be `top` or `left`. When set to `top`, labels will be placed at the top of the form field.
 
 ```html
-<mu-radio-group v-model="labelPosition" size="small">
-  <mu-radio-button label="left">Left</el-radio-button>
-  <mu-radio-button label="right">Right</el-radio-button>
-  <mu-radio-button label="top">Top</el-radio-button>
-</el-radio-group>
 <div style="margin: 20px;"></div>
-<mu-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
+<mu-form :labmu-position="labelPosition" labmu-width="100px" :model="formLabelAlign">
   <mu-form-item label="Name">
-    <mu-input v-model="formLabelAlign.name"></el-input>
-  </el-form-item>
+    <mu-input v-model="formLabelAlign.name"></mu-input>
+  </mu-form-item>
   <mu-form-item label="Activity zone">
-    <mu-input v-model="formLabelAlign.region"></el-input>
-  </el-form-item>
+    <mu-input v-model="formLabelAlign.region"></mu-input>
+  </mu-form-item>
   <mu-form-item label="Activity form">
-    <mu-input v-model="formLabelAlign.type"></el-input>
-  </el-form-item>
-</el-form>
+    <mu-input v-model="formLabelAlign.type"></mu-input>
+  </mu-form-item>
+</mu-form>
 <script>
   export default {
     data() {
@@ -156,54 +145,15 @@ Form component allows you to verify your data, helping you find and correct erro
 :::demo Just add the `rules` attribute for `Form` component, pass validation rules, and set `prop` attribute for `Form-Item` as a specific key that needs to be validated. See more information at [async-validator](https://github.com/yiminghe/async-validator).
 
 ```html
-<mu-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
+<mu-form :model="ruleForm" :rules="rules" ref="ruleForm" labmu-width="120px" class="demo-ruleForm">
   <mu-form-item label="Activity name" prop="name">
-    <mu-input v-model="ruleForm.name"></el-input>
-  </el-form-item>
-  <mu-form-item label="Activity zone" prop="region">
-    <mu-select v-model="ruleForm.region" placeholder="Activity zone">
-      <mu-option label="Zone one" value="shanghai"></el-option>
-      <mu-option label="Zone two" value="beijing"></el-option>
-    </el-select>
-  </el-form-item>
-  <mu-form-item label="Activity time" required>
-    <mu-col :span="11">
-      <mu-form-item prop="date1">
-        <mu-date-picker type="date" placeholder="Pick a date" v-model="ruleForm.date1" style="width: 100%;"></el-date-picker>
-      </el-form-item>
-    </el-col>
-    <mu-col class="line" :span="2">-</el-col>
-    <mu-col :span="11">
-      <mu-form-item prop="date2">
-        <mu-time-picker placeholder="Pick a time" v-model="ruleForm.date2" style="width: 100%;"></el-time-picker>
-      </el-form-item>
-    </el-col>
-  </el-form-item>
-  <mu-form-item label="Instant delivery" prop="delivery">
-    <mu-switch v-model="ruleForm.delivery"></el-switch>
-  </el-form-item>
-  <mu-form-item label="Activity type" prop="type">
-    <mu-checkbox-group v-model="ruleForm.type">
-      <mu-checkbox label="Online activities" name="type"></el-checkbox>
-      <mu-checkbox label="Promotion activities" name="type"></el-checkbox>
-      <mu-checkbox label="Offline activities" name="type"></el-checkbox>
-      <mu-checkbox label="Simple brand exposure" name="type"></el-checkbox>
-    </el-checkbox-group>
-  </el-form-item>
-  <mu-form-item label="Resources" prop="resource">
-    <mu-radio-group v-model="ruleForm.resource">
-      <mu-radio label="Sponsorship"></el-radio>
-      <mu-radio label="Venue"></el-radio>
-    </el-radio-group>
-  </el-form-item>
-  <mu-form-item label="Activity form" prop="desc">
-    <mu-input type="textarea" v-model="ruleForm.desc"></el-input>
-  </el-form-item>
+    <mu-input v-model="ruleForm.name"></mu-input>
+  </mu-form-item>
   <mu-form-item>
-    <mu-button type="primary" @click="submitForm('ruleForm')">Create</el-button>
-    <mu-button @click="resetForm('ruleForm')">Reset</el-button>
-  </el-form-item>
-</el-form>
+    <mu-button type="primary" @click="submitForm('ruleForm')">Create</mu-button>
+    <mu-button @click="resetForm('ruleForm')">Reset</mu-button>
+  </mu-form-item>
+</mu-form>
 <script>
   export default {
     data() {
@@ -260,21 +210,21 @@ This example shows how to customize your own validation rules to finish a two-fa
 :::demo Here we use `status-icon` to reflect validation result as an icon.
 
 ```html
-<mu-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
+<mu-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" labmu-width="120px" class="demo-ruleForm">
   <mu-form-item label="Password" prop="pass">
-    <mu-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
-  </el-form-item>
+    <mu-input type="password" v-model="ruleForm.pass" autocomplete="off"></mu-input>
+  </mu-form-item>
   <mu-form-item label="Confirm" prop="checkPass">
-    <mu-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
-  </el-form-item>
+    <mu-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></mu-input>
+  </mu-form-item>
   <mu-form-item label="Age" prop="age">
-    <mu-input v-model.number="ruleForm.age"></el-input>
-  </el-form-item>
+    <mu-input v-model.number="ruleForm.age"></mu-input>
+  </mu-form-item>
   <mu-form-item>
-    <mu-button type="primary" @click="submitForm('ruleForm')">Submit</el-button>
-    <mu-button @click="resetForm('ruleForm')">Reset</el-button>
-  </el-form-item>
-</el-form>
+    <mu-button type="primary" @click="submitForm('ruleForm')">Submit</mu-button>
+    <mu-button @click="resetForm('ruleForm')">Reset</mu-button>
+  </mu-form-item>
+</mu-form>
 <script>
   export default {
     data() {
@@ -356,7 +306,7 @@ Custom validate callback function must be called. See more advanced usage at [as
 :::demo In addition to passing all validation rules at once on the form component, you can also pass the validation rules or delete rules on a single form field dynamically.
 
 ```html
-<mu-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="120px" class="demo-dynamic">
+<mu-form :model="dynamicValidateForm" ref="dynamicValidateForm" labmu-width="120px" class="demo-dynamic">
   <mu-form-item
     prop="email"
     label="Email"
@@ -365,8 +315,8 @@ Custom validate callback function must be called. See more advanced usage at [as
       { type: 'email', message: 'Please input correct email address', trigger: ['blur', 'change'] }
     ]"
   >
-    <mu-input v-model="dynamicValidateForm.email"></el-input>
-  </el-form-item>
+    <mu-input v-model="dynamicValidateForm.email"></mu-input>
+  </mu-form-item>
   <mu-form-item
     v-for="(domain, index) in dynamicValidateForm.domains"
     :label="'Domain' + index"
@@ -376,14 +326,14 @@ Custom validate callback function must be called. See more advanced usage at [as
       required: true, message: 'domain can not be null', trigger: 'blur'
     }"
   >
-    <mu-input v-model="domain.value"></el-input><mu-button @click.prevent="removeDomain(domain)">Delete</el-button>
-  </el-form-item>
+    <mu-input v-model="domain.value"></mu-input><mu-button @click.prevent="removeDomain(domain)">Delete</mu-button>
+  </mu-form-item>
   <mu-form-item>
-    <mu-button type="primary" @click="submitForm('dynamicValidateForm')">Submit</el-button>
-    <mu-button @click="addDomain">New domain</el-button>
-    <mu-button @click="resetForm('dynamicValidateForm')">Reset</el-button>
-  </el-form-item>
-</el-form>
+    <mu-button type="primary" @click="submitForm('dynamicValidateForm')">Submit</mu-button>
+    <mu-button @click="addDomain">New domain</mu-button>
+    <mu-button @click="resetForm('dynamicValidateForm')">Reset</mu-button>
+  </mu-form-item>
+</mu-form>
 <script>
   export default {
     data() {
@@ -437,7 +387,7 @@ Custom validate callback function must be called. See more advanced usage at [as
 :::demo Number Validate need a `.number` modifier added on the input `v-model` binding，it's used to transform the string value to the number which is provided by Vuejs.
 
 ```html
-<mu-form :model="numberValidateForm" ref="numberValidateForm" label-width="100px" class="demo-ruleForm">
+<mu-form :model="numberValidateForm" ref="numberValidateForm" labmu-width="100px" class="demo-ruleForm">
   <mu-form-item
     label="age"
     prop="age"
@@ -446,13 +396,13 @@ Custom validate callback function must be called. See more advanced usage at [as
       { type: 'number', message: 'age must be a number'}
     ]"
   >
-    <mu-input type="age" v-model.number="numberValidateForm.age" autocomplete="off"></el-input>
-  </el-form-item>
+    <mu-input type="age" v-model.number="numberValidateForm.age" autocomplete="off"></mu-input>
+  </mu-form-item>
   <mu-form-item>
-    <mu-button type="primary" @click="submitForm('numberValidateForm')">Submit</el-button>
-    <mu-button @click="resetForm('numberValidateForm')">Reset</el-button>
-  </el-form-item>
-</el-form>
+    <mu-button type="primary" @click="submitForm('numberValidateForm')">Submit</mu-button>
+    <mu-button @click="resetForm('numberValidateForm')">Reset</mu-button>
+  </mu-form-item>
+</mu-form>
 <script>
   export default {
     data() {
@@ -484,143 +434,74 @@ Custom validate callback function must be called. See more advanced usage at [as
 :::
 
 :::tip
-When an `el-form-item` is nested in another `el-form-item`, its label width will be `0`. You can set `label-width` on that `el-form-item` if needed.
-:::
-
-### Size control
-
-All components in a Form inherit their `size` attribute from that Form. Similarly, FormItem also has a `size` attribute.
-
-:::demo Still you can fine tune each component's `size` if you don't want that component to inherit its size from From or FormIten.
-
-```html
-<mu-form ref="form" :model="sizeForm" label-width="120px" size="mini">
-  <mu-form-item label="Activity name">
-    <mu-input v-model="sizeForm.name"></el-input>
-  </el-form-item>
-  <mu-form-item label="Activity zone">
-    <mu-select v-model="sizeForm.region" placeholder="please select your zone">
-      <mu-option label="Zone one" value="shanghai"></el-option>
-      <mu-option label="Zone two" value="beijing"></el-option>
-    </el-select>
-  </el-form-item>
-  <mu-form-item label="Activity time">
-    <mu-col :span="11">
-      <mu-date-picker type="date" placeholder="Pick a date" v-model="sizeForm.date1" style="width: 100%;"></el-date-picker>
-    </el-col>
-    <mu-col class="line" :span="2">-</el-col>
-    <mu-col :span="11">
-      <mu-time-picker placeholder="Pick a time" v-model="sizeForm.date2" style="width: 100%;"></el-time-picker>
-    </el-col>
-  </el-form-item>
-  <mu-form-item label="Activity type">
-    <mu-checkbox-group v-model="sizeForm.type">
-      <mu-checkbox-button label="Online activities" name="type"></el-checkbox-button>
-      <mu-checkbox-button label="Promotion activities" name="type"></el-checkbox-button>
-    </el-checkbox-group>
-  </el-form-item>
-  <mu-form-item label="Resources">
-    <mu-radio-group v-model="sizeForm.resource" size="medium">
-      <mu-radio border label="Sponsor"></el-radio>
-      <mu-radio border label="Venue"></el-radio>
-    </el-radio-group>
-  </el-form-item>
-  <mu-form-item size="large">
-    <mu-button type="primary" @click="onSubmit">Create</el-button>
-    <mu-button>Cancel</el-button>
-  </el-form-item>
-</el-form>
-
-<script>
-  export default {
-    data() {
-      return {
-        sizeForm: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
-        }
-      }
-    },
-    methods: {
-      onSubmit() {
-        console.log('submit!')
-      }
-    }
-  }
-</script>
-```
-
+When an `mu-form-item` is nested in another `mu-form-item`, its label width will be `0`. You can set `labmu-width` on that `mu-form-item` if needed.
 :::
 
 ### Form Attributes
 
-| Attribute               | Description                                                                                                                       | Type    | Accepted Values       | Default |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------- | --------------------- | ------- |
-| model                   | data of form component                                                                                                            | object  | —                     | —       |
-| rules                   | validation rules of form                                                                                                          | object  | —                     | —       |
-| inline                  | whether the form is inline                                                                                                        | boolean | —                     | false   |
-| label-position          | position of label. If set to 'left' or 'right', `label-width` prop is also required                                               | string  | left / right / top    | right   |
-| label-width             | width of label, e.g. '50px'. All its direct child form items will inherit this value. Width `auto` is supported.                  | string  | —                     | —       |
-| label-suffix            | suffix of the label                                                                                                               | string  | —                     | —       |
-| hide-required-asterisk  | whether required fields should have a red asterisk (star) beside their labels                                                     | boolean | —                     | false   |
-| show-message            | whether to show the error message                                                                                                 | boolean | —                     | true    |
-| inline-message          | whether to display the error message inline with the form item                                                                    | boolean | —                     | false   |
-| status-icon             | whether to display an icon indicating the validation result                                                                       | boolean | —                     | false   |
-| validate-on-rule-change | whether to trigger validation when the `rules` prop is changed                                                                    | boolean | —                     | true    |
-| size                    | control the size of components in this form                                                                                       | string  | medium / small / mini | —       |
-| disabled                | whether to disabled all components in this form. If set to true, it cannot be overridden by its inner components' `disabled` prop | boolean | —                     | false   |
+### Form Attributes
+
+| 参数                    | 说明                                                                                      | 类型    | 可选值                | 默认值 |
+| ----------------------- | ----------------------------------------------------------------------------------------- | ------- | --------------------- | ------ |
+| model                   | 表单数据对象                                                                              | object  | —                     | —      |
+| rules                   | 表单验证规则                                                                              | object  | —                     | —      |
+| inline                  | 行内表单模式                                                                              | boolean | —                     | false  |
+| label-position          | 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 `label-width`                   | string  | right/left/top        | right  |
+| label-width             | 表单域标签的宽度，例如 '50px'。作为 Form 直接子元素的 form-item 会继承该值。支持 `auto`。 | string  | —                     | —      |
+| label-suffix            | 表单域标签的后缀                                                                          | string  | —                     | —      |
+| hide-required-asterisk  | 是否显示必填字段的标签旁边的红色星号                                                      | boolean | —                     | false  |
+| show-message            | 是否显示校验错误信息                                                                      | boolean | —                     | true   |
+| inline-message          | 是否以行内形式展示校验信息                                                                | boolean | —                     | false  |
+| status-icon             | 是否在输入框中显示校验结果反馈图标                                                        | boolean | —                     | false  |
+| validate-on-rule-change | 是否在 `rules` 属性改变后立即触发一次验证                                                 | boolean | —                     | true   |
+| size                    | 用于控制该表单内组件的尺寸                                                                | string  | medium / small / mini | —      |
+| disabled                | 是否禁用该表单内的所有组件。若设置为 true，则表单内组件上的 disabled 属性不再生效         | boolean | —                     | false  |
 
 ### Form Methods
 
-| Method        | Description                                                                                                                                                                                                                                                                      | Parameters                                                                 |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| validate      | validate the whole form. Takes a callback as a param. After validation, the callback will be executed with two params: a boolean indicating if the validation has passed, and an object containing all fields that fail the validation. Returns a promise if callback is omitted | Function(callback: Function(boolean, object))                              |
-| validateField | validate one or several form items                                                                                                                                                                                                                                               | Function(props: string \| array, callback: Function(errorMessage: string)) |
-| resetFields   | reset all the fields and remove validation result                                                                                                                                                                                                                                | —                                                                          |
-| clearValidate | clear validation message for certain fields. The parameter is prop name or an array of prop names of the form items whose validation messages will be removed. When omitted, all fields' validation messages will be cleared                                                     | Function(props: string \| array)                                           |
+| 方法名        | 说明                                                                                                                                                                 | 参数                                                                       |
+| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| validate      | 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用，并传入两个参数：是否校验成功和未通过校验的字段。若不传入回调函数，则会返回一个 promise | Function(callback: Function(boolean, object))                              |
+| validateField | 对部分表单字段进行校验的方法                                                                                                                                         | Function(props: array \| string, callback: Function(errorMessage: string)) |
+| resetFields   | 对整个表单进行重置，将所有字段值重置为初始值并移除校验结果                                                                                                           | —                                                                          |
+| clearValidate | 移除表单项的校验结果。传入待移除的表单项的 prop 属性或者 prop 组成的数组，如不传则移除整个表单的校验结果                                                             | Function(props: array \| string)                                           |
 
 ### Form Events
 
-| Event Name | Description                             | Parameters                                                                                            |
-| ---------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| validate   | triggers after a form item is validated | prop name of the form item being validated, whether validation is passed and the error message if not |
+| 事件名称 | 说明                   | 回调参数                                                   |
+| -------- | ---------------------- | ---------------------------------------------------------- |
+| validate | 任一表单项被校验后触发 | 被校验的表单项 prop 值，校验是否通过，错误消息（如果存在） |
 
 ### Form-Item Attributes
 
-| Attribute      | Description                                                                                            | Type    | Accepted Values                     | Default |
-| -------------- | ------------------------------------------------------------------------------------------------------ | ------- | ----------------------------------- | ------- |
-| prop           | a key of `model`. In the use of validate and resetFields method, the attribute is required             | string  | keys of model that passed to `form` |
-| label          | label                                                                                                  | string  | —                                   | —       |
-| label-width    | width of label, e.g. '50px'. Width `auto` is supported.                                                | string  | —                                   | —       |
-| required       | whether the field is required or not, will be determined by validation rules if omitted                | boolean | —                                   | false   |
-| rules          | validation rules of form                                                                               | object  | —                                   | —       |
-| error          | field error message, set its value and the field will validate error and show this message immediately | string  | —                                   | —       |
-| show-message   | whether to show the error message                                                                      | boolean | —                                   | true    |
-| inline-message | inline style validate message                                                                          | boolean | —                                   | false   |
-| size           | control the size of components in this form-item                                                       | string  | medium / small / mini               | -       |
+| 参数           | 说明                                                                         | 类型    | 可选值                            | 默认值 |
+| -------------- | ---------------------------------------------------------------------------- | ------- | --------------------------------- | ------ |
+| prop           | 表单域 model 字段，在使用 validate、resetFields 方法的情况下，该属性是必填的 | string  | 传入 Form 组件的 `model` 中的字段 | —      |
+| label          | 标签文本                                                                     | string  | —                                 | —      |
+| label-width    | 表单域标签的的宽度，例如 '50px'。支持 `auto`。                               | string  | —                                 | —      |
+| required       | 是否必填，如不设置，则会根据校验规则自动生成                                 | boolean | —                                 | false  |
+| rules          | 表单验证规则                                                                 | object  | —                                 | —      |
+| error          | 表单域验证错误信息, 设置该值会使表单验证状态变为`error`，并显示该错误信息    | string  | —                                 | —      |
+| show-message   | 是否显示校验错误信息                                                         | boolean | —                                 | true   |
+| inline-message | 以行内形式展示校验信息                                                       | boolean | —                                 | false  |
+| size           | 用于控制该表单域下组件的尺寸                                                 | string  | medium / small / mini             | -      |
 
 ### Form-Item Slot
 
-| Name  | Description          |
-| ----- | -------------------- |
-| —     | content of Form Item |
-| label | content of label     |
+| name  | 说明             |
+| ----- | ---------------- |
+| —     | Form Item 的内容 |
+| label | 标签文本的内容   |
 
 ### Form-Item Scoped Slot
 
-| Name  | Description                                                                    |
-| ----- | ------------------------------------------------------------------------------ |
-| error | Custom content to display validation message. The scope parameter is { error } |
+| name  | 说明                                           |
+| ----- | ---------------------------------------------- |
+| error | 自定义表单校验信息的显示方式，参数为 { error } |
 
 ### Form-Item Methods
 
-| Method        | Description                                      | Parameters |
-| ------------- | ------------------------------------------------ | ---------- |
-| resetField    | reset current field and remove validation result | —          |
-| clearValidate | remove validation status of the field            | -          |
+| 方法名        | 说明                                                 | 参数 |
+| ------------- | ---------------------------------------------------- | ---- |
+| resetField    | 对该表单项进行重置，将其值重置为初始值并移除校验结果 | -    |
+| clearValidate | 移除该表单项的校验结果                               | -    |

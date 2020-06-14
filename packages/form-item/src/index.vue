@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-12 10:14:52
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-13 01:15:12
+ * @LastEditTime: 2020-06-14 11:45:00
  * @Description:
 -->
 <template>
@@ -15,7 +15,6 @@
       'is-required': isRequired || required,
       'is-no-asterisk': muForm && muForm.hideRequiredAsterisk
     },
-    sizeClass ? 'mu-form-item--' + sizeClass : ''
   ]">
     <label-wrap :is-auto-width="labelStyle && labelStyle.width === 'auto'"
                 :update-all="form.labelWidth === 'auto'">
@@ -123,7 +122,9 @@ export default class MuFormItem extends mixins(emitter) implements FormItem {
 
   get form() {
     let parent = this.$parent
-    let parentName = parent.$options.componentName
+    console.log('====', parent)
+    let parentName = parent.$options.name
+    console.log(parentName)
     while (parentName !== 'MuForm') {
       if (parentName === 'MuFormItem') {
         this.isNested = true

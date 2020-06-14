@@ -1,5 +1,23 @@
 import Vue from 'vue'
-export function isString(obj: any) {
+
+const hasOwnProperty = Object.prototype.hasOwnProperty
+
+export const hasOwn = (obj: any, key: string) => {
+  return hasOwnProperty.call(obj, key)
+}
+
+export function rafThrottle(fn: any) {
+  let locked = false
+  return function(...args: any) {
+    if (locked) return
+    locked = true
+    window.requestAnimationFrame(() => {
+      fn.apply(fn, args)
+      locked = false
+    })
+  }
+}
+export const isString = (obj: any) => {
   return Object.prototype.toString.call(obj) === '[object String]'
 }
 
@@ -23,6 +41,7 @@ export const isFunction = (functionToCheck: any) => {
 }
 
 export const isUndefined = (val: any) => {
+  /* eslint-disable-next-line */
   return val === void 0
 }
 
@@ -30,6 +49,7 @@ export const isDefined = (val: any) => {
   return val !== undefined && val !== null
 }
 export const isIE = () => {
+  /* eslint-disable-next-line */
   return !Vue.prototype.$isServer && !isNaN(Number(document['documentMode']))
 }
 
@@ -45,6 +65,40 @@ export const isValidURL = (url: string) => {
   // tslint:disable-next-line: max-line-length
   const reg = /^(https?|ftp):\/\/([a-zA-Z0-9.-]+(:[a-zA-Z0-9.&%$-]+)*@)*((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9][0-9]?)(\.(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[1-9]?[0-9])){3}|([a-zA-Z0-9-]+\.)*[a-zA-Z0-9-]+\.(com|edu|gov|int|mil|net|org|biz|arpa|info|name|pro|aero|coop|museum|[a-zA-Z]{2}))(:[0-9]+)*(\/($|[a-zA-Z0-9.,?'\\+&%$#=~_-]+))*$/
   return reg.test(url)
+}
+
+export const capitalize = (str: any) => {
+  if (!isString(str)) return str
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+export const looseEqual = (a: any, b: any) => {
+  const isObjectA = isObject(a)
+  const isObjectB = isObject(b)
+  if (isObjectA && isObjectB) {
+    return JSON.stringify(a) === JSON.stringify(b)
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b)
+  } else {
+    return false
+  }
+}
+
+export const arrayEquals = (arrayA: any, arrayB: any) => {
+  arrayA = arrayA || []
+  arrayB = arrayB || []
+
+  if (arrayA.length !== arrayB.length) {
+    return false
+  }
+
+  for (let i = 0; i < arrayA.length; i++) {
+    if (!looseEqual(arrayA[i], arrayB[i])) {
+      return false
+    }
+  }
+
+  return true
 }
 
 export const isEqual = (value1: any, value2: any) => {
@@ -92,14 +146,17 @@ export const isVNode = (node: any) => {
   return node !== null && typeof node === 'object' && hasOwn(node, 'componentOptions')
 }
 
-/** -------------------- **/
-const hasOwnProperty = Object.prototype.hasOwnProperty
-
-export function noop() {}
-
-export const hasOwn = (obj: any, key: string) => {
-  return hasOwnProperty.call(obj, key)
+/** change **/
+export const objToArray = (obj: any) => {
+  if (Array.isArray(obj)) {
+    return obj
+  }
+  return isEmpty(obj) ? [] : [obj]
 }
+
+/** -------------------- **/
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+export function noop() {}
 
 function extend(to: any, _from: any) {
   for (const key in _from) {
@@ -228,66 +285,12 @@ export const kebabCase = (str: any) => {
     .replace(hyphenateRE, '$1-$2')
     .toLowerCase()
 }
-
-export const capitalize = (str: any) => {
-  if (!isString(str)) return str
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
-
-export const looseEqual = (a: any, b: any) => {
-  const isObjectA = isObject(a)
-  const isObjectB = isObject(b)
-  if (isObjectA && isObjectB) {
-    return JSON.stringify(a) === JSON.stringify(b)
-  } else if (!isObjectA && !isObjectB) {
-    return String(a) === String(b)
-  } else {
-    return false
-  }
-}
-
-export const arrayEquals = (arrayA: any, arrayB: any) => {
-  arrayA = arrayA || []
-  arrayB = arrayB || []
-
-  if (arrayA.length !== arrayB.length) {
-    return false
-  }
-
-  for (let i = 0; i < arrayA.length; i++) {
-    if (!looseEqual(arrayA[i], arrayB[i])) {
-      return false
-    }
-  }
-
-  return true
-}
-
-export function rafThrottle(fn: any) {
-  let locked = false
-  return function(...args: any) {
-    if (locked) return
-    locked = true
-    window.requestAnimationFrame((_) => {
-      fn.apply(fn, args)
-      locked = false
-    })
-  }
-}
-
-export const objToArray = (obj: any) => {
-  if (Array.isArray(obj)) {
-    return obj
-  }
-  return isEmpty(obj) ? [] : [obj]
-}
-
 /**
  *
  * @param num
- * @param type
+ * @param type  , type?: string
  */
-export const moneyFormat = (num: any, type?: string) => {
+export const moneyFormat = (num: any) => {
   const num2Str = +num + ''
   return num2Str.replace(/^(\d*)\.?(\d*)$/, (match: any, p1: any, p2: any) => {
     if (p2 === '') {
@@ -312,6 +315,7 @@ export const merge = (target: any, ...args: any) => {
   for (let i = 0, j = args.length; i < j; i++) {
     const source = args[i] || {}
     for (const prop in source) {
+      /* eslint-disable-next-line */
       if (source.hasOwnProperty(prop)) {
         const value = source[prop]
         if (value !== undefined) {
@@ -323,6 +327,24 @@ export const merge = (target: any, ...args: any) => {
 
   return target
 }
+
+/**
+ * isDef
+ * @param val
+ */
+export const isDef = (val: string) => {
+  return val !== undefined && val !== null
+}
+/**
+ * isKorean
+ * @param text
+ */
+export const isKorean = (text: string) => {
+  const reg = /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi
+  return reg.test(text)
+}
+
+// ------------------------------------
 
 /**
  * @param obj
@@ -342,12 +364,14 @@ function forEach(obj: any, fn: any) {
   if (isArray(obj)) {
     // Iterate over array values
     for (let i = 0, l = obj.length; i < l; i++) {
+      /* eslint-disable-next-line */
       fn.call(null, obj[i], i, obj)
     }
   } else {
     // Iterate over object keys
     for (const key in obj) {
       if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        /* eslint-disable-next-line */
         fn.call(null, obj[key], key, obj)
       }
     }
@@ -393,20 +417,4 @@ export const deepMerge = (...args: any) => {
     forEach(args[i], assignValue)
   }
   return result
-}
-
-/**
- * isDef
- * @param val
- */
-export const isDef = (val: string) => {
-  return val !== undefined && val !== null
-}
-/**
- * isKorean
- * @param text
- */
-export const isKorean = (text: string) => {
-  const reg = /([(\uAC00-\uD7AF)|(\u3130-\u318F)])+/gi
-  return reg.test(text)
 }

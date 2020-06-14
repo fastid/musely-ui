@@ -109,7 +109,7 @@
     },
     {
       "desc": "表单组件",
-      "path": "/form",
+      "path": "/forms",
       "items": [
         {
           "desc": "Form 表单",
