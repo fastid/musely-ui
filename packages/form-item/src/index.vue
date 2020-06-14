@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-12 10:14:52
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-14 11:45:00
+ * @LastEditTime: 2020-06-15 01:21:24
  * @Description:
 -->
 <template>
@@ -122,9 +122,7 @@ export default class MuFormItem extends mixins(emitter) implements FormItem {
 
   get form() {
     let parent = this.$parent
-    console.log('====', parent)
     let parentName = parent.$options.name
-    console.log(parentName)
     while (parentName !== 'MuForm') {
       if (parentName === 'MuFormItem') {
         this.isNested = true
@@ -169,7 +167,8 @@ export default class MuFormItem extends mixins(emitter) implements FormItem {
     return this.muForm.size
   }
 
-  private validate(trigger: any, callback: any = noop) {
+  validate(trigger: any, callback: any = noop) {
+    console.log(trigger, callback)
     this.validateDisabled = false
     const rules = this.getFilteredRule(trigger)
     if ((!rules || rules.length === 0) && this.required === undefined) {

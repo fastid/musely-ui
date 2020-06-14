@@ -11,13 +11,13 @@ export default class MuEmitter extends Vue {
   dispatch(componentName: string, ...args: any) {
     console.log('====dispatch=====', this.$parent, componentName, args)
     let parent = this.$parent || this.$root
-    let name = (parent.$options as any).componentName
-
+    let name = (parent.$options as any).name
+    console.log((parent.$options as any).name, name)
     while (parent && (!name || name !== componentName)) {
       parent = parent.$parent
 
       if (parent) {
-        name = (parent.$options as any).componentName
+        name = (parent.$options as any).name
       }
     }
 
@@ -29,7 +29,7 @@ export default class MuEmitter extends Vue {
   broadcast(componentName: string, ...args: any) {
     console.log('====broadcast=====', componentName, args)
     this.$children.forEach((child: any) => {
-      const name = child.$options.componentName
+      const name = child.$options.name
       if (name === componentName) {
         child.$emit.apply(child, args)
       } else {

@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-11 17:49:34
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-14 12:59:56
+ * @LastEditTime: 2020-06-15 01:24:23
  * @Description:
 -->
 
@@ -17,7 +17,7 @@
 :::demo 在 Form 组件中，每一个表单域由一个 Form-Item 组件构成，表单域中可以放置各种类型的表单控件，包括 Input、Select、Checkbox、Radio、Switch、DatePicker、TimePicker
 
 ```html
-<mu-form ref="form" :model="form" labmu-width="120px">
+<mu-form ref="form" :model="form" label-width="120px">
   <mu-form-item label="Activity name">
     <mu-input v-model="form.name"></mu-input>
   </mu-form-item>
@@ -58,18 +58,18 @@
 :::
 
 :::tip
-[W3C](https://www.w3.org/MarkUp/html-spec/html-spec_8.html#SEC8.2) regulates that
+W3C 标准中有如下[规定](https://www.w3.org/MarkUp/html-spec/html-spec_8.html#SEC8.2)：
 
 > <i>When there is only one single-line text input field in a form, the user agent should accept Enter in that field as a request to submit the form.</i>
 
-To prevent this behavior, you can add `@submit.native.prevent` on `<mu-form>`.
+即：当一个 form 元素中只有一个输入框时，在该输入框中按下回车应提交该表单。如果希望阻止这一默认行为，可以在 `<mu-form>` 标签上添加 `@submit.native.prevent`。
 :::
 
 ### Inline form
 
-When the vertical space is limited and the form is relatively simple, you can put it in one line.
+当垂直方向空间受限且表单较简单时，可以在一行内放置表单。
 
-:::demo Set the `inline` attribute to `true` and the form will be inline.
+:::demo 设置 `inline` 属性可以让表单域变为行内的表单域
 
 ```html
 <mu-form :inline="true" :model="formInline" class="demo-form-inline">
@@ -101,15 +101,15 @@ When the vertical space is limited and the form is relatively simple, you can pu
 
 :::
 
-### Alignment
+### 对齐方式
 
-Depending on your design, there are several different ways to align your label element.
+根据具体目标和制约因素，选择最佳的标签对齐方式。
 
-:::demo The `labmu-position` attribute decides how labels align, it can be `top` or `left`. When set to `top`, labels will be placed at the top of the form field.
+:::demo 通过设置 `label-position` 属性可以改变表单域标签的位置，可选值为 `top`、`left`，当设为 `top` 时标签会置于表单域的顶部
 
 ```html
 <div style="margin: 20px;"></div>
-<mu-form :labmu-position="labelPosition" labmu-width="100px" :model="formLabelAlign">
+<mu-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign">
   <mu-form-item label="Name">
     <mu-input v-model="formLabelAlign.name"></mu-input>
   </mu-form-item>
@@ -138,14 +138,14 @@ Depending on your design, there are several different ways to align your label e
 
 :::
 
-### Validation
+### 表单验证
 
-Form component allows you to verify your data, helping you find and correct errors.
+在防止用户犯错的前提下，尽可能让用户更早地发现并纠正错误。
 
-:::demo Just add the `rules` attribute for `Form` component, pass validation rules, and set `prop` attribute for `Form-Item` as a specific key that needs to be validated. See more information at [async-validator](https://github.com/yiminghe/async-validator).
+:::demo Form 组件提供了表单验证的功能，只需要通过 `rules` 属性传入约定的验证规则，并将 Form-Item 的 `prop` 属性设置为需校验的字段名即可。校验规则参见 [async-validator](https://github.com/yiminghe/async-validator)
 
 ```html
-<mu-form :model="ruleForm" :rules="rules" ref="ruleForm" labmu-width="120px" class="demo-ruleForm">
+<mu-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
   <mu-form-item label="Activity name" prop="name">
     <mu-input v-model="ruleForm.name"></mu-input>
   </mu-form-item>
@@ -159,32 +159,21 @@ Form component allows you to verify your data, helping you find and correct erro
     data() {
       return {
         ruleForm: {
-          name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+          name: ''
         },
         rules: {
           name: [
             { required: true, message: 'Please input Activity name', trigger: 'blur' },
             { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
-          ],
-          region: [{ required: true, message: 'Please select Activity zone', trigger: 'change' }],
-          date1: [{ type: 'date', required: true, message: 'Please pick a date', trigger: 'change' }],
-          date2: [{ type: 'date', required: true, message: 'Please pick a time', trigger: 'change' }],
-          type: [{ type: 'array', required: true, message: 'Please select at least one activity type', trigger: 'change' }],
-          resource: [{ required: true, message: 'Please select activity resource', trigger: 'change' }],
-          desc: [{ required: true, message: 'Please input activity form', trigger: 'blur' }]
+          ]
         }
       }
     },
     methods: {
       submitForm(formName) {
+        console.log(this.$refs[formName].validate)
         this.$refs[formName].validate((valid) => {
+          console.log('11111111111', valid)
           if (valid) {
             alert('submit!')
           } else {
@@ -210,7 +199,7 @@ This example shows how to customize your own validation rules to finish a two-fa
 :::demo Here we use `status-icon` to reflect validation result as an icon.
 
 ```html
-<mu-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" labmu-width="120px" class="demo-ruleForm">
+<mu-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
   <mu-form-item label="Password" prop="pass">
     <mu-input type="password" v-model="ruleForm.pass" autocomplete="off"></mu-input>
   </mu-form-item>
@@ -306,7 +295,7 @@ Custom validate callback function must be called. See more advanced usage at [as
 :::demo In addition to passing all validation rules at once on the form component, you can also pass the validation rules or delete rules on a single form field dynamically.
 
 ```html
-<mu-form :model="dynamicValidateForm" ref="dynamicValidateForm" labmu-width="120px" class="demo-dynamic">
+<mu-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="120px" class="demo-dynamic">
   <mu-form-item
     prop="email"
     label="Email"
@@ -387,7 +376,7 @@ Custom validate callback function must be called. See more advanced usage at [as
 :::demo Number Validate need a `.number` modifier added on the input `v-model` binding，it's used to transform the string value to the number which is provided by Vuejs.
 
 ```html
-<mu-form :model="numberValidateForm" ref="numberValidateForm" labmu-width="100px" class="demo-ruleForm">
+<mu-form :model="numberValidateForm" ref="numberValidateForm" label-width="100px" class="demo-ruleForm">
   <mu-form-item
     label="age"
     prop="age"
@@ -434,7 +423,7 @@ Custom validate callback function must be called. See more advanced usage at [as
 :::
 
 :::tip
-When an `mu-form-item` is nested in another `mu-form-item`, its label width will be `0`. You can set `labmu-width` on that `mu-form-item` if needed.
+When an `mu-form-item` is nested in another `mu-form-item`, its label width will be `0`. You can set `label-width` on that `mu-form-item` if needed.
 :::
 
 ### Form Attributes
