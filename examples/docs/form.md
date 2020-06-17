@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-11 17:49:34
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-17 02:29:23
+ * @LastEditTime: 2020-06-17 22:42:43
  * @Description:
 -->
 
@@ -191,11 +191,11 @@ W3C 标准中有如下[规定](https://www.w3.org/MarkUp/html-spec/html-spec_8.h
 
 :::
 
-### Custom validation rules
+### 自定义校验规则
 
-This example shows how to customize your own validation rules to finish a two-factor password verification.
+这个例子中展示了如何使用自定义验证规则来完成密码的二次验证。
 
-:::demo Here we use `status-icon` to reflect validation result as an icon.
+:::demo 本例还使用`status-icon`属性为输入框添加了表示校验结果的反馈图标。
 
 ```html
 <mu-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="120px" class="demo-ruleForm">
@@ -286,12 +286,12 @@ This example shows how to customize your own validation rules to finish a two-fa
 :::
 
 :::tip
-Custom validate callback function must be called. See more advanced usage at [async-validator](https://github.com/yiminghe/async-validator).
+自定义校验 callback 必须被调用。 更多高级用法可参考 [async-validator](https://github.com/yiminghe/async-validator)。
 :::
 
-### Delete or add form items dynamically
+### 动态增减表单项
 
-:::demo In addition to passing all validation rules at once on the form component, you can also pass the validation rules or delete rules on a single form field dynamically.
+:::demo 除了在 Form 组件上一次性传递所有的验证规则外还可以在单个的表单域上传递属性的验证规则
 
 ```html
 <mu-form :model="dynamicValidateForm" ref="dynamicValidateForm" label-width="120px" class="demo-dynamic">
@@ -370,9 +370,9 @@ Custom validate callback function must be called. See more advanced usage at [as
 
 :::
 
-### Number Validate
+### 数字类型验证
 
-:::demo Number Validate need a `.number` modifier added on the input `v-model` binding，it's used to transform the string value to the number which is provided by Vuejs.
+:::demo 数字类型的验证需要在 `v-model` 处加上 `.number` 的修饰符，这是 `Vue` 自身提供的用于将绑定值转化为 `number` 类型的修饰符。
 
 ```html
 <mu-form :model="numberValidateForm" ref="numberValidateForm" label-width="100px" class="demo-ruleForm">
@@ -424,8 +424,6 @@ Custom validate callback function must be called. See more advanced usage at [as
 :::tip
 When an `mu-form-item` is nested in another `mu-form-item`, its label width will be `0`. You can set `label-width` on that `mu-form-item` if needed.
 :::
-
-### Form Attributes
 
 ### Form Attributes
 

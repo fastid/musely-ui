@@ -1,3 +1,19 @@
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mu-icon-success:before {
+  content: '\e63f';
+}
+
+.mu-icon-round-success:before {
+  content: '\e644';
+}
+
 .mu-icon-data:before {
   content: '\e63e';
 }
@@ -196,10 +212,6 @@
 
 .mu-icon-arrow-down:before {
   content: '\e60a';
-}
-
-.mu-icon-success:before {
-  content: '\e609';
 }
 
 .mu-icon-arrow-left:before {

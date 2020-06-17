@@ -189,8 +189,8 @@ export default class MuInput extends Mixins(emitter) implements Input {
   get validateIcon() {
     return ({
       validating: 'mu-icon-loading',
-      success: 'mu-icon-circle-check',
-      error: 'mu-icon-circle-close'
+      success: 'mu-icon-round-success',
+      error: 'mu-icon-round-close'
     } as any)[this.validateState]
   }
 
