@@ -2,13 +2,14 @@
  * @Author: Victor wang
  * @Date: 2020-04-30 16:11:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-23 15:35:57
+ * @LastEditTime: 2020-06-18 02:49:57
  * @Description:
  */
 
 // eslint-disable-next-line no-useless-escape
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g
 const MOZ_HACK_REGEXP = /^moz([A-Z])/
+// eslint-disable-next-line
 const ieVersion = Number(document['documentMode'])
 
 const trim = (string: string) => {

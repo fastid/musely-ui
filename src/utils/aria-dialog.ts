@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-07 14:02:56
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-24 02:10:44
+ * @LastEditTime: 2020-06-18 02:51:45
  * @Description:
  */
 import Utils from './aria-utils'
@@ -24,7 +24,7 @@ import Utils from './aria-utils'
  *          DOM node to focus when the dialog opens. If not specified, the
  *          first focusable element in the dialog will receive focus.
  */
-const aria: any = (<any>window).aria || {}
+const aria: any = (window as any).aria || {}
 
 let tabEvent: any = null
 

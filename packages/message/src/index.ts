@@ -5,9 +5,6 @@ import { PopupManager } from 'musely-ui/src/utils/popup'
 import { isVNode } from 'musely-ui/src/utils/'
 
 class MessageConstructor extends MessageComponent {
-  constructor(options: any) {
-    super(options)
-  }
   id!: string
   $success!: MuMessageComponent
   $warning!: MuMessageComponent
@@ -25,49 +22,50 @@ const instances: any[] = []
 let seed = 1
 
 const MuMessage = (options: MuMessageOptions) => {
-    if (Vue.prototype.$isServer) return
+  if (Vue.prototype.$isServer) return
 
-    options = options || {}
-    if (typeof options === 'string') {
-      options = {
-        message: options
-      }
+  options = options || {}
+  if (typeof options === 'string') {
+    options = {
+      message: options
     }
-    const id = 'message_' + seed++
-    const userOnClose: CloseEventHandler | undefined = options.onClose
-
-    options.onClose = function() {
-      if (userOnClose) {
-        MuMessage.close(id, userOnClose)
-      } else {
-        MuMessage.close(id)
-      }
-    }
-    instance = new MessageConstructor({
-      data: options
-    })
-    instance.id = id
-    if (isVNode(instance.message)) {
-      if (instance.message !== null && typeof instance.message !== 'string') {
-        instance.$slots.default = [instance.message]
-      }
-
-      instance.message = null
-    }
-    instance.$mount()
-    document.body.appendChild(instance.$el)
-    let verticalOffset = options.offset || 20
-    instances.forEach((item) => {
-      verticalOffset += item.$el.offsetHeight + 16
-    })
-    instance.verticalOffset = verticalOffset
-    instance.visible = true
-    instance.$el.style.zIndex = PopupManager.nextZIndex()
-    instances.push(instance)
-    return instance
   }
-  // 生成4个快捷方式
-;(['success', 'warning', 'info', 'error'] as MessageType[]).forEach((type) => {
+  const id = 'message_' + seed++
+  const userOnClose: CloseEventHandler | undefined = options.onClose
+
+  options.onClose = function() {
+    if (userOnClose) {
+      MuMessage.close(id, userOnClose)
+    } else {
+      MuMessage.close(id)
+    }
+  }
+  instance = new MessageConstructor({
+    data: options
+  })
+  instance.id = id
+  if (isVNode(instance.message)) {
+    if (instance.message !== null && typeof instance.message !== 'string') {
+      instance.$slots.default = [instance.message]
+    }
+
+    instance.message = null
+  }
+  instance.$mount()
+  document.body.appendChild(instance.$el)
+  let verticalOffset = options.offset || 20
+  instances.forEach((item) => {
+    verticalOffset += item.$el.offsetHeight + 16
+  })
+  instance.verticalOffset = verticalOffset
+  instance.visible = true
+  instance.$el.style.zIndex = PopupManager.nextZIndex()
+  instances.push(instance)
+  return instance
+}
+// 生成4个快捷方式
+const mseesgeType = ['success', 'warning', 'info', 'error'] as MessageType[]
+mseesgeType.forEach((type) => {
   ;(MuMessage as any)[type] = (options: MuMessageOptions) => {
     if (typeof options === 'string') {
       options = {

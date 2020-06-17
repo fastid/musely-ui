@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-05 11:01:51
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-11 01:46:12
+ * @LastEditTime: 2020-06-18 02:57:13
  * @Description:
  */
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
@@ -23,6 +23,7 @@ export default class extends Vue {
     type: [String, Boolean]
   })
   value!: string
+
   @Prop({ default: false, type: Boolean }) visible!: boolean
   @Prop({ type: Object }) openDelay!: object
   @Prop({ type: Object }) closeDelay!: object
@@ -36,7 +37,6 @@ export default class extends Vue {
   @Prop({ default: true, type: Boolean }) lockScroll!: boolean
   @Prop({ type: Function }) willOpen!: any
   @Prop({ type: Function }) willClose!: any
-
   @Prop({ type: Function }) onOpen!: any
   @Prop({ type: Function }) onClose!: any
 
@@ -56,6 +56,7 @@ export default class extends Vue {
     this._popupId = 'popup-' + idSeed++
     PopupManager.register(this._popupId, this)
   }
+
   beforeDestroy() {
     PopupManager.deregister(this._popupId)
     PopupManager.closeModal(this._popupId)
@@ -174,6 +175,7 @@ export default class extends Vue {
 
     this.doAfterClose()
   }
+
   doAfterClose() {
     PopupManager.closeModal(this._popupId)
     this._closing = false

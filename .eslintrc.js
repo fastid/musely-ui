@@ -12,6 +12,7 @@ module.exports = {
     'space-before-function-paren': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-use-before-define': 0,
     // interface 末尾不加分号
     '@typescript-eslint/member-delimiter-style': 'off',
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',

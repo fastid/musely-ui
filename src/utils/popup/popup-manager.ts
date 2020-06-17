@@ -61,7 +61,7 @@ const PopupManager: any = {
     return PopupManager.zIndex++
   },
 
-  modalStack: <ImodalStack[]>[],
+  modalStack: [] as ImodalStack[],
 
   doOnModalClick() {
     const topItem = PopupManager.modalStack[PopupManager.modalStack.length - 1]
@@ -93,7 +93,7 @@ const PopupManager: any = {
       addClass(modalDom, 'v-modal-enter')
     }
     if (modalClass) {
-      let classArr = modalClass.trim().split(/\s+/)
+      const classArr = modalClass.trim().split(/\s+/)
       classArr.forEach((item: any) => addClass(modalDom, item))
     }
     setTimeout(() => {
@@ -123,7 +123,7 @@ const PopupManager: any = {
       const topItem = modalStack[modalStack.length - 1]
       if (topItem.id === id) {
         if (topItem.modalClass) {
-          let classArr = topItem.modalClass.trim().split(/\s+/)
+          const classArr = topItem.modalClass.trim().split(/\s+/)
           classArr.forEach((item: any) => removeClass(modalDom, item))
         }
 

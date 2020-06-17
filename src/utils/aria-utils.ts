@@ -2,10 +2,10 @@
  * @Author: Victor wang
  * @Date: 2020-05-07 14:03:33
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-10 16:58:05
+ * @LastEditTime: 2020-06-18 02:57:34
  * @Description:
  */
-const aria: any = (<any>window).aria || {}
+const aria: any = (window as any).aria || {}
 
 aria.Utils = aria.Utils || {}
 
@@ -18,8 +18,8 @@ aria.Utils = aria.Utils || {}
  *  true if a focusable element is found and focus is set.
  */
 aria.Utils.focusFirstDescendant = (element: HTMLElement) => {
-  for (var i = 0; i < element.childNodes.length; i++) {
-    var child = element.childNodes[i]
+  for (let i = 0; i < element.childNodes.length; i++) {
+    const child = element.childNodes[i]
     if (aria.Utils.attemptFocus(child) || aria.Utils.focusFirstDescendant(child)) {
       return true
     }
@@ -36,8 +36,8 @@ aria.Utils.focusFirstDescendant = (element: HTMLElement) => {
  */
 
 aria.Utils.focusLastDescendant = (element: HTMLElement) => {
-  for (var i = element.childNodes.length - 1; i >= 0; i--) {
-    var child = element.childNodes[i]
+  for (let i = element.childNodes.length - 1; i >= 0; i--) {
+    const child = element.childNodes[i]
     if (aria.Utils.attemptFocus(child) || aria.Utils.focusLastDescendant(child)) {
       return true
     }

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { MessageCurrent, MuMessageBoxOptions, MuMessageBoxComponent, MuMessageBoxShortcutMethod, MessageBoxCloseAction } from 'types/message-box'
+import { MessageCurrent, MuMessageBoxOptions, MuMessageBoxComponent, MuMessageBoxShortcutMethod } from 'types/message-box'
 import MessageBoxComponent from './main.vue'
 import { hasOwn, isVNode, merge } from 'musely-ui/src/utils'
 
@@ -56,10 +56,6 @@ class MessageBoxConstructor extends MessageBoxComponent {
 
   $info!: MuMessageBoxComponent
   $el!: HTMLElement
-
-  constructor(options: any) {
-    super(options)
-  }
 }
 
 let currentMsg: MessageCurrent | null
@@ -151,8 +147,8 @@ const MessageBox = function(options: any, callback?: any) {
     options = {
       message: options
     }
-    if (typeof arguments[1] === 'string') {
-      options.title = arguments[1]
+    if (callback && callback === 'string') {
+      options.title = callback
     }
   } else if (options.callback && !callback) {
     callback = options.callback
