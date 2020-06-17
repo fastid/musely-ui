@@ -186,6 +186,14 @@ export default class MuInput extends Mixins(emitter) implements Input {
     return this.muForm ? this.muForm.statusIcon : false
   }
 
+  get validateIcon() {
+    return ({
+      validating: 'mu-icon-loading',
+      success: 'mu-icon-circle-check',
+      error: 'mu-icon-circle-close'
+    } as any)[this.validateState]
+  }
+
   get inputSize() {
     return this.size || this._muFormItemSize || (this.$MUSELY || {}).size
   }

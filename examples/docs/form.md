@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-11 17:49:34
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-15 01:24:23
+ * @LastEditTime: 2020-06-17 02:29:23
  * @Description:
 -->
 
@@ -173,7 +173,6 @@ W3C 标准中有如下[规定](https://www.w3.org/MarkUp/html-spec/html-spec_8.h
       submitForm(formName) {
         console.log(this.$refs[formName].validate)
         this.$refs[formName].validate((valid) => {
-          console.log('11111111111', valid)
           if (valid) {
             alert('submit!')
           } else {
@@ -231,7 +230,7 @@ This example shows how to customize your own validation rules to finish a two-fa
               callback()
             }
           }
-        }, 1000)
+        }, 10)
       }
       var validatePass = (rule, value, callback) => {
         if (value === '') {

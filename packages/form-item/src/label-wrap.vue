@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-12 10:26:02
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-14 11:44:04
+ * @LastEditTime: 2020-06-15 13:30:19
  * @Description:
 -->
 <script>
@@ -27,7 +27,7 @@ export default {
           style.marginLeft = marginLeft + 'px'
         }
       }
-      return (<div class="el-form-item__label-wrap" style={style}>
+      return (<div class="mu-form-item__label-wrap" style={style}>
         {slots}
       </div>)
     } else {

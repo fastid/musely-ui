@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-12 10:14:52
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-15 01:21:24
+ * @LastEditTime: 2020-06-17 16:54:45
  * @Description:
 -->
 <template>
@@ -48,7 +48,8 @@
 
 <script lang='ts'>
 import { MuFormItem as FormItem } from 'types/form-item'
-import { Component, Prop, Provide, Watch, Inject } from 'vue-property-decorator'
+import { Component, Watch, Prop, Inject } from 'vue-property-decorator'
+
 import { mixins } from 'vue-class-component'
 import AsyncValidator from 'async-validator'
 import emitter from 'musely-ui/src/mixins/emitter'
@@ -56,7 +57,13 @@ import { merge, noop, getPropByPath } from 'musely-ui/src/utils'
 import LabelWrap from './label-wrap.vue'
 @Component({
   name: 'MuFormItem',
-  components: { LabelWrap }
+  components: { LabelWrap },
+  // TODO vue-property-decorator Provide emit获取不到mothed
+  provide() {
+    return {
+      muFormItem: this
+    }
+  }
 })
 export default class MuFormItem extends mixins(emitter) implements FormItem {
   @Prop({ type: String }) label!: string
@@ -70,11 +77,7 @@ export default class MuFormItem extends mixins(emitter) implements FormItem {
   @Prop({ type: [String, Boolean], default: '' }) inlineMessage!: boolean
   @Prop({ type: Boolean, default: true }) showMessage!: boolean
 
-  @Provide()
-  muFormItem = this
-
-  @Inject()
-  muForm!: any
+  @Inject() muForm!: any
 
   private validateState = ''
   private validateMessage = ''
@@ -163,12 +166,7 @@ export default class MuFormItem extends mixins(emitter) implements FormItem {
     return isRequired
   }
 
-  get _formSize() {
-    return this.muForm.size
-  }
-
   validate(trigger: any, callback: any = noop) {
-    console.log(trigger, callback)
     this.validateDisabled = false
     const rules = this.getFilteredRule(trigger)
     if ((!rules || rules.length === 0) && this.required === undefined) {
@@ -198,6 +196,7 @@ export default class MuFormItem extends mixins(emitter) implements FormItem {
         this.validateMessage = errors ? errors[0].message : ''
 
         callback(this.validateMessage, invalidFields)
+        console.log(this.muForm)
         this.muForm &&
           this.muForm.$emit(
             'validate',
@@ -240,7 +239,7 @@ export default class MuFormItem extends mixins(emitter) implements FormItem {
       this.validateDisabled = false
     })
 
-    this.broadcast('ElTimeSelect', 'fieldReset', (this as any).initialValue)
+    this.broadcast('MuTimeSelect', 'fieldReset', (this as any).initialValue)
   }
 
   getRules() {
@@ -298,6 +297,10 @@ export default class MuFormItem extends mixins(emitter) implements FormItem {
 
   removeValidateEvents() {
     this.$off()
+  }
+
+  created() {
+    console.log(this.muForm)
   }
 
   mounted() {

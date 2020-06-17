@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-06 15:36:54
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-12 10:54:27
+ * @LastEditTime: 2020-06-17 16:53:58
  * @Description:
 -->
 <template>
@@ -21,11 +21,16 @@ import {
   ValidateCallback,
   ValidateFieldCallback
 } from 'types/form'
-import { Component, Vue, Prop, Provide, Watch } from 'vue-property-decorator'
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator'
 import { merge } from 'musely-ui/src/utils/'
 
 @Component({
-  name: 'MuForm'
+  name: 'MuForm',
+  provide() {
+    return {
+      muForm: this
+    }
+  }
 })
 export default class MuForm extends Vue implements Form {
   @Prop({ type: Object }) model!: object
@@ -77,8 +82,8 @@ export default class MuForm extends Vue implements Form {
   })
   hideRequiredAsterisk!: boolean
 
-  @Provide()
-  muForm = this
+  // @Provide()
+  // muForm = this
 
   private fields: any[] = []
   private potentialLabelWidthArr: any[] = []
@@ -105,13 +110,13 @@ export default class MuForm extends Vue implements Form {
   }
 
   created() {
-    this.$on('el.form.addField', (field: any) => {
+    this.$on('mu.form.addField', (field: any) => {
       if (field) {
         this.fields.push(field)
       }
     })
     /* istanbul ignore next */
-    this.$on('el.form.removeField', (field: any) => {
+    this.$on('mu.form.removeField', (field: any) => {
       if (field.prop) {
         this.fields.splice(this.fields.indexOf(field), 1)
       }
@@ -146,6 +151,7 @@ export default class MuForm extends Vue implements Form {
   }
 
   validate(callback: ValidateCallback) {
+    console.log('======22222222=======')
     if (!this.model) {
       console.warn(
         '[MuselyUI Warn][Form]model is required for validate to work!'
@@ -172,6 +178,7 @@ export default class MuForm extends Vue implements Form {
     }
     let invalidFields = {}
     this.fields.forEach(field => {
+      console.log(field, '-------------')
       field.validate('', (message: string, field: any) => {
         if (message) {
           valid = false
