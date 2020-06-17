@@ -3,9 +3,9 @@
 /// color|1|Brand Color|0
 $--color-primary: #ef99af !default;
 
-/// color|1|Background Color|4
+/// color|1|Background Color|1
 $--color-white: #ffffff !default;
-/// color|1|Background Color|4
+/// color|1|Background Color|2
 $--color-black: #000000 !default;
 
 $--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* F0A3B7 */
@@ -40,6 +40,8 @@ $--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
 /// color|1|Font Color|2
 $--color-text-white: #ffffff !default;
 /// color|1|Font Color|2
+$--color-text-blue: #6495ed;
+/// color|1|Font Color|2
 $--color-text-primary: #222222 !default;
 /// color|1|Font Color|2
 $--color-text-regular: #4d4d4d !default;
@@ -47,13 +49,15 @@ $--color-text-regular: #4d4d4d !default;
 $--color-text-secondary: #7d7d7d !default;
 /// color|1|Font Color|2
 $--color-text-placeholder: #cccccc !default;
+
 /// color|1|Border Color|3
 $--border-color-base: #dddddd !default;
 /// color|1|Border Color|3
 $--border-color-light: #eeeeee !default;
 /// color|1|Border Color|3
 $--border-color-lighter: #f0f0f0 !default;
-
+/// color|1|Border Color|3
+$--border-color-gray: #dedede;
 /* Button
 -------------------------- */
 /// color||Color|0

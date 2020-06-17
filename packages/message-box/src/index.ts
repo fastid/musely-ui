@@ -26,8 +26,8 @@ const defaults = {
   confirmButtonPosition: 'right',
   confirmButtonHighlight: false,
   cancelButtonHighlight: false,
-  confirmButtonText: '',
-  cancelButtonText: '',
+  confirmButtonText: 'OK',
+  cancelButtonText: 'Cancel',
   confirmButtonClass: '',
   cancelButtonClass: '',
   customClass: '',
@@ -181,7 +181,7 @@ const MessageBox = function(options: any, callback?: any) {
     showNextMsg()
   }
 }
-// TODO defaults???
+// install set defaults
 MessageBox.defaults = {}
 MessageBox.setDefaults = (defaults: any) => {
   MessageBox.defaults = defaults
@@ -194,17 +194,18 @@ MessageBox.alert = (message: any, title: any, options: any) => {
   } else if (title === undefined) {
     title = ''
   }
-  const opts = merge(
-    {
-      title,
-      message,
-      $type: 'alert',
-      closeOnPressEscape: false,
-      closeOnClickModal: false
-    },
-    options
+  return MessageBox(
+    merge(
+      {
+        title,
+        message,
+        $type: 'alert',
+        closeOnPressEscape: false,
+        closeOnClickModal: false
+      },
+      options
+    )
   )
-  return MessageBox(opts)
 }
 
 MessageBox.confirm = (message: any, title: any, options: any) => {

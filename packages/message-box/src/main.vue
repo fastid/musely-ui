@@ -56,8 +56,6 @@
           <mu-button :loading="cancelButtonLoading"
                      :class="[ cancelButtonClasses ]"
                      v-if="showCancelButton"
-                     :round="roundButton"
-                     size="small"
                      @click.native="handleAction('cancel')"
                      @keydown.enter="handleAction('cancel')">
             {{ cancelButtonText }}
@@ -66,8 +64,6 @@
                      ref="confirm"
                      :class="[ confirmButtonClasses ]"
                      v-show="showConfirmButton"
-                     :round="roundButton"
-                     size="small"
                      @click.native="handleAction('confirm')"
                      @keydown.enter="handleAction('confirm')">
             {{ confirmButtonText }}

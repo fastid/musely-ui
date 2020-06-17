@@ -7,7 +7,6 @@
 @include b(message-box) {
   display: inline-block;
   width: $--msgbox-width;
-  padding-bottom: 10px;
   vertical-align: middle;
   background-color: $--color-white;
   border-radius: $--msgbox-border-radius;
@@ -143,11 +142,34 @@
   }
 
   @include e(btns) {
-    padding: 5px 15px 0;
-    text-align: right;
+    height: 44px;
+    border-top: 1px solid $--border-color-gray;
 
-    & button:nth-child(2) {
-      margin-left: 10px;
+    & button {
+      border-radius: 0;
+      border: 0;
+      background: 0;
+      box-sizing: border-box;
+      height: 44px;
+      span {
+        color: $--color-text-blue;
+      }
+      &:hover,
+      &:focus {
+        background: 0;
+        border: 0;
+      }
+    }
+    & button:only-child {
+      width: 100%;
+    }
+    & button:first-child:nth-last-child(2),
+    & button:first-child:nth-last-child(2) ~ button {
+      margin-left: 0;
+      width: 50%;
+      &:last-child {
+        border-left: 1px solid $--border-color-gray;
+      }
     }
   }
 
@@ -157,8 +179,6 @@
 
   // centerAlign 布局
   @include m(center) {
-    padding-bottom: 30px;
-
     @include e(header) {
       padding-top: 30px;
     }

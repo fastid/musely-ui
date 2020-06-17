@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-07 13:59:48
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-07 15:24:56
+ * @LastEditTime: 2020-06-18 02:25:44
  * @Description:
  -->
 
@@ -30,7 +30,6 @@
     methods: {
       open() {
         this.$alert('这是一段内容', '标题名称', {
-          confirmButtonText: '确定',
           callback: (action) => {
             this.$message({
               type: 'info',
