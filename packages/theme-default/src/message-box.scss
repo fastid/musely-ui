@@ -176,7 +176,9 @@
   @include e(btns-reverse) {
     flex-direction: row-reverse;
   }
-
+  @include m(onlyclose) {
+    padding-top: 3px;
+  }
   // centerAlign 布局
   @include m(center) {
     @include e(header) {

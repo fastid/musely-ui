@@ -9,7 +9,7 @@ const defaults = {
   type: '',
   iconClass: '',
   showInput: false,
-  showClose: true,
+  showClose: false,
   modalFade: true,
   lockScroll: true,
   closeOnClickModal: true,
@@ -186,7 +186,7 @@ MessageBox.setDefaults = (defaults: any) => {
 MessageBox.alert = (message: any, title: any, options: any) => {
   if (typeof title === 'object') {
     options = title
-    title = ''
+    title = options.title ? options.title : ''
   } else if (title === undefined) {
     title = ''
   }
@@ -207,7 +207,7 @@ MessageBox.alert = (message: any, title: any, options: any) => {
 MessageBox.confirm = (message: any, title: any, options: any) => {
   if (typeof title === 'object') {
     options = title
-    title = ''
+    title = options.title ? options.title : ''
   } else if (title === undefined) {
     title = ''
   }
@@ -227,7 +227,7 @@ MessageBox.confirm = (message: any, title: any, options: any) => {
 MessageBox.prompt = (message: any, title: any, options: any) => {
   if (typeof title === 'object') {
     options = title
-    title = ''
+    title = options.title ? options.title : ''
   } else if (title === undefined) {
     title = ''
   }

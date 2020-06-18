@@ -12,7 +12,9 @@
            :class="['mu-dialog', { 'is-fullscreen': fullscreen, 'mu-dialog--center': center }, customClass]"
            ref="dialog"
            :style="style">
-        <div class="mu-dialog__header">
+        <div class="mu-dialog__header"
+             v-if="title || showClose"
+             :class="[ (!title && showClose) && 'mu-dialog--onlyclose']">
           <slot name="title">
             <span class="mu-dialog__title">{{ title }}</span>
           </slot>
@@ -124,6 +126,7 @@ export default class MuDialog extends mixins(Popup, emitter) implements Dialog {
   }
 
   mounted() {
+    console.log(this.title, this.showClose)
     if (this.visible) {
       this.rendered = true
       this.open()

@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-29 22:11:52
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-18 15:46:09
+ * @LastEditTime: 2020-06-18 17:50:42
  * @Description:
  -->
 
@@ -165,6 +165,36 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单。
 
 <mu-dialog title="提示" :visible.sync="centerDialogVisible" width="30%" center>
   <span>需要注意的是内容是默认不居中的</span>
+  <span slot="footer" class="dialog-footer">
+    <mu-button @click="centerDialogVisible = false">取 消</mu-button>
+    <mu-button type="primary" @click="centerDialogVisible = false">确 定</mu-button>
+  </span>
+</mu-dialog>
+
+<script>
+  export default {
+    data() {
+      return {
+        centerDialogVisible: false
+      }
+    }
+  }
+</script>
+```
+
+:::
+
+### 其他设置
+
+标题和快捷关闭的显示/隐藏
+
+:::demo 将`title`设置为`''(空字符串,而非null或undefin亦或false)`即可使标题隐藏。当你不需要显示快捷关闭是,可设置 show-close 为`false`;
+
+```html
+<mu-button type="text" @click="centerDialogVisible = true">点击打开 Dialog</mu-button>
+
+<mu-dialog title="" :visible.sync="centerDialogVisible" :show-close="false" width="30%">
+  <span>需要注意的是内容是去掉了title的</span>
   <span slot="footer" class="dialog-footer">
     <mu-button @click="centerDialogVisible = false">取 消</mu-button>
     <mu-button type="primary" @click="centerDialogVisible = false">确 定</mu-button>

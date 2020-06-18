@@ -82,7 +82,10 @@
     text-align: right;
     box-sizing: border-box;
   }
-
+  // title为空,只有close时
+  @include m(onlyclose) {
+    padding: 0;
+  }
   // 内容居中布局
   @include m(center) {
     text-align: center;

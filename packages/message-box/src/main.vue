@@ -26,6 +26,17 @@
             <i class="mu-message-box__close mu-icon-close"></i>
           </button>
         </div>
+        <div class="mu-message-box__header"
+             :class="['mu-message-box--onlyclose']"
+             v-else-if="showClose">
+          <button type="button"
+                  class="mu-message-box__headerbtn"
+                  aria-label="Close"
+                  @click="handleAction(distinguishCancelAndClose ? 'close' : 'cancel')"
+                  @keydown.enter="handleAction(distinguishCancelAndClose ? 'close' : 'cancel')">
+            <i class="mu-message-box__close mu-icon-close"></i>
+          </button>
+        </div>
         <div class="mu-message-box__content">
           <div class="mu-message-box__container">
             <div :class="['mu-message-box__status', icon]"
@@ -107,7 +118,7 @@ export default class MuMessageBox extends mixins(Popup) implements MessageBox {
   @Prop({ type: String, default: '' }) title!: string
   @Prop({ type: Boolean, default: true }) modal!: boolean
   @Prop({ type: Boolean, default: false }) lockScroll!: boolean
-  @Prop({ type: Boolean, default: true }) showClose!: boolean
+  @Prop({ type: Boolean, default: false }) showClose!: boolean
   @Prop({ type: Boolean, default: true }) closeOnClickModal!: boolean
   @Prop({ type: Boolean, default: true }) closeOnPressEscape!: boolean
   @Prop({ type: Boolean, default: true }) closeOnHashChange!: boolean
@@ -151,7 +162,8 @@ export default class MuMessageBox extends mixins(Popup) implements MessageBox {
   get icon() {
     const { type, iconClass } = this
     return (
-      iconClass || (type && typeMap[type] ? `mu-icon-${typeMap[type]}` : '')
+      iconClass ||
+      (type && typeMap[type] ? `mu-icon-circle-${typeMap[type]}` : '')
     )
   }
 
@@ -264,6 +276,7 @@ export default class MuMessageBox extends mixins(Popup) implements MessageBox {
   }
 
   mounted() {
+    console.log(this.showClose)
     this.$nextTick(() => {
       if (this.closeOnHashChange) {
         window.addEventListener('hashchange', this.close)

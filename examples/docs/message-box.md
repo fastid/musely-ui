@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-07 13:59:48
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-18 02:25:44
+ * @LastEditTime: 2020-06-18 17:28:47
  * @Description:
  -->
 
@@ -177,7 +177,7 @@
 :::
 
 :::tip
-弹出层的内容可以是 `VNode`，所以我们能把一些自定义组件传入其中。每次弹出层打开后，Vue 会对新老 `VNode` 节点进行比对，然后将根据比较结果进行最小单位地修改视图。这也许会造成弹出层内容区域的组件没有重新渲染，例如 [#8931](https://github.com/ElemeFE/element/issues/8931)。当这类问题出现时，解决方案是给 `VNode` 加上一个不相同的 key，参考[这里](https://jsfiddle.net/zhiyang/ezmhq2ef/)。
+弹出层的内容可以是 `VNode`，所以我们能把一些自定义组件传入其中。每次弹出层打开后，Vue 会对新老 `VNode` 节点进行比对，然后将根据比较结果进行最小单位地修改视图。这也许会造成弹出层内容区域的组件没有重新渲染。当这类问题出现时，解决方案是给 `VNode` 加上一个不相同的 key，参考[这里](https://jsfiddle.net/zhiyang/ezmhq2ef/)。
 :::
 
 ### 使用 HTML 片段
@@ -291,6 +291,48 @@
 
 :::
 
+### 其他设置
+
+隐藏标题
+
+:::demo 在 options 中将`title` 设置为 `null` 即可隐藏标题; 同时当 如果你想显示 showClose,可以将`showClose`设置为`true`
+
+```html
+<template>
+  <mu-button type="text" @click="open">点击打开 Message Box</mu-button>
+</template>
+
+<script>
+  export default {
+    methods: {
+      open() {
+        this.$confirm('此操作将永久删除该文件, 是否继续?', '', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning',
+          title: null,
+          showClose: true
+        })
+          .then(() => {
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            })
+          })
+          .catch(() => {
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            })
+          })
+      }
+    }
+  }
+</script>
+```
+
+:::
+
 ### 全局方法
 
 完整引入 MuselyUI 时，会为 Vue.prototype 添加如下全局方法：$msgbox, $alert, $confirm 和 $prompt。因此在 Vue instance 中可以采用本页面中的方式调用 `MessageBox`。调用参数为：
@@ -299,16 +341,6 @@
 - `$alert(message, title, options)` 或 `$alert(message, options)`
 - `$confirm(message, title, options)` 或 `$confirm(message, options)`
 - `$prompt(message, title, options)` 或 `$prompt(message, options)`
-
-### 单独引用
-
-如果单独引入 `MessageBox`：
-
-```javascript
-import { MuMessageBox } from 'musely-ui'
-```
-
-那么对应于上述四个全局方法的调用方法依次为：MuMessageBox, MuMessageBox.alert, MuMessageBox.confirm 和 MuMessageBox.prompt，调用参数与全局方法相同。
 
 ### Options
 
