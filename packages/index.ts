@@ -33,7 +33,7 @@ import PageHeader from './page-header'
 import Popup from './popup'
 import Rate from './rate'
 import Row from './row'
-const version = '0.1.18'
+const version = '0.1.19'
 const components = [
   Alert,
   Aside,
