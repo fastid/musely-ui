@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-29 22:11:52
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-11 01:49:46
+ * @LastEditTime: 2020-06-18 15:46:09
  * @Description:
  -->
 
@@ -55,7 +55,7 @@ Dialog 弹出一个对话框，适合需要定制性更大的场景。
 
 ### 自定义内容
 
-Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下面是应用了 Element Table 和 Form 组件的两个样例。
+Dialog 组件的内容可以是任意的，甚至可以是表格或表单。
 
 :::demo
 
@@ -67,12 +67,6 @@ Dialog 组件的内容可以是任意的，甚至可以是表格或表单，下�
   <mu-form :model="form">
     <mu-form-item label="活动名称" :labmu-width="formLabelWidth">
       <mu-input v-model="form.name" autocomplete="off"></mu-input>
-    </mu-form-item>
-    <mu-form-item label="活动区域" :labmu-width="formLabelWidth">
-      <mu-select v-model="form.region" placeholder="请选择活动区域">
-        <mu-option label="区域一" value="shanghai"></mu-option>
-        <mu-option label="区域二" value="beijing"></mu-option>
-      </mu-select>
     </mu-form-item>
   </mu-form>
   <div slot="footer" class="dialog-footer">
