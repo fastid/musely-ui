@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-19 15:13:27
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-20 02:10:44
+ * @LastEditTime: 2020-06-20 02:17:21
  * @Description:
 -->
 <template>
@@ -39,7 +39,6 @@ export default class MuRadioGroup extends Mixins(emitter)
 
   created() {
     this.$on('handleChange', (value: any) => {
-      console.log('111', value)
       this.$emit('change', value)
     })
   }
