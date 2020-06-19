@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-29 01:00:39
+ * @LastEditTime: 2020-06-20 02:21:47
  * @Description:
  -->
 <template>
@@ -44,7 +44,7 @@ export default class MuBadge extends Vue implements Badge {
       )
     }
   })
-  plain!: boolean
+  type!: boolean
 
   get content() {
     if (this.isDot) return
