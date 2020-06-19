@@ -125,6 +125,11 @@
           "desc": "Checkbox 多选框",
           "name": "checkbox",
           "path": "/checkbox"
+        },
+        {
+          "desc": "Radio 单选框",
+          "name": "radio",
+          "path": "/radio"
         }
       ]
     },

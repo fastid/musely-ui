@@ -2,12 +2,12 @@
  * @Author: Victor wang
  * @Date: 2020-04-04 00:58:00
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-19 15:17:05
+ * @LastEditTime: 2020-06-20 00:46:15
  * @Description:
  */
 import { MuselyUIComponent } from './common'
 
-/** MuMain Component */
+/** MuCheckbox Component */
 export declare class MuCheckbox extends MuselyUIComponent {
   /** The form input value */
   value: string | string[]

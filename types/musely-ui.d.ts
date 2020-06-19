@@ -32,6 +32,8 @@ import {MuMessage} from './message'
 import {MuMessageBox} from './message-box'
 import {MuPageHeader} from './page-header'
 import {MuPopup} from './popup'
+import {MuRadio} from './radio'
+import {MuRadioGroup} from './radio-group'
 import {MuRate} from './rate'
 import {MuRow} from './row'
 
@@ -122,6 +124,12 @@ export class PageHeader extends MuPageHeader {}
 
 /** Popup Component **/
 export class Popup extends MuPopup {}
+
+/** Radio Component **/
+export class Radio extends MuRadio {}
+
+/** RadioGroup Component **/
+export class RadioGroup extends MuRadioGroup {}
 
 /** Rate Component **/
 export class Rate extends MuRate {}

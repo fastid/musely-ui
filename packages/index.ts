@@ -33,6 +33,8 @@ import Message from './message'
 import MessageBox from './message-box'
 import PageHeader from './page-header'
 import Popup from './popup'
+import Radio from './radio'
+import RadioGroup from './radio-group'
 import Rate from './rate'
 import Row from './row'
 const version = '0.1.21'
@@ -58,6 +60,8 @@ const components = [
   Main,
   PageHeader,
   Popup,
+  Radio,
+  RadioGroup,
   Rate,
   Row
 ]
@@ -108,6 +112,8 @@ export {
   MessageBox,
   PageHeader,
   Popup,
+  Radio,
+  RadioGroup,
   Rate,
   Row
 }

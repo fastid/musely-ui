@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-06 23:33:01
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-05-07 13:25:02
+ * @LastEditTime: 2020-06-20 01:01:15
  * @Description:
  -->
 
@@ -200,7 +200,7 @@
 
 ### 全局方法
 
-Element 为 Vue.prototype 添加了全局方法 \$message。因此在 vue instance 中可以采用本页面中的方式调用 `Message`。
+MuselyUI 为 Vue.prototype 添加了全局方法 \$message。因此在 vue instance 中可以采用本页面中的方式调用 `Message`。
 
 ### 单独引用
 

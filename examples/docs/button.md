@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-20 01:33:16
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-27 19:12:34
+ * @LastEditTime: 2020-06-20 01:01:32
  * @Description:
  -->
 
@@ -57,7 +57,7 @@
 
 带图标的按钮可增强辨识度（有文字）或节省空间（无文字）。
 
-:::demo 设置`icon`属性即可，icon 的列表可以参考 Element 的 icon 组件，也可以设置在文字右边的 icon ，只要使用`i`标签即可，可以使用自定义图标。
+:::demo 设置`icon`属性即可，icon 的列表可以参考 MuselyUI 的 icon 组件，也可以设置在文字右边的 icon ，只要使用`i`标签即可，可以使用自定义图标。
 
 ```html
 <mu-row>
