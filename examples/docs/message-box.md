@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-07 13:59:48
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-18 17:28:47
+ * @LastEditTime: 2020-06-19 11:57:44
  * @Description:
  -->
 
@@ -299,19 +299,20 @@
 
 ```html
 <template>
-  <mu-button type="text" @click="open">点击打开 Message Box</mu-button>
+  <mu-button type="text" @click="open">点击打开 Confirm 显示标题</mu-button>
+  <mu-button type="text" @click="open1">点击打开 Alert 无标题</mu-button>
+  <mu-button type="text" @click="open2">点击打开 MessageBox 标题 + 快捷关闭</mu-button>
 </template>
 
 <script>
   export default {
     methods: {
       open() {
-        this.$confirm('此操作将永久删除该文件, 是否继续?', '', {
+        this.$confirm('此操作将永久删除该文件, 是否继续?', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning',
-          title: null,
-          showClose: true
+          title: 'Confirm Title'
         })
           .then(() => {
             this.$message({
@@ -325,6 +326,12 @@
               message: '已取消删除'
             })
           })
+      },
+      open1() {
+        this.$alert('Message Info!')
+      },
+      open2() {
+        this.$msgbox({ title: 'message title', message: 'Message Info!', showClose: true })
       }
     }
   }

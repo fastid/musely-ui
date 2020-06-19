@@ -186,9 +186,7 @@ MessageBox.setDefaults = (defaults: any) => {
 MessageBox.alert = (message: any, title: any, options: any) => {
   if (typeof title === 'object') {
     options = title
-    title = options.title ? options.title : ''
-  } else if (title === undefined) {
-    title = ''
+    title = options.title ? options.title : null
   }
   return MessageBox(
     merge(
@@ -207,9 +205,7 @@ MessageBox.alert = (message: any, title: any, options: any) => {
 MessageBox.confirm = (message: any, title: any, options: any) => {
   if (typeof title === 'object') {
     options = title
-    title = options.title ? options.title : ''
-  } else if (title === undefined) {
-    title = ''
+    title = options.title ? options.title : null
   }
   return MessageBox(
     merge(
@@ -227,9 +223,7 @@ MessageBox.confirm = (message: any, title: any, options: any) => {
 MessageBox.prompt = (message: any, title: any, options: any) => {
   if (typeof title === 'object') {
     options = title
-    title = options.title ? options.title : ''
-  } else if (title === undefined) {
-    title = ''
+    title = options.title ? options.title : null
   }
   return MessageBox(
     merge(
