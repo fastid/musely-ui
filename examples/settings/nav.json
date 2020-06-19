@@ -120,6 +120,11 @@
           "desc": "Input 输入框",
           "name": "input",
           "path": "/input"
+        },
+        {
+          "desc": "Checkbox 多选框",
+          "name": "checkbox",
+          "path": "/checkbox"
         }
       ]
     },

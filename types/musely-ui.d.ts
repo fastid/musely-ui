@@ -15,6 +15,8 @@ import {MuAvatar} from './avatar'
 import {MuBadge} from './badge'
 import {MuButton} from './button'
 import {MuButtonGroup} from './button-group'
+import {MuCheckbox} from './checkbox'
+import {MuCheckboxGroup} from './checkbox-group'
 import {MuCol} from './col'
 import {MuContainer} from './container'
 import {MuDialog} from './dialog'
@@ -75,6 +77,12 @@ export class Button extends MuButton {}
 
 /** ButtonGroup Component **/
 export class ButtonGroup extends MuButtonGroup {}
+
+/** Checkbox Component **/
+export class Checkbox extends MuCheckbox {}
+
+/** CheckboxGroup Component **/
+export class CheckboxGroup extends MuCheckboxGroup {}
 
 /** Col Component **/
 export class Col extends MuCol {}

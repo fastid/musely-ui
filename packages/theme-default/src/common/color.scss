@@ -58,28 +58,7 @@ $--border-color-light: #eeeeee !default;
 $--border-color-lighter: #f0f0f0 !default;
 /// color|1|Border Color|3
 $--border-color-gray: #dedede;
-/* Button
+
+/* Fill
 -------------------------- */
-/// color||Color|0
-$--button-default-font-color: $--color-text-primary !default;
-/// color||Color|0
-$--button-default-background-color: $--color-white !default;
-/// color||Color|0
-$--button-default-border-color: $--border-color-base !default;
-
-/// color||Color|0
-$--button-disabled-font-color: $--color-text-placeholder !default;
-/// color||Color|0
-$--button-disabled-background-color: $--color-white !default;
-/// color||Color|0
-$--button-disabled-border-color: $--border-color-lighter !default;
-
-/// color||Color|0
-$--button-primary-border-color: $--color-primary !default;
-/// color||Color|0
-$--button-primary-font-color: $--color-white !default;
-/// color||Color|0
-$--button-primary-background-color: $--color-primary !default;
-
-$--button-hover-tint-percent: 20% !default;
-$--button-active-shade-percent: 10% !default;
+$--fill-base: $--color-white !default;

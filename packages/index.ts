@@ -16,6 +16,8 @@ import Avatar from './avatar'
 import Badge from './badge'
 import Button from './button'
 import ButtonGroup from './button-group'
+import Checkbox from './checkbox'
+import CheckboxGroup from './checkbox-group'
 import Col from './col'
 import Container from './container'
 import Dialog from './dialog'
@@ -41,6 +43,8 @@ const components = [
   Badge,
   Button,
   ButtonGroup,
+  Checkbox,
+  CheckboxGroup,
   Col,
   Container,
   Dialog,
@@ -87,6 +91,8 @@ export {
   Badge,
   Button,
   ButtonGroup,
+  Checkbox,
+  CheckboxGroup,
   Col,
   Container,
   Dialog,
