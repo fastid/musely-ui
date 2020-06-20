@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-05-07 14:03:33
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-18 02:57:34
+ * @LastEditTime: 2020-06-20 22:50:46
  * @Description:
  */
 const aria: any = (window as any).aria || {}
@@ -90,11 +90,11 @@ aria.Utils.isFocusable = (element: any) => {
 /**
  * 触发一个事件
  * mouseenter, mouseleave, mouseover, keyup, change, click 等
- * @param  {Element} elm
+ * @param  {Element} el
  * @param  {String} name
  * @param  {*} opts
  */
-aria.Utils.triggerEvent = (elm: HTMLElement, name: string, ...opts: any) => {
+aria.Utils.triggerEvent = (el: HTMLElement, name: string, ...opts: any) => {
   let eventName
 
   if (/^mouse|click/.test(name)) {
@@ -108,9 +108,9 @@ aria.Utils.triggerEvent = (elm: HTMLElement, name: string, ...opts: any) => {
 
   evt.initEvent(name, ...opts)
   // TODO fireEvent https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent
-  elm.dispatchEvent ? elm.dispatchEvent(evt) : (elm as any).fireEvent('on' + name, evt)
+  el.dispatchEvent ? el.dispatchEvent(evt) : (el as any).fireEvent('on' + name, evt)
 
-  return elm
+  return el
 }
 
 aria.Utils.keys = {

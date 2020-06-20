@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-23 19:16:26
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-04-25 13:51:12
+ * @LastEditTime: 2020-06-20 02:27:24
  * @Description:
  */
 import { MuselyUIComponent } from './common'
@@ -21,7 +21,7 @@ export declare class MuLink extends MuselyUIComponent {
   /** Link underline */
   underline: boolean
 
-  /** Link icon, accepts an icon name of Element icon component */
+  /** Link icon, accepts an icon name of Musely icon component */
   icon: string
 
   /** Link href */

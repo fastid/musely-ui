@@ -1,5 +1,10 @@
 /* Link
 --------------------------*/
+/* Link
+-------------------------- */
+$--link-color: $--color-primary-light-2 !default;
+$--link-hover-color: $--color-primary !default;
+
 /// fontSize||Font|1
 $--link-font-size: $--font-size-base !default;
 /// fontWeight||Font|1

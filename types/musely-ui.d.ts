@@ -20,6 +20,9 @@ import {MuCheckboxGroup} from './checkbox-group'
 import {MuCol} from './col'
 import {MuContainer} from './container'
 import {MuDialog} from './dialog'
+import {MuDropdown} from './dropdown'
+import {MuDropdownItem} from './dropdown-item'
+import {MuDropdownMenu} from './dropdown-menu'
 import {MuFooter} from './footer'
 import {MuForm} from './form'
 import {MuFormItem} from './form-item'
@@ -94,6 +97,15 @@ export class Container extends MuContainer {}
 
 /** Dialog Component **/
 export class Dialog extends MuDialog {}
+
+/** Dropdown Component **/
+export class Dropdown extends MuDropdown {}
+
+/** DropdownItem Component **/
+export class DropdownItem extends MuDropdownItem {}
+
+/** DropdownMenu Component **/
+export class DropdownMenu extends MuDropdownMenu {}
 
 /** Footer Component **/
 export class Footer extends MuFooter {}

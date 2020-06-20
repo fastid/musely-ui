@@ -2,10 +2,12 @@
  * @Author: Victor wang
  * @Date: 2020-04-30 16:11:44
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-18 02:49:57
+ * @LastEditTime: 2020-06-20 02:57:28
  * @Description:
  */
+import Vue from 'vue'
 
+const isServer = Vue.prototype.$isServer
 // eslint-disable-next-line no-useless-escape
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g
 const MOZ_HACK_REGEXP = /^moz([A-Z])/
@@ -129,5 +131,37 @@ export const toggleClass = (ele: HTMLElement, className: string) => {
   }
   ele.className = classString
 }
+
+export const on = (function() {
+  if (!isServer && document.addEventListener) {
+    return function(element: any, event: string, handler: any) {
+      if (element && event && handler) {
+        element.addEventListener(event, handler, false)
+      }
+    }
+  } else {
+    return function(element: any, event: string, handler: any) {
+      if (element && event && handler) {
+        element.attachEvent('on' + event, handler)
+      }
+    }
+  }
+})()
+
+export const off = (function() {
+  if (!isServer && document.removeEventListener) {
+    return function(element: any, event: string, handler: any) {
+      if (element && event) {
+        element.removeEventListener(event, handler, false)
+      }
+    }
+  } else {
+    return function(element: any, event: string, handler: any) {
+      if (element && event) {
+        element.detachEvent('on' + event, handler)
+      }
+    }
+  }
+})()
 
 // =======================================================

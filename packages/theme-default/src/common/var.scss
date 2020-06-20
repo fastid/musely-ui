@@ -87,11 +87,14 @@ $--disabled-border-base: $--border-color-light !default;
 @import './dialog.scss';
 @import './message.scss';
 @import './message-box.scss';
+@import './tooltip.scss';
+@import './dropdown.scss';
 @import './form.scss';
 @import './button.scss';
 @import './input.scss';
 @import './checkbox.scss';
 @import './radio.scss';
+
 /* Header
   --------------------------*/
 $--header-padding: 0 20px !default;

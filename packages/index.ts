@@ -21,6 +21,9 @@ import CheckboxGroup from './checkbox-group'
 import Col from './col'
 import Container from './container'
 import Dialog from './dialog'
+import Dropdown from './dropdown'
+import DropdownItem from './dropdown-item'
+import DropdownMenu from './dropdown-menu'
 import Footer from './footer'
 import Form from './form'
 import FormItem from './form-item'
@@ -50,6 +53,9 @@ const components = [
   Col,
   Container,
   Dialog,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
   Footer,
   Form,
   FormItem,
@@ -100,6 +106,9 @@ export {
   Col,
   Container,
   Dialog,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
   Footer,
   Form,
   FormItem,
