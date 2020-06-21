@@ -1,3 +1,7 @@
+## [0.1.22](https://github.com/fastid/musely-ui/compare/v0.1.21...v0.1.22) (2020-06-21)
+
+
+
 ## [0.1.21](https://github.com/fastid/musely-ui/compare/v0.1.20...v0.1.21) (2020-06-18)
 
 

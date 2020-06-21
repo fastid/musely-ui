@@ -41,7 +41,7 @@ import Radio from './radio'
 import RadioGroup from './radio-group'
 import Rate from './rate'
 import Row from './row'
-const version = '0.1.21'
+const version = '0.1.22'
 const components = [
   Alert,
   Aside,

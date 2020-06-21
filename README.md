@@ -23,6 +23,7 @@ musely.com
 ## ts&js
 
 [TypeScript Handbook（中文版）][35]
+
 [Vue $dispatch 和 $broadcast 详解 ][31]
 
 [处理边界情况][32] [vue-property-decorator（装饰器）用法][33]
@@ -32,6 +33,8 @@ musely.com
 > <i>处理方法: 弃用@Provide,在@Component 中定义 this </i>
 
 [设计一个好用的 Validator][34]
+
+[Element 源码分析][36]
 
 [01]: https://cn.vuejs.org/v2
 [02]: https://element.eleme.cn/
@@ -44,3 +47,4 @@ musely.com
 [33]: https://juejin.im/post/5d774c9be51d4561c94b1050
 [34]: https://zhuanlan.zhihu.com/p/38365707
 [35]: https://legacy.gitbook.com/book/zhongsp/typescript-handbook
+[36]: https://athena0304.cn/element-analysis/src/
