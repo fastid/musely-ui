@@ -26,7 +26,7 @@ const tipsTypes = `/* eslint-disable */
 // ***************************************************
 // This file is auto gererated by build/build-entry.js`
 
-const excludeComponents = ['Message', 'MessageBox']
+const excludeComponents = ['Message', 'MessageBox', 'Loading']
 
 /**
  * build Entry
@@ -47,14 +47,18 @@ const components = [
 
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
   // https://github.com/vuejs/vue-cli/issues/4065#issuecomment-496267589
-  // 注意:因为vue class name webpack 压缩后会消失,导致全局注册失败.故组件全局注册使用 vue.component(Comp.options.name,Comp)
+  // 注意:因为vue class-name webpack 压缩后会消失,导致全局注册失败.故组件全局注册使用 vue.component(Comp.options.name,Comp)
   components.forEach((component: any) => {
     Vue.component(component.options.name,component)
   })
+
+  Vue.use(Loading.directive);
+  
   Vue.prototype.$MUSELY = {
     version,
     zIndex: opts.zIndex || 2000
   }
+  Vue.prototype.$loading = Loading.service;
   Vue.prototype.$message = Message
   Vue.prototype.$msgbox = MessageBox
   Vue.prototype.$alert = MessageBox.alert

@@ -77,6 +77,11 @@
           "desc": "Link 链接",
           "name": "link",
           "path": "/link"
+        },
+        {
+          "desc": "Loading 加载",
+          "name": "loading",
+          "path": "/loading"
         }
       ]
     },
