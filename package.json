@@ -52,6 +52,7 @@
     "@types/markdown-it-anchor": "^4.0.3",
     "@types/markdown-it-container": "^2.0.2",
     "@types/mocha": "^5.2.4",
+    "@types/throttle-debounce": "^2.1.0",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^3.3.0",
     "@vue/cli-plugin-babel": "^4.1.0",

@@ -53,7 +53,7 @@ export default class MuEmitter extends Vue {
   }
 
   // TODO Rewrite~
-  broadcast(componentName: string, eventName: string, params: any) {
+  broadcast(componentName: string, eventName: string, params?: any) {
     console.log('====broadcast=====', componentName, eventName, params)
     broadcast.call(this, componentName, eventName, params)
   }
