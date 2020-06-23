@@ -29,6 +29,7 @@
              :readonly="readonly"
              :autocomplete="autocomplete"
              ref="input"
+             v-mask="mask"
              @compositionstart="handleCompositionStart"
              @compositionupdate="handleCompositionUpdate"
              @compositionend="handleCompositionEnd"
@@ -114,9 +115,13 @@ import {
 import { Component, Prop, Inject, Mixins, Watch } from 'vue-property-decorator'
 import emitter from 'musely-ui/src/mixins/emitter'
 import { isKorean } from 'musely-ui/src/utils'
+import Inputmask from 'musely-ui/src/utils/inputmask'
 
 @Component({
-  name: 'MuInput'
+  name: 'MuInput',
+  directives: {
+    mask: Inputmask
+  }
 })
 export default class MuInput extends Mixins(emitter) implements Input {
   @Prop({ type: [String, Number] }) value: any
@@ -153,6 +158,7 @@ export default class MuInput extends Mixins(emitter) implements Input {
   @Prop({ type: String }) name!: string
   @Prop({}) step!: any
   @Prop({ type: Boolean }) autofocus!: boolean
+  @Prop({ type: [Object, Boolean], default: false }) mask!: object
 
   // @inheritAttrs: false,
   @Inject({
@@ -390,6 +396,7 @@ export default class MuInput extends Mixins(emitter) implements Input {
   }
 
   created() {
+    console.log(this.mask)
     this.$on('inputSelect', this.select)
   }
 

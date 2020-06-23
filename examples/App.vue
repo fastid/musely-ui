@@ -77,6 +77,7 @@ export default class extends Vue {
     z-index: 100;
   }
   .main {
+    margin-top: 80px;
     margin-left: 0;
   }
   .nav {
@@ -96,7 +97,6 @@ export default class extends Vue {
   }
   @include respond-to(desktop) {
     .main {
-      margin-top: 80px;
       margin-left: 210px;
     }
     .nav {

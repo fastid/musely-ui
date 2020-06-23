@@ -2,17 +2,18 @@
 @import 'common/var';
 
 @include b(form) {
-  @include m(labmu-left) {
+  @include m(label-left) {
     & .mu-form-item__label {
       text-align: left;
     }
   }
-  @include m(labmu-top) {
+  @include m(label-top) {
     & .mu-form-item__label {
       float: none;
       display: inline-block;
       text-align: left;
-      padding: 0 0 10px 0;
+      line-height: 22px;
+      padding: 0 0 6px 0;
     }
   }
   @include m(inline) {
@@ -29,7 +30,7 @@
       display: inline-block;
       vertical-align: top;
     }
-    &.mu-form--labmu-top .mu-form-item__content {
+    &.mu-form--label-top .mu-form-item__content {
       display: block;
     }
   }
@@ -54,36 +55,8 @@
       line-height: 36px;
     }
   }
-  @include m(small) {
-    .mu-form-item__label {
-      line-height: 32px;
-    }
-    .mu-form-item__content {
-      line-height: 32px;
-    }
-    &.mu-form-item {
-      margin-bottom: 18px;
-    }
-    .mu-form-item__error {
-      padding-top: 2px;
-    }
-  }
-  @include m(mini) {
-    .mu-form-item__label {
-      line-height: 28px;
-    }
-    .mu-form-item__content {
-      line-height: 28px;
-    }
-    &.mu-form-item {
-      margin-bottom: 18px;
-    }
-    .mu-form-item__error {
-      padding-top: 1px;
-    }
-  }
 
-  @include e(labmu-wrap) {
+  @include e(label-wrap) {
     float: left;
     .mu-form-item__label {
       display: inline-block;
@@ -132,7 +105,7 @@
   @include when(required) {
     @include pseudo('not(.is-no-asterisk)') {
       & > .mu-form-item__label:before,
-      & .mu-form-item__labmu-wrap > .mu-form-item__label:before {
+      & .mu-form-item__label-wrap > .mu-form-item__label:before {
         content: '*';
         color: $--color-danger;
         margin-right: 4px;

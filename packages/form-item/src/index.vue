@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-12 10:14:52
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-17 16:54:45
+ * @LastEditTime: 2020-06-23 14:40:56
  * @Description:
 -->
 <template>
@@ -196,7 +196,6 @@ export default class MuFormItem extends mixins(emitter) implements FormItem {
         this.validateMessage = errors ? errors[0].message : ''
 
         callback(this.validateMessage, invalidFields)
-        console.log(this.muForm)
         this.muForm &&
           this.muForm.$emit(
             'validate',
@@ -297,10 +296,6 @@ export default class MuFormItem extends mixins(emitter) implements FormItem {
 
   removeValidateEvents() {
     this.$off()
-  }
-
-  created() {
-    console.log(this.muForm)
   }
 
   mounted() {

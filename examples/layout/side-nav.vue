@@ -6,17 +6,16 @@
       <template v-if="mobile">
         <mu-dropdown-item>{{title}}</mu-dropdown-item>
         <template v-for="nav in data[title]">
-          <mu-dropdown-item :key="nav"
+          <mu-dropdown-item :key="nav.name"
                             v-if="nav.name">
             <router-link :to="{ name: nav.name }">{{ nav.desc }}</router-link>
           </mu-dropdown-item>
           <template v-else>
-            <mu-dropdown-item :key="nav">{{ nav.desc }}</mu-dropdown-item>
+            <mu-dropdown-item :key="nav.name">{{ nav.desc }}</mu-dropdown-item>
           </template>
           <template v-for="item in nav.items">
-            <mu-dropdown-item :key="item">
-              <router-link :to="{ name: item.name }"
-                           :key="item.name">{{ item.desc  }}</router-link>
+            <mu-dropdown-item :key="item.name">
+              <router-link :to="{ name: item.name }">{{ item.desc }}</router-link>
             </mu-dropdown-item>
 
           </template>

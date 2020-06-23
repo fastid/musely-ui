@@ -2,13 +2,13 @@
  * @Author: Victor wang
  * @Date: 2020-06-06 15:36:54
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-17 16:53:58
+ * @LastEditTime: 2020-06-23 14:50:36
  * @Description:
 -->
 <template>
   <form class="mu-form"
         :class="[
-    labelPosition ? 'mu-form--labmu-' + labelPosition : '',
+    labelPosition ? 'mu-form--label-' + labelPosition : '',
     { 'mu-form--inline': inline }
   ]">
     <slot></slot>
@@ -35,7 +35,7 @@ import { merge } from 'musely-ui/src/utils/'
 export default class MuForm extends Vue implements Form {
   @Prop({ type: Object }) model!: object
   @Prop({ type: Object }) rules!: object
-  @Prop({ type: String }) labelPosition!: FormItemLabelPosition
+  @Prop({ type: String, default: 'top' }) labelPosition!: FormItemLabelPosition
   @Prop({ type: String }) labelWidth!: string
 
   @Prop({

@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-11 17:49:34
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-17 22:42:43
+ * @LastEditTime: 2020-06-23 15:23:23
  * @Description:
 -->
 
@@ -72,7 +72,7 @@ W3C 标准中有如下[规定](https://www.w3.org/MarkUp/html-spec/html-spec_8.h
 :::demo 设置 `inline` 属性可以让表单域变为行内的表单域
 
 ```html
-<mu-form :inline="true" :model="formInline" class="demo-form-inline">
+<mu-form :inline="true" :model="formInline" label-position="right" class="demo-form-inline">
   <mu-form-item label="Approved by">
     <mu-input v-model="formInline.user" placeholder="Approved by"></mu-input>
   </mu-form-item>
@@ -432,7 +432,7 @@ When an `mu-form-item` is nested in another `mu-form-item`, its label width will
 | model                   | 表单数据对象                                                                              | object  | —                     | —      |
 | rules                   | 表单验证规则                                                                              | object  | —                     | —      |
 | inline                  | 行内表单模式                                                                              | boolean | —                     | false  |
-| label-position          | 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 `label-width`                   | string  | right/left/top        | right  |
+| label-position          | 表单域标签的位置，如果值为 left 或者 right 时，则需要设置 `label-width`                   | string  | right/left/top        | top    |
 | label-width             | 表单域标签的宽度，例如 '50px'。作为 Form 直接子元素的 form-item 会继承该值。支持 `auto`。 | string  | —                     | —      |
 | label-suffix            | 表单域标签的后缀                                                                          | string  | —                     | —      |
 | hide-required-asterisk  | 是否显示必填字段的标签旁边的红色星号                                                      | boolean | —                     | false  |
