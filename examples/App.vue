@@ -11,7 +11,18 @@
         <mainHeader></mainHeader>
       </mu-header>
       <mu-container v-if="!isIndex">
-        <mu-aside class="nav">
+        <div class="nav mobile">
+          <mu-dropdown class="mobile">
+            <span><i class="mu-icon-menu"></i></span>
+            <mu-dropdown-menu slot="dropdown">
+              <sideNav class="mobile-menu"
+                       :mobile="true"></sideNav>
+            </mu-dropdown-menu>
+          </mu-dropdown>
+        </div>
+
+        <mu-aside class="nav"
+                  width="200px">
           <sideNav></sideNav>
         </mu-aside>
         <mu-main class="main">
@@ -51,7 +62,6 @@ export default class extends Vue {
 }
 </script>
 <style lang="scss">
-@import './layout/base';
 .container {
   position: relative;
   height: 100vh;
@@ -67,14 +77,41 @@ export default class extends Vue {
     z-index: 100;
   }
   .main {
-    margin-top: 80px;
-    margin-left: 210px;
+    margin-left: 0;
   }
   .nav {
-    height: calc(100% - 80px);
-    position: fixed;
-    top: 80px;
-    overflow: auto;
+    width: 0 !important;
+    .side-nav {
+      display: none;
+    }
+    &.mobile {
+      position: fixed;
+      top: 30px;
+      right: 60px;
+      z-index: 101;
+      .mu-dropdown-selfdefine {
+        font-size: 22px;
+      }
+    }
+  }
+  @include respond-to(desktop) {
+    .main {
+      margin-top: 80px;
+      margin-left: 210px;
+    }
+    .nav {
+      width: auto !important;
+      .side-nav {
+        display: block;
+      }
+      height: calc(100% - 80px);
+      position: fixed;
+      top: 80px;
+      overflow: auto;
+      &.mobile {
+        display: none;
+      }
+    }
   }
   .footer {
     padding: 0 !important;

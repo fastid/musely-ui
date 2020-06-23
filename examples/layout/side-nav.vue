@@ -3,34 +3,56 @@
     <div v-for="title in Object.keys(data)"
          class="group-container"
          :key="title">
-      <p class="side-nav-title">{{ title }}</p>
-      <div class="side-nav-items"
-           v-for="nav in data[title]"
-           :key="nav.name ">
-        <router-link :class="$route.name === nav.name ? 'active' : ''"
-                     v-if="nav.name"
-                     :to="{ name: nav.name }">{{ nav.desc }}</router-link>
-        <p v-else
-           class="side-nav-group">{{ nav.desc }}</p>
-        <div v-for="item in nav.items"
-             :key="item.name">
-          <router-link :to="{ name: item.name }"
-                       :class="$route.name === item.name ? 'active' : ''"
-                       class="slid-nav-component">{{ item.desc }}</router-link>
+      <template v-if="mobile">
+        <mu-dropdown-item>{{title}}</mu-dropdown-item>
+        <template v-for="nav in data[title]">
+          <mu-dropdown-item :key="nav"
+                            v-if="nav.name">
+            <router-link :to="{ name: nav.name }">{{ nav.desc }}</router-link>
+          </mu-dropdown-item>
+          <template v-else>
+            <mu-dropdown-item :key="nav">{{ nav.desc }}</mu-dropdown-item>
+          </template>
+          <template v-for="item in nav.items">
+            <mu-dropdown-item :key="item">
+              <router-link :to="{ name: item.name }"
+                           :key="item.name">{{ item.desc  }}</router-link>
+            </mu-dropdown-item>
+
+          </template>
+        </template>
+      </template>
+      <template v-else>
+        <p class="side-nav-title">{{ title }}</p>
+        <div class="side-nav-items"
+             v-for="nav in data[title]"
+             :key="nav.name ">
+          <router-link :class="$route.name === nav.name ? 'active' : ''"
+                       v-if="nav.name"
+                       :to="{ name: nav.name }">{{ nav.desc }}</router-link>
+          <p v-else
+             class="side-nav-group">{{ nav.desc }}</p>
+          <div v-for="item in nav.items"
+               :key="item.name">
+            <router-link :to="{ name: item.name }"
+                         :class="$route.name === item.name ? 'active' : ''"
+                         class="slid-nav-component">{{ item.desc }}</router-link>
+          </div>
         </div>
-      </div>
+      </template>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Prop } from 'vue-property-decorator'
 import navConf from '../settings/nav.json'
 @Component({
   name: 'LayoutSideNav',
   components: {}
 })
 export default class LayoutSideNav extends Vue {
+  @Prop({ default: false }) mobile!: boolean
   private data = navConf
 }
 </script>
@@ -43,6 +65,14 @@ export default class LayoutSideNav extends Vue {
   color: #3f536e;
   background-color: #fff;
   z-index: 99;
+  &.mobile-menu {
+    overflow-y: auto;
+    height: 300px;
+    margin: 0;
+    .group-container {
+      margin-bottom: 10px;
+    }
+  }
   .group-container {
     margin-bottom: 32px;
   }

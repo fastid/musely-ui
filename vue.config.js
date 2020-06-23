@@ -63,7 +63,7 @@ module.exports = {
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
-      patterns: [path.resolve(__dirname, 'examples/styles/_variables.scss'), path.resolve(__dirname, 'examples/styles/_mixins.scss')]
+      patterns: [path.resolve(__dirname, 'examples/styles/_variables.scss'), path.resolve(__dirname, 'examples/styles/_mixins.scss'), path.resolve(__dirname, 'examples/styles/_svgicon.scss')]
     }
   },
   chainWebpack: (config) => {

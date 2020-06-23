@@ -1,9 +1,13 @@
 <template>
   <div class="header-container">
-    <router-link :to="{ name: 'home' }">
-      <svgicon name="musely_logo"
-               class="logo" />
-    </router-link>
+    <mu-col>
+      <router-link :to="{ name: 'home' }">
+        <svgicon name="musely_logo"
+                 class="logo" />
+      </router-link>
+    </mu-col>
+    <mu-col class="menu">
+    </mu-col>
   </div>
 </template>
 
@@ -29,6 +33,15 @@ export default class LayoutHeader extends Vue {}
     width: 120px;
     height: 25px;
     fill: #161616;
+  }
+  .menu {
+    display: inline-block;
+  }
+
+  @include respond-to(desktop) {
+    .menu {
+      display: none;
+    }
   }
 }
 </style>

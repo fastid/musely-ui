@@ -13,6 +13,6 @@ import { Component, Vue, Prop } from 'vue-property-decorator'
   name: 'MuHeader'
 })
 export default class MuHeader extends Vue implements Header {
-  @Prop({ default: '60px', type: String }) height!: string
+  @Prop({ default: '', type: String }) height!: string
 }
 </script>

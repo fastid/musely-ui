@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import SvgIcon from 'vue-svgicon'
-import MuselyUI, { Main, Button } from '~/'
+import MuselyUI from '~/'
 import codeView from './components/codeView.vue'
 // icons
 import '@/assets/icons/components'
@@ -11,6 +11,7 @@ import icon from './settings/icon.json'
 // import 'highlight.js/styles/default.css'
 import '~/theme-default/src/index.scss'
 import '@/assets/index.scss'
+
 Vue.component('codeView', codeView)
 
 Vue.use(MuselyUI)

@@ -7,3 +7,12 @@ $color-info: #50bfff;
 
 $color-white: #fff;
 $color-black: #000;
+
+$breakpoints: (
+  'mobile': (
+    min-width: 768px
+  ),
+  'desktop': (
+    min-width: 960px
+  )
+);

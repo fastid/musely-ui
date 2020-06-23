@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-20 22:58:20
+ * @LastEditTime: 2020-06-23 14:12:12
  * @Description:
  -->
 <script lang='tsx'>
@@ -258,7 +258,7 @@ export default class MuDropdown extends Mixins(Emitter) implements Dropdown {
       : (this.$slots as any).default[0].elm
 
     const dropdownMu = this.dropdownMu
-    console.log(this.$slots)
+
     this.triggerMu.addEventListener('keydown', handleTriggerKeyDown) // triggerMu keydown
     dropdownMu.addEventListener('keydown', handleItemKeyDown, true) // item keydown
     // 控制自定义元素的样式

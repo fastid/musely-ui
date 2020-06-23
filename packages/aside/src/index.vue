@@ -13,6 +13,6 @@ import { MuAside as Aside } from 'types/aside'
   name: 'MuAside'
 })
 export default class MuAside extends Vue implements Aside {
-  @Prop({ default: '200px', type: String }) width!: string
+  @Prop({ default: '', type: String }) width!: string
 }
 </script>

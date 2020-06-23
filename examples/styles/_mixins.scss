@@ -1,8 +1,41 @@
-/* Mixins */
-@mixin clearfix {
-  &:after {
-    content: "";
-    display: table;
-    clear: both;
+// _mixins.scss
+@mixin media($queries) {
+  @if length($queries) == 0 {
+    @content;
+  } @else {
+    $first-key: nth(map-keys($queries), 1);
+
+    @media ($first-key: map-get($queries, $first-key)) {
+      $queries: map-remove($queries, $first-key);
+
+      @include media($queries) {
+        @content;
+      }
+    }
+  }
+}
+
+//Break-points 2
+@mixin respond-to($key, $map: $breakpoints) {
+  $query: map-get($map, $key);
+  // 这里是scss error提示估计大部分人（包括我）都没怎么使用过
+  @if not $query {
+    @error 'No value found for `#{$key}`. Please make sure it is defined in `$key` map.';
+  }
+  // 具体断点解释在这里，作者比较严谨，校验了$query合法性
+  @media only screen and #{if(type-of($query) == 'string', unquote($query), inspect($query))} {
+    @content;
+  }
+}
+
+@mixin screen($sWidth) {
+  @if $sWidth == big {
+    @media (max-width: 1000px) {
+      @content;
+    }
+  } @else if $sWidth == small {
+    @media (max-width: 500px) {
+      @content;
+    }
   }
 }
