@@ -2,12 +2,11 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-24 03:04:03
+ * @LastEditTime: 2020-06-24 14:13:51
  * @Description:
  -->
 <template>
   <div class="mu-select"
-       :class="[selectSize ? 'mu-select--' + selectSize : '']"
        @click.stop="toggleMenu"
        v-clickoutside="handleClose">
     <div class="mu-select__tags"
@@ -47,9 +46,8 @@
 
       <input type="text"
              class="mu-select__input"
-             :class="[selectSize ? `is-${ selectSize }` : '']"
              :disabled="selectDisabled"
-             :autocomplete="autoComplete || autocomplete"
+             :autocomplete="autocomplete"
              @focus="handleFocus"
              @blur="softFocus = false"
              @keyup="managePlaceholder"
@@ -75,8 +73,7 @@
               :placeholder="currentPlaceholder"
               :name="name"
               :id="id"
-              :autocomplete="autoComplete || autocomplete"
-              :size="selectSize"
+              :autocomplete="autocomplete"
               :disabled="selectDisabled"
               :readonly="readonly"
               :validate-event="false"
@@ -142,9 +139,9 @@ import { Component, Mixins, Prop, Inject, Watch } from 'vue-property-decorator'
 
 import Emitter from 'musely-ui/src/mixins/emitter'
 // TODO since class not work~s
-import Focus from 'musely-ui/src/mixins/focus'
+// import Focus from 'musely-ui/src/mixins/focus'
 import MuInput from '~/input'
-import MuOption from '~/option.vue'
+import MuOption from '~/option'
 import MuSelectMenu from './menu.vue'
 
 // import ElTag from 'element-ui/packages/tag';

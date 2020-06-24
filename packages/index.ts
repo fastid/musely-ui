@@ -35,12 +35,16 @@ import Loading from './loading'
 import Main from './main'
 import Message from './message'
 import MessageBox from './message-box'
+import Option from './option'
+import OptionGroup from './option-group'
 import PageHeader from './page-header'
 import Popup from './popup'
 import Radio from './radio'
 import RadioGroup from './radio-group'
 import Rate from './rate'
 import Row from './row'
+import Scrollbar from './scrollbar'
+import Select from './select'
 const version = '0.1.22'
 const components = [
   Alert,
@@ -65,12 +69,16 @@ const components = [
   Input,
   Link,
   Main,
+  Option,
+  OptionGroup,
   PageHeader,
   Popup,
   Radio,
   RadioGroup,
   Rate,
-  Row
+  Row,
+  Scrollbar,
+  Select
 ]
 
 const install = (Vue: VueConstructor, opts: InstallationOptions = {}) => {
@@ -125,12 +133,16 @@ export {
   Main,
   Message,
   MessageBox,
+  Option,
+  OptionGroup,
   PageHeader,
   Popup,
   Radio,
   RadioGroup,
   Rate,
-  Row
+  Row,
+  Scrollbar,
+  Select
 }
 export default {
   install,

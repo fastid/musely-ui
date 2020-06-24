@@ -135,6 +135,11 @@
           "desc": "Radio 单选框",
           "name": "radio",
           "path": "/radio"
+        },
+        {
+          "desc": "Select 选择器",
+          "name": "select",
+          "path": "/select"
         }
       ]
     },

@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-23 22:24:15
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-23 22:33:28
+ * @LastEditTime: 2020-06-24 15:01:31
  * @Description:
 -->
 <template>
@@ -23,7 +23,7 @@ export default class MuSelectMenu extends Mixins(Popper) {
   @Prop({ default: 'bottom-start' }) placement!: string
   @Prop({ default: 0 }) boundariesPadding!: number
   @Prop({
-    default() {
+    default: () => {
       return {
         gpuAcceleration: false
       }
@@ -54,3 +54,4 @@ export default class MuSelectMenu extends Mixins(Popper) {
     this.$on('destroyPopper', this.destroyPopper)
   }
 }
+</script>
