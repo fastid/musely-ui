@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-23 22:11:38
+ * @LastEditTime: 2020-06-25 01:35:06
  * @Description:
  -->
 <template>
@@ -32,20 +32,44 @@ import { getValueByPath, escapeRegexpString } from 'musely-ui/src/utils'
 export default class MuOption extends Mixins(Emitter) implements Main {
   @Prop({ required: true }) value!: any
   @Prop({ type: [String, Number] }) label!: string
-  @Prop({ type: Boolean }) created!: any
+  @Prop({ type: Boolean }) private isCreate!: boolean
   @Prop({ type: Boolean, default: false }) disabled!: any
 
   @Inject()
   select!: any
+
+  @Watch('currentLabel')
+  onWatchCurrentLabel() {
+    console.log('111111111')
+    if (!this.isCreate) {
+      this.dispatch('MuSelect', 'setSelected', '')
+    }
+  }
+
+  @Watch('value')
+  onWatchValue(val: any, oldVal: any) {
+    const { valueKey } = this.select
+    console.log(val, oldVal)
+    if (!this.isCreate) {
+      if (
+        valueKey &&
+        typeof val === 'object' &&
+        typeof oldVal === 'object' &&
+        val[valueKey] === oldVal[valueKey]
+      ) {
+        return
+      }
+      this.dispatch('MuSelect', 'setSelected', '')
+    }
+  }
 
   index = -1
   groupDisabled = false
   visible = true
   hitState = false
   hover = false
-  isObject = null
 
-  get sObject() {
+  get isObject() {
     return (
       Object.prototype.toString.call(this.value).toLowerCase() ===
       '[object object]'
@@ -61,23 +85,11 @@ export default class MuOption extends Mixins(Emitter) implements Main {
   }
 
   get itemSelected() {
-    if (!this.select.multiple) {
-      return this.isEqual(this.value, this.select.value)
-    } else {
-      return this.contains(this.select.value, this.value)
-    }
+    return this.isEqual(this.value, this.select.value)
   }
 
   get limitReached() {
-    if (this.select.multiple) {
-      return (
-        !this.itemSelected &&
-        (this.select.value || []).length >= this.select.multipleLimit &&
-        this.select.multipleLimit > 0
-      )
-    } else {
-      return false
-    }
+    return false
   }
 
   isEqual(a: any, b: any) {
@@ -89,15 +101,15 @@ export default class MuOption extends Mixins(Emitter) implements Main {
     }
   }
 
-  contains(arr = [], target: any) {
+  contains(arr: any = [], target: any) {
     if (!this.isObject) {
       /* eslint-disable-next-line */
-      return arr && (arr as any).indexOf(target) > -1
+      return arr && arr.indexOf(target) > -1
     } else {
       const valueKey = this.select.valueKey
       return (
         arr &&
-        arr.some(item => {
+        arr.some((item: any) => {
           return (
             getValueByPath(item, valueKey) === getValueByPath(target, valueKey)
           )
@@ -118,40 +130,40 @@ export default class MuOption extends Mixins(Emitter) implements Main {
 
   selectOptionClick() {
     if (this.disabled !== true && this.groupDisabled !== true) {
-      this.dispatch('ElSelect', 'handleOptionClick', [this, true])
+      this.dispatch('MuSelect', 'handleOptionClick', [this, true])
     }
   }
 
   queryChange(query: any) {
     this.visible =
       new RegExp(escapeRegexpString(query), 'i').test(this.currentLabel) ||
-      this.created
+      this.isCreate
     if (!this.visible) {
       this.select.filteredOptionsCount--
     }
   }
 
-  @Watch('currentLabel')
-  onWatchCurrentLabel() {
-    if (!this.created && !this.select.remote) {
-      this.dispatch('MuSelect', 'setSelected', '')
-    }
+  created() {
+    this.select.options.push(this)
+    this.select.cachedOptions.push(this)
+    this.select.optionsCount++
+    this.select.filteredOptionsCount++
+
+    this.$on('queryChange', this.queryChange)
+    this.$on('handleGroupDisabled', this.handleGroupDisabled)
   }
 
-  @Watch('value')
-  onWatchValue(val: any, oldVal: any) {
-    const { remote, valueKey } = this.select
-    if (!this.created && !remote) {
-      if (
-        valueKey &&
-        typeof val === 'object' &&
-        typeof oldVal === 'object' &&
-        val[valueKey] === oldVal[valueKey]
-      ) {
-        return
-      }
-      this.dispatch('MuSelect', 'setSelected', '')
+  beforeDestroy() {
+    const { selected } = this.select
+    const selectedOptions = [selected]
+    const index = this.select.cachedOptions.indexOf(this)
+    const selectedIndex = selectedOptions.indexOf(this)
+
+    // if option is not selected, remove it from cache
+    if (index > -1 && selectedIndex < 0) {
+      this.select.cachedOptions.splice(index, 1)
     }
+    this.select.onOptionDestroy(this.select.options.indexOf(this))
   }
 }
 </script>

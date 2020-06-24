@@ -2,10 +2,11 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-24 15:12:26
+ * @LastEditTime: 2020-06-24 17:37:49
  * @Description:
  -->
 <script lang='tsx'>
+import { MuScrollbar as Main } from 'types/scrollbar'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import {
   addResizeListener,
@@ -19,13 +20,14 @@ import Bar from './bar.vue'
   name: 'MuScrollbar',
   components: { Bar }
 })
-export default class MuMain extends Vue {
+export default class MuScrollbar extends Vue implements Main {
   @Prop({ type: Boolean }) native!: boolean
   @Prop() wrapStyle!: {}
   @Prop() wrapClass!: {}
   @Prop() viewClass!: {}
   @Prop() viewStyle!: {}
-  @Prop({ type: Boolean }) noresize!: boolean // 如果 container 尺寸不会发生变化，最好设置它可以优化性能
+  // 如果 container 尺寸不会发生变化，最好设置它可以优化性能
+  @Prop({ type: Boolean }) noresize!: boolean
   @Prop({
     type: String,
     default: 'div'
@@ -86,10 +88,8 @@ export default class MuMain extends Vue {
     if (!this.native) {
       nodes = [
         wrap,
-        // eslint-disable-next-line
         <Bar move={this.moveX} size={this.sizeWidth}></Bar>,
-        // eslint-disable-next-line
-        <Bar vertical move={this.moveY} size={this.sizeHeight}></Bar>
+        <Bar move={this.moveY} size={this.sizeHeight} vertical></Bar>
       ]
     } else {
       nodes = [

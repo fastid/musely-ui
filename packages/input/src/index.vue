@@ -396,7 +396,6 @@ export default class MuInput extends Mixins(emitter) implements Input {
   }
 
   created() {
-    console.log(this.mask)
     this.$on('inputSelect', this.select)
   }
 

@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-24 14:01:25
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-24 14:12:56
+ * @LastEditTime: 2020-06-25 01:17:53
  * @Description:
 -->
 
@@ -17,7 +17,7 @@
 
 ```html
 <template>
-  <mu-select v-model="value" placeholder="请选择">
+  <mu-select v-model="value" placeholder="Select">
     <mu-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </mu-option>
   </mu-select>
 </template>
@@ -28,27 +28,27 @@
       return {
         options: [
           {
-            value: '选项1',
-            label: '黄金糕'
+            value: 'Option1',
+            label: 'Option1'
           },
           {
-            value: '选项2',
-            label: '双皮奶'
+            value: 'Option2',
+            label: 'Option2'
           },
           {
-            value: '选项3',
-            label: '蚵仔煎'
+            value: 'Option3',
+            label: 'Option3'
           },
           {
-            value: '选项4',
-            label: '龙须面'
+            value: 'Option4',
+            label: 'Option4'
           },
           {
-            value: '选项5',
-            label: '北京烤鸭'
+            value: 'Option5',
+            label: 'Option5'
           }
         ],
-        value: ''
+        value: 'aaaaaaaaaaaa'
       }
     }
   }
@@ -63,7 +63,7 @@
 
 ```html
 <template>
-  <mu-select v-model="value" placeholder="请选择">
+  <mu-select v-model="value" placeholder="Select">
     <mu-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value" :disabled="item.disabled"> </mu-option>
   </mu-select>
 </template>
@@ -74,25 +74,25 @@
       return {
         options: [
           {
-            value: '选项1',
-            label: '黄金糕'
+            value: 'Option1',
+            label: 'Option1'
           },
           {
-            value: '选项2',
-            label: '双皮奶',
+            value: 'Option2',
+            label: 'Option2',
             disabled: true
           },
           {
-            value: '选项3',
-            label: '蚵仔煎'
+            value: 'Option3',
+            label: 'Option3'
           },
           {
-            value: '选项4',
-            label: '龙须面'
+            value: 'Option4',
+            label: 'Option4'
           },
           {
-            value: '选项5',
-            label: '北京烤鸭'
+            value: 'Option5',
+            label: 'Option5'
           }
         ],
         value: ''
@@ -112,7 +112,7 @@
 
 ```html
 <template>
-  <mu-select v-model="value" disabled placeholder="请选择">
+  <mu-select v-model="value" disabled placeholder="Select">
     <mu-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </mu-option>
   </mu-select>
 </template>
@@ -123,24 +123,24 @@
       return {
         options: [
           {
-            value: '选项1',
-            label: '黄金糕'
+            value: 'Option1',
+            label: 'Option1'
           },
           {
-            value: '选项2',
-            label: '双皮奶'
+            value: 'Option2',
+            label: 'Option2'
           },
           {
-            value: '选项3',
-            label: '蚵仔煎'
+            value: 'Option3',
+            label: 'Option3'
           },
           {
-            value: '选项4',
-            label: '龙须面'
+            value: 'Option4',
+            label: 'Option4'
           },
           {
-            value: '选项5',
-            label: '北京烤鸭'
+            value: 'Option5',
+            label: 'Option5'
           }
         ],
         value: ''
@@ -160,7 +160,7 @@
 
 ```html
 <template>
-  <mu-select v-model="value" clearable placeholder="请选择">
+  <mu-select v-model="value" clearable placeholder="Select">
     <mu-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </mu-option>
   </mu-select>
 </template>
@@ -171,80 +171,27 @@
       return {
         options: [
           {
-            value: '选项1',
-            label: '黄金糕'
+            value: 'Option1',
+            label: 'Option1'
           },
           {
-            value: '选项2',
-            label: '双皮奶'
+            value: 'Option2',
+            label: 'Option2'
           },
           {
-            value: '选项3',
-            label: '蚵仔煎'
+            value: 'Option3',
+            label: 'Option3'
           },
           {
-            value: '选项4',
-            label: '龙须面'
+            value: 'Option4',
+            label: 'Option4'
           },
           {
-            value: '选项5',
-            label: '北京烤鸭'
+            value: 'Option5',
+            label: 'Option5'
           }
         ],
         value: ''
-      }
-    }
-  }
-</script>
-```
-
-:::
-
-### 基础多选
-
-适用性较广的基础多选，用 Tag 展示已选项
-
-:::demo 为`mu-select`设置`multiple`属性即可启用多选，此时`v-model`的值为当前选中值所组成的数组。默认情况下选中值会以 Tag 的形式展现，你也可以设置`collapse-tags`属性将它们合并为一段文字。
-
-```html
-<template>
-  <mu-select v-model="value1" multiple placeholder="请选择">
-    <mu-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </mu-option>
-  </mu-select>
-
-  <mu-select v-model="value2" multiple collapse-tags style="margin-left: 20px;" placeholder="请选择">
-    <mu-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </mu-option>
-  </mu-select>
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        options: [
-          {
-            value: '选项1',
-            label: '黄金糕'
-          },
-          {
-            value: '选项2',
-            label: '双皮奶'
-          },
-          {
-            value: '选项3',
-            label: '蚵仔煎'
-          },
-          {
-            value: '选项4',
-            label: '龙须面'
-          },
-          {
-            value: '选项5',
-            label: '北京烤鸭'
-          }
-        ],
-        value1: [],
-        value2: []
       }
     }
   }
@@ -261,7 +208,7 @@
 
 ```html
 <template>
-  <mu-select v-model="value" placeholder="请选择">
+  <mu-select v-model="value" placeholder="Select">
     <mu-option v-for="item in cities" :key="item.value" :label="item.label" :value="item.value">
       <span style="float: left">{{ item.label }}</span>
       <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
@@ -276,27 +223,27 @@
         cities: [
           {
             value: 'Beijing',
-            label: '北京'
+            label: 'Beijing'
           },
           {
             value: 'Shanghai',
-            label: '上海'
+            label: 'Shanghai'
           },
           {
             value: 'Nanjing',
-            label: '南京'
+            label: 'Nanjing'
           },
           {
             value: 'Chengdu',
-            label: '成都'
+            label: 'Chengdu'
           },
           {
             value: 'Shenzhen',
-            label: '深圳'
+            label: 'Shenzhen'
           },
           {
             value: 'Guangzhou',
-            label: '广州'
+            label: 'Guangzhou'
           }
         ],
         value: ''
@@ -305,72 +252,6 @@
   }
 </script>
 ```
-
-:::
-
-### 分组
-
-备选项进行分组展示
-
-:::demo 使用`mu-option-group`对备选项进行分组，它的`label`属性为分组名
-
-```html
-<template>
-  <mu-select v-model="value" placeholder="请选择">
-    <mu-option-group v-for="group in options" :key="group.label" :label="group.label">
-      <mu-option v-for="item in group.options" :key="item.value" :label="item.label" :value="item.value"> </mu-option>
-    </mu-option-group>
-  </mu-select>
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        options: [
-          {
-            label: '热门城市',
-            options: [
-              {
-                value: 'Shanghai',
-                label: '上海'
-              },
-              {
-                value: 'Beijing',
-                label: '北京'
-              }
-            ]
-          },
-          {
-            label: '城市名',
-            options: [
-              {
-                value: 'Chengdu',
-                label: '成都'
-              },
-              {
-                value: 'Shenzhen',
-                label: '深圳'
-              },
-              {
-                value: 'Guangzhou',
-                label: '广州'
-              },
-              {
-                value: 'Dalian',
-                label: '大连'
-              }
-            ]
-          }
-        ],
-        value: ''
-      }
-    }
-  }
-</script>
-```
-
-:::
 
 ### 可搜索
 
@@ -380,7 +261,7 @@
 
 ```html
 <template>
-  <mu-select v-model="value" filterable placeholder="请选择">
+  <mu-select v-model="value" filterable placeholder="Select">
     <mu-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </mu-option>
   </mu-select>
 </template>
@@ -391,127 +272,27 @@
       return {
         options: [
           {
-            value: '选项1',
-            label: '黄金糕'
+            value: 'Option1',
+            label: 'Option1'
           },
           {
-            value: '选项2',
-            label: '双皮奶'
+            value: 'Option2',
+            label: 'Option2'
           },
           {
-            value: '选项3',
-            label: '蚵仔煎'
+            value: 'Option3',
+            label: 'Option3'
           },
           {
-            value: '选项4',
-            label: '龙须面'
+            value: 'Option4',
+            label: 'Option4'
           },
           {
-            value: '选项5',
-            label: '北京烤鸭'
+            value: 'Option5',
+            label: 'Option5'
           }
         ],
         value: ''
-      }
-    }
-  }
-</script>
-```
-
-:::
-
-### 远程搜索
-
-从服务器搜索数据，输入关键字进行查找
-:::demo 为了启用远程搜索，需要将`filterable`和`remote`设置为`true`，同时传入一个`remote-method`。`remote-method`为一个`Function`，它会在输入值发生变化时调用，参数为当前输入值。需要注意的是，如果`mu-option`是通过`v-for`指令渲染出来的，此时需要为`mu-option`添加`key`属性，且其值需具有唯一性，比如此例中的`item.value`。
-
-```html
-<template>
-  <mu-select v-model="value" multiple filterable remote reserve-keyword placeholder="请输入关键词" :remote-method="remoteMethod" :loading="loading">
-    <mu-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </mu-option>
-  </mu-select>
-</template>
-
-<script>
-  export default {
-    data() {
-      return {
-        options: [],
-        value: [],
-        list: [],
-        loading: false,
-        states: [
-          'Alabama',
-          'Alaska',
-          'Arizona',
-          'Arkansas',
-          'California',
-          'Colorado',
-          'Connecticut',
-          'Delaware',
-          'Florida',
-          'Georgia',
-          'Hawaii',
-          'Idaho',
-          'Illinois',
-          'Indiana',
-          'Iowa',
-          'Kansas',
-          'Kentucky',
-          'Louisiana',
-          'Maine',
-          'Maryland',
-          'Massachusetts',
-          'Michigan',
-          'Minnesota',
-          'Mississippi',
-          'Missouri',
-          'Montana',
-          'Nebraska',
-          'Nevada',
-          'New Hampshire',
-          'New Jersey',
-          'New Mexico',
-          'New York',
-          'North Carolina',
-          'North Dakota',
-          'Ohio',
-          'Oklahoma',
-          'Oregon',
-          'Pennsylvania',
-          'Rhode Island',
-          'South Carolina',
-          'South Dakota',
-          'Tennessee',
-          'Texas',
-          'Utah',
-          'Vermont',
-          'Virginia',
-          'Washington',
-          'West Virginia',
-          'Wisconsin',
-          'Wyoming'
-        ]
-      }
-    },
-    mounted() {
-      this.list = this.states.map((item) => {
-        return { value: `value:${item}`, label: `label:${item}` }
-      })
-    },
-    methods: {
-      remoteMethod(query) {
-        if (query !== '') {
-          this.loading = true
-          setTimeout(() => {
-            this.loading = false
-            this.options = this.list.filter((item) => {
-              return item.label.toLowerCase().indexOf(query.toLowerCase()) > -1
-            })
-          }, 200)
-        } else {
-          this.options = []
-        }
       }
     }
   }
@@ -527,7 +308,7 @@
 
 ```html
 <template>
-  <mu-select select v-model="value" multiple filterable allow-create default-first-option placeholder="请选择文章标签">
+  <mu-select v-model="value" multiple filterable allow-create default-first-option placeholder="Choose tags for your article">
     <mu-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"> </mu-option>
   </mu-select>
 </template>
@@ -565,34 +346,23 @@
 
 ### Select Attributes
 
-| 参数                  | 说明                                                                           | 类型                      | 可选值            | 默认值     |
-| --------------------- | ------------------------------------------------------------------------------ | ------------------------- | ----------------- | ---------- |
-| value / v-model       | 绑定值                                                                         | boolean / string / number | —                 | —          |
-| multiple              | 是否多选                                                                       | boolean                   | —                 | false      |
-| disabled              | 是否禁用                                                                       | boolean                   | —                 | false      |
-| value-key             | 作为 value 唯一标识的键名，绑定值为对象类型时必填                              | string                    | —                 | value      |
-| size                  | 输入框尺寸                                                                     | string                    | medium/small/mini | —          |
-| clearable             | 是否可以清空选项                                                               | boolean                   | —                 | false      |
-| collapse-tags         | 多选时是否将选中值按文字的形式展示                                             | boolean                   | —                 | false      |
-| multiple-limit        | 多选时用户最多可以选择的项目数，为 0 则不限制                                  | number                    | —                 | 0          |
-| name                  | select input 的 name 属性                                                      | string                    | —                 | —          |
-| autocomplete          | select input 的 autocomplete 属性                                              | string                    | —                 | off        |
-| auto-complete         | 下个主版本弃用                                                                 | string                    | —                 | off        |
-| placeholder           | 占位符                                                                         | string                    | —                 | 请选择     |
-| filterable            | 是否可搜索                                                                     | boolean                   | —                 | false      |
-| allow-create          | 是否允许用户创建新条目，需配合 `filterable` 使用                               | boolean                   | —                 | false      |
-| filter-method         | 自定义搜索方法                                                                 | function                  | —                 | —          |
-| remote                | 是否为远程搜索                                                                 | boolean                   | —                 | false      |
-| remote-method         | 远程搜索方法                                                                   | function                  | —                 | —          |
-| loading               | 是否正在从远程获取数据                                                         | boolean                   | —                 | false      |
-| loading-text          | 远程加载时显示的文字                                                           | string                    | —                 | 加载中     |
-| no-match-text         | 搜索条件无匹配时显示的文字，也可以使用`slot="empty"`设置                       | string                    | —                 | 无匹配数据 |
-| no-data-text          | 选项为空时显示的文字，也可以使用`slot="empty"`设置                             | string                    | —                 | 无数据     |
-| popper-class          | Select 下拉框的类名                                                            | string                    | —                 | —          |
-| reserve-keyword       | 多选且可搜索时，是否在选中一个选项后保留当前的搜索关键词                       | boolean                   | —                 | false      |
-| default-first-option  | 在输入框按下回车，选择第一个匹配项。需配合 `filterable` 或 `remote` 使用       | boolean                   | -                 | false      |
-| popper-append-to-body | 是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false | boolean                   | -                 | true       |
-| automatic-dropdown    | 对于不可搜索的 Select，是否在输入框获得焦点后自动弹出选项菜单                  | boolean                   | -                 | false      |
+| 参数                  | 说明                                                                           | 类型                      | 可选值 | 默认值     |
+| --------------------- | ------------------------------------------------------------------------------ | ------------------------- | ------ | ---------- |
+| value / v-model       | 绑定值                                                                         | boolean / string / number | —      | —          |
+| disabled              | 是否禁用                                                                       | boolean                   | —      | false      |
+| value-key             | 作为 value 唯一标识的键名，绑定值为对象类型时必填                              | string                    | —      | value      |
+| clearable             | 是否可以清空选项                                                               | boolean                   | —      | false      |
+| name                  | select input 的 name 属性                                                      | string                    | —      | —          |
+| autocomplete          | select input 的 autocomplete 属性                                              | string                    | —      | off        |
+| placeholder           | 占位符                                                                         | string                    | —      | 请选择     |
+| filterable            | 是否可搜索                                                                     | boolean                   | —      | false      |
+| allow-create          | 是否允许用户创建新条目，需配合 `filterable` 使用                               | boolean                   | —      | false      |
+| no-match-text         | 搜索条件无匹配时显示的文字，也可以使用`slot="empty"`设置                       | string                    | —      | 无匹配数据 |
+| no-data-text          | 选项为空时显示的文字，也可以使用`slot="empty"`设置                             | string                    | —      | 无数据     |
+| popper-class          | Select 下拉框的类名                                                            | string                    | —      | —          |
+| default-first-option  | 在输入框按下回车，选择第一个匹配项。需配合 `filterable` 或 `remote` 使用       | boolean                   | -      | false      |
+| popper-append-to-body | 是否将弹出框插入至 body 元素。在弹出框的定位出现问题时，可将该属性设置为 false | boolean                   | -      | true       |
+| automatic-dropdown    | 对于不可搜索的 Select，是否在输入框获得焦点后自动弹出选项菜单                  | boolean                   | -      | false      |
 
 ### Select Events
 

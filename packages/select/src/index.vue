@@ -2,71 +2,13 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-24 14:13:51
+ * @LastEditTime: 2020-06-25 02:43:24
  * @Description:
  -->
 <template>
   <div class="mu-select"
        @click.stop="toggleMenu"
        v-clickoutside="handleClose">
-    <div class="mu-select__tags"
-         v-if="multiple"
-         ref="tags"
-         :style="{ 'max-width': inputWidth - 32 + 'px', width: '100%' }">
-      <span v-if="collapseTags && selected.length">
-        <mu-tag :closable="!selectDisabled"
-                :size="collapseTagSize"
-                :hit="selected[0].hitState"
-                type="info"
-                @close="deleteTag($event, selected[0])"
-                disable-transitions>
-          <span class="mu-select__tags-text">{{ selected[0].currentLabel }}</span>
-        </mu-tag>
-        <mu-tag v-if="selected.length > 1"
-                :closable="false"
-                :size="collapseTagSize"
-                type="info"
-                disable-transitions>
-          <span class="mu-select__tags-text">+ {{ selected.length - 1 }}</span>
-        </mu-tag>
-      </span>
-      <transition-group @after-leave="resetInputHeight"
-                        v-if="!collapseTags">
-        <mu-tag v-for="item in selected"
-                :key="getValueKey(item)"
-                :closable="!selectDisabled"
-                :size="collapseTagSize"
-                :hit="item.hitState"
-                type="info"
-                @close="deleteTag($event, item)"
-                disable-transitions>
-          <span class="mu-select__tags-text">{{ item.currentLabel }}</span>
-        </mu-tag>
-      </transition-group>
-
-      <input type="text"
-             class="mu-select__input"
-             :disabled="selectDisabled"
-             :autocomplete="autocomplete"
-             @focus="handleFocus"
-             @blur="softFocus = false"
-             @keyup="managePlaceholder"
-             @keydown="resetInputState"
-             @keydown.down.prevent="navigateOptions('next')"
-             @keydown.up.prevent="navigateOptions('prev')"
-             @keydown.enter.prevent="selectOption"
-             @keydown.esc.stop.prevent="visible = false"
-             @keydown.delete="deletePrevTag"
-             @keydown.tab="visible = false"
-             @compositionstart="handleComposition"
-             @compositionupdate="handleComposition"
-             @compositionend="handleComposition"
-             v-model="query"
-             @input="debouncedQueryChange"
-             v-if="filterable"
-             :style="{ 'flex-grow': '1', width: inputLength / (inputWidth - 32) + '%', 'max-width': inputWidth - 42 + 'px' }"
-             ref="input">
-    </div>
     <mu-input ref="reference"
               v-model="selectedLabel"
               type="text"
@@ -78,7 +20,7 @@
               :readonly="readonly"
               :validate-event="false"
               :class="{ 'is-focus': visible }"
-              :tabindex="(multiple && filterable) ? '-1' : null"
+              :tabindex="filterable ? '-1' : null"
               @focus="handleFocus"
               @blur="handleBlur"
               @keyup.native="debouncedOnInputChange"
@@ -98,7 +40,7 @@
         <i v-show="!showClose"
            :class="['mu-select__caret', 'mu-input__icon', 'mu-icon-' + iconClass]"></i>
         <i v-if="showClose"
-           class="mu-select__caret mu-input__icon mu-icon-circle-close"
+           class="mu-select__caret mu-input__icon mu-icon-round-close"
            @click="handleClearClick"></i>
       </template>
     </mu-input>
@@ -112,15 +54,14 @@
                       wrap-class="mu-select-dropdown__wrap"
                       view-class="mu-select-dropdown__list"
                       ref="scrollbar"
-                      :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0 }"
-                      v-show="options.length > 0 && !loading">
+                      :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0 }">
           <mu-option :value="query"
                      created
                      v-if="showNewOption">
           </mu-option>
           <slot></slot>
         </mu-scrollbar>
-        <template v-if="emptyText && (!allowCreate || loading || (allowCreate && options.length === 0 ))">
+        <template v-if="emptyText && (!allowCreate || (allowCreate && options.length === 0 ))">
           <slot name="empty"
                 v-if="$slots.empty"></slot>
           <p class="mu-select-dropdown__empty"
@@ -143,10 +84,7 @@ import Emitter from 'musely-ui/src/mixins/emitter'
 import MuInput from '~/input'
 import MuOption from '~/option'
 import MuSelectMenu from './menu.vue'
-
-// import ElTag from 'element-ui/packages/tag';
-// import ElScrollbar from 'element-ui/packages/scrollbar';
-
+import MuScrollbar from '~/scrollbar'
 import { debounce } from 'throttle-debounce'
 import Clickoutside from 'musely-ui/src/utils/clickoutside'
 import {
@@ -172,9 +110,9 @@ import NavigationMixin from './navigation-mixin.vue'
   components: {
     MuInput,
     MuSelectMenu,
-    MuOption
+    MuOption,
+    MuScrollbar
     // ElTag,
-    // MuScrollbar
   },
   // mixins: [Focus('reference')],
   directives: { Clickoutside },
@@ -205,15 +143,11 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
   @Prop({ type: Boolean }) clearable!: boolean
   @Prop({ type: Boolean }) filterable!: boolean
   @Prop({ type: Boolean }) allowCreate!: boolean
-  @Prop({ type: Boolean }) loading!: boolean
   @Prop({ type: String }) popperClass!: string
-  @Prop({ type: Boolean }) remote!: boolean
-  @Prop({ type: String }) loadingText!: string
   @Prop({ type: String }) noMatchText!: string
   @Prop({ type: String }) noDataText!: string
   @Prop({ type: Function }) filterMethod!: QueryChangeHandler
-  @Prop({ type: Function }) remoteMethod!: QueryChangeHandler
-  @Prop({ type: Boolean }) multiple!: boolean
+
   @Prop({
     type: Number,
     default: 0
@@ -223,7 +157,7 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
   @Prop({
     type: String,
     default() {
-      return '=======ppp======'
+      return ''
     }
   })
   placeholder!: string
@@ -267,31 +201,19 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
 
   @Watch('value')
   onWatchValue(val: any, oldVal: any) {
-    if (this.multiple) {
-      this.resetInputHeight()
-      if ((val && val.length > 0) || (this.$refs.input && this.query !== '')) {
-        this.currentPlaceholder = ''
-      } else {
-        this.currentPlaceholder = this.cachedPlaceHolder
-      }
-      if (this.filterable && !this.reserveKeyword) {
-        this.query = ''
-        this.handleQueryChange(this.query)
-      }
-    }
     this.setSelected()
-    if (this.filterable && !this.multiple) {
+    if (this.filterable) {
       this.inputLength = 20
     }
     if (!valueEquals(val, oldVal)) {
-      this.dispatch('ElFormItem', 'el.form.change', val)
+      this.dispatch('MuFormItem', 'mu.form.change', val)
     }
   }
 
   @Watch('visible')
   onWatchVisible(val: any) {
     if (!val) {
-      this.broadcast('ElSelectDropdown', 'destroyPopper')
+      this.broadcast('MuSelectDropdown', 'destroyPopper')
       if (this.$refs.input) {
         ;(this.$refs.input as any).blur()
       }
@@ -310,42 +232,35 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
           this.currentPlaceholder = this.cachedPlaceHolder
         }
       })
-      if (!this.multiple) {
-        if (this.selected) {
-          if (
-            this.filterable &&
-            this.allowCreate &&
-            this.createdSelected &&
-            this.createdLabel
-          ) {
-            this.selectedLabel = this.createdLabel
-          } else {
-            this.selectedLabel = (this.selected as IAnyData).currentLabel
-          }
-          if (this.filterable) this.query = this.selectedLabel
-        }
 
+      if (this.selected) {
+        if (
+          this.filterable &&
+          this.allowCreate &&
+          this.createdSelected &&
+          this.createdLabel
+        ) {
+          this.selectedLabel = this.createdLabel
+        } else {
+          this.selectedLabel = (this.selected as any).currentLabel
+        }
         if (this.filterable) {
-          this.currentPlaceholder = this.cachedPlaceHolder
+          this.query = this.selectedLabel
         }
       }
-    } else {
-      this.broadcast('ElSelectDropdown', 'updatePopper')
-      if (this.filterable) {
-        this.query = this.remote ? '' : this.selectedLabel
-        this.handleQueryChange(this.query)
-        if (this.multiple) {
-          ;(this.$refs.input as any).focus()
-        } else {
-          if (!this.remote) {
-            this.broadcast('ElOption', 'queryChange', '')
-            this.broadcast('ElOptionGroup', 'queryChange')
-          }
 
-          if (this.selectedLabel) {
-            this.currentPlaceholder = this.selectedLabel
-            this.selectedLabel = ''
-          }
+      if (this.filterable) {
+        this.currentPlaceholder = this.cachedPlaceHolder
+      }
+    } else {
+      this.broadcast('MuSelectDropdown', 'updatePopper')
+      if (this.filterable) {
+        this.query = this.selectedLabel
+        this.handleQueryChange(this.query)
+
+        if (this.selectedLabel) {
+          this.currentPlaceholder = this.selectedLabel
+          this.selectedLabel = ''
         }
       }
     }
@@ -356,11 +271,8 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
   onWatchOptions() {
     if (this.$isServer) return
     this.$nextTick(() => {
-      this.broadcast('ElSelectDropdown', 'updatePopper')
+      this.broadcast('MuSelectDropdown', 'updatePopper')
     })
-    if (this.multiple) {
-      this.resetInputHeight()
-    }
     const inputs = this.$el.querySelectorAll('input')
     // TODO
     const index = ([] as any).indexOf.call(inputs, document.activeElement)
@@ -371,64 +283,44 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
 
     if (
       this.defaultFirstOption &&
-      (this.filterable || this.remote) &&
+      this.filterable &&
       this.filteredOptionsCount
     ) {
       this.checkDefaultFirstOption()
     }
   }
 
-  get _muFormItemSize() {
-    return (this.muFormItem || {}).muFormItemSize
-  }
-
   get readonly() {
-    return (
-      !this.filterable ||
-      this.multiple ||
-      (!isIE() && !isEdge() && !this.visible)
-    )
+    return !this.filterable || (!isIE() && !isEdge() && !this.visible)
   }
 
   get showClose() {
-    const hasValue = this.multiple
-      ? Array.isArray(this.value) && this.value.length > 0
-      : this.value !== undefined && this.value !== null && this.value !== ''
+    const hasValue =
+      this.value !== undefined && this.value !== null && this.value !== ''
     const criteria =
       this.clearable && !this.selectDisabled && this.inputHovering && hasValue
     return criteria
   }
 
   get iconClass() {
-    return this.remote && this.filterable
-      ? ''
-      : this.visible
-      ? 'arrow-up is-reverse'
-      : 'arrow-up'
+    return this.visible ? 'arrow-up is-reverse' : 'arrow-up'
   }
 
   get debounce() {
-    return this.remote ? 300 : 0
+    return 0
   }
 
   get emptyText() {
-    if (this.loading) {
-      return this.loadingText || 'Loading'
-    } else {
-      if (this.remote && this.query === '' && this.options.length === 0) {
-        return false
-      }
-      if (
-        this.filterable &&
-        this.query &&
-        this.options.length > 0 &&
-        this.filteredOptionsCount === 0
-      ) {
-        return this.noMatchText || 'No matching data'
-      }
-      if (this.options.length === 0) {
-        return this.noDataText || 'No data'
-      }
+    if (
+      this.filterable &&
+      this.query &&
+      this.options.length > 0 &&
+      this.filteredOptionsCount === 0
+    ) {
+      return this.noMatchText || 'No matching data'
+    }
+    if (this.options.length === 0) {
+      return this.noDataText || 'No data'
     }
     return null
   }
@@ -501,39 +393,27 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
     if (this.previousQuery === val || this.isOnComposition) return
     if (
       this.previousQuery === null &&
-      (typeof this.filterMethod === 'function' ||
-        typeof this.remoteMethod === 'function')
+      typeof this.filterMethod === 'function'
     ) {
       this.previousQuery = val
       return
     }
     this.previousQuery = val
     this.$nextTick(() => {
-      if (this.visible) this.broadcast('ElSelectDropdown', 'updatePopper')
+      if (this.visible) this.broadcast('MuSelectDropdown', 'updatePopper')
     })
     this.hoverIndex = -1
-    if (this.multiple && this.filterable) {
-      this.$nextTick(() => {
-        const length = (this.$refs.input as any).value.length * 15 + 20
-        this.inputLength = this.collapseTags ? Math.min(50, length) : length
-        this.managePlaceholder()
-        this.resetInputHeight()
-      })
-    }
-    if (this.remote && typeof this.remoteMethod === 'function') {
-      this.hoverIndex = -1
-      this.remoteMethod(val)
-    } else if (typeof this.filterMethod === 'function') {
+    if (typeof this.filterMethod === 'function') {
       this.filterMethod(val)
-      this.broadcast('ElOptionGroup', 'queryChange')
+      this.broadcast('MuOptionGroup', 'queryChange')
     } else {
       this.filteredOptionsCount = this.optionsCount
-      this.broadcast('ElOption', 'queryChange', val)
-      this.broadcast('ElOptionGroup', 'queryChange')
+      this.broadcast('MuOption', 'queryChange', val)
+      this.broadcast('MuOptionGroup', 'queryChange')
     }
     if (
       this.defaultFirstOption &&
-      (this.filterable || this.remote) &&
+      this.filterable &&
       this.filteredOptionsCount
     ) {
       this.checkDefaultFirstOption()
@@ -589,36 +469,24 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
       value: value,
       currentLabel: label
     }
-    if (this.multiple) {
-      newOption.hitState = false
-    }
     return newOption
   }
 
   setSelected() {
-    if (!this.multiple) {
-      const option = this.getOption(this.value)
-      if (option.created) {
-        this.createdLabel = option.currentLabel
-        this.createdSelected = true
-      } else {
-        this.createdSelected = false
-      }
-      this.selectedLabel = option.currentLabel
-      this.selected = option
-      if (this.filterable) this.query = this.selectedLabel
-      return
+    const option = this.getOption(this.value)
+    if (option.isCreate) {
+      this.createdLabel = option.currentLabel
+      this.createdSelected = true
+    } else {
+      this.createdSelected = false
     }
-    const result: any = []
-    if (Array.isArray(this.value)) {
-      this.value.forEach(value => {
-        result.push(this.getOption(value))
-      })
+
+    this.selectedLabel = option.currentLabel
+    this.selected = option
+
+    if (this.filterable) {
+      this.query = this.selectedLabel
     }
-    this.selected = result
-    this.$nextTick(() => {
-      this.resetInputHeight()
-    })
   }
 
   handleFocus(event: any) {
@@ -715,56 +583,28 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
                 : 0,
               sizeInMap
             ) + 'px'
-      if (this.visible && this.emptyText !== false) {
-        this.broadcast('ElSelectDropdown', 'updatePopper')
+      if (this.visible && this.emptyText !== null) {
+        this.broadcast('MuSelectDropdown', 'updatePopper')
       }
     })
   }
 
   resetHoverIndex() {
     setTimeout(() => {
-      if (!this.multiple) {
-        this.hoverIndex = (this.options as any).indexOf(this.selected)
-      } else {
-        if (this.selected.length > 0) {
-          this.hoverIndex = Math.min.apply(
-            null,
-            this.selected.map((item: any) =>
-              (this.options as any).indexOf(item)
-            )
-          )
-        } else {
-          this.hoverIndex = -1
-        }
-      }
+      this.hoverIndex = (this.options as any).indexOf(this.selected)
     }, 300)
   }
 
   handleOptionSelect(option: any, byClick?: any) {
-    if (this.multiple) {
-      const value: any = (this.value || []).slice()
-      const optionIndex = this.getValueIndex(value, option.value)
-      if (optionIndex > -1) {
-        value.splice(optionIndex, 1)
-      } else if (this.multipleLimit <= 0 || value.length < this.multipleLimit) {
-        value.push(option.value)
-      }
-      this.$emit('input', value)
-      this.emitChange(value)
-      if (option.created) {
-        this.query = ''
-        this.handleQueryChange('')
-        this.inputLength = 20
-      }
-      if (this.filterable) (this.$refs.input as any).focus()
-    } else {
-      this.$emit('input', option.value)
-      this.emitChange(option.value)
-      this.visible = false
-    }
+    this.$emit('input', option.value)
+    this.emitChange(option.value)
+    this.visible = false
+
     this.isSilentBlur = byClick
     this.setSoftFocus()
-    if (this.visible) return
+    if (this.visible) {
+      return
+    }
     this.$nextTick(() => {
       this.scrollToOption(option)
     })
@@ -824,23 +664,11 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
 
   deleteSelected(event: any) {
     event.stopPropagation()
-    const value = this.multiple ? [] : ''
+    const value = ''
     this.$emit('input', value)
     this.emitChange(value)
     this.visible = false
     this.$emit('clear')
-  }
-
-  deleteTag(event: any, tag: any) {
-    const index = this.selected.indexOf(tag)
-    if (index > -1 && !this.selectDisabled) {
-      const value: any = this.value.slice()
-      value.splice(index, 1)
-      this.$emit('input', value)
-      this.emitChange(value)
-      this.$emit('remove-tag', tag.value)
-    }
-    event.stopPropagation()
   }
 
   onInputChange() {
@@ -865,7 +693,6 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
 
   handleResize() {
     this.resetInputWidth()
-    if (this.multiple) this.resetInputHeight()
   }
 
   checkDefaultFirstOption() {
@@ -912,13 +739,11 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
   created() {
     // TODO
 
-    this.selected = this.multiple ? [] : {}
+    this.selected = {}
 
     this.cachedPlaceHolder = this.currentPlaceholder = this.placeholder
-    if (this.multiple && !Array.isArray(this.value)) {
-      this.$emit('input', [])
-    }
-    if (!this.multiple && Array.isArray(this.value)) {
+
+    if (Array.isArray(this.value)) {
       this.$emit('input', '')
     }
 
@@ -935,16 +760,10 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
   }
 
   mounted() {
-    if (this.multiple && Array.isArray(this.value) && this.value.length > 0) {
-      this.currentPlaceholder = ''
-    }
     addResizeListener(this.$el, this.handleResize)
 
     const reference: any = this.$refs.reference
 
-    if (this.remote && this.multiple) {
-      this.resetInputHeight()
-    }
     this.$nextTick(() => {
       if (reference && reference.$el) {
         this.inputWidth = reference.$el.getBoundingClientRect().width

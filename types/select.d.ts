@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-23 21:38:33
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-24 00:07:23
+ * @LastEditTime: 2020-06-25 01:03:24
  * @Description:
  */
 import { MuselyUIComponent } from './common'
@@ -19,9 +19,6 @@ export declare class MuSelect extends MuselyUIComponent {
   /** The form input value */
   value: any
 
-  /** Whether multiple-select is activated */
-  multiple: boolean
-
   /** Whether Select is disabled */
   disabled: boolean
 
@@ -30,9 +27,6 @@ export declare class MuSelect extends MuselyUIComponent {
 
   /** Whether single select can be cleared */
   clearable: boolean
-
-  /** Maximum number of options user can select when multiple is true. No limit when set to 0 */
-  multipleLimit: number
 
   /** Same as autocomplete in native input */
   autocomplete: string
@@ -49,20 +43,8 @@ export declare class MuSelect extends MuselyUIComponent {
   /** Whether creating new items is allowed. To use this, filterable must be true */
   allowCreate: boolean
 
-  /** Whether options are loaded from server */
-  remote: boolean
-
-  /** Custom remote search method */
-  // remoteMethod: QueryChangeHandler
-
   // /** Custom filter method */
-  // filterMethod: QueryChangeHandler
-
-  /** Whether Select is loading data from server */
-  loading: boolean
-
-  /** Displayed text while loading data from server */
-  loadingText: string
+  filterMethod: QueryChangeHandler
 
   /** Displayed text when no data matches the filtering query */
   noMatchText: string

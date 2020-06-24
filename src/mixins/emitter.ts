@@ -28,7 +28,7 @@ export default class MuEmitter extends Vue {
   // }
   // TODO 定义 dispatch 方法，接受三个参数，分别是：组件名称、将要触发的事件名称、回调函数传递的参数
   dispatch(componentName: string, eventName: string, params: any) {
-    console.log('====dispatch=====', componentName, params)
+    console.log('====Emit dispatch=====', componentName, eventName, params)
     // 获取基于当前组件的父组件实例，这里对父组件实例和根组件实例做了兼容处理
     let parent = this.$parent || this.$root
     // 通过父组件的 $option 属性获取组件的名称
@@ -54,7 +54,7 @@ export default class MuEmitter extends Vue {
 
   // TODO Rewrite~
   broadcast(componentName: string, eventName: string, params?: any) {
-    console.log('====broadcast=====', componentName, eventName, params)
+    console.log('====Emit broadcast=====', componentName, eventName, params || '')
     broadcast.call(this, componentName, eventName, params)
   }
 }
