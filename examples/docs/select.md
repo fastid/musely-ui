@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-06-24 14:01:25
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-25 01:17:53
+ * @LastEditTime: 2020-06-26 01:11:36
  * @Description:
 -->
 
@@ -48,7 +48,7 @@
             label: 'Option5'
           }
         ],
-        value: 'aaaaaaaaaaaa'
+        value: ''
       }
     }
   }
@@ -188,6 +188,66 @@
           },
           {
             value: 'Option5',
+            label: 'Option5'
+          },
+          {
+            value: 'Option11',
+            label: 'Option1'
+          },
+          {
+            value: 'Option21',
+            label: 'Option2'
+          },
+          {
+            value: 'Option31',
+            label: 'Option3'
+          },
+          {
+            value: 'Option41',
+            label: 'Option4'
+          },
+          {
+            value: 'Option51',
+            label: 'Option5'
+          },
+          {
+            value: 'Option12',
+            label: 'Option1'
+          },
+          {
+            value: 'Option22',
+            label: 'Option2'
+          },
+          {
+            value: 'Option32',
+            label: 'Option3'
+          },
+          {
+            value: 'Option42',
+            label: 'Option4'
+          },
+          {
+            value: 'Option52',
+            label: 'Option5'
+          },
+          {
+            value: 'Option13',
+            label: 'Option1'
+          },
+          {
+            value: 'Option23',
+            label: 'Option2'
+          },
+          {
+            value: 'Option33',
+            label: 'Option3'
+          },
+          {
+            value: 'Option43',
+            label: 'Option4'
+          },
+          {
+            value: 'Option53',
             label: 'Option5'
           }
         ],
@@ -370,7 +430,6 @@
 | -------------- | ---------------------------------------- | ----------------------------- |
 | change         | 选中值发生变化时触发                     | 目前的选中值                  |
 | visible-change | 下拉框出现/隐藏时触发                    | 出现则为 true，隐藏则为 false |
-| remove-tag     | 多选模式下移除 tag 时触发                | 移除的 tag 值                 |
 | clear          | 可清空的单选模式下用户点击清空按钮时触发 | —                             |
 | blur           | 当 input 失去焦点时触发                  | (event: Event)                |
 | focus          | 当 input 获得焦点时触发                  | (event: Event)                |

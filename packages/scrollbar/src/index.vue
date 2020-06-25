@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-24 17:37:49
+ * @LastEditTime: 2020-06-26 01:10:20
  * @Description:
  -->
 <script lang='tsx'>
@@ -88,8 +88,12 @@ export default class MuScrollbar extends Vue implements Main {
     if (!this.native) {
       nodes = [
         wrap,
-        <Bar move={this.moveX} size={this.sizeWidth}></Bar>,
-        <Bar move={this.moveY} size={this.sizeHeight} vertical></Bar>
+        <Bar on-move={this.moveX} on-size={this.sizeWidth}></Bar>,
+        <Bar
+          on-move={this.moveY}
+          on-size={this.sizeHeight}
+          on-vertical={true}
+        ></Bar>
       ]
     } else {
       nodes = [

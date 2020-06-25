@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-25 02:43:24
+ * @LastEditTime: 2020-06-26 01:15:39
  * @Description:
  -->
 <template>
@@ -56,7 +56,7 @@
                       ref="scrollbar"
                       :class="{ 'is-empty': !allowCreate && query && filteredOptionsCount === 0 }">
           <mu-option :value="query"
-                     created
+                     isCreate
                      v-if="showNewOption">
           </mu-option>
           <slot></slot>
@@ -99,7 +99,6 @@ import {
   isEdge,
   isKorean
 } from 'musely-ui/src/utils'
-import NavigationMixin from './navigation-mixin.vue'
 
 @Component({
   provide() {
@@ -112,15 +111,11 @@ import NavigationMixin from './navigation-mixin.vue'
     MuSelectMenu,
     MuOption,
     MuScrollbar
-    // ElTag,
   },
-  // mixins: [Focus('reference')],
   directives: { Clickoutside },
   name: 'MuSelect'
 })
-// mixins Focus('reference'),
-export default class MuSelect extends Mixins(Emitter, NavigationMixin)
-  implements Main {
+export default class MuSelect extends Mixins(Emitter) implements Main {
   @Prop({ type: String }) name!: string
   @Prop({ type: String }) id!: string
   @Prop({
@@ -290,6 +285,16 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
     }
   }
 
+  @Watch('hoverIndex')
+  onWatchHoverIndex(val: any) {
+    if (typeof val === 'number' && val > -1) {
+      this.hoverOption = this.options[val] || {}
+    }
+    this.options.forEach((option: any) => {
+      option.hover = this.hoverOption === option
+    })
+  }
+
   get readonly() {
     return !this.filterable || (!isIE() && !isEdge() && !this.visible)
   }
@@ -327,8 +332,9 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
 
   get showNewOption() {
     const hasExistingOption = this.options
-      .filter((option: any) => !option.created)
+      .filter((option: any) => !option.isCreate)
       .some((option: any) => option.currentLabel === this.query)
+
     return (
       this.filterable &&
       this.allowCreate &&
@@ -341,6 +347,11 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
     return this.disabled || (this.muForm || {}).disabled
   }
 
+  get optionsAllDisabled() {
+    return this.options
+      .filter((option: any) => option.visible)
+      .every((option: any) => option.disabled)
+  }
   // private
 
   options: any = []
@@ -369,6 +380,10 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
   // base
   debouncedOnInputChange: any = null
   debouncedQueryChange: any = null
+
+  // navigation
+  hoverOption = -1
+
   focus() {
     ;(this.$refs.reference as any).focus()
   }
@@ -376,6 +391,36 @@ export default class MuSelect extends Mixins(Emitter, NavigationMixin)
   blur() {
     this.visible = false
     ;(this.$refs.reference as any).blur()
+  }
+
+  navigateOptions(direction: any) {
+    if (!this.visible) {
+      this.visible = true
+      return
+    }
+    if (this.options.length === 0 || this.filteredOptionsCount === 0) return
+    if (!this.optionsAllDisabled) {
+      if (direction === 'next') {
+        this.hoverIndex++
+        if (this.hoverIndex === this.options.length) {
+          this.hoverIndex = 0
+        }
+      } else if (direction === 'prev') {
+        this.hoverIndex--
+        if (this.hoverIndex < 0) {
+          this.hoverIndex = this.options.length - 1
+        }
+      }
+      const option = this.options[this.hoverIndex]
+      if (
+        option.disabled === true ||
+        option.groupDisabled === true ||
+        !option.visible
+      ) {
+        this.navigateOptions(direction)
+      }
+      this.$nextTick(() => this.scrollToOption(this.hoverOption))
+    }
   }
 
   handleComposition(event: Event) {

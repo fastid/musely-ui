@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-14 19:02:17
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-25 01:35:06
+ * @LastEditTime: 2020-06-26 01:02:22
  * @Description:
  -->
 <template>
@@ -40,7 +40,6 @@ export default class MuOption extends Mixins(Emitter) implements Main {
 
   @Watch('currentLabel')
   onWatchCurrentLabel() {
-    console.log('111111111')
     if (!this.isCreate) {
       this.dispatch('MuSelect', 'setSelected', '')
     }
@@ -49,7 +48,6 @@ export default class MuOption extends Mixins(Emitter) implements Main {
   @Watch('value')
   onWatchValue(val: any, oldVal: any) {
     const { valueKey } = this.select
-    console.log(val, oldVal)
     if (!this.isCreate) {
       if (
         valueKey &&
