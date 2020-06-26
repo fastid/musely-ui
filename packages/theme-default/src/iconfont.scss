@@ -6,6 +6,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.mu-icon-heart:before {
+  content: '\e636';
+}
+
 .mu-icon-success:before {
   content: '\e63f';
 }
@@ -36,10 +40,6 @@
 
 .mu-icon-star-on:before {
   content: '\e635';
-}
-
-.mu-icon-heart:before {
-  content: '\e636';
 }
 
 .mu-icon-edit:before {
