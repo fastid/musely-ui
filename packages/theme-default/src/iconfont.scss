@@ -6,8 +6,32 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.mu-icon-ctrl:before {
+  content: '\e645';
+}
+
 .mu-icon-heart:before {
-  content: '\e636';
+  content: '\e646';
+}
+
+.mu-icon-circle-help:before {
+  content: '\e647';
+}
+
+.mu-icon-delete:before {
+  content: '\e648';
+}
+
+.mu-icon-email:before {
+  content: '\e649';
+}
+
+.mu-icon-round-help:before {
+  content: '\e64a';
+}
+
+.mu-icon-round-cry:before {
+  content: '\e64b';
 }
 
 .mu-icon-success:before {
