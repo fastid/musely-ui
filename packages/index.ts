@@ -45,7 +45,7 @@ import Rate from './rate'
 import Row from './row'
 import Scrollbar from './scrollbar'
 import Select from './select'
-const version = '0.1.27'
+const version = '0.1.28'
 const components = [
   Alert,
   Aside,
