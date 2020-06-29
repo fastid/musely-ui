@@ -2,7 +2,7 @@
  * @Author: Victor wang
  * @Date: 2020-04-20 01:33:16
  * @LastEditors: Victor.wang
- * @LastEditTime: 2020-06-20 01:01:32
+ * @LastEditTime: 2020-06-29 15:58:30
  * @Description:
  -->
 
@@ -72,10 +72,15 @@
 
 以按钮组的方式出现，常用于多项类似操作。
 
-:::demo 使用`<mu-button-group>`标签来嵌套你的按钮。
+:::demo 使用`<mu-button-group>`标签来嵌套你的按钮, 按钮组支持排列方向,添加属性`direction`即可,可选值:`horizontal / vertical`,默认: `vertical`
 
 ```html
 <mu-button-group>
+  <mu-button type="primary">Top</mu-button>
+  <mu-button type="primary">Bottom</mu-button>
+</mu-button-group>
+
+<mu-button-group direction="horizontal">
   <mu-button type="primary" icon="mu-icon-arrow-left">Prev</mu-button>
   <mu-button type="primary">Next<i class="mu-icon-arrow-right mu-icon--right"></i></mu-button>
 </mu-button-group>
@@ -97,14 +102,15 @@
 
 ### Attributes
 
-| 参数        | 说明           | 类型    | 可选值                  | 默认值 |
-| ----------- | -------------- | ------- | ----------------------- | ------ |
-| type        | 类型           | string  | text                    | —      |
-| plain       | 是否简洁按钮   | boolean | —                       | false  |
-| round       | 是否圆角按钮   | boolean | —                       | false  |
-| circle      | 是否圆形按钮   | boolean | —                       | false  |
-| loading     | 是否加载中状态 | boolean | —                       | false  |
-| disabled    | 是否禁用状态   | boolean | —                       | false  |
-| icon        | 图标类名       | string  | —                       | —      |
-| autofocus   | 是否默认聚焦   | boolean | —                       | false  |
-| native-type | 原生属性       | string  | button / submit / reset | button |
+| 参数        | 说明             | 类型    | 可选值                  | 默认值   |
+| ----------- | ---------------- | ------- | ----------------------- | -------- |
+| type        | 类型             | string  | text                    | —        |
+| plain       | 是否简洁按钮     | boolean | —                       | false    |
+| round       | 是否圆角按钮     | boolean | —                       | false    |
+| circle      | 是否圆形按钮     | boolean | —                       | false    |
+| loading     | 是否加载中状态   | boolean | —                       | false    |
+| disabled    | 是否禁用状态     | boolean | —                       | false    |
+| icon        | 图标类名         | string  | —                       | —        |
+| autofocus   | 是否默认聚焦     | boolean | —                       | false    |
+| native-type | 原生属性         | string  | button / submit / reset | button   |
+| direction   | 子元素的排列方向 | string  | horizontal / vertical   | vertical |
